@@ -1,0 +1,12 @@
+{
+  "name": "business-cms",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:public": "npm run dev --workspace=apps/public-site",
+    "dev:admin": "npm run dev --workspace=apps/admin"
+  }
+}
