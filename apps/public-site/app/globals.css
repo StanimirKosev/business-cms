@@ -1,8 +1,21 @@
 @import "tailwindcss";
 
 :root {
+  /* Brand Colors */
+  --color-red: #C62828;
+  --color-red-hover: #a82222;
+  --color-concrete-grey: #E0E0E0;
+  --color-concrete-grey-light: #F2F2F2;
+  --color-charcoal: #212121;
+  --color-charcoal-light: #2C2C2C;
+  --color-white: #FFFFFF;
+
+  /* Opacity variants */
+  --color-border-light: #0000001a;
+
+  /* Legacy variables */
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #212121;
 }
 
 @theme inline {
@@ -10,13 +23,14 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Brand colors for Tailwind */
+  --color-brand-red: var(--color-red);
+  --color-brand-red-hover: var(--color-red-hover);
+  --color-concrete: var(--color-concrete-grey);
+  --color-concrete-light: var(--color-concrete-grey-light);
+  --color-charcoal: var(--color-charcoal);
+  --color-charcoal-light: var(--color-charcoal-light);
 }
 
 body {
