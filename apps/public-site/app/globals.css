@@ -1,40 +1,83 @@
 @import "tailwindcss";
 
+/* Design tokens (globals) */
 :root {
   /* Brand Colors */
-  --color-red: #C62828;
+  --color-red: #c62828;
   --color-red-hover: #a82222;
-  --color-concrete-grey: #E0E0E0;
-  --color-concrete-grey-light: #F2F2F2;
+  --color-concrete-grey: #e0e0e0;
+  --color-concrete-grey-light: #f2f2f2;
   --color-charcoal: #212121;
-  --color-charcoal-light: #2C2C2C;
-  --color-white: #FFFFFF;
+  --color-charcoal-light: #2c2c2c;
+  --color-white: #ffffff;
 
   /* Opacity variants */
   --color-border-light: #0000001a;
 
-  /* Legacy variables */
-  --background: #ffffff;
-  --foreground: #212121;
+  /* Overlays */
+  --overlay: rgba(0, 0, 0, 0.6);
 }
 
+/* Tailwind theme bridge */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-
-  /* Brand colors for Tailwind */
-  --color-brand-red: var(--color-red);
-  --color-brand-red-hover: var(--color-red-hover);
-  --color-concrete: var(--color-concrete-grey);
-  --color-concrete-light: var(--color-concrete-grey-light);
-  --color-charcoal: var(--color-charcoal);
-  --color-charcoal-light: var(--color-charcoal-light);
 }
 
+/* Base */
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--color-white);
+  color: var(--color-charcoal);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Animations (cross-component) */
+/* Ken Burns zoom animation for hero carousel */
+@keyframes ken-burns {
+  0% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1.15);
+  }
+}
+.animate-ken-burns {
+  animation: ken-burns 20s ease-in-out infinite alternate;
+}
+
+/* Chevron nudge animation for scroll cue */
+@keyframes chevron-nudge {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.animate-chevron-nudge {
+  animation: chevron-nudge 2s ease-in-out infinite;
+}
+
+/* Shared link underline effect (GPU-friendly transform) */
+.link-underline {
+  position: relative;
+  padding-bottom: 0.25rem;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 300ms;
+  background-color: currentColor;
+}
+.link-underline:hover::after {
+  transform: scaleX(1);
 }

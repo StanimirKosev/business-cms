@@ -23,11 +23,17 @@
 - [x] Basic layout.tsx with SEO metadata configured
 - [x] Default boilerplate cleaned up
 - [x] Architecture decisions finalized
-- [x] Header component with sticky navigation
-- [x] Color system in globals.css
+- [x] Header component with sticky navigation and link underline effects
+- [x] Design system with CSS custom properties (brand colors, overlays)
+- [x] Hero carousel with Embla Carousel implementation
+- [x] Ken Burns zoom animation (subtle 8% scale)
+- [x] Carousel navigation (arrows, dots, progress bar)
+- [x] Scroll chevron indicator with smooth scroll
+- [x] ChevronButton reusable component
+- [x] Proper design token usage throughout components
 
 **🔄 IN PROGRESS:**
-- [ ] Homepage design and implementation (PRIORITY)
+- [ ] Homepage remaining sections (Stats Bar, Project Categories, etc.)
 
 **📋 REMAINING TASKS:**
 
@@ -85,7 +91,13 @@
 
 **Components to build:**
 - [x] Header with sticky navigation ✅
-- [ ] Hero carousel component (Embla Carousel)
+- [x] Hero carousel component (Embla Carousel) ✅
+  - [x] Autoplay with manual controls
+  - [x] Ken Burns zoom animation
+  - [x] Navigation arrows (below text)
+  - [x] Dot indicators (right side, vertically centered)
+  - [x] Progress bar at bottom
+  - [x] Scroll chevron with smooth scroll functionality
 - [ ] Stats bar with animation
 - [ ] Project categories grid
 - [ ] About section (2-column layout)

@@ -1,13 +1,10 @@
+import HeroCarousel from '@/components/HeroCarousel';
+
 export default function HomePage() {
   return (
     <div>
-      {/* Hero Section */}
-      <section className="h-screen bg-gradient-to-br from-gray-900 to-gray-700 flex items-center justify-center text-white">
-        <div className="text-center">
-          <h1 className="text-6xl font-bold mb-4">Строим вашето бъдеще</h1>
-          <p className="text-xl">Professional construction services since 2011</p>
-        </div>
-      </section>
+      {/* Hero Carousel */}
+      <HeroCarousel />
 
       {/* Dummy Content Sections */}
       <section className="py-32 px-6 bg-white">
