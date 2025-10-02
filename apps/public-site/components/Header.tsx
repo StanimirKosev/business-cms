@@ -2,9 +2,12 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,9 +23,9 @@ const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-[999] text-[var(--color-white)] transition-[background-color,box-shadow] duration-[400ms] ease-in-out ${
-        isScrolled
-          ? "bg-[var(--color-red)] shadow-md"
-          : "bg-transparent backdrop-blur-[2px]"
+        isHomePage && !isScrolled
+          ? "bg-transparent backdrop-blur-[2px]"
+          : "bg-[var(--color-red)] shadow-md"
       }`}
     >
       <div
