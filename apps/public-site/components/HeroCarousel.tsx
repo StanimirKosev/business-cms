@@ -33,7 +33,7 @@ const MOCK_SLIDES = [
   },
 ];
 
-const AUTOPLAY_DELAY = 5000;
+const AUTOPLAY_DELAY = 6000;
 
 const HeroCarousel = () => {
   const autoplay = useRef(
@@ -129,10 +129,13 @@ const HeroCarousel = () => {
 
       <div className="absolute inset-0 flex items-center px-6 md:px-40 z-10">
         <div className="max-w-3xl">
-          <h1 className="text-4xl md:text-6xl font-bold text-[var(--color-white)] mb-4">
-            {MOCK_SLIDES[selectedIndex].title}
-          </h1>
-          <p className="text-lg md:text-xl text-[var(--color-white)] mb-8">
+          <div className="flex gap-4 items-start mb-4">
+            <div className="w-1 h-16 md:h-20 bg-[var(--color-red)] mt-1" />
+            <h1 className="text-4xl md:text-6xl font-bold text-[var(--color-white)]">
+              {MOCK_SLIDES[selectedIndex].title}
+            </h1>
+          </div>
+          <p className="text-lg md:text-xl text-[var(--color-white)] mb-8 ml-8">
             {MOCK_SLIDES[selectedIndex].subtitle}
           </p>
           <div className="flex gap-4">
@@ -150,19 +153,14 @@ const HeroCarousel = () => {
         </div>
       </div>
 
-      <div className="absolute right-6 md:right-12 top-1/2 -translate-y-1/2 flex flex-col gap-3 z-10">
-        {MOCK_SLIDES.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => handleNavigation(() => emblaApi?.scrollTo(index))}
-            className={`w-4 h-4 rounded-full transition-colors cursor-pointer border-2 ${
-              index === selectedIndex
-                ? "bg-[var(--color-red)] border-[var(--color-red)]"
-                : "bg-transparent border-[var(--color-white)] hover:bg-[var(--color-white)]/20"
-            }`}
-            type="button"
-          />
-        ))}
+      <div className="absolute right-6 md:right-12 top-1/2 -translate-y-1/2 flex flex-col items-center z-10">
+        <span className="text-2xl md:text-3xl font-bold text-[var(--color-red)]">
+          {selectedIndex + 1}
+        </span>
+        <div className="w-px h-8 bg-[var(--color-white)]/40 my-1" />
+        <span className="text-lg md:text-xl font-medium text-[var(--color-white)]">
+          {MOCK_SLIDES.length}
+        </span>
       </div>
 
       {showScroll ? (
