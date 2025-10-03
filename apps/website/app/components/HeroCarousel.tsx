@@ -36,68 +36,80 @@ const MOCK_SLIDES = [
 const AUTOPLAY_DELAY = 6000;
 
 const HeroCarousel = () => {
-  const autoplay = useRef(
-    Autoplay({ delay: AUTOPLAY_DELAY, stopOnInteraction: false })
-  );
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
-    autoplay.current,
+    Autoplay({
+      delay: AUTOPLAY_DELAY,
+      playOnInit: false,
+      stopOnInteraction: false,
+    }),
   ]);
-  const [selectedIndex, setSelectedIndex] = useState<number>(0);
-  const [progress, setProgress] = useState<number>(0);
-  const [showScroll, setShowScroll] = useState<boolean>(true);
-  const rafRef = useRef<number | null>(null);
+
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [progress, setProgress] = useState(0);
+  const [showChevron, setShowChevron] = useState(true);
+
+  const progressNodeRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    const onScroll = () => setShowChevron(false);
+    window.addEventListener("scroll", onScroll, { once: true, passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     if (!emblaApi) return;
 
-    const onSelect = () => {
-      setSelectedIndex(emblaApi.selectedScrollSnap());
+    const autoplayPlugin = emblaApi.plugins()?.autoplay;
+    if (!autoplayPlugin) return;
+
+    const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
+
+    const updateProgress = () => {
+      const timeLeft = autoplayPlugin.timeUntilNext();
+      if (timeLeft === null) return;
+      setProgress(((AUTOPLAY_DELAY - timeLeft) / AUTOPLAY_DELAY) * 100);
+      progressNodeRef.current = requestAnimationFrame(updateProgress);
+    };
+
+    const onTimerSet = () => {
+      if (progressNodeRef.current !== null) {
+        cancelAnimationFrame(progressNodeRef.current);
+      }
+      progressNodeRef.current = requestAnimationFrame(updateProgress);
+    };
+
+    const onTimerStopped = () => {
+      if (progressNodeRef.current !== null) {
+        cancelAnimationFrame(progressNodeRef.current);
+        progressNodeRef.current = null;
+      }
+      setProgress(0);
     };
 
     emblaApi.on("select", onSelect);
-    emblaApi.on("reInit", onSelect);
+    emblaApi.on("autoplay:timerset", onTimerSet);
+    emblaApi.on("autoplay:timerstopped", onTimerStopped);
 
     onSelect();
+    autoplayPlugin.play();
 
     return () => {
       emblaApi.off("select", onSelect);
-      emblaApi.off("reInit", onSelect);
+      emblaApi.off("autoplay:timerset", onTimerSet);
+      emblaApi.off("autoplay:timerstopped", onTimerStopped);
+      if (progressNodeRef.current !== null)
+        cancelAnimationFrame(progressNodeRef.current);
     };
   }, [emblaApi]);
 
-  useEffect(() => {
-    window.addEventListener("scroll", () => setShowScroll(false), {
-      once: true,
-    });
+  const handleNavigation = (direction: "prev" | "next") => {
+    emblaApi?.plugins()?.autoplay?.reset();
 
-    const tick = () => {
-      const timeLeft = autoplay.current.timeUntilNext();
-      if (timeLeft === null) {
-        setProgress(0);
-      } else {
-        const elapsed = AUTOPLAY_DELAY - timeLeft;
-        setProgress((elapsed / AUTOPLAY_DELAY) * 100);
-      }
-      rafRef.current = requestAnimationFrame(tick);
-    };
-    rafRef.current = requestAnimationFrame(tick);
-
-    return () => {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    };
-  }, []);
-
-  const handleNavigation = (action: () => void) => {
-    setProgress(0);
-    autoplay.current.reset();
-    action();
-  };
-
-  const handleScrollDown = () => {
-    window.scrollTo({
-      top: window.innerHeight,
-      behavior: "smooth",
-    });
+    if (direction === "prev") {
+      emblaApi?.scrollPrev();
+    } else {
+      emblaApi?.scrollNext();
+    }
   };
 
   return (
@@ -127,7 +139,7 @@ const HeroCarousel = () => {
         </div>
       </div>
 
-      <div className="absolute inset-0 flex items-center px-6 md:px-40 z-10">
+      <div className="absolute inset-0 flex items-center px-6 md:px-40 z-10 pointer-events-none">
         <div className="max-w-3xl">
           <div className="flex gap-4 items-start mb-4">
             <div className="w-1 h-16 md:h-20 bg-[var(--color-red)] mt-1" />
@@ -138,22 +150,22 @@ const HeroCarousel = () => {
           <p className="text-lg md:text-xl text-[var(--color-white)] mb-8 ml-8">
             {MOCK_SLIDES[selectedIndex].subtitle}
           </p>
-          <div className="flex gap-4">
+          <div className="hidden md:flex gap-4 pointer-events-auto">
             <ChevronButton
               direction="left"
-              onClick={() => handleNavigation(() => emblaApi?.scrollPrev())}
+              onClick={() => handleNavigation("prev")}
               ariaLabel="Previous slide"
             />
             <ChevronButton
               direction="right"
-              onClick={() => handleNavigation(() => emblaApi?.scrollNext())}
+              onClick={() => handleNavigation("next")}
               ariaLabel="Next slide"
             />
           </div>
         </div>
       </div>
 
-      <div className="absolute right-6 md:right-12 top-1/2 -translate-y-1/2 flex flex-col items-center z-10">
+      <div className="absolute right-6 md:right-12 top-1/2 -translate-y-1/2 flex flex-col items-center z-10 pointer-events-none">
         <span className="text-2xl md:text-3xl font-bold text-[var(--color-red)]">
           {selectedIndex + 1}
         </span>
@@ -163,11 +175,13 @@ const HeroCarousel = () => {
         </span>
       </div>
 
-      {showScroll ? (
+      {showChevron ? (
         <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20">
           <ChevronButton
             direction="down"
-            onClick={handleScrollDown}
+            onClick={() =>
+              window.scrollTo({ top: window.innerHeight, behavior: "smooth" })
+            }
             ariaLabel="Scroll down"
             className="text-[var(--color-white)]/90 animate-chevron-nudge"
           />

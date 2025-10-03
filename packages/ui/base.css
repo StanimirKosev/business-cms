@@ -15,7 +15,7 @@
   --color-border-light: #0000001a;
 
   /* Overlays */
-  --overlay: rgba(0, 0, 0, 0.6);
+  --overlay: rgba(0, 0, 0, 0.5);
 }
 
 /* Tailwind theme bridge */

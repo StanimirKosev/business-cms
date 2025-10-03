@@ -29,20 +29,20 @@ const Header = () => {
       }`}
     >
       <div
-        className={`pl-40 pr-60 flex items-center justify-between max-w-[1800px] mx-auto transition-[padding] duration-[400ms] ease-in-out ${
+        className={`px-6 md:pl-40 md:pr-60 flex flex-col md:flex-row items-end md:items-center md:justify-between gap-3 md:gap-0 max-w-[1800px] mx-auto transition-[padding] duration-[400ms] ease-in-out ${
           isScrolled ? "py-2" : "py-4"
         }`}
       >
         <Link
           href="/"
-          className={`font-bold text-3xl leading-none origin-left transition-transform duration-[400ms] ease-in-out ${
+          className={`font-bold text-3xl leading-none md:origin-left transition-transform duration-[400ms] ease-in-out ${
             isScrolled ? "scale-[0.56]" : "scale-100"
           }`}
         >
           LOGO
         </Link>
 
-        <nav className="flex items-center gap-8 text-base">
+        <nav className="flex items-center gap-4 md:gap-8 text-base w-full md:w-auto justify-between md:justify-start">
           <Link href="/" className="link-underline">
             Начало
           </Link>
