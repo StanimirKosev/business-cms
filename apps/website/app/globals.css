@@ -1,37 +1,9 @@
-@import "tailwindcss";
+@import "@repo/ui/base.css";
+@source "../../**/*.{ts,tsx,js,jsx}";
+@source "../../../packages/ui/**/*.{ts,tsx,js,jsx}";
 
-/* Design tokens (globals) */
-:root {
-  /* Brand Colors */
-  --color-red: #c62828;
-  --color-red-hover: #a82222;
-  --color-concrete-grey: #e0e0e0;
-  --color-concrete-grey-light: #f2f2f2;
-  --color-charcoal: #212121;
-  --color-charcoal-light: #2c2c2c;
-  --color-white: #ffffff;
+/* Website-specific styles below */
 
-  /* Opacity variants */
-  --color-border-light: #0000001a;
-
-  /* Overlays */
-  --overlay: rgba(0, 0, 0, 0.6);
-}
-
-/* Tailwind theme bridge */
-@theme inline {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-/* Base */
-body {
-  background: var(--color-white);
-  color: var(--color-charcoal);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-/* Animations (cross-component) */
 /* Ken Burns zoom animation for hero carousel */
 @keyframes ken-burns {
   0% {
@@ -61,7 +33,7 @@ body {
   animation: chevron-nudge 2s ease-in-out infinite;
 }
 
-/* Shared link underline effect (GPU-friendly transform) */
+/* Shared link underline effect for header */
 .link-underline {
   position: relative;
   padding-bottom: 0.25rem;
@@ -80,4 +52,17 @@ body {
 }
 .link-underline:hover::after {
   transform: scaleX(1);
+}
+
+/* Sonner toast notifications */
+.toast-success {
+  background: #10b981 !important;
+  color: white !important;
+  border: none !important;
+}
+
+.toast-error {
+  background: #ef4444 !important;
+  color: white !important;
+  border: none !important;
 }

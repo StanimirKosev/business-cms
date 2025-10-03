@@ -1,12 +1,22 @@
 {
   "name": "business-cms",
+  "version": "0.0.0",
   "private": true,
+  "description": "Business CMS monorepo - Public website and admin dashboard",
   "workspaces": [
     "apps/*",
     "packages/*"
   ],
   "scripts": {
-    "dev:public": "npm run dev --workspace=apps/public-site",
-    "dev:admin": "npm run dev --workspace=apps/admin"
+    "dev:website": "npm run dev --workspace=apps/website",
+    "dev:admin": "npm run dev --workspace=apps/admin",
+    "build:website": "npm run build --workspace=apps/website",
+    "build:admin": "npm run build --workspace=apps/admin",
+    "lint:website": "npm run lint --workspace=apps/website",
+    "lint:admin": "npm run lint --workspace=apps/admin"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
   }
 }

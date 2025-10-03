@@ -10,7 +10,7 @@ Business CMS for a Bulgarian construction company built as dual Next.js applicat
 
 Dual Next.js application approach:
 
-**Public Site** (`apps/public-site`):
+**Public Website** (`apps/website`):
 
 - Client-facing website optimized for visual impact and SEO
 - Static Site Generation (SSG) for fast loading
@@ -29,7 +29,11 @@ Dual Next.js application approach:
 ## Tech Stack
 
 - **Frontend Framework**: Next.js 15 (App Router)
-- **Styling**: Tailwind CSS + CSS custom properties
+- **Styling**: Tailwind CSS v4 + CSS custom properties
+- **UI Components**: shadcn/ui (shared in monorepo)
+- **Form Handling**: React Hook Form + Zod validation
+- **Notifications**: Sonner (toast notifications)
+- **Carousel**: Embla Carousel
 - **Database**: PostgreSQL + Prisma ORM
 - **Authentication**: NextAuth.js v5 (admin only)
 - **File Storage**: Cloudinary (free tier)
@@ -41,25 +45,36 @@ Dual Next.js application approach:
 ```
 business-cms/
 ├── apps/
-│   ├── public-site/           # Client website (Next.js)
+│   ├── website/               # Client website (Next.js)
 │   │   ├── app/
 │   │   │   ├── layout.tsx     # Root layout with nav/footer
 │   │   │   ├── page.tsx       # Homepage
-│   │   │   ├── projects/      # Project showcase pages
-│   │   │   ├── about/         # Company information
 │   │   │   ├── contact/       # Contact form
 │   │   │   └── components/    # App-specific components
-│   │   └── public/            # App-specific static assets
+│   │   ├── next.config.ts     # Next.js configuration
+│   │   ├── postcss.config.mjs # Tailwind v4 PostCSS config
+│   │   ├── tsconfig.json      # TypeScript config
+│   │   └── package.json       # App dependencies
 │   └── admin/                 # Admin dashboard (to be created)
 ├── packages/
-│   ├── database/              # Prisma schema and migrations
-│   ├── types/                 # TypeScript interfaces
-│   ├── api/                   # API functions by domain
-│   ├── ui/                    # Shared React components
-│   └── utils/                 # Utility functions
-├── shared-assets/             # Company branding, shared icons
-├── scripts/                   # Database setup, deployment scripts
-├── docs/                      # API docs, deployment guides
+│   └── ui/                    # Shared frontend package (@repo/ui)
+│       ├── components/        # shadcn/ui components
+│       │   ├── button.tsx
+│       │   ├── input.tsx
+│       │   ├── textarea.tsx
+│       │   ├── label.tsx
+│       │   └── form.tsx
+│       ├── validation/        # Zod validation schemas
+│       │   ├── index.ts
+│       │   └── schemas/
+│       │       └── contact.ts
+│       ├── lib/
+│       │   └── utils.ts       # cn() utility
+│       ├── base.css           # Tailwind v4 theme + CSS variables
+│       ├── components.json    # shadcn CLI config
+│       ├── tsconfig.json      # TypeScript config
+│       └── package.json       # Package exports & dependencies
+├── CLAUDE.md                  # Project instructions for Claude
 └── tasks.md                   # Development roadmap and progress
 ```
 
@@ -78,17 +93,50 @@ business-cms/
 # Install dependencies for all workspaces
 npm install
 
-# Run public site in development
-npm run dev:public
+# Run website in development
+npm run dev:website
 
 # Run admin dashboard in development
 npm run dev:admin
+
+# Build for production
+npm run build:website
+npm run build:admin
+
+# Add shadcn components
+cd packages/ui
+npx shadcn@latest add [component-name]
 ```
 
 ## Key Features
 
+- **Monorepo architecture**: Shared UI components and validation across apps
+- **Tailwind CSS v4**: Modern styling with `@source` directives for monorepo support
+- **shadcn/ui integration**: Properly configured for monorepo with `components.json`
+- **Type-safe forms**: React Hook Form + Zod validation in shared package
 - **Image optimization**: Automatic WebP conversion and responsive images
 - **SEO optimization**: Static generation with proper meta tags for local search
 - **Mobile responsive**: Construction projects viewable on all devices
-- **Admin workflow**: Simple content management for non-technical users
 - **Performance**: Fast loading times critical for user engagement
+
+## Important Setup Notes
+
+### Tailwind v4 + Monorepo
+The project uses Tailwind CSS v4 which requires special configuration in monorepos:
+
+**In `apps/website/app/globals.css`:**
+```css
+@import "@repo/ui/base.css";
+
+/* Critical: Tell Tailwind where to scan for classes */
+@source "../../**/*.{ts,tsx,js,jsx}";
+@source "../../../packages/ui/**/*.{ts,tsx,js,jsx}";
+```
+
+The `@source` directives are **required** for Tailwind to generate CSS for classes used in the shared `packages/ui` package. Without them, components will render without styling.
+
+### Shared UI Package
+All UI components, validation schemas, and base styles live in `packages/ui` (`@repo/ui`):
+- Components can be added via shadcn CLI from `packages/ui` directory
+- Both apps import from `@repo/ui/components/*` and `@repo/ui/validation`
+- CSS variables and Tailwind theme defined in `packages/ui/base.css`

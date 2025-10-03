@@ -19,21 +19,29 @@
 
 **✅ COMPLETED:**
 - [x] Project structure and monorepo setup
-- [x] Next.js public-site application created
+- [x] Next.js website application created (`apps/website`)
+- [x] Shared UI package setup (`packages/ui` / `@repo/ui`)
+- [x] Tailwind CSS v4 with monorepo `@source` directives
+- [x] shadcn/ui integration with `components.json`
 - [x] Basic layout.tsx with SEO metadata configured
 - [x] Default boilerplate cleaned up
 - [x] Architecture decisions finalized
 - [x] Header component with sticky navigation and link underline effects
+- [x] Footer component
 - [x] Design system with CSS custom properties (brand colors, overlays)
 - [x] Hero carousel with Embla Carousel implementation
 - [x] Ken Burns zoom animation (subtle 8% scale)
 - [x] Carousel navigation (arrows, dots, progress bar)
 - [x] Scroll chevron indicator with smooth scroll
 - [x] ChevronButton reusable component
-- [x] Proper design token usage throughout components
+- [x] Contact form page with React Hook Form + Zod validation
+- [x] Sonner toast notifications
+- [x] Shared validation schemas (`@repo/ui/validation`)
+- [x] shadcn components: Button, Input, Textarea, Label, Form
 
 **🔄 IN PROGRESS:**
 - [ ] Homepage remaining sections (Stats Bar, Project Categories, etc.)
+- [ ] Contact form backend (API route + email sending)
 
 **📋 REMAINING TASKS:**
 
