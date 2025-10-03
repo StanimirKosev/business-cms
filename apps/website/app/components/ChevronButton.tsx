@@ -1,3 +1,5 @@
+import { ChevronLeft, ChevronRight, ChevronDown } from "lucide-react";
+
 interface ChevronButtonProps {
   direction: "left" | "right" | "down";
   onClick: () => void;
@@ -11,11 +13,13 @@ const ChevronButton = ({
   ariaLabel,
   className = "",
 }: ChevronButtonProps) => {
-  const paths = {
-    left: "M15 19l-7-7 7-7",
-    right: "M9 5l7 7-7 7",
-    down: "M19 9l-7 7-7-7",
+  const icons = {
+    left: ChevronLeft,
+    right: ChevronRight,
+    down: ChevronDown,
   };
+
+  const Icon = icons[direction];
 
   return (
     <button
@@ -24,20 +28,7 @@ const ChevronButton = ({
       type="button"
       aria-label={ariaLabel}
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        className="w-10 h-10"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          d={paths[direction]}
-        />
-      </svg>
+      <Icon className="w-10 h-10" />
     </button>
   );
 };
