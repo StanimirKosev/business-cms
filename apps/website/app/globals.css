@@ -1,4 +1,4 @@
-@import "@repo/ui/base.css";
+@import "../../../packages/ui/base.css";
 @source "../../**/*.{ts,tsx,js,jsx}";
 @source "../../../packages/ui/**/*.{ts,tsx,js,jsx}";
 
