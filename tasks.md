@@ -3,12 +3,14 @@
 ## Design System
 
 **Color Palette:**
+
 - **Construction Red** `#C62828` - Use sparingly: buttons, hover states, key headings, brand iconography
 - **Concrete Grey** `#E0E0E0` or `#F2F2F2` - Background surfaces
 - **Charcoal/Graphite** `#212121` or `#2C2C2C` - Primary text
 - **White** `#FFFFFF` - Clean negative space
 
 **Usage Guidelines:**
+
 - Backgrounds: light greys and white (air, clarity)
 - Text: charcoal (easy to read, clean)
 - UI elements: subtle steel greys for dividers, borders
@@ -18,6 +20,7 @@
 ## Current Progress
 
 **✅ COMPLETED:**
+
 - [x] Project structure and monorepo setup
 - [x] Next.js website application created (`apps/website`)
 - [x] Shared UI package setup (`packages/ui` / `@repo/ui`)
@@ -40,6 +43,7 @@
 - [x] shadcn components: Button, Input, Textarea, Label, Form
 
 **🔄 IN PROGRESS:**
+
 - [ ] Homepage remaining sections (Stats Bar, Project Categories, etc.)
 - [x] Contact form backend (API route + email sending)
   - [x] Create API route handler (`app/api/contact/route.ts`)
@@ -97,18 +101,11 @@
    - Clean, minimal design
    - Include: "Дружеството разполага с необходимата за дейността си съвременна тежка и лека механизация, транспортна и подемна техника, автотранспорт."
 
-7. **Floating Contact Button**
-   - Fixed position (bottom-right)
-   - Clicking shows modal/popover with:
-     - Phone number
-     - Email address
-     - "Изпрати запитване" button → links to /contact
-   - Always visible on all pages
-
-8. **Footer**
+7. **Footer**
    - Minimal: Quick links | Copyright | Social icons (if provided)
 
 **Components to build:**
+
 - [x] Header with sticky navigation ✅
 - [x] Hero carousel component (Embla Carousel) ✅
   - [x] Autoplay with manual controls
@@ -121,11 +118,11 @@
 - [ ] Project categories grid
 - [ ] About section (2-column layout)
 - [ ] Services grid
-- [ ] Floating contact button + modal
 - [ ] Footer component
 - [ ] Clients grid component (logo grid pattern) - TBD placement
 
 ### Other Public Site Tasks
+
 - [ ] Create Next.js public-site app
 - [ ] Library selection and installation
 - [ ] Navigation and footer components
@@ -173,6 +170,7 @@
 ## UI Enhancement Ideas (Optional/Future)
 
 **Hero Carousel:**
+
 - Parallax effect on scroll (image moves slower than content)
 - Dark gradient overlay (bottom-up) for text readability
 - Large bold typography for tagline ("Строим вашето бъдеще")
@@ -180,6 +178,7 @@
 - Dots navigation + prev/next arrows
 
 **Stats Bar:**
+
 - Glass morphism style (semi-transparent, blur background)
 - Count-up animation when scrolls into view (300 → counts up to 300+)
 - Icons from construction (hard hat, building, trophy, handshake)
@@ -187,6 +186,7 @@
 - Hover effect - stat grows slightly
 
 **Project Categories Grid:**
+
 - Masonry layout (Pinterest-style, not rigid grid) OR Bento grid (varied sizes)
 - Image fills card with dark overlay
 - Category name appears on hover (slides up from bottom)
@@ -194,20 +194,15 @@
 - Optional: First card could be larger (featured category)
 
 **About Section:**
+
 - Image on right: team photo or construction site (add subtle border/shadow)
 - Timeline graphic beside text? (2011 → Today with milestones)
 - Pull quote style for key sentence ("Качество е нашият приоритет")
 - Simple, confident tone - no fluff
 
 **Services Grid:**
+
 - Icon in colored circle (brand color)
 - Card lifts on hover (shadow grows)
 - Each card has accent color (different shade per service)
 - Optional: Diagonal cut on card corners (modern look)
-
-**Floating Contact Button:**
-- Pulsing animation (subtle, draws attention)
-- Phone icon (universally recognized)
-- Tooltip on hover ("Свържете се с нас")
-- Modal slides from bottom (not popup) with phone/email
-- WhatsApp icon? (if they use it for business)

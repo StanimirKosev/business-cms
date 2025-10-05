@@ -30,6 +30,7 @@ const CONTACT_MESSAGES = {
 const ContactPage = () => {
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
+    mode: "onBlur",
     defaultValues: {
       name: "",
       email: "",
@@ -86,13 +87,13 @@ const ContactPage = () => {
               >
                 Свържете се с нас
               </h1>
-              <p className="text-lg text-gray-600 leading-relaxed">
+              <p className="text-lg text-[var(--color-charcoal)] opacity-70 leading-relaxed">
                 Изпратете ни вашето запитване и ще се свържем с вас възможно
                 най-скоро
               </p>
             </div>
 
-            <div className="bg-white rounded-lg shadow-xl p-8 md:p-12 border border-gray-100">
+            <div className="bg-white rounded-lg shadow-xl p-8 md:p-12 border border-[var(--color-concrete-grey)]">
               <Form {...form}>
                 <form
                   onSubmit={form.handleSubmit(onSubmit)}
@@ -121,7 +122,7 @@ const ContactPage = () => {
                         <FormControl>
                           <Input
                             placeholder="Вашето име"
-                            className="bg-white border-gray-300"
+                            className="bg-white border-[var(--color-concrete-grey)]"
                             {...field}
                           />
                         </FormControl>
@@ -143,7 +144,7 @@ const ContactPage = () => {
                           <Input
                             type="email"
                             placeholder="email@example.com"
-                            className="bg-white border-gray-300"
+                            className="bg-white border-[var(--color-concrete-grey)]"
                             {...field}
                           />
                         </FormControl>
@@ -165,7 +166,7 @@ const ContactPage = () => {
                           <Input
                             type="tel"
                             placeholder="+359 XXX XXX XXX"
-                            className="bg-white border-gray-300"
+                            className="bg-white border-[var(--color-concrete-grey)]"
                             {...field}
                           />
                         </FormControl>
@@ -187,7 +188,7 @@ const ContactPage = () => {
                           <Textarea
                             placeholder="Вашето съобщение..."
                             rows={6}
-                            className="bg-white border-gray-300 resize-none"
+                            className="bg-white border-[var(--color-concrete-grey)] resize-none"
                             {...field}
                           />
                         </FormControl>

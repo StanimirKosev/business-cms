@@ -47,6 +47,7 @@ const HeroCarousel = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const [showChevron, setShowChevron] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
 
   const progressNodeRef = useRef<number | null>(null);
 
@@ -54,6 +55,10 @@ const HeroCarousel = () => {
     const onScroll = () => setShowChevron(false);
     window.addEventListener("scroll", onScroll, { once: true, passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => setIsVisible(true), 50);
   }, []);
 
   useEffect(() => {
@@ -142,12 +147,28 @@ const HeroCarousel = () => {
       <div className="absolute inset-0 flex items-center px-6 md:px-40 z-10 pointer-events-none">
         <div className="max-w-3xl">
           <div className="flex gap-4 items-start mb-4">
-            <div className="w-1 h-16 md:h-20 bg-[var(--color-red)] mt-1" />
-            <h1 className="text-4xl md:text-6xl font-bold text-[var(--color-white)]">
+            <div
+              className={`w-1 bg-[var(--color-red)] mt-1 transition-all duration-[600ms] ease-out ${
+                isVisible ? "h-16 md:h-20" : "h-0"
+              }`}
+            />
+            <h1
+              className={`text-4xl md:text-6xl font-bold text-[var(--color-white)] transition-all duration-500 ease-out delay-[500ms] ${
+                isVisible
+                  ? "opacity-100 translate-x-0"
+                  : "opacity-0 -translate-x-[30px]"
+              }`}
+            >
               {MOCK_SLIDES[selectedIndex].title}
             </h1>
           </div>
-          <p className="text-lg md:text-xl text-[var(--color-white)] mb-8 ml-8">
+          <p
+            className={`text-lg md:text-xl text-[var(--color-white)] mb-8 ml-8 transition-all duration-500 ease-out delay-[300ms] ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-[20px]"
+            }`}
+          >
             {MOCK_SLIDES[selectedIndex].subtitle}
           </p>
           <div className="hidden md:flex gap-4 pointer-events-auto">

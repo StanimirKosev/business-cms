@@ -1,10 +1,14 @@
 import HeroCarousel from "@/app/components/HeroCarousel";
+import AboutSection from "@/app/components/AboutSection";
 
 export default function HomePage() {
   return (
     <div>
       {/* Hero Carousel */}
       <HeroCarousel />
+
+      {/* About Section */}
+      <AboutSection />
 
       {/* Dummy Content Sections */}
       <section className="py-32 px-6 bg-white">

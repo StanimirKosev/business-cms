@@ -59,7 +59,7 @@ const HamburgerMenu = () => {
       {isMobileMenuOpen && (
         <div
           ref={menuRef}
-          className="absolute top-full right-0 mt-2 w-48 bg-white rounded-lg shadow-xl overflow-hidden"
+          className="absolute top-full right-0 mt-2 w-48 bg-[var(--color-white)] rounded-lg shadow-xl overflow-hidden"
         >
           {[
             { href: "/", label: "Начало" },
@@ -70,10 +70,10 @@ const HamburgerMenu = () => {
               key={link.href}
               href={link.href}
               className={`block px-5 py-4 min-h-[44px] flex items-center ${
-                index < 2 ? "border-b border-gray-200" : ""
+                index < 2 ? "border-b border-[var(--color-concrete-grey)]" : ""
               } ${
                 pathname === link.href
-                  ? "bg-gray-100 text-[var(--color-red)] font-semibold"
+                  ? "bg-[var(--color-concrete-grey-light)] text-[var(--color-red)] font-semibold"
                   : "text-[var(--color-charcoal)]"
               }`}
               onClick={() => setIsMobileMenuOpen(false)}
