@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import HamburgerMenu from "./HamburgerMenu";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
@@ -29,7 +30,7 @@ const Header = () => {
       }`}
     >
       <div
-        className={`px-6 md:pl-40 md:pr-60 flex flex-col md:flex-row items-end md:items-center md:justify-between gap-3 md:gap-0 max-w-[1800px] mx-auto transition-[padding] duration-[400ms] ease-in-out ${
+        className={`px-6 md:pl-40 md:pr-60 flex items-center justify-between max-w-[1800px] mx-auto transition-[padding] duration-[400ms] ease-in-out ${
           isScrolled ? "py-2" : "py-4"
         }`}
       >
@@ -42,7 +43,7 @@ const Header = () => {
           LOGO
         </Link>
 
-        <nav className="flex items-center gap-4 md:gap-8 text-base w-full md:w-auto justify-between md:justify-start">
+        <nav className="hidden md:flex items-center gap-8 text-base">
           <Link href="/" className="link-underline">
             Начало
           </Link>
@@ -53,6 +54,7 @@ const Header = () => {
             Контакти
           </Link>
         </nav>
+        <HamburgerMenu />
       </div>
     </header>
   );
