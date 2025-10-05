@@ -17,6 +17,16 @@ import { Input } from "@repo/ui/components/input";
 import { Textarea } from "@repo/ui/components/textarea";
 import { contactSchema, type ContactFormValues } from "@repo/ui/validation";
 
+// Translation map for API response codes
+// TODO: Add English translations when language toggle is implemented
+const CONTACT_MESSAGES = {
+  CONTACT_SUCCESS: "Благодарим ви! Вашето съобщение е изпратено успешно.",
+  VALIDATION_ERROR: "Невалидни данни. Моля, проверете формата.",
+  RATE_LIMIT_EXCEEDED: "Твърде много заявки. Моля, изчакайте малко.",
+  EMAIL_SEND_FAILED: "Грешка при изпращане на имейл. Моля, опитайте отново.",
+  SERVER_ERROR: "Възникна грешка. Моля, опитайте отново.",
+} as const;
+
 const ContactPage = () => {
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
@@ -30,35 +40,35 @@ const ContactPage = () => {
   });
 
   async function onSubmit(values: ContactFormValues) {
-    // Honeypot check
-
-    // TODO: Check on BE as well
-    if (values.website) {
-      console.log("Bot detected");
-      return;
-    }
-
     try {
-      // Mock API call - replace with actual endpoint later
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.message || "Грешка при изпращане");
+        // Map error code to translated message
+        const errorMessage =
+          data.errorCode && data.errorCode in CONTACT_MESSAGES
+            ? CONTACT_MESSAGES[data.errorCode as keyof typeof CONTACT_MESSAGES]
+            : CONTACT_MESSAGES.SERVER_ERROR;
+        throw new Error(errorMessage);
       }
 
-      toast.success("Благодарим ви! Вашето съобщение е изпратено успешно.");
+      // Success - map success code to translated message
+      const successMessage =
+        data.messageCode && data.messageCode in CONTACT_MESSAGES
+          ? CONTACT_MESSAGES[data.messageCode as keyof typeof CONTACT_MESSAGES]
+          : CONTACT_MESSAGES.CONTACT_SUCCESS;
+
+      toast.success(successMessage);
       form.reset();
     } catch (error) {
-      console.error("Error submitting form:", error);
       const errorMessage =
-        error instanceof Error
-          ? error.message
-          : "Възникна грешка. Моля, опитайте отново.";
+        error instanceof Error ? error.message : CONTACT_MESSAGES.SERVER_ERROR;
       toast.error(errorMessage);
     }
   }
@@ -70,7 +80,10 @@ const ContactPage = () => {
           {/* Left Column: Form */}
           <div>
             <div className="mb-8">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4 text-[var(--color-charcoal)]" id="contact-form-heading">
+              <h1
+                className="text-4xl md:text-5xl font-bold mb-4 text-[var(--color-charcoal)]"
+                id="contact-form-heading"
+              >
                 Свържете се с нас
               </h1>
               <p className="text-lg text-gray-600 leading-relaxed">
