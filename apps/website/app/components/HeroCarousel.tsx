@@ -33,7 +33,7 @@ const MOCK_SLIDES = [
   },
 ];
 
-const AUTOPLAY_DELAY = 6000;
+const AUTOPLAY_DELAY = 10000;
 
 const HeroCarousel = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
@@ -91,17 +91,20 @@ const HeroCarousel = () => {
       setProgress(0);
     };
 
-    emblaApi.on("select", onSelect);
-    emblaApi.on("autoplay:timerset", onTimerSet);
-    emblaApi.on("autoplay:timerstopped", onTimerStopped);
+    emblaApi
+      .on("select", onSelect)
+      .on("autoplay:timerset", onTimerSet)
+      .on("autoplay:timerstopped", onTimerStopped);
 
     onSelect();
     autoplayPlugin.play();
 
     return () => {
-      emblaApi.off("select", onSelect);
-      emblaApi.off("autoplay:timerset", onTimerSet);
-      emblaApi.off("autoplay:timerstopped", onTimerStopped);
+      emblaApi
+        .off("select", onSelect)
+        .off("autoplay:timerset", onTimerSet)
+        .off("autoplay:timerstopped", onTimerStopped);
+
       if (progressNodeRef.current !== null)
         cancelAnimationFrame(progressNodeRef.current);
     };
@@ -146,31 +149,27 @@ const HeroCarousel = () => {
 
       <div className="absolute inset-0 flex items-center px-6 md:px-40 z-10 pointer-events-none">
         <div className="max-w-3xl">
-          <div className="flex gap-4 items-start mb-4">
+          <div className="flex gap-4 items-start">
             <div
               className={`w-1 bg-[var(--color-red)] mt-1 transition-all duration-[600ms] ease-out ${
                 isVisible ? "h-16 md:h-20" : "h-0"
               }`}
             />
-            <h1
-              className={`text-4xl md:text-6xl font-bold text-[var(--color-white)] transition-all duration-500 ease-out delay-[500ms] ${
-                isVisible
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 -translate-x-[30px]"
-              }`}
-            >
-              {MOCK_SLIDES[selectedIndex].title}
-            </h1>
+            <div>
+              <h1
+                key={`title-${selectedIndex}`}
+                className="text-4xl md:text-6xl font-bold text-[var(--color-white)] mb-4 animate-slide-up"
+              >
+                {MOCK_SLIDES[selectedIndex].title}
+              </h1>
+              <p
+                key={`subtitle-${selectedIndex}`}
+                className="text-lg md:text-xl text-[var(--color-white)] mb-8 animate-slide-up-delayed"
+              >
+                {MOCK_SLIDES[selectedIndex].subtitle}
+              </p>
+            </div>
           </div>
-          <p
-            className={`text-lg md:text-xl text-[var(--color-white)] mb-8 ml-8 transition-all duration-500 ease-out delay-[300ms] ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-[20px]"
-            }`}
-          >
-            {MOCK_SLIDES[selectedIndex].subtitle}
-          </p>
           <div className="hidden md:flex gap-4 pointer-events-auto">
             <ChevronButton
               direction="left"

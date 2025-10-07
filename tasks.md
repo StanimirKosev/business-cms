@@ -75,9 +75,10 @@
 ### Phase 1: Homepage Completion
 
 **Homepage Section Order:**
+
 1. Hero Carousel ✅ (Completed)
-2. Stats Bar / За нас (About)
-3. Актуални Проекти (Recent Projects)
+2. Stats Bar / За нас ✅ (About)
+3. Наши Проекти ✅ (Featured Projects)
 4. Нашите Услуги (Services)
 5. Клиенти (Client Logos)
 6. Footer ✅ (Completed)
@@ -91,13 +92,12 @@
 - [x] 2-3 sentence company intro text
 - [x] Optional: Company image or team photo
 
-**Актуални Проекти (Recent Projects Preview)**
+**Наши Проекти (Featured Projects Preview)**
 
-- [ ] Recent projects grid component (show 6 most recent)
+- [ ] Featured projects grid component (show 6 most featured)
 - [ ] ProjectCard component (image, title, category tag)
-- [ ] Hover overlay with year completed
 - [ ] "Всички проекти" button linking to `/projects`
-- [ ] Mock data for 6 recent projects
+- [ ] Mock data for 6 Featured projects
 
 **Нашите Услуги (Services Grid)**
 

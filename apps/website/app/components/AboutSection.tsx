@@ -1,26 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
+import { useScrollAnimation } from "@/app/hooks/useScrollAnimation";
 
 const AboutSection = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const { ref: sectionRef, isVisible } = useScrollAnimation(0.5);
   const [projectCount, setProjectCount] = useState(0);
   const [clientCount, setClientCount] = useState(0);
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const currentSection = sectionRef.current;
-    if (!currentSection) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => entry.isIntersecting && setIsVisible(true),
-      { threshold: 0.5 }
-    );
-
-    observer.observe(currentSection);
-    return () => observer.unobserve(currentSection);
-  }, []);
 
   useEffect(() => {
     if (!isVisible) return;

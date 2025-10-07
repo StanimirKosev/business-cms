@@ -16,6 +16,7 @@
 
   /* Overlays */
   --overlay: rgba(0, 0, 0, 0.5);
+  --overlay-dark: rgba(0, 0, 0, 0.7);
 }
 
 /* Tailwind theme bridge */

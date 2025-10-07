@@ -5,6 +5,7 @@ interface ChevronButtonProps {
   onClick: () => void;
   ariaLabel: string;
   className?: string;
+  disabled?: boolean;
 }
 
 const ChevronButton = ({
@@ -12,6 +13,7 @@ const ChevronButton = ({
   onClick,
   ariaLabel,
   className = "",
+  disabled = false,
 }: ChevronButtonProps) => {
   const icons = {
     left: ChevronLeft,
@@ -24,7 +26,10 @@ const ChevronButton = ({
   return (
     <button
       onClick={onClick}
-      className={`text-[var(--color-white)] hover:text-[var(--color-red)] transition-colors cursor-pointer ${className}`}
+      disabled={disabled}
+      className={`text-[var(--color-white)] hover:text-[var(--color-red)] transition-colors ${
+        disabled ? "opacity-30 pointer-events-none" : "cursor-pointer"
+      } ${className}`}
       type="button"
       aria-label={ariaLabel}
     >
