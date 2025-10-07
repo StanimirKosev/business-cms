@@ -64,6 +64,7 @@ const HamburgerMenu = () => {
           {[
             { href: "/", label: "Начало" },
             { href: "/projects", label: "Проекти" },
+            { href: "/quality", label: "Качество" },
             { href: "/contact", label: "Контакти" },
           ].map((link, index) => (
             <Link

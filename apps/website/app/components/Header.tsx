@@ -50,6 +50,9 @@ const Header = () => {
           <Link href="/projects" className="link-underline">
             Проекти
           </Link>
+          <Link href="/quality" className="link-underline">
+            Качество
+          </Link>
           <Link href="/contact" className="link-underline">
             Контакти
           </Link>
