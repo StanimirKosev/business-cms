@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { ProjectCard } from "./ProjectCard";
 import { recentProjects } from "@/lib/mockData";
@@ -10,27 +9,13 @@ import { useScrollAnimation } from "@/app/hooks/useScrollAnimation";
 export function FeaturedProjects() {
   const { ref: sectionRef, isVisible } = useScrollAnimation(0.5);
   const [emblaRef, emblaApi] = useEmblaCarousel({
-    loop: false,
+    loop: true,
     align: "start",
+    slidesToScroll: 3,
+    breakpoints: {
+      "(max-width: 768px)": { slidesToScroll: 1 },
+    },
   });
-  const [selectedIndex, setSelectedIndex] = useState(0);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-
-    const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
-
-    onSelect();
-    emblaApi.on("select", onSelect).on("reInit", onSelect);
-
-    return () => {
-      emblaApi.off("select", onSelect).off("reInit", onSelect);
-    };
-  }, [emblaApi]);
-
-  // Calculate visible range for counter (desktop shows 3, mobile shows 1)
-  const firstVisible = selectedIndex + 1;
-  const lastVisible = Math.min(selectedIndex + 3, recentProjects.length);
 
   return (
     <section
@@ -103,31 +88,16 @@ export function FeaturedProjects() {
               direction="left"
               onClick={() => emblaApi?.scrollPrev()}
               ariaLabel="Previous projects"
-              disabled={!emblaApi?.canScrollPrev()}
               className="!text-[var(--color-charcoal)] hover:!text-[var(--color-red)]"
             />
             <ChevronButton
               direction="right"
               onClick={() => emblaApi?.scrollNext()}
               ariaLabel="Next projects"
-              disabled={!emblaApi?.canScrollNext()}
               className="!text-[var(--color-charcoal)] hover:!text-[var(--color-red)]"
             />
           </div>
         </div>
-      </div>
-
-      {/* Counter (Vertical) - Fixed Right Side, Outside Cards - Hidden on Mobile */}
-      <div className="hidden md:flex absolute right-6 md:right-12 top-1/2 -translate-y-1/2 flex-col items-center z-10 pointer-events-none">
-        <span className="text-xl md:text-2xl font-bold text-[var(--color-red)] text-center">
-          {firstVisible === lastVisible
-            ? firstVisible
-            : `${firstVisible}-${lastVisible}`}
-        </span>
-        <div className="w-px h-8 bg-[var(--color-charcoal)] my-1" />
-        <span className="text-lg md:text-xl font-medium text-[var(--color-charcoal)]">
-          {recentProjects.length}
-        </span>
       </div>
     </section>
   );
