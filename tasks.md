@@ -101,9 +101,14 @@
 
 **Нашите Услуги (Services Grid)**
 
-- [ ] Services grid component (6-8 service cards)
+- [ ] Services grid component (5 service cards)
 - [ ] Service cards with icon, name, 1-sentence description
-- [ ] Services: Проектиране, Строителство, Управление на проекти, Реконструкции, Вентилация, Механизация
+- [ ] Services (Дейности):
+  1. **Стоманобетонни и метални конструкции** - Изграждане на конструктивната рамка на сгради и съоръжения
+  2. **Саниране и рехабилитация** - Енергийно обновяване, ремонт на фасади и покриви, хидро- и топлоизолации
+  3. **Инженерно-укрепителни и хидросъоръжения** - Изпълнение на укрепителни съоръжения, подпорни стени, водни и подемни инсталации
+  4. **Инсталации – Ел, ВиК, ОВК** - Цялостно изграждане на електро, водопроводни, канализационни, отоплителни, вентилационни и климатични системи
+  5. **Пътно строителство и инфраструктура** - Изграждане и рехабилитация на пътища, прилежаща инфраструктура, вертикална планировка и озеленяване
 - [ ] No "Вижте повече" links (overview only)
 - [ ] Hover effects (card lift, shadow)
 
@@ -120,12 +125,20 @@
 
 **Projects List Page (`/projects`)**
 
-- [ ] Category filter bar component
-- [ ] Filter categories: Всички, Жилищно, Офис, Промишлени, Обществени, Инфраструктура, Реконструкции, Други
-- [ ] Masonry/grid layout for all projects (100+)
-- [ ] ProjectCard component (reuse from homepage)
-- [ ] Filter functionality (client-side for now)
-- [ ] Mock data for 20+ projects across categories
+- [x] Hero section with scroll animations
+- [x] Horizontal sticky navigation with auto-scroll tracking
+- [x] Service sections with sticky image and scrollable cards
+- [x] Filter categories (Дейности):
+  1. Стоманобетонни и метални конструкции
+  2. Саниране и рехабилитация
+  3. Инженерно-укрепителни и хидросъоръжения
+  4. Инсталации – Ел, ВиК, ОВК
+  5. Пътно строителство и инфраструктура
+- [x] ProjectCard component with variant support (default, service, service-mobile)
+- [x] Intersection Observer scroll detection with viewport center calculation
+- [x] Mobile-optimized navigation and full-width service cards
+- [x] Custom scrollbar styling
+- [x] Mock data for 20+ projects across categories
 
 **Individual Project Page (`/projects/[slug]`)**
 
