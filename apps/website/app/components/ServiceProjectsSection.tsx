@@ -1,6 +1,6 @@
 "use client";
 
-import { ProjectCard } from "./ProjectCard";
+import { Card } from "./Card";
 import { Project, ProjectCategory, getCategoryInfo } from "@/lib/mock-data";
 
 interface ServiceProjectsSectionProps {
@@ -26,7 +26,7 @@ export function ServiceProjectsSection({
     <section className="py-12 md:py-16">
       {/* Mobile: Full-width service card + intro block */}
       <div className="lg:hidden">
-        <ProjectCard {...serviceCardProps} variant="service-mobile" />
+        <Card {...serviceCardProps} variant="service-mobile" />
         <div className="bg-[#f7f7f7] px-6 py-6 mb-8">
           <p className="text-sm text-[#6b6b6b] font-medium">
             Избрани проекти — {category}
@@ -40,7 +40,7 @@ export function ServiceProjectsSection({
             {/* Desktop: Sticky service card */}
             <div className="hidden lg:block lg:col-span-5">
               <div className="lg:sticky lg:top-32">
-                <ProjectCard {...serviceCardProps} variant="service" />
+                <Card {...serviceCardProps} variant="service" />
               </div>
             </div>
 
@@ -54,7 +54,7 @@ export function ServiceProjectsSection({
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {projects.map((project) => (
-                  <ProjectCard
+                  <Card
                     key={project.id}
                     title={project.title}
                     description={project.description}

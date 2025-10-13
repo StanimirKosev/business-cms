@@ -1,10 +1,10 @@
 "use client";
 
 import useEmblaCarousel from "embla-carousel-react";
-import { ProjectCard } from "./ProjectCard";
-import { recentProjects } from "@/lib/mockData";
+import { Card } from "./Card";
 import ChevronButton from "./ChevronButton";
 import { useScrollAnimation } from "@/app/hooks/useScrollAnimation";
+import { recentProjects } from "@/lib/mock-data";
 
 export function FeaturedProjects() {
   const { ref: sectionRef, isVisible } = useScrollAnimation(0.5);
@@ -69,7 +69,7 @@ export function FeaturedProjects() {
                   key={project.id}
                   className="flex-[0_0_100%] md:flex-[0_0_calc(33.333%-16px)] min-w-0"
                 >
-                  <ProjectCard
+                  <Card
                     title={project.title}
                     location={project.location}
                     description={project.description}

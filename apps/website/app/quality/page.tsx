@@ -2,7 +2,7 @@
 
 import { useScrollAnimation } from "@/app/hooks/useScrollAnimation";
 import { FileText, Award, Shield, Leaf, Users, Zap } from "lucide-react";
-import { CertificatesGallery } from "@/app/components/CertificatesGallery";
+import { ImageGallery } from "@/app/components/ImageGallery";
 
 // ISO Standards timeline
 const isoStandards = [
@@ -86,38 +86,31 @@ const policyDocuments = [
 ];
 
 // Certificates data (will be managed from admin panel in future)
-const certificates = [
+const certificateImages = [
   {
-    id: 1,
-    title:
-      'Награда за сграда на годината в категория "Градски проекти - транспортна инфраструктура"',
-    image:
-      "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=600&h=800&fit=crop",
+    src: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=600&h=800&fit=crop",
+    alt: 'Награда за сграда на годината в категория "Градски проекти - транспортна инфраструктура"',
+    title: 'Награда за сграда на годината в категория "Градски проекти - транспортна инфраструктура"',
   },
   {
-    id: 2,
+    src: "https://images.unsplash.com/photo-1568667256549-094345857637?w=600&h=800&fit=crop",
+    alt: "ISO 9001:2015 - Система за управление на качеството",
     title: "ISO 9001:2015 - Система за управление на качеството",
-    image:
-      "https://images.unsplash.com/photo-1568667256549-094345857637?w=600&h=800&fit=crop",
   },
   {
-    id: 3,
+    src: "https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=600&h=800&fit=crop",
+    alt: "ISO 14001:2015 - Система за управление на околната среда",
     title: "ISO 14001:2015 - Система за управление на околната среда",
-    image:
-      "https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=600&h=800&fit=crop",
   },
   {
-    id: 4,
-    title:
-      "ISO 45001:2018 - Система за управление на здраве и безопасност при работа",
-    image:
-      "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&h=800&fit=crop",
+    src: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&h=800&fit=crop",
+    alt: "ISO 45001:2018 - Система за управление на здраве и безопасност при работа",
+    title: "ISO 45001:2018 - Система за управление на здраве и безопасност при работа",
   },
   {
-    id: 5,
+    src: "https://images.unsplash.com/photo-1577563908411-5077b6dc7624?w=600&h=800&fit=crop",
+    alt: "ISO 50001:2018 - Система за управление на енергията",
     title: "ISO 50001:2018 - Система за управление на енергията",
-    image:
-      "https://images.unsplash.com/photo-1577563908411-5077b6dc7624?w=600&h=800&fit=crop",
   },
 ];
 
@@ -280,9 +273,12 @@ export default function QualityPage() {
             </h2>
           </div>
 
-          <CertificatesGallery
-            certificates={certificates}
+          <ImageGallery
+            images={certificateImages}
+            columns={{ mobile: 2, tablet: 4, desktop: 5 }}
+            aspectRatio="portrait"
             isVisible={certificatesVisible}
+            showTitles={true}
           />
         </div>
       </section>

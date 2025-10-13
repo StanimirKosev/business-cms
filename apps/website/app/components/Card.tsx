@@ -11,10 +11,45 @@ interface ProjectCardProps {
   image: string;
   slug: string;
   category?: string;
-  variant?: "default" | "service" | "service-mobile";
+  variant?: "default" | "service" | "service-mobile" | "hero";
 }
 
-export function ProjectCard({
+const VARIANT_CONFIG = {
+  default: {
+    height: "h-[450px]",
+    titleSize: "text-2xl md:text-3xl",
+    padding: "p-6",
+    rounded: "rounded-xl",
+    showDescription: false,
+    showArrow: true,
+  },
+  service: {
+    height: "h-[500px] lg:h-[600px]",
+    titleSize: "text-3xl md:text-4xl lg:text-5xl",
+    padding: "p-8 md:p-10",
+    rounded: "rounded-xl",
+    showDescription: true,
+    showArrow: true,
+  },
+  "service-mobile": {
+    height: "h-[500px] lg:h-[600px]",
+    titleSize: "text-3xl md:text-4xl lg:text-5xl",
+    padding: "p-8 md:p-10",
+    rounded: "",
+    showDescription: true,
+    showArrow: true,
+  },
+  hero: {
+    height: "h-[500px] lg:h-[600px]",
+    titleSize: "text-3xl md:text-4xl lg:text-5xl",
+    padding: "p-8 md:p-10",
+    rounded: "",
+    showDescription: true,
+    showArrow: false,
+  },
+} as const;
+
+export function Card({
   title,
   location,
   description,
@@ -23,18 +58,12 @@ export function ProjectCard({
   category,
   variant = "default",
 }: ProjectCardProps) {
-  const isService = variant.includes("service");
-  const height = isService ? "h-[500px] lg:h-[600px]" : "h-[450px]";
-  const titleSize = isService
-    ? "text-3xl md:text-4xl lg:text-5xl"
-    : "text-2xl md:text-3xl";
-  const padding = isService ? "p-8 md:p-10" : "p-6";
-  const roundedClass = variant === "service-mobile" ? "" : "rounded-xl";
+  const config = VARIANT_CONFIG[variant];
 
   return (
     <Link
       href={`/projects/${slug}`}
-      className={`relative block w-full ${height} ${roundedClass} overflow-hidden group`}
+      className={`relative block w-full ${config.height} ${config.rounded} overflow-hidden group`}
     >
       {/* Background Image */}
       <Image
@@ -42,7 +71,9 @@ export function ProjectCard({
         alt={title}
         fill
         className="object-cover"
-        sizes={isService ? "50vw" : "(max-width: 768px) 100vw, 450px"}
+        sizes={
+          config.showDescription ? "50vw" : "(max-width: 768px) 100vw, 450px"
+        }
       />
       <div className="absolute inset-0 bg-[var(--overlay)] transition-all duration-300 group-hover:bg-[var(--overlay-dark)]"></div>
 
@@ -54,7 +85,7 @@ export function ProjectCard({
       )}
 
       <div
-        className={`absolute bottom-0 left-0 right-0 ${padding} z-10 transition-all duration-600 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:-translate-y-6`}
+        className={`absolute bottom-0 left-0 right-0 ${config.padding} z-10 transition-all duration-600 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:-translate-y-6`}
       >
         {location && (
           <div className="mb-2">
@@ -66,13 +97,13 @@ export function ProjectCard({
 
         {/* Title */}
         <h3
-          className={`${titleSize} font-bold text-white drop-shadow-lg mb-3 pr-16`}
+          className={`${config.titleSize} font-bold text-white drop-shadow-lg mb-3 pr-16`}
         >
           {title}
         </h3>
 
         {/* Description - Always visible for service cards, on hover for projects */}
-        {isService ? (
+        {config.showDescription ? (
           <div className="pr-16">
             <p className="text-sm md:text-base text-white/90 line-clamp-3">
               {description}
@@ -86,11 +117,13 @@ export function ProjectCard({
       </div>
 
       {/* Arrow Button - Bottom Right */}
-      <div className="absolute bottom-6 right-6 z-20">
-        <div className="w-12 h-12 bg-[var(--color-red)] rounded-full flex items-center justify-center shadow-xl">
-          <ArrowUpRight className="w-6 h-6 text-white" />
+      {config.showArrow && (
+        <div className="absolute bottom-6 right-6 z-20">
+          <div className="w-12 h-12 bg-[var(--color-red)] rounded-full flex items-center justify-center shadow-xl">
+            <ArrowUpRight className="w-6 h-6 text-white" />
+          </div>
         </div>
-      </div>
+      )}
     </Link>
   );
 }
