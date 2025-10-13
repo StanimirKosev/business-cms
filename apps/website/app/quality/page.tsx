@@ -116,12 +116,6 @@ const certificateImages = [
 
 export default function QualityPage() {
   const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation(0.5);
-  const { ref: timelineRef, isVisible: timelineVisible } =
-    useScrollAnimation(0.3);
-  const { ref: practicesRef, isVisible: practicesVisible } =
-    useScrollAnimation(0.3);
-  const { ref: policiesRef, isVisible: policiesVisible } =
-    useScrollAnimation(0.3);
   const { ref: certificatesRef, isVisible: certificatesVisible } =
     useScrollAnimation(0.3);
 
@@ -184,24 +178,11 @@ export default function QualityPage() {
       </section>
 
       {/* ISO Standards Timeline */}
-      <section
-        ref={timelineRef}
-        className="py-16 md:py-20 px-6 md:px-40 bg-[#f9f9f9]"
-      >
+      <section className="py-16 md:py-20 px-6 md:px-40 bg-[#f9f9f9]">
         <div className="max-w-7xl mx-auto">
           <div className="flex gap-6 mb-12">
-            <div
-              className={`hidden md:block w-1 bg-[var(--color-red)] transition-all duration-[400ms] ease-out ${
-                timelineVisible ? "h-12" : "h-0"
-              }`}
-            />
-            <h2
-              className={`text-3xl md:text-4xl font-bold text-[var(--color-charcoal)] transition-all duration-500 ${
-                timelineVisible
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 -translate-x-[30px]"
-              }`}
-            >
+            <div className="hidden md:block w-1 h-12 bg-[var(--color-red)]" />
+            <h2 className="text-3xl md:text-4xl font-bold text-[var(--color-charcoal)]">
               Еволюция на системите за управление
             </h2>
           </div>
@@ -216,12 +197,7 @@ export default function QualityPage() {
                 return (
                   <div
                     key={standard.year}
-                    className={`relative flex gap-8 transition-all duration-500 ${
-                      timelineVisible
-                        ? "opacity-100 translate-x-0"
-                        : "opacity-0 -translate-x-[30px]"
-                    }`}
-                    style={{ transitionDelay: `${index * 100}ms` }}
+                    className="relative flex gap-8"
                   >
                     {/* Year badge */}
                     <div className="flex-shrink-0 w-24 md:w-32">
@@ -284,24 +260,11 @@ export default function QualityPage() {
       </section>
 
       {/* Quality Management Practices */}
-      <section
-        ref={practicesRef}
-        className="py-16 md:py-20 px-6 md:px-40 bg-[#f9f9f9]"
-      >
+      <section className="py-16 md:py-20 px-6 md:px-40 bg-[#f9f9f9]">
         <div className="max-w-7xl mx-auto">
           <div className="flex gap-6 mb-10">
-            <div
-              className={`hidden md:block w-1 bg-[var(--color-red)] transition-all duration-[400ms] ease-out ${
-                practicesVisible ? "h-12" : "h-0"
-              }`}
-            />
-            <h2
-              className={`text-3xl md:text-4xl font-bold text-[var(--color-charcoal)] transition-all duration-500 ${
-                practicesVisible
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 -translate-x-[30px]"
-              }`}
-            >
+            <div className="hidden md:block w-1 h-12 bg-[var(--color-red)]" />
+            <h2 className="text-3xl md:text-4xl font-bold text-[var(--color-charcoal)]">
               Методи за управление на качеството
             </h2>
           </div>
@@ -310,12 +273,7 @@ export default function QualityPage() {
             {qualityPractices.map((practice, index) => (
               <div
                 key={index}
-                className={`flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50 transition-all duration-500 ${
-                  practicesVisible
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-[10px]"
-                }`}
-                style={{ transitionDelay: `${index * 50}ms` }}
+                className="flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200"
               >
                 <div className="flex-shrink-0 w-2 h-2 bg-[var(--color-red)] rounded-full mt-2"></div>
                 <p className="text-base text-gray-700 leading-relaxed">
@@ -339,24 +297,11 @@ export default function QualityPage() {
       </section>
 
       {/* Policy Documents */}
-      <section
-        ref={policiesRef}
-        className="py-16 md:py-20 px-6 md:px-40 bg-white"
-      >
+      <section className="py-16 md:py-20 px-6 md:px-40 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="flex gap-6 mb-10">
-            <div
-              className={`hidden md:block w-1 bg-[var(--color-red)] transition-all duration-[400ms] ease-out ${
-                policiesVisible ? "h-12" : "h-0"
-              }`}
-            />
-            <h2
-              className={`text-3xl md:text-4xl font-bold text-[var(--color-charcoal)] transition-all duration-500 ${
-                policiesVisible
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 -translate-x-[30px]"
-              }`}
-            >
+            <div className="hidden md:block w-1 h-12 bg-[var(--color-red)]" />
+            <h2 className="text-3xl md:text-4xl font-bold text-[var(--color-charcoal)]">
               Политики и документи
             </h2>
           </div>

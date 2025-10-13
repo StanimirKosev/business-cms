@@ -28,11 +28,15 @@ export function ImageGallery({
   images,
   columns = { mobile: 2, tablet: 3, desktop: 4 },
   aspectRatio = "portrait",
-  animationDelay = 50,
+  animationDelay = 40,
   isVisible = true,
   showTitles = false,
 }: ImageGalleryProps) {
   const [lightboxIndex, setLightboxIndex] = useState(-1);
+
+  // Cap max delay at 400ms for galleries with many images
+  const maxDelay = 400;
+  const effectiveDelay = Math.min(animationDelay, maxDelay / images.length);
 
   const aspectRatioClass = {
     square: "aspect-square",
@@ -74,7 +78,7 @@ export function ImageGallery({
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-[20px]"
             }`}
-            style={{ transitionDelay: `${index * animationDelay}ms` }}
+            style={{ transitionDelay: `${index * effectiveDelay}ms` }}
           >
             <div
               className={`relative ${aspectRatioClass} rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 group cursor-pointer`}

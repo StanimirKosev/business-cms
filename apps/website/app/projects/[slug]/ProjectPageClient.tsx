@@ -12,6 +12,7 @@ interface ProjectPageClientProps {
 
 export function ProjectPageClient({ project }: ProjectPageClientProps) {
   const { ref: infoRef, isVisible: infoVisible } = useScrollAnimation(0.3);
+  const { ref: galleryRef, isVisible: galleryVisible } = useScrollAnimation(0.3);
   const { ref: relatedRef, isVisible: relatedVisible } =
     useScrollAnimation(0.3);
 
@@ -72,7 +73,7 @@ export function ProjectPageClient({ project }: ProjectPageClientProps) {
 
               <div
                 className={`bg-[var(--color-concrete-grey-light)] p-6 rounded-lg transition-all duration-500 ${infoVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}
-                style={{ transitionDelay: "100ms" }}
+                style={{ transitionDelay: "60ms" }}
               >
                 <h3 className="text-sm text-gray-500 uppercase tracking-wider mb-2">
                   Локация
@@ -84,7 +85,7 @@ export function ProjectPageClient({ project }: ProjectPageClientProps) {
 
               <div
                 className={`bg-[var(--color-concrete-grey-light)] p-6 rounded-lg transition-all duration-500 ${infoVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}
-                style={{ transitionDelay: "200ms" }}
+                style={{ transitionDelay: "120ms" }}
               >
                 <h3 className="text-sm text-gray-500 uppercase tracking-wider mb-2">
                   Характер на работите
@@ -96,7 +97,7 @@ export function ProjectPageClient({ project }: ProjectPageClientProps) {
 
               <div
                 className={`bg-[var(--color-concrete-grey-light)] p-6 rounded-lg transition-all duration-500 ${infoVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}
-                style={{ transitionDelay: "300ms" }}
+                style={{ transitionDelay: "180ms" }}
               >
                 <h3 className="text-sm text-gray-500 uppercase tracking-wider mb-2">
                   Възложител
@@ -108,7 +109,7 @@ export function ProjectPageClient({ project }: ProjectPageClientProps) {
 
               <div
                 className={`bg-[var(--color-concrete-grey-light)] p-6 rounded-lg transition-all duration-500 ${infoVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}
-                style={{ transitionDelay: "400ms" }}
+                style={{ transitionDelay: "240ms" }}
               >
                 <h3 className="text-sm text-gray-500 uppercase tracking-wider mb-2">
                   Период на реализация
@@ -120,7 +121,7 @@ export function ProjectPageClient({ project }: ProjectPageClientProps) {
 
               <div
                 className={`bg-[var(--color-concrete-grey-light)] p-6 rounded-lg transition-all duration-500 ${infoVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}
-                style={{ transitionDelay: "500ms" }}
+                style={{ transitionDelay: "300ms" }}
               >
                 <h3 className="text-sm text-gray-500 uppercase tracking-wider mb-2">
                   Роля в проекта
@@ -189,7 +190,7 @@ export function ProjectPageClient({ project }: ProjectPageClientProps) {
           </div>
 
           {/* Image Gallery */}
-          <div className="space-y-6">
+          <section ref={galleryRef} className="space-y-6">
             <div className="flex gap-6">
               <div className="hidden md:block w-1 h-12 bg-[var(--color-red)]" />
               <h2 className="text-3xl md:text-4xl font-bold text-[var(--color-charcoal)]">
@@ -204,8 +205,9 @@ export function ProjectPageClient({ project }: ProjectPageClientProps) {
               ]}
               columns={{ mobile: 1, tablet: 2, desktop: 3 }}
               aspectRatio="landscape"
+              isVisible={galleryVisible}
             />
-          </div>
+          </section>
 
           {/* Related Projects Section */}
           {relatedProjects.length > 0 && (
