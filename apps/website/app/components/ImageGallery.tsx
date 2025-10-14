@@ -34,7 +34,6 @@ export function ImageGallery({
 }: ImageGalleryProps) {
   const [lightboxIndex, setLightboxIndex] = useState(-1);
 
-  // Cap max delay at 400ms for galleries with many images
   const maxDelay = 400;
   const effectiveDelay = Math.min(animationDelay, maxDelay / images.length);
 
@@ -69,7 +68,9 @@ export function ImageGallery({
 
   return (
     <>
-      <div className={`grid ${gridColsClass.mobile} ${gridColsClass.tablet} ${gridColsClass.desktop} gap-6`}>
+      <div
+        className={`grid ${gridColsClass.mobile} ${gridColsClass.tablet} ${gridColsClass.desktop} gap-6`}
+      >
         {images.map((image, index) => (
           <div
             key={index}
@@ -91,7 +92,6 @@ export function ImageGallery({
                 className="object-cover group-hover:scale-105 transition-transform duration-300"
                 sizes={`(max-width: 768px) ${100 / columns.mobile}vw, (max-width: 1024px) ${100 / columns.tablet}vw, ${100 / columns.desktop}vw`}
               />
-              {/* Hover overlay */}
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
                 <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <svg
