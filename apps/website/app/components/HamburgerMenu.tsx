@@ -71,7 +71,7 @@ const HamburgerMenu = () => {
               key={link.href}
               href={link.href}
               className={`block px-5 py-4 min-h-[44px] flex items-center ${
-                index < 2 ? "border-b border-[var(--color-concrete-grey)]" : ""
+                index < 3 ? "border-b border-[var(--color-concrete-grey)]" : ""
               } ${
                 pathname === link.href
                   ? "bg-[var(--color-concrete-grey-light)] text-[var(--color-red)] font-semibold"
