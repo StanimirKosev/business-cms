@@ -3,7 +3,7 @@
 import { Card } from "@/app/components/Card";
 import { ImageGallery } from "@/app/components/ImageGallery";
 import { PageBreadcrumb } from "@/app/components/PageBreadcrumb";
-import { recentProjects } from "@/lib/mock-data";
+import { recentProjects, categoryToSlug } from "@/lib/mock-data";
 import { useScrollAnimation } from "@/app/hooks/useScrollAnimation";
 
 interface ProjectPageClientProps {
@@ -15,6 +15,8 @@ export function ProjectPageClient({ project }: ProjectPageClientProps) {
   const { ref: galleryRef, isVisible: galleryVisible } = useScrollAnimation(0.3);
   const { ref: relatedRef, isVisible: relatedVisible } =
     useScrollAnimation(0.3);
+
+  const serviceSlug = categoryToSlug(project.category);
 
   // Get related projects (same category, exclude current)
   const relatedProjects = recentProjects
@@ -32,6 +34,7 @@ export function ProjectPageClient({ project }: ProjectPageClientProps) {
             image={project.image}
             slug={project.slug}
             variant="hero"
+            priority
           />
         </div>
       </section>
@@ -45,7 +48,7 @@ export function ProjectPageClient({ project }: ProjectPageClientProps) {
               { label: "Проекти", href: "/projects" },
               {
                 label: project.category || "",
-                href: `/services/${project.category?.toLowerCase().replace(/\s+/g, "-")}`,
+                href: `/projects/${serviceSlug}`,
               },
               { label: project.title },
             ]}
@@ -229,7 +232,7 @@ export function ProjectPageClient({ project }: ProjectPageClientProps) {
                       title={relatedProject.title}
                       description={relatedProject.description}
                       image={relatedProject.image}
-                      slug={relatedProject.slug}
+                      slug={`/projects/${serviceSlug}/${relatedProject.slug}`}
                       location={relatedProject.location}
                       variant="compact"
                     />

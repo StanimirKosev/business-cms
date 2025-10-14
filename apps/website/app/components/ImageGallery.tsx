@@ -126,10 +126,9 @@ export function ImageGallery({
         slides={images.map((img) => ({
           src: img.src,
           alt: img.alt,
-          description: showTitles && img.title ? img.title : undefined,
+          title: showTitles && img.title ? img.title : undefined,
         }))}
         plugins={showTitles ? [Captions] : []}
-        captions={{ descriptionTextAlign: "center" }}
       />
     </>
   );

@@ -12,6 +12,7 @@ interface ProjectCardProps {
   slug: string;
   category?: string;
   variant?: "default" | "compact" | "service" | "service-mobile" | "hero";
+  priority?: boolean;
 }
 
 const VARIANT_CONFIG = {
@@ -65,12 +66,13 @@ export function Card({
   slug,
   category,
   variant = "default",
+  priority = false,
 }: ProjectCardProps) {
   const config = VARIANT_CONFIG[variant];
 
   return (
     <Link
-      href={`/projects/${slug}`}
+      href={slug}
       className={`relative block w-full ${config.height} ${config.rounded} overflow-hidden group`}
     >
       {/* Background Image */}
@@ -82,6 +84,7 @@ export function Card({
         sizes={
           config.showDescription ? "50vw" : "(max-width: 768px) 100vw, 450px"
         }
+        priority={priority}
       />
       <div className="absolute inset-0 bg-[var(--overlay)] transition-all duration-300 group-hover:bg-[var(--overlay-dark)]"></div>
 

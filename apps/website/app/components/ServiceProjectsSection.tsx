@@ -1,7 +1,7 @@
 "use client";
 
 import { Card } from "./Card";
-import { Project, ProjectCategory, getCategoryInfo } from "@/lib/mock-data";
+import { Project, ProjectCategory, getCategoryInfo, categoryToSlug } from "@/lib/mock-data";
 
 interface ServiceProjectsSectionProps {
   category: ProjectCategory;
@@ -14,12 +14,13 @@ export function ServiceProjectsSection({
 }: ServiceProjectsSectionProps) {
   const categoryInfo = getCategoryInfo(category);
   const heroImage = projects[0]?.image || "/placeholder.jpg";
+  const serviceSlug = categoryToSlug(category);
 
   const serviceCardProps = {
     title: category,
     description: categoryInfo.description,
     image: heroImage,
-    slug: `#${category}`,
+    slug: `/projects/${serviceSlug}`,
   };
 
   return (
@@ -59,7 +60,7 @@ export function ServiceProjectsSection({
                     title={project.title}
                     description={project.description}
                     image={project.image}
-                    slug={project.slug}
+                    slug={`/projects/${serviceSlug}/${project.slug}`}
                     location={project.location}
                   />
                 ))}
