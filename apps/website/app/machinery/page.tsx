@@ -2,18 +2,18 @@
 
 import {
   MACHINERY_CATEGORIES,
-  type MachineryCategory,
   type Machinery,
   getMachineryByCategory,
   getMachineryCategoryInfo,
 } from "@/lib/mock-data";
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { useScrollAnimation } from "@/app/hooks/useScrollAnimation";
 import Image from "next/image";
 import Lightbox from "yet-another-react-lightbox";
 import Captions from "yet-another-react-lightbox/plugins/captions";
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/captions.css";
+import { CategoryNavigationBar } from "../components/CategoryNavigationBar";
 
 interface MachineryGalleryProps {
   machinery: Machinery[];
@@ -83,128 +83,7 @@ function MachineryGallery({ machinery }: MachineryGalleryProps) {
 
 export default function MachineryPage() {
   const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation(0.5);
-  const [activeCategory, setActiveCategory] = useState<MachineryCategory>(
-    MACHINERY_CATEGORIES[0]
-  );
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
-  const navButtonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
-  const navScrollRef = useRef<HTMLDivElement | null>(null);
-  const isScrollingRef = useRef(false);
-  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-  // Track active section based on scroll position with throttling
-  useEffect(() => {
-    let rafId: number | null = null;
-
-    const handleScroll = () => {
-      if (isScrollingRef.current || rafId) return;
-
-      rafId = requestAnimationFrame(() => {
-        const { scrollHeight } = document.documentElement;
-        const scrollTop = window.scrollY;
-        const clientHeight = window.innerHeight;
-
-        if (scrollTop < 200) {
-          setActiveCategory(MACHINERY_CATEGORIES[0]);
-          rafId = null;
-          return;
-        }
-
-        if (scrollTop + clientHeight >= scrollHeight - 100) {
-          setActiveCategory(
-            MACHINERY_CATEGORIES[MACHINERY_CATEGORIES.length - 1]
-          );
-          rafId = null;
-          return;
-        }
-
-        const viewportCenter = scrollTop + clientHeight / 2;
-        let closestCategory = MACHINERY_CATEGORIES[0];
-        let closestDistance = Infinity;
-
-        MACHINERY_CATEGORIES.forEach((category) => {
-          const element = sectionRefs.current[category];
-          if (element) {
-            const rect = element.getBoundingClientRect();
-            const elementCenter = scrollTop + rect.top + rect.height / 2;
-            const distance = Math.abs(viewportCenter - elementCenter);
-
-            if (distance < closestDistance) {
-              closestDistance = distance;
-              closestCategory = category;
-            }
-          }
-        });
-
-        setActiveCategory(closestCategory);
-        rafId = null;
-      });
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => {
-      if (rafId) cancelAnimationFrame(rafId);
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  // Auto-scroll navigation to center active category
-  useEffect(() => {
-    const activeButton = navButtonRefs.current[activeCategory];
-    const navScroll = navScrollRef.current;
-
-    if (activeButton && navScroll) {
-      const targetScroll =
-        activeButton.offsetLeft -
-        navScroll.offsetWidth / 2 +
-        activeButton.offsetWidth / 2;
-
-      navScroll.scrollTo({ left: targetScroll, behavior: "smooth" });
-    }
-  }, [activeCategory]);
-
-  const scrollToCategory = (category: MachineryCategory) => {
-    const element = sectionRefs.current[category];
-    if (!element) return;
-
-    if (scrollTimeoutRef.current) {
-      clearTimeout(scrollTimeoutRef.current);
-    }
-
-    isScrollingRef.current = true;
-    setActiveCategory(category);
-
-    const isMobile = window.innerWidth < 768;
-    const headerOffset = isMobile ? 150 : 120;
-    const offsetPosition =
-      element.getBoundingClientRect().top + window.pageYOffset - headerOffset;
-
-    window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-
-    let lastScrollTop = window.pageYOffset;
-    let scrollCheckCount = 0;
-
-    const checkScrollEnd = () => {
-      const currentScrollTop = window.pageYOffset;
-
-      if (
-        Math.abs(currentScrollTop - lastScrollTop) < 1 ||
-        scrollCheckCount >= 100
-      ) {
-        scrollTimeoutRef.current = setTimeout(() => {
-          setActiveCategory(category);
-          isScrollingRef.current = false;
-        }, 200);
-      } else {
-        lastScrollTop = currentScrollTop;
-        scrollCheckCount++;
-        scrollTimeoutRef.current = setTimeout(checkScrollEnd, 50);
-      }
-    };
-
-    scrollTimeoutRef.current = setTimeout(checkScrollEnd, 100);
-  };
 
   return (
     <main className="bg-[var(--color-bg)]">
@@ -266,42 +145,14 @@ export default function MachineryPage() {
         </div>
       </section>
 
-      {/* Horizontal Sticky Navigation */}
-      <div className="sticky top-[44px] z-40 bg-white border-b border-[var(--color-border)] pt-5">
-        <div className="px-4">
-          <div
-            ref={navScrollRef}
-            className="overflow-x-auto custom-scrollbar pb-2"
-          >
-            <div className="flex items-center gap-4 min-w-max">
-              {MACHINERY_CATEGORIES.map((category) => {
-                const info = getMachineryCategoryInfo(category);
-                const machineryCount = getMachineryByCategory(category).length;
-                const isActive = activeCategory === category;
-
-                return (
-                  <button
-                    key={category}
-                    ref={(el) => {
-                      navButtonRefs.current[category] = el;
-                    }}
-                    onClick={() => scrollToCategory(category)}
-                    className={`flex-shrink-0 px-4 py-1.5 rounded-full transition-all font-medium text-sm whitespace-nowrap flex items-center gap-2 cursor-pointer ${
-                      isActive
-                        ? "bg-[var(--color-red)] text-[var(--color-white)] shadow-md"
-                        : "bg-[#e8e8e8] text-[#888888] hover:bg-[#ffe5e5] hover:text-[var(--color-red)]"
-                    }`}
-                  >
-                    <span className="text-lg">{info.icon}</span>
-                    {category}
-                    <span className="opacity-70">({machineryCount})</span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </div>
+      <CategoryNavigationBar
+        categories={MACHINERY_CATEGORIES.map((cat) => ({
+          name: cat,
+          icon: getMachineryCategoryInfo(cat).icon,
+          count: getMachineryByCategory(cat).length,
+        }))}
+        sectionRefs={sectionRefs}
+      />
 
       {/* Machinery Sections */}
       <div>
