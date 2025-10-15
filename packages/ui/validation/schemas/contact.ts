@@ -27,6 +27,11 @@ export const contactSchema = z.object({
     .min(10, "Съобщението трябва да съдържа поне 10 символа")
     .max(2000, "Съобщението е твърде дълго")
     .trim(),
+  consent: z
+    .boolean()
+    .refine((val) => val === true, {
+      message: "Трябва да се съгласите с политиката за поверителност",
+    }),
   website: z.string().optional(),
 });
 

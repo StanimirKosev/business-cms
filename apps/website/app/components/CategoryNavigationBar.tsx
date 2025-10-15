@@ -10,7 +10,7 @@ interface Category {
 
 interface CategoryNavigationBarProps {
   categories: Category[];
-  sectionRefs: React.MutableRefObject<{ [key: string]: HTMLElement | null }>;
+  sectionRefs: React.RefObject<{ [key: string]: HTMLElement | null }>;
 }
 
 export function CategoryNavigationBar({
@@ -19,7 +19,9 @@ export function CategoryNavigationBar({
 }: CategoryNavigationBarProps) {
   const navScrollRef = useRef<HTMLDivElement | null>(null);
   const navButtonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
-  const [activeCategory, setActiveCategory] = useState<string>(categories[0]?.name || "");
+  const [activeCategory, setActiveCategory] = useState<string>(
+    categories[0]?.name || ""
+  );
   const isScrollingRef = useRef(false);
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 

@@ -15,7 +15,9 @@ import {
 } from "@repo/ui/components/form";
 import { Input } from "@repo/ui/components/input";
 import { Textarea } from "@repo/ui/components/textarea";
+import { Checkbox } from "@repo/ui/components/checkbox";
 import { contactSchema, type ContactFormValues } from "@repo/ui/validation";
+import Link from "next/link";
 
 // Translation map for API response codes
 // TODO: Add English translations when language toggle is implemented
@@ -36,6 +38,7 @@ const ContactPage = () => {
       email: "",
       phone: "",
       message: "",
+      consent: false,
       website: "",
     },
   });
@@ -66,7 +69,7 @@ const ContactPage = () => {
           : CONTACT_MESSAGES.CONTACT_SUCCESS;
 
       toast.success(successMessage);
-      form.reset();
+      form.reset({}, { keepErrors: false });
     } catch (error) {
       const errorMessage =
         error instanceof Error ? error.message : CONTACT_MESSAGES.SERVER_ERROR;
@@ -193,6 +196,36 @@ const ContactPage = () => {
                           />
                         </FormControl>
                         <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="consent"
+                    render={({ field }) => (
+                      <FormItem className="space-y-2">
+                        <div className="flex gap-2">
+                          <FormControl>
+                            <Checkbox
+                              id="consent"
+                              checked={field.value}
+                              onCheckedChange={field.onChange}
+                            />
+                          </FormControl>
+                          <FormLabel htmlFor="consent" className="text-sm font-normal leading-snug cursor-pointer">
+                            Съгласен съм с{" "}
+                            <Link
+                              href="/privacy"
+                              className="text-[var(--color-red)] hover:underline font-medium"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              политиката за поверителност
+                            </Link>{" "}
+                            и обработка на данните ми. <span className="text-[var(--color-red)]">*</span>
+                          </FormLabel>
+                        </div>
+                        <FormMessage className="ml-6" />
                       </FormItem>
                     )}
                   />
