@@ -176,43 +176,122 @@
 
 ---
 
-### Phase 5: Database + Admin Setup
+### Phase 5: Database + Admin Setup ⏳ IN PROGRESS
 
 **Database Schema**
 
-- [ ] Design Prisma schema (Projects, Images, Categories, Users, ContactSubmissions, Clients, Certificates, Equipment)
-- [ ] Set up PostgreSQL (local Docker or Railway)
-- [ ] Initialize Prisma, run migrations
-- [ ] Create seed script for test data
+- [ ] Set up Railway PostgreSQL database instance
+- [ ] Create `packages/database` shared package with proper configuration
+- [ ] Design comprehensive Prisma schema including:
+  - User model (id, email, passwordHash, name, role, timestamps)
+  - Project model (id, title, slug, description, year, location, clientId, size, status, featured, timestamps)
+  - ProjectImage model (id, projectId, cloudinaryId, url, width, height, order, caption, createdAt)
+  - Category model (id, name, slug, description, icon, order)
+  - ProjectCategory junction table (projectId, categoryId)
+  - Client model (id, name, logo, website, featured, order, timestamps)
+  - Certificate model (id, name, type, issuer, issueDate, expiryDate, fileUrl, thumbnail, order, createdAt)
+  - Equipment model (id, name, type, description, specifications, imageUrl, timestamps)
+  - ContactSubmission model (id, name, email, phone, company, message, status, timestamps)
+  - SiteSetting model (id, key, value, type, description, updatedAt)
+- [ ] Run initial Prisma migration to create database tables
+- [ ] Create comprehensive seed script with 134+ projects across all 5 categories
+- [ ] Seed categories (5 service categories from design)
+- [ ] Seed client logos (12-20 test clients)
+- [ ] Seed admin user for testing
+- [ ] Export Prisma client from `@repo/database` package
 
-**Admin App (`apps/admin`)**
+**Admin App Scaffold (`apps/admin`)**
 
-- [ ] Create Next.js admin app
-- [ ] Admin dashboard layout
-- [ ] NextAuth.js v5 setup (credentials provider)
-- [ ] Protected routes middleware
-- [ ] Create seed user
+- [ ] Create Next.js 15 admin app with App Router
+- [ ] Set up Tailwind CSS v4 with monorepo `@source` directives
+- [ ] Configure shared UI package import (`@repo/ui`)
+- [ ] Set up NextAuth.js v5 with credentials provider
+- [ ] Create login page with form validation
+- [ ] Implement authentication middleware for protected routes
+- [ ] Create admin dashboard layout with sidebar navigation
+- [ ] Add navigation items (Dashboard, Projects, Categories, Clients, Certificates, Equipment, Contacts, Settings)
+- [ ] Set up environment variables (DATABASE_URL, NEXTAUTH_SECRET, CLOUDINARY keys)
 
 **Admin CRUD - Projects**
 
-- [ ] Projects list page (table with search/filter)
-- [ ] Create project form (title, description, category, year, location, client, size)
-- [ ] Edit project page
-- [ ] Delete project confirmation
-- [ ] Image upload with Cloudinary integration
-- [ ] Image gallery management (add, remove, reorder)
+- [ ] Projects list page with:
+  - Pagination (20 items per page)
+  - Search functionality (by title, location, client)
+  - Category filter dropdown (multi-select)
+  - Year filter
+  - Featured toggle filter
+  - Sort options (date, title, year)
+- [ ] Create project form with fields:
+  - Title (required)
+  - Slug (auto-generated, editable)
+  - Description (rich text or textarea)
+  - Categories (multi-select checkboxes)
+  - Year (number input)
+  - Location (text input)
+  - Client (dropdown select)
+  - Size (text input with unit)
+  - Status (draft/published)
+  - Featured (checkbox)
+- [ ] Edit project page (pre-populated form)
+- [ ] Delete project with confirmation modal
+- [ ] Cloudinary integration for image uploads:
+  - Upload multiple images at once
+  - Display upload progress
+  - Auto-save cloudinaryId and URL
+- [ ] Image gallery management:
+  - Display all project images
+  - Drag-and-drop reordering
+  - Delete individual images
+  - Add captions to images
+  - Set primary image
+
+**Admin CRUD - Categories**
+
+- [ ] Categories list page with reorderable table
+- [ ] Create category form (name, slug, description, icon selection, order)
+- [ ] Edit category page
+- [ ] Delete category with confirmation (check for projects using it)
+- [ ] Drag-and-drop reordering
 
 **Admin CRUD - Other Entities**
 
-- [ ] Client logos management (upload, edit, delete)
-- [ ] Certificates management (upload PDFs/images, organize by type)
-- [ ] Equipment management (add, edit, delete)
-- [ ] Contact form submissions viewer (read-only)
+- [ ] Client logos management:
+  - List page with logo thumbnails
+  - Create form (name, logo upload via Cloudinary, website URL, featured checkbox, order)
+  - Edit form with existing logo preview
+  - Delete with confirmation
+  - Drag-and-drop reordering
+  - Featured clients section
+- [ ] Certificates management:
+  - List page with certificate previews
+  - Create form (name, type, issuer, issue date, expiry date, file upload for PDF/image, thumbnail)
+  - Edit form with file preview
+  - Delete with confirmation
+  - Drag-and-drop reordering
+  - Organize by type (ISO, safety, quality)
+- [ ] Equipment management:
+  - List page with equipment grid
+  - Create form (name, type, description, specifications as JSON or textarea, image upload)
+  - Edit form with image preview
+  - Delete with confirmation
+- [ ] Contact form submissions viewer:
+  - Read-only list page with all submissions
+  - Status filter (new, read, contacted, resolved)
+  - Date range filter
+  - Search by name, email, company
+  - Mark as read/resolved
+  - View full submission details
+  - Export to CSV option
 
 **Admin Settings**
 
-- [ ] Homepage stats editor (Founded year, Clients count, Projects count, Awards count)
-- [ ] Company info editor (About text, contact details)
+- [ ] Site settings page with key-value editor for:
+  - Homepage stats (foundedYear, clientsCount, projectsCount, awardsCount)
+  - Company info (aboutText, contactEmail, contactPhone, address)
+  - Social media links
+  - SEO defaults (meta description, OG image URL)
+- [ ] Settings form with validation
+- [ ] Group settings by category (General, Homepage, Contact, SEO)
 
 ---
 

@@ -28,17 +28,26 @@ Dual Next.js application approach:
 
 ## Tech Stack
 
-- **Frontend Framework**: Next.js 15 (App Router)
+**Frontend:**
+- **Framework**: Next.js 15 (App Router)
 - **Styling**: Tailwind CSS v4 + CSS custom properties
 - **UI Components**: shadcn/ui (shared in monorepo)
 - **Form Handling**: React Hook Form + Zod validation
 - **Notifications**: Sonner (toast notifications)
 - **Carousel**: Embla Carousel
-- **Database**: PostgreSQL + Prisma ORM
+
+**Backend:**
+- **Database**: PostgreSQL
+- **ORM**: Prisma
 - **Authentication**: NextAuth.js v5 (admin only)
 - **File Storage**: Cloudinary (free tier)
 - **Email**: Resend.com (contact form notifications)
-- **Deployment**: Vercel (public) + Railway (admin + database)
+
+**Deployment Architecture:**
+- **Public Website**: Vercel (Static Site Generation)
+- **Admin Dashboard**: Railway (Full-stack Next.js with API routes)
+- **Database**: Railway PostgreSQL
+- **File Storage**: Cloudinary CDN
 
 ## Project Structure
 
@@ -57,6 +66,13 @@ business-cms/
 │   │   └── package.json       # App dependencies
 │   └── admin/                 # Admin dashboard (to be created)
 ├── packages/
+│   ├── database/              # Shared database package (@repo/database)
+│   │   ├── prisma/
+│   │   │   ├── schema.prisma  # Database schema
+│   │   │   └── seed.ts        # Seed data script
+│   │   ├── index.ts           # Prisma client export
+│   │   ├── tsconfig.json      # TypeScript config
+│   │   └── package.json       # Package dependencies
 │   └── ui/                    # Shared frontend package (@repo/ui)
 │       ├── components/        # shadcn/ui components
 │       │   ├── button.tsx
@@ -82,10 +98,16 @@ business-cms/
 
 **Core entities:**
 
-- **Projects**: Construction projects with title, description, images, status
-- **Images**: Project images stored on Cloudinary with metadata
-- **Users**: Admin authentication for content management
-- **ContactSubmissions**: Lead capture from contact form
+- **User**: Admin users for authentication (id, email, password hash, name, role, createdAt, updatedAt)
+- **Project**: Construction projects (id, title, slug, description, year, location, clientId, size, status, featured, createdAt, updatedAt)
+- **ProjectImage**: Images for projects (id, projectId, cloudinaryId, url, width, height, order, caption, createdAt)
+- **Category**: Service categories (id, name, slug, description, icon, order)
+- **ProjectCategory**: Many-to-many relation between projects and categories (projectId, categoryId)
+- **Client**: Client companies (id, name, logo, website, featured, order, createdAt, updatedAt)
+- **Certificate**: Quality certifications (id, name, type, issuer, issueDate, expiryDate, fileUrl, thumbnail, order, createdAt)
+- **Equipment**: Company machinery (id, name, type, description, specifications, imageUrl, createdAt, updatedAt)
+- **ContactSubmission**: Lead capture from contact form (id, name, email, phone, company, message, status, createdAt, updatedAt)
+- **SiteSetting**: Key-value store for site configuration (id, key, value, type, description, updatedAt)
 
 ## Development Commands
 
@@ -140,3 +162,50 @@ All UI components, validation schemas, and base styles live in `packages/ui` (`@
 - Components can be added via shadcn CLI from `packages/ui` directory
 - Both apps import from `@repo/ui/components/*` and `@repo/ui/validation`
 - CSS variables and Tailwind theme defined in `packages/ui/base.css`
+
+## Admin Dashboard Implementation Plan
+
+### Phase 1: Foundation
+**Database Setup:**
+- Set up Railway PostgreSQL database
+- Create `packages/database` shared package
+- Design comprehensive Prisma schema with all 9 entities (User, Project, ProjectImage, Category, ProjectCategory, Client, Certificate, Equipment, ContactSubmission, SiteSetting)
+- Run initial migration
+- Create seed script with 134+ projects across all 5 categories
+
+### Phase 2: Admin App Scaffold
+**Next.js Admin Application:**
+- Create `apps/admin` Next.js app with App Router
+- Configure Tailwind CSS v4 with monorepo support
+- Set up NextAuth.js v5 with credentials provider
+- Create login page with authentication
+- Implement middleware for protected routes
+- Build admin sidebar layout with navigation
+
+### Phase 3: Core CRUD for Projects
+**Project Management:**
+- Projects list page with pagination, search, and category filtering
+- Create project form with all fields (title, description, categories, year, location, client, size, featured)
+- Edit project page with existing data
+- Delete project with confirmation modal
+- Cloudinary integration for image uploads
+- Image gallery management (upload, delete, reorder, captions)
+
+### Phase 4: Additional Entities
+**Content Management:**
+- Categories CRUD (add, edit, delete, reorder service categories)
+- Clients CRUD (upload logos, manage client information, set featured clients, reorder)
+- Certificates CRUD (upload PDFs/images, manage certification details, set expiry dates, reorder)
+- Equipment CRUD (add machinery, upload images, manage specifications)
+- Contact submissions viewer (read-only list with filtering and status updates)
+- Site settings editor (key-value pairs for homepage stats, company info, contact details)
+
+### Phase 5: Connect Public Website
+**Database Integration:**
+- Replace all mock data with Prisma queries using Server Components
+- Homepage: Fetch featured projects, client logos, site settings for stats
+- Projects page: Query projects with category filtering
+- Individual project pages: Fetch project details with images
+- Quality page: Fetch certificates
+- Equipment page: Fetch machinery list
+- Implement proper error handling and loading states

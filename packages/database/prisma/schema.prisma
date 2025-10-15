@@ -1,0 +1,133 @@
+// Prisma schema for Business CMS
+// Shared database schema for both admin and public website
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Admin user authentication
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String   // bcrypt hashed
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Service categories (Дейности)
+model Category {
+  id          String    @id @default(cuid())
+  name        String    @unique
+  slug        String    @unique
+  description String?
+  iconName    String?   // Icon identifier for frontend
+  order       Int       @default(0)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  projects    Project[]
+
+  @@index([slug])
+}
+
+// Construction projects
+model Project {
+  id          String         @id @default(cuid())
+  title       String
+  slug        String         @unique
+  description String         @db.Text
+  location    String?
+  client      String?
+  year        Int?
+  size        String?        // e.g. "5000 m²"
+  featured    Boolean        @default(false) // Show on homepage
+  categoryId  String
+  category    Category       @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  images      ProjectImage[]
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  @@index([slug])
+  @@index([categoryId])
+  @@index([featured])
+}
+
+// Project images stored on Cloudinary
+model ProjectImage {
+  id                String   @id @default(cuid())
+  projectId         String
+  project           Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  cloudinaryUrl     String
+  cloudinaryPublicId String  // For deletion
+  alt               String?
+  order             Int      @default(0) // Display order in gallery
+  createdAt         DateTime @default(now())
+
+  @@index([projectId])
+  @@index([order])
+}
+
+// Client logos
+model Client {
+  id        String   @id @default(cuid())
+  name      String
+  logoUrl   String   // Cloudinary URL
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([order])
+}
+
+// Quality certificates
+model Certificate {
+  id        String   @id @default(cuid())
+  title     String
+  type      String   // e.g. "ISO", "Safety", "Quality"
+  fileUrl   String   // Cloudinary URL (PDF or image)
+  issueDate DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([type])
+}
+
+// Machinery/Equipment
+model Equipment {
+  id             String   @id @default(cuid())
+  name           String
+  description    String   @db.Text
+  imageUrl       String?  // Cloudinary URL
+  specifications String?  @db.Text // JSON string of specs
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+// Contact form submissions
+model ContactSubmission {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  message   String   @db.Text
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([read])
+}
+
+// Site settings (homepage stats, company info)
+model SiteSetting {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String   @db.Text
+  updatedAt DateTime @updatedAt
+
+  @@index([key])
+}
