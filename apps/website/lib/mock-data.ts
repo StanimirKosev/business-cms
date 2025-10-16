@@ -9,14 +9,18 @@ export type ProjectCategory =
   | "Пътно строителство и инфраструктура";
 
 export interface Project {
-  id: number;
-  title: string;
-  category: ProjectCategory;
-  location: string;
-  description: string;
-  image: string;
-  year: number;
-  slug: string;
+  id?: number | string;
+  title?: string;
+  category?: ProjectCategory;
+  location?: string;
+  description?: string;
+  image?: string;
+  year?: number;
+  slug?: string;
+  client?: string;
+  region?: string; // Oblast name (София, Пловдив, etc.)
+  x?: number; // Dot coordinates on map (0-1000)
+  y?: number; // Dot coordinates on map (0-651)
 }
 
 export const recentProjects: Project[] = [
@@ -274,7 +278,7 @@ export function slugToCategory(slug: string): ProjectCategory | null {
     "steel-concrete-structures": "Стоманобетонни и метални конструкции",
     "renovation-rehabilitation": "Саниране и рехабилитация",
     "engineering-hydro": "Инженерно-укрепителни и хидросъоръжения",
-    "installations": "Инсталации – Ел, ВиК, ОВК",
+    installations: "Инсталации – Ел, ВиК, ОВК",
     "road-construction": "Пътно строителство и инфраструктура",
   };
   return categoryMap[slug] || null;
@@ -421,7 +425,8 @@ export const machineryData: Machinery[] = [
     id: 1,
     name: "Верижен Багер CAT 320",
     category: "Земни Работи и Изкопи",
-    image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1600&q=80",
+    image:
+      "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1600&q=80",
     specs: [
       { label: "Капацитет кофа", value: "1.2 m³" },
       { label: "Дълбочина на изкоп", value: "6.5 m" },
@@ -432,7 +437,8 @@ export const machineryData: Machinery[] = [
     id: 2,
     name: "Колесен Багер Liebherr A914",
     category: "Земни Работи и Изкопи",
-    image: "https://images.unsplash.com/photo-1590856029826-c7a73142bbf1?w=1600&q=80",
+    image:
+      "https://images.unsplash.com/photo-1590856029826-c7a73142bbf1?w=1600&q=80",
     specs: [
       { label: "Капацитет кофа", value: "0.8 m³" },
       { label: "Дълбочина на изкоп", value: "5.8 m" },
@@ -443,7 +449,8 @@ export const machineryData: Machinery[] = [
     id: 3,
     name: "Булдозер Komatsu D65",
     category: "Земни Работи и Изкопи",
-    image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1600&q=80",
+    image:
+      "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1600&q=80",
     specs: [
       { label: "Мощност", value: "215 HP" },
       { label: "Тегло", value: "20 тона" },
@@ -456,7 +463,8 @@ export const machineryData: Machinery[] = [
     id: 4,
     name: "Челен Товарач CAT 950",
     category: "Товарене и Преместване",
-    image: "https://images.unsplash.com/photo-1519331379826-f10be5486c6f?w=1600&q=80",
+    image:
+      "https://images.unsplash.com/photo-1519331379826-f10be5486c6f?w=1600&q=80",
     specs: [
       { label: "Капацитет кофа", value: "3.0 m³" },
       { label: "Товароподемност", value: "5 тона" },
@@ -467,7 +475,8 @@ export const machineryData: Machinery[] = [
     id: 5,
     name: "Телескопичен Товарач Manitou MLT 735",
     category: "Товарене и Преместване",
-    image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1600&q=80",
+    image:
+      "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1600&q=80",
     specs: [
       { label: "Товароподемност", value: "3.5 тона" },
       { label: "Височина на повдигане", value: "7 m" },
@@ -478,7 +487,8 @@ export const machineryData: Machinery[] = [
     id: 6,
     name: "Мини Товарач Bobcat S650",
     category: "Товарене и Преместване",
-    image: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=1600&q=80",
+    image:
+      "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=1600&q=80",
     specs: [
       { label: "Товароподемност", value: "1.1 тона" },
       { label: "Мощност", value: "74 HP" },
@@ -491,7 +501,8 @@ export const machineryData: Machinery[] = [
     id: 7,
     name: "Асфалтополагач Vogele Super 1800",
     category: "Пътно Строителство и Настилки",
-    image: "https://images.unsplash.com/photo-1621544402532-90a61dc8ccd7?w=1600&q=80",
+    image:
+      "https://images.unsplash.com/photo-1621544402532-90a61dc8ccd7?w=1600&q=80",
     specs: [
       { label: "Ширина на полагане", value: "2.5-9 m" },
       { label: "Производителност", value: "450 т/ч" },
@@ -502,7 +513,8 @@ export const machineryData: Machinery[] = [
     id: 8,
     name: "Пътна Фреза Wirtgen W100",
     category: "Пътно Строителство и Настилки",
-    image: "https://images.unsplash.com/photo-1589395937772-510c8f1f623e?w=1600&q=80",
+    image:
+      "https://images.unsplash.com/photo-1589395937772-510c8f1f623e?w=1600&q=80",
     specs: [
       { label: "Работна ширина", value: "1 m" },
       { label: "Дълбочина на фрезоване", value: "0-32 cm" },
@@ -513,7 +525,8 @@ export const machineryData: Machinery[] = [
     id: 9,
     name: "Вибрационен Валяк Bomag BW 213",
     category: "Пътно Строителство и Настилки",
-    image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1600&q=80",
+    image:
+      "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1600&q=80",
     specs: [
       { label: "Тегло", value: "13 тона" },
       { label: "Ширина на валяка", value: "2.13 m" },
@@ -526,7 +539,8 @@ export const machineryData: Machinery[] = [
     id: 10,
     name: "Самосвал MAN TGS 6x4",
     category: "Транспорт и Логистика",
-    image: "https://images.unsplash.com/photo-1519331379826-f10be5486c6f?w=1600&q=80",
+    image:
+      "https://images.unsplash.com/photo-1519331379826-f10be5486c6f?w=1600&q=80",
     specs: [
       { label: "Товароподемност", value: "20 тона" },
       { label: "Обем на коша", value: "15 m³" },
@@ -537,7 +551,8 @@ export const machineryData: Machinery[] = [
     id: 11,
     name: "Товарен Автомобил Mercedes Actros",
     category: "Транспорт и Логистика",
-    image: "https://images.unsplash.com/photo-1590856029826-c7a73142bbf1?w=1600&q=80",
+    image:
+      "https://images.unsplash.com/photo-1590856029826-c7a73142bbf1?w=1600&q=80",
     specs: [
       { label: "Товароподемност", value: "25 тона" },
       { label: "Дължина платформа", value: "7.5 m" },
@@ -550,7 +565,8 @@ export const machineryData: Machinery[] = [
     id: 12,
     name: "Мини Багер Kubota U17",
     category: "Специализирани и Помощни Работи",
-    image: "https://images.unsplash.com/photo-1581093458791-9f3c3250a8e5?w=1600&q=80",
+    image:
+      "https://images.unsplash.com/photo-1581093458791-9f3c3250a8e5?w=1600&q=80",
     specs: [
       { label: "Тегло", value: "1.7 тона" },
       { label: "Дълбочина на изкоп", value: "2.4 m" },
@@ -561,7 +577,8 @@ export const machineryData: Machinery[] = [
     id: 13,
     name: "Електрическа Платформа Genie Z-45",
     category: "Специализирани и Помощни Работи",
-    image: "https://images.unsplash.com/photo-1519331379826-f10be5486c6f?w=1600&q=80",
+    image:
+      "https://images.unsplash.com/photo-1519331379826-f10be5486c6f?w=1600&q=80",
     specs: [
       { label: "Работна височина", value: "15.7 m" },
       { label: "Хоризонтален обхват", value: "7.5 m" },
@@ -572,7 +589,8 @@ export const machineryData: Machinery[] = [
     id: 14,
     name: "Хидравличен Кран Liebherr LTM 1050",
     category: "Специализирани и Помощни Работи",
-    image: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=1600&q=80",
+    image:
+      "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=1600&q=80",
     specs: [
       { label: "Товароподемност", value: "50 тона" },
       { label: "Височина на повдигане", value: "40 m" },
@@ -590,7 +608,9 @@ export const MACHINERY_CATEGORIES: MachineryCategory[] = [
 ];
 
 // Get machinery by category
-export function getMachineryByCategory(category: MachineryCategory): Machinery[] {
+export function getMachineryByCategory(
+  category: MachineryCategory
+): Machinery[] {
   return machineryData.filter((m) => m.category === category);
 }
 

@@ -5,11 +5,11 @@ import Link from "next/link";
 import { ArrowUpRight, Building2 } from "lucide-react";
 
 interface ProjectCardProps {
-  title: string;
+  title?: string;
   location?: string;
-  description: string;
-  image: string;
-  slug: string;
+  description?: string;
+  image?: string;
+  slug?: string;
   category?: string;
   variant?: "default" | "compact" | "service" | "service-mobile" | "hero";
   priority?: boolean;
@@ -72,13 +72,13 @@ export function Card({
 
   return (
     <Link
-      href={slug}
+      href={slug!}
       className={`relative block w-full ${config.height} ${config.rounded} overflow-hidden group`}
     >
       {/* Background Image */}
       <Image
-        src={image}
-        alt={title}
+        src={image!}
+        alt={title!}
         fill
         className="object-cover"
         sizes={

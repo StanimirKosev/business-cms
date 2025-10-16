@@ -74,7 +74,7 @@ export function FeaturedProjects() {
                     location={project.location}
                     description={project.description}
                     image={project.image}
-                    slug={`/projects/${categoryToSlug(project.category)}/${project.slug}`}
+                    slug={`/projects/${categoryToSlug(project.category!)}/${project.slug}`}
                     category={project.category}
                   />
                 </div>
