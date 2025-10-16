@@ -18,23 +18,17 @@ export async function POST(request: NextRequest) {
 
     if (!validationResult.success) {
       return NextResponse.json(
-        {
-          success: false,
-          errorCode: ContactErrorCodes.VALIDATION_ERROR,
-        },
+        { success: false, errorCode: ContactErrorCodes.VALIDATION_ERROR },
         { status: 400 }
       );
     }
 
-    const { name, email, phone, message, website } = validationResult.data;
+    const { name, email, phone, message, consent, website } =
+      validationResult.data;
 
-    if (website) {
-      console.log("[SPAM DETECTED] Honeypot field filled:", { name, email });
+    if (!consent || website) {
       return NextResponse.json(
-        {
-          success: false,
-          errorCode: ContactErrorCodes.VALIDATION_ERROR,
-        },
+        { success: false, errorCode: ContactErrorCodes.VALIDATION_ERROR },
         { status: 400 }
       );
     }
@@ -46,30 +40,27 @@ export async function POST(request: NextRequest) {
       message,
     });
 
-    const emailResult = await sendContactEmail({ name, email, phone, message });
+    const emailResult = await sendContactEmail({
+      name,
+      email,
+      phone,
+      message,
+      consent,
+    });
 
     if (!emailResult.success) {
       return NextResponse.json(
-        {
-          success: false,
-          errorCode: ContactErrorCodes.EMAIL_SEND_FAILED,
-        },
+        { success: false, errorCode: ContactErrorCodes.EMAIL_SEND_FAILED },
         { status: 500 }
       );
     }
 
-    return NextResponse.json({
-      success: true,
-      messageCode: "CONTACT_SUCCESS",
-    });
+    return NextResponse.json({ success: true, messageCode: "CONTACT_SUCCESS" });
   } catch (error) {
     console.error("[CONTACT FORM] Error:", error);
 
     return NextResponse.json(
-      {
-        success: false,
-        errorCode: ContactErrorCodes.SERVER_ERROR,
-      },
+      { success: false, errorCode: ContactErrorCodes.SERVER_ERROR },
       { status: 500 }
     );
   }
