@@ -12,11 +12,12 @@ interface ProjectPageClientProps {
 
 export function ProjectPageClient({ project }: ProjectPageClientProps) {
   const { ref: infoRef, isVisible: infoVisible } = useScrollAnimation(0.3);
-  const { ref: galleryRef, isVisible: galleryVisible } = useScrollAnimation(0.3);
+  const { ref: galleryRef, isVisible: galleryVisible } =
+    useScrollAnimation(0.3);
   const { ref: relatedRef, isVisible: relatedVisible } =
     useScrollAnimation(0.3);
 
-  const serviceSlug = categoryToSlug(project.category);
+  const serviceSlug = categoryToSlug(project.category!);
 
   // Get related projects (same category, exclude current)
   const relatedProjects = recentProjects
@@ -50,7 +51,7 @@ export function ProjectPageClient({ project }: ProjectPageClientProps) {
                 label: project.category || "",
                 href: `/projects/${serviceSlug}`,
               },
-              { label: project.title },
+              { label: project.title! },
             ]}
           />
         </div>
@@ -202,9 +203,9 @@ export function ProjectPageClient({ project }: ProjectPageClientProps) {
             </div>
             <ImageGallery
               images={[
-                { src: project.image, alt: `${project.title} - Снимка 1` },
-                { src: project.image, alt: `${project.title} - Снимка 2` },
-                { src: project.image, alt: `${project.title} - Снимка 3` },
+                { src: project.image!, alt: `${project.title} - Снимка 1` },
+                { src: project.image!, alt: `${project.title} - Снимка 2` },
+                { src: project.image!, alt: `${project.title} - Снимка 3` },
               ]}
               columns={{ mobile: 1, tablet: 2, desktop: 3 }}
               aspectRatio="landscape"
