@@ -495,10 +495,10 @@ export function ClientsMap() {
               Нашите клиенти
             </h2>
             <p
-              className={`text-base md:text-lg text-[var(--color-charcoal)] opacity-80 leading-relaxed transition-all duration-500 ease-out delay-[600ms] ${
+              className={`text-base md:text-lg text-[var(--color-charcoal)] leading-relaxed transition-all duration-500 ease-out delay-[600ms] ${
                 isVisible
-                  ? "opacity-80 translate-x-0"
-                  : "opacity-0 -translate-x-[30px]"
+                  ? "opacity-80 translate-y-0"
+                  : "opacity-0 translate-y-[20px]"
               }`}
             >
               Реализирали сме строителни проекти в над {totalRegions} области из
@@ -506,10 +506,10 @@ export function ClientsMap() {
               общини и частни инвеститори.
             </p>
             <p
-              className={`text-sm md:text-base text-[var(--color-charcoal)] opacity-60 mt-4 transition-all duration-500 ease-out delay-[700ms] ${
+              className={`text-sm md:text-base text-[var(--color-charcoal)] mt-4 transition-all duration-500 ease-out delay-[700ms] ${
                 isVisible
-                  ? "opacity-60 translate-x-0"
-                  : "opacity-0 -translate-x-[30px]"
+                  ? "opacity-60 translate-y-0"
+                  : "opacity-0 translate-y-[20px]"
               }`}
             >
               {totalRegions} области | {totalProjects} проекта | {totalClients}{" "}
