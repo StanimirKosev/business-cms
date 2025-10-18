@@ -203,9 +203,9 @@ export function ProjectPageClient({ project }: ProjectPageClientProps) {
             </div>
             <ImageGallery
               images={[
-                { src: project.image!, alt: `${project.title} - Снимка 1` },
-                { src: project.image!, alt: `${project.title} - Снимка 2` },
-                { src: project.image!, alt: `${project.title} - Снимка 3` },
+                { id: "1", src: project.image!, alt: `${project.title} - Снимка 1` },
+                { id: "2", src: project.image!, alt: `${project.title} - Снимка 2` },
+                { id: "3", src: project.image!, alt: `${project.title} - Снимка 3` },
               ]}
               columns={{ mobile: 1, tablet: 2, desktop: 3 }}
               aspectRatio="landscape"

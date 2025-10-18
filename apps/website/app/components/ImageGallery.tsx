@@ -9,6 +9,7 @@ import "yet-another-react-lightbox/plugins/captions.css";
 
 interface ImageGalleryProps {
   images: Array<{
+    id: string;
     src: string;
     alt: string;
     title?: string;
@@ -73,7 +74,7 @@ export function ImageGallery({
       >
         {images.map((image, index) => (
           <div
-            key={index}
+            key={image.id}
             className={`transition-all duration-500 cursor-pointer ${
               isVisible
                 ? "opacity-100 translate-y-0"

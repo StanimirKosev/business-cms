@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 const HamburgerMenu = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
@@ -66,13 +69,11 @@ const HamburgerMenu = () => {
             { href: "/projects", label: "Проекти" },
             { href: "/quality", label: "Качество" },
             { href: "/contact", label: "Контакти" },
-          ].map((link, index) => (
+          ].map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`block px-5 py-4 min-h-[44px] flex items-center ${
-                index < 3 ? "border-b border-[var(--color-concrete-grey)]" : ""
-              } ${
+              className={`block px-5 py-4 min-h-[44px] flex items-center border-b border-[var(--color-concrete-grey)] ${
                 pathname === link.href
                   ? "bg-[var(--color-concrete-grey-light)] text-[var(--color-red)] font-semibold"
                   : "text-[var(--color-charcoal)]"
@@ -82,6 +83,10 @@ const HamburgerMenu = () => {
               {link.label}
             </Link>
           ))}
+          <LanguageSwitcher
+            variant="mobile"
+            onToggle={() => setIsMobileMenuOpen(false)}
+          />
         </div>
       )}
     </div>

@@ -1,0 +1,52 @@
+{
+  "quality": {
+    "title": "Quality",
+    "hero": {
+      "intro": "Since 2008, Techno Stroy Bulgaria Ltd. has been operating in accordance with international standards for quality, environment, and safety.",
+      "description": "The company's policy is focused on improving the quality management system to increase customer satisfaction by fully meeting their requirements."
+    },
+    "timeline": {
+      "title": "Evolution of Management Systems"
+    },
+    "standards": {
+      "2008": {
+        "title": "ISO 9001:2000",
+        "description": "Quality Standard"
+      },
+      "2009": {
+        "title": "Integrated System",
+        "description": "ISO 9001:2008, ISO 14001:2004, BS OHSAS 18001:2007"
+      },
+      "2020": {
+        "title": "ISO 45001:2018",
+        "description": "Transition to New Safety Standard"
+      },
+      "2025": {
+        "title": "ISO 50001:2018",
+        "description": "Energy Management System"
+      }
+    },
+    "certificates": {
+      "title": "Certificates"
+    },
+    "practices": {
+      "title": "Quality Management Methods",
+      "items": [
+        "Implementation of new modern technologies for construction work",
+        "Application of practices for effective human resources management",
+        "Continuous improvement of management systems",
+        "Fair relations with investors",
+        "Timely and quality execution of contracted construction works",
+        "Strict adherence to working projects",
+        "Successful implementation of internal quality control",
+        "Equal responsible attitude towards commitments",
+        "Adoption and application of new modern technologies and materials"
+      ],
+      "footer": "The company's policy is focused on commitment to sustainable economic development, fair labor relations with workers, protection from discrimination, compliance with regulatory requirements for healthy and safe working conditions, and environmental protection."
+    },
+    "policies": {
+      "title": "Policies and Documents",
+      "viewLabel": "View"
+    }
+  }
+}

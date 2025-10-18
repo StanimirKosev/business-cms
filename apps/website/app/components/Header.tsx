@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import HamburgerMenu from "./HamburgerMenu";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
@@ -56,6 +57,7 @@ const Header = () => {
           <Link href="/contact" className="link-underline">
             Контакти
           </Link>
+          <LanguageSwitcher />
         </nav>
         <HamburgerMenu />
       </div>

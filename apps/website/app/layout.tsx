@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import { Toaster } from "sonner";
+import { LanguageProvider } from "@/app/context/LanguageContext";
 
 // Fonts
 const geistSans = Geist({
@@ -34,22 +35,24 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Header />
-        {children}
-        <Footer />
-        <Toaster
-          position="top-center"
-          toastOptions={{
-            style: {
-              background: 'white',
-              border: '1px solid #e0e0e0',
-            },
-            classNames: {
-              success: 'toast-success',
-              error: 'toast-error',
-            },
-          }}
-        />
+        <LanguageProvider>
+          <Header />
+          {children}
+          <Footer />
+          <Toaster
+            position="top-center"
+            toastOptions={{
+              style: {
+                background: 'white',
+                border: '1px solid #e0e0e0',
+              },
+              classNames: {
+                success: 'toast-success',
+                error: 'toast-error',
+              },
+            }}
+          />
+        </LanguageProvider>
       </body>
     </html>
   );
