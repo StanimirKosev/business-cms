@@ -4,12 +4,21 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { useLanguage } from "@/app/context/LanguageContext";
 
 const HamburgerMenu = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
+  const { t } = useLanguage();
+
+  const menuLinks = [
+    { href: "/", label: t.nav.home },
+    { href: "/projects", label: t.nav.projects },
+    { href: "/quality", label: t.nav.quality },
+    { href: "/contact", label: t.nav.contact },
+  ];
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -64,12 +73,7 @@ const HamburgerMenu = () => {
           ref={menuRef}
           className="absolute top-full right-0 mt-2 w-48 bg-[var(--color-white)] rounded-lg shadow-xl overflow-hidden"
         >
-          {[
-            { href: "/", label: "Начало" },
-            { href: "/projects", label: "Проекти" },
-            { href: "/quality", label: "Качество" },
-            { href: "/contact", label: "Контакти" },
-          ].map((link) => (
+          {menuLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}

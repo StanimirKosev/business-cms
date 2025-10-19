@@ -3,33 +3,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useScrollAnimation } from "@/app/hooks/useScrollAnimation";
-import {
-  Building2,
-  Briefcase,
-  Factory,
-  Landmark,
-  Wrench,
-  Warehouse,
-  ArrowRight,
-} from "lucide-react";
-
-const services = [
-  { name: "Жилищно строителство", icon: Building2 },
-  { name: "Офис и бизнес сгради", icon: Briefcase },
-  { name: "Промишлено строителство", icon: Factory },
-  { name: "Инфраструктурни проекти", icon: Landmark },
-  { name: "Реконструкции и обновяване", icon: Wrench },
-  { name: "Складови и логистични бази", icon: Warehouse },
-];
+import { useLanguage } from "@/app/context/LanguageContext";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 
 const ServicesSection = () => {
   const { ref: sectionRef, isVisible } = useScrollAnimation(0.5);
+  const { t } = useLanguage();
 
   return (
     <section
       ref={sectionRef}
-      className="py-20 px-6 md:px-40 bg-white"
-      aria-label="Нашите услуги"
+      className="py-20 px-6 md:px-40 bg-[#f9f9f9]"
+      aria-label={t.home.services.title}
     >
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-[55%_45%] gap-12">
@@ -50,7 +35,7 @@ const ServicesSection = () => {
                     : "opacity-0 -translate-x-[30px]"
                 }`}
               >
-                Нашите услуги
+                {t.home.services.title}
               </h2>
 
               <div className="space-y-6 leading-relaxed text-[var(--color-charcoal)]">
@@ -61,48 +46,42 @@ const ServicesSection = () => {
                       : "opacity-0 translate-y-[20px]"
                   }`}
                 >
-                  Предлагаме пълен цикъл на строителни услуги - от концепция и
-                  проектиране до изпълнение, контрол и въвеждане в експлоатация.
-                </p>
-
-                <p
-                  className={`text-lg transition-all duration-500 ease-out delay-[500ms] ${
-                    isVisible
-                      ? "opacity-80 translate-y-0"
-                      : "opacity-0 translate-y-[20px]"
-                  }`}
-                >
-                  Нашият екип от специалисти осигурява професионално управление
-                  на проекти в жилищно, търговско и промишлено строителство.
-                  Работим с модерни технологии и най-високи стандарти за
-                  качество.
+                  {t.home.services.intro}
                 </p>
 
                 {/* Services Grid */}
                 <div
-                  className={`grid grid-cols-1 md:grid-cols-2 gap-4 pt-2 transition-all duration-500 ease-out delay-[700ms] ${
+                  className={`grid grid-cols-1 gap-3 pt-2 transition-all duration-500 ease-out delay-[500ms] ${
                     isVisible
                       ? "opacity-100 translate-y-0"
                       : "opacity-0 translate-y-[20px]"
                   }`}
                 >
-                  {services.map((service, index) => {
-                    const Icon = service.icon;
-                    return (
-                      <div
-                        key={index}
-                        className="flex items-center gap-3 text-[var(--color-charcoal)]"
-                      >
-                        <Icon className="w-5 h-5 text-[var(--color-red)] flex-shrink-0" />
-                        <span className="text-base">{service.name}</span>
-                      </div>
-                    );
-                  })}
+                  {t.home.services.items.map((service: string, index: number) => (
+                    <div
+                      key={index}
+                      className="flex items-start gap-3 text-[var(--color-charcoal)]"
+                    >
+                      <CheckCircle2 className="w-5 h-5 text-[var(--color-red)] flex-shrink-0 mt-0.5" />
+                      <span className="text-base">{service}</span>
+                    </div>
+                  ))}
                 </div>
+
+                {/* Machinery Text */}
+                <p
+                  className={`text-lg transition-all duration-500 ease-out delay-[700ms] ${
+                    isVisible
+                      ? "opacity-85 translate-y-0"
+                      : "opacity-0 translate-y-[20px]"
+                  }`}
+                >
+                  {t.home.services.footer}
+                </p>
 
                 {/* Machinery Link */}
                 <div
-                  className={`pt-4 transition-all duration-500 ease-out delay-[900ms] ${
+                  className={`pt-2 transition-all duration-500 ease-out delay-[900ms] ${
                     isVisible
                       ? "opacity-85 translate-y-0"
                       : "opacity-0 translate-y-[20px]"
@@ -112,7 +91,7 @@ const ServicesSection = () => {
                     href="/machinery"
                     className="inline-flex items-center gap-2 text-[var(--color-red)] hover:text-[var(--color-charcoal)] transition-colors duration-200 font-medium group"
                   >
-                    <span>Разполагаме с модерна строителна механизация</span>
+                    <span>{t.home.services.machineryLink}</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </div>
@@ -129,7 +108,7 @@ const ServicesSection = () => {
             >
               <Image
                 src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2070&auto=format&fit=crop"
-                alt="Строителни услуги"
+                alt={t.home.services.title}
                 fill
                 className="object-cover"
                 loading="lazy"

@@ -3,7 +3,7 @@ import { contactSchema } from "@repo/ui/validation";
 import { sendContactEmail } from "@/lib/email";
 
 // Error codes for frontend translation
-export const ContactErrorCodes = {
+const ContactErrorCodes = {
   VALIDATION_ERROR: "VALIDATION_ERROR",
   RATE_LIMIT_EXCEEDED: "RATE_LIMIT_EXCEEDED",
   EMAIL_SEND_FAILED: "EMAIL_SEND_FAILED",

@@ -5,11 +5,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import HamburgerMenu from "./HamburgerMenu";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { useLanguage } from "@/app/context/LanguageContext";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const pathname = usePathname();
   const isHomePage = pathname === "/";
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,16 +48,16 @@ const Header = () => {
 
         <nav className="hidden md:flex items-center gap-8 text-base">
           <Link href="/" className="link-underline">
-            Начало
+            {t.nav.home}
           </Link>
           <Link href="/projects" className="link-underline">
-            Проекти
+            {t.nav.projects}
           </Link>
           <Link href="/quality" className="link-underline">
-            Качество
+            {t.nav.quality}
           </Link>
           <Link href="/contact" className="link-underline">
-            Контакти
+            {t.nav.contact}
           </Link>
           <LanguageSwitcher />
         </nav>

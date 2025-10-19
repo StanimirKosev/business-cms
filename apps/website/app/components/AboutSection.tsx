@@ -3,9 +3,11 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useScrollAnimation } from "@/app/hooks/useScrollAnimation";
+import { useLanguage } from "@/app/context/LanguageContext";
 
 const AboutSection = () => {
   const { ref: sectionRef, isVisible } = useScrollAnimation(0.5);
+  const { t } = useLanguage();
   const [projectCount, setProjectCount] = useState(0);
   const [clientCount, setClientCount] = useState(0);
 
@@ -29,7 +31,7 @@ const AboutSection = () => {
     <section
       ref={sectionRef}
       className="py-20 px-6 md:px-40 bg-white"
-      aria-label="За нас"
+      aria-label={t.home.about.title}
     >
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-[55%_45%] gap-12">
@@ -50,7 +52,7 @@ const AboutSection = () => {
                     : "opacity-0 -translate-x-[30px]"
                 }`}
               >
-                За нас
+                {t.home.about.title}
               </h2>
 
               <div className="space-y-6 leading-relaxed text-[var(--color-charcoal)]">
@@ -61,9 +63,7 @@ const AboutSection = () => {
                       : "opacity-0 translate-y-[20px]"
                   }`}
                 >
-                  Техно Строй България е основана през 2009 година и се
-                  специализира в изпълнението на строителни проекти с различна
-                  сложност.
+                  {t.home.about.intro}
                 </p>
 
                 <p
@@ -73,22 +73,17 @@ const AboutSection = () => {
                       : "opacity-0 translate-y-[20px]"
                   }`}
                 >
-                  Разполагаме с висококвалифицирани инженери и икономисти в
-                  проектирането, ръководството и контрола на строителството,
-                  маркетинга и техническия анализ, финансово-счетоводната и
-                  икономическата дейност.
+                  {t.home.about.description}
                 </p>
 
                 <p
-                  className={`text-lg font-medium transition-all duration-500 ease-out delay-[700ms] ${
+                  className={`text-lg transition-all duration-500 ease-out delay-[700ms] ${
                     isVisible
                       ? "opacity-85 translate-y-0"
                       : "opacity-0 translate-y-[20px]"
                   }`}
                 >
-                  Дружеството разполага с необходимата за дейността си
-                  съвременна тежка и лека механизация, транспортна и подемна
-                  техника, автотранспорт.
+                  {t.home.about.registry}
                 </p>
               </div>
             </div>
@@ -103,7 +98,7 @@ const AboutSection = () => {
             >
               <Image
                 src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop"
-                alt="Техно Строй България строителен екип"
+                alt={`${t.home.about.title} - Techno Stroy Bulgaria`}
                 fill
                 className="object-cover"
                 loading="lazy"
@@ -120,8 +115,8 @@ const AboutSection = () => {
                         : "opacity-0 translate-y-[10px]"
                     }`}
                   >
-                    <div className="text-3xl font-bold">2009</div>
-                    <div className="text-sm opacity-90">Основана</div>
+                    <div className="text-3xl font-bold">{t.home.about.stats.foundedYear}</div>
+                    <div className="text-sm opacity-90">{t.home.about.stats.founded}</div>
                   </div>
                   <div className="w-px h-12 bg-white/30" />
                   <div
@@ -132,7 +127,7 @@ const AboutSection = () => {
                     }`}
                   >
                     <div className="text-3xl font-bold">{projectCount}+</div>
-                    <div className="text-sm opacity-90">Проекти</div>
+                    <div className="text-sm opacity-90">{t.home.about.stats.projects}</div>
                   </div>
                   <div className="w-px h-12 bg-white/30" />
                   <div
@@ -143,7 +138,7 @@ const AboutSection = () => {
                     }`}
                   >
                     <div className="text-3xl font-bold">{clientCount}+</div>
-                    <div className="text-sm opacity-90">Клиенти</div>
+                    <div className="text-sm opacity-90">{t.home.about.stats.clients}</div>
                   </div>
                 </div>
               </div>

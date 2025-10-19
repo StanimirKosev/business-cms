@@ -5,37 +5,18 @@ import Autoplay from "embla-carousel-autoplay";
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import ChevronButton from "./ChevronButton";
+import { useLanguage } from "@/app/context/LanguageContext";
 
-const MOCK_SLIDES = [
-  {
-    id: 1,
-    image:
-      "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1920&q=80",
-    alt: "Construction site 1",
-    title: "Строим вашето бъдеще",
-    subtitle: "Професионални строителни услуги от 2011 година",
-  },
-  {
-    id: 2,
-    image:
-      "https://images.unsplash.com/photo-1759239572496-4ec13e7643d6?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    alt: "Construction site 2",
-    title: "Качество и прецизност",
-    subtitle: "Над 200 завършени проекта",
-  },
-  {
-    id: 3,
-    image:
-      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1920&q=80",
-    alt: "Construction site 3",
-    title: "Вашият надежден партньор",
-    subtitle: "Висококвалифицирани инженери и икономисти",
-  },
+const SLIDE_IMAGES = [
+  "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1920&q=80",
+  "https://images.unsplash.com/photo-1759239572496-4ec13e7643d6?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1920&q=80",
 ];
 
 const AUTOPLAY_DELAY = 10000;
 
 const HeroCarousel = () => {
+  const { t } = useLanguage();
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
     Autoplay({
       delay: AUTOPLAY_DELAY,
@@ -124,18 +105,18 @@ const HeroCarousel = () => {
     <div className="relative h-screen w-full overflow-hidden">
       <div className="h-full overflow-hidden" ref={emblaRef}>
         <div className="flex h-full">
-          {MOCK_SLIDES.map((slide) => (
+          {t.hero.slides.map((slide, index) => (
             <div
-              key={slide.id}
+              key={index}
               className="flex-[0_0_100%] min-w-0 h-full relative"
             >
               <div className="w-full h-full relative overflow-hidden bg-black">
                 <Image
-                  src={slide.image}
-                  alt={slide.alt}
+                  src={SLIDE_IMAGES[index]}
+                  alt={slide.title}
                   fill
                   className="object-cover animate-ken-burns"
-                  priority={slide.id === 1}
+                  priority={index === 0}
                   sizes="100vw"
                   quality={90}
                   draggable={false}
@@ -160,13 +141,13 @@ const HeroCarousel = () => {
                 key={`title-${selectedIndex}`}
                 className="text-4xl md:text-6xl font-bold text-[var(--color-white)] mb-4 animate-slide-up"
               >
-                {MOCK_SLIDES[selectedIndex].title}
+                {t.hero.slides[selectedIndex].title}
               </h1>
               <p
                 key={`subtitle-${selectedIndex}`}
                 className="text-lg md:text-xl text-[var(--color-white)] mb-8 animate-slide-up-delayed"
               >
-                {MOCK_SLIDES[selectedIndex].subtitle}
+                {t.hero.slides[selectedIndex].subtitle}
               </p>
             </div>
           </div>
@@ -191,7 +172,7 @@ const HeroCarousel = () => {
         </span>
         <div className="w-px h-8 bg-[var(--color-white)]/40 my-1" />
         <span className="text-lg md:text-xl font-medium text-[var(--color-white)]">
-          {MOCK_SLIDES.length}
+          {t.hero.slides.length}
         </span>
       </div>
 

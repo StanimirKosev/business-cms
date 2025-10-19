@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useScrollAnimation } from "@/app/hooks/useScrollAnimation";
+import { useLanguage } from "@/app/context/LanguageContext";
 import { Project } from "@/lib/mock-data";
 
 // TODO: Replace with database query when admin is ready
@@ -461,6 +462,7 @@ const projectsByRegion = MOCK_PROJECTS.reduce(
 );
 
 export function ClientsMap() {
+  const { t } = useLanguage();
   const [hoveredRegion, setHoveredRegion] = useState<string | null>(null);
   const { ref: sectionRef, isVisible } = useScrollAnimation(0.2);
 
@@ -492,7 +494,7 @@ export function ClientsMap() {
                   : "opacity-0 -translate-x-[30px]"
               }`}
             >
-              Нашите клиенти
+              {t.home.clients.map.title}
             </h2>
             <p
               className={`text-base md:text-lg text-[var(--color-charcoal)] leading-relaxed transition-all duration-500 ease-out delay-[600ms] ${
@@ -501,9 +503,7 @@ export function ClientsMap() {
                   : "opacity-0 translate-y-[20px]"
               }`}
             >
-              Реализирали сме строителни проекти в над {totalRegions} области из
-              цялата страна, работейки в партньорство с държавни институции,
-              общини и частни инвеститори.
+              {t.home.clients.map.description.replace("{count}", totalRegions.toString())}
             </p>
             <p
               className={`text-sm md:text-base text-[var(--color-charcoal)] mt-4 transition-all duration-500 ease-out delay-[700ms] ${
@@ -512,8 +512,7 @@ export function ClientsMap() {
                   : "opacity-0 translate-y-[20px]"
               }`}
             >
-              {totalRegions} области | {totalProjects} проекта | {totalClients}{" "}
-              клиента
+              {totalRegions} {t.home.clients.map.stats.regions} | {totalProjects} {t.home.clients.map.stats.projects} | {totalClients} {t.home.clients.map.stats.clients}
             </p>
           </div>
         </div>

@@ -110,24 +110,29 @@ export default function QualityPageClient({
             </h2>
           </div>
 
-          <div className="relative">
-            <div className="absolute left-6 top-0 bottom-0 w-px bg-[var(--color-red)]"></div>
-
-            <div className="space-y-12">
-              {ISO_STANDARDS_DATA.map((standard) => {
+          <div className="relative max-w-4xl">
+            <div className="space-y-0">
+              {ISO_STANDARDS_DATA.map((standard, index) => {
                 const Icon = standard.icon;
+                const isLast = index === ISO_STANDARDS_DATA.length - 1;
                 return (
-                  <div key={standard.year} className="relative flex gap-8">
-                    <div className="flex-shrink-0 w-24 md:w-32">
+                  <div key={standard.year} className="flex gap-6 md:gap-8 pb-8 relative">
+                    <div className="flex-shrink-0 w-20 md:w-24 relative flex flex-col items-center">
                       <div className="relative z-10 w-12 h-12 bg-[var(--color-red)] rounded-full flex items-center justify-center shadow-lg">
                         <Icon className="w-6 h-6 text-white" />
                       </div>
-                      <div className="mt-2 text-2xl font-bold text-[var(--color-red)]">
+
+                      <div className="mt-2 mb-3 text-2xl font-bold text-[var(--color-red)]">
                         {standard.year}
                       </div>
+
+                      {/* Line segment after year text with gap */}
+                      {!isLast && (
+                        <div className="absolute left-1/2 -translate-x-px top-[5.5rem] w-px h-16 bg-[var(--color-red)]"></div>
+                      )}
                     </div>
 
-                    <div className="flex-1 pb-8">
+                    <div className="flex-1">
                       <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
                         <h3 className="text-xl font-bold text-[var(--color-charcoal)] mb-2">
                           {
