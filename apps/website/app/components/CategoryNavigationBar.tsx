@@ -138,7 +138,7 @@ export function CategoryNavigationBar({
   };
 
   return (
-    <div className="sticky top-[44px] z-40 bg-white border-b border-[var(--color-border)] pt-5">
+    <div className="sticky top-[60px] md:top-[56px] z-40 bg-white border-b border-[var(--color-border)] pt-5">
       <div className="px-4">
         <div
           ref={navScrollRef}

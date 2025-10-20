@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 import HamburgerMenu from "./HamburgerMenu";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { useLanguage } from "@/app/context/LanguageContext";
@@ -13,7 +14,10 @@ const Header = () => {
   const isHomePage = pathname === "/";
   const { t } = useLanguage();
 
+  // Only track scroll on homepage
   useEffect(() => {
+    if (!isHomePage) return;
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
@@ -22,7 +26,10 @@ const Header = () => {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isHomePage]);
+
+  // Use compact version for all non-homepage routes
+  const isCompact = !isHomePage || isScrolled;
 
   return (
     <header
@@ -34,16 +41,25 @@ const Header = () => {
     >
       <div
         className={`px-6 md:pl-40 md:pr-60 flex items-center justify-between max-w-[1800px] mx-auto transition-[padding] duration-[400ms] ease-in-out ${
-          isScrolled ? "py-2" : "py-4"
+          isCompact ? "py-2.5 md:py-3" : "py-4 md:py-5"
         }`}
       >
+        {/* Logo with responsive sizing */}
         <Link
           href="/"
-          className={`font-bold text-3xl leading-none md:origin-left transition-transform duration-[400ms] ease-in-out ${
-            isScrolled ? "scale-[0.56]" : "scale-100"
+          className={`relative block transition-all duration-[400ms] ease-in-out origin-left ${
+            isCompact
+              ? "w-[160px] h-[41px] md:w-[180px] md:h-[46px]"
+              : "w-[200px] h-[51px] md:w-[240px] md:h-[62px]"
           }`}
         >
-          LOGO
+          <Image
+            src="/logo.svg"
+            alt="Техно Покрив България - Строителна фирма"
+            fill
+            className="object-contain object-left"
+            priority
+          />
         </Link>
 
         <nav className="hidden md:flex items-center gap-8 text-base">

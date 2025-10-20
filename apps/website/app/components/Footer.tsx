@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Phone, Mail } from "lucide-react";
 import { useLanguage } from "@/app/context/LanguageContext";
 
@@ -12,7 +13,14 @@ const Footer = () => {
       <div className="max-w-[1800px] mx-auto px-6 md:px-40 py-12">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8">
           <div>
-            <div className="font-bold text-2xl mb-3">LOGO</div>
+            <div className="relative w-[180px] h-[46px] mb-3">
+              <Image
+                src="/logo.svg"
+                alt="Техно Покрив България - Строителна фирма"
+                fill
+                className="object-contain object-left"
+              />
+            </div>
             <p className="text-sm opacity-90">{t.footer.tagline}</p>
           </div>
 
