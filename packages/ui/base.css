@@ -21,8 +21,8 @@
 
 /* Tailwind theme bridge */
 @theme inline {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-manrope), sans-serif;
+  --font-mono: var(--font-manrope), sans-serif;
 
   /* Shadcn color system - map to brand colors */
   --color-primary: #c62828;
@@ -47,5 +47,5 @@
 body {
   background: var(--color-white);
   color: var(--color-charcoal);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-manrope), sans-serif;
 }
