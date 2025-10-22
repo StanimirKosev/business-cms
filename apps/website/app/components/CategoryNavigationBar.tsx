@@ -138,11 +138,11 @@ export function CategoryNavigationBar({
   };
 
   return (
-    <div className="sticky top-[60px] md:top-[56px] z-40 bg-white border-b border-[var(--color-border)] pt-5">
+    <div className="sticky top-[60px] md:top-[56px] z-40 bg-white border-b border-[var(--color-border)] pt-4 md:pt-7">
       <div className="px-4">
         <div
           ref={navScrollRef}
-          className="overflow-x-auto custom-scrollbar pb-2"
+          className="overflow-x-auto custom-scrollbar pb-4 md:pb-2"
         >
           <div className="flex items-center gap-4 min-w-max">
             {categories.map((category) => {
