@@ -13,7 +13,7 @@ const ServicesSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="py-20 px-6 md:px-40 bg-[#f9f9f9]"
+      className="py-20 px-6 md:px-40 bg-[var(--color-concrete-grey-light)]"
       aria-label={t.home.services.title}
     >
       <div className="max-w-7xl mx-auto">
@@ -51,21 +51,31 @@ const ServicesSection = () => {
 
                 {/* Services Grid */}
                 <div
-                  className={`grid grid-cols-1 gap-3 pt-2 transition-all duration-500 ease-out delay-[500ms] ${
+                  className={`grid grid-cols-1 gap-5 pt-2 transition-all duration-500 ease-out delay-[500ms] ${
                     isVisible
                       ? "opacity-100 translate-y-0"
                       : "opacity-0 translate-y-[20px]"
                   }`}
                 >
-                  {t.home.services.items.map((service: string, index: number) => (
-                    <div
-                      key={index}
-                      className="flex items-start gap-3 text-[var(--color-charcoal)]"
-                    >
-                      <CheckCircle2 className="w-5 h-5 text-[var(--color-red)] flex-shrink-0 mt-0.5" />
-                      <span className="text-base">{service}</span>
-                    </div>
-                  ))}
+                  {t.home.services.items.map(
+                    (service: string, index: number) => {
+                      const [title, ...descParts] = service.split(" - ");
+                      const description = descParts.join(" - ");
+
+                      return (
+                        <div
+                          key={index}
+                          className="flex items-start gap-3 text-[var(--color-charcoal)]"
+                        >
+                          <CheckCircle2 className="w-6 h-6 text-[var(--color-red)] flex-shrink-0 mt-0.5" />
+                          <span className="text-base leading-relaxed">
+                            <span className="font-bold text-[var(--color-charcoal)] text-[17px]">{title}</span>
+                            {description && <span className="text-[var(--color-muted-foreground)]"> - {description}</span>}
+                          </span>
+                        </div>
+                      );
+                    }
+                  )}
                 </div>
 
                 {/* Machinery Text */}

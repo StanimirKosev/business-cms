@@ -5,8 +5,10 @@ import { Card } from "./Card";
 import ChevronButton from "./ChevronButton";
 import { useScrollAnimation } from "@/app/hooks/useScrollAnimation";
 import { recentProjects, categoryToSlug } from "@/lib/mock-data";
+import { useLanguage } from "../context/LanguageContext";
 
 export function FeaturedProjects() {
+  const { t } = useLanguage();
   const { ref: sectionRef, isVisible } = useScrollAnimation(0.5);
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
@@ -21,7 +23,7 @@ export function FeaturedProjects() {
     <section
       ref={sectionRef}
       id="our-projects"
-      className="relative py-17 px-6 md:px-40 bg-[var(--color-concrete-grey-light)]"
+      className="relative py-17 px-6 md:px-40 bg-[#f9f9f9]"
     >
       <div className="max-w-7xl mx-auto">
         {/* Header with Red Line */}
@@ -41,7 +43,7 @@ export function FeaturedProjects() {
                   : "opacity-0 -translate-x-[30px]"
               }`}
             >
-              Нашите проекти
+              {t.home.projects.title}
             </h2>
             <p
               className={`text-lg text-[var(--color-muted-foreground)] transition-all duration-500 ease-out delay-[300ms] ${
@@ -50,7 +52,7 @@ export function FeaturedProjects() {
                   : "opacity-0 translate-y-[20px]"
               }`}
             >
-              Реализирани строителни проекти с най-високо качество
+              {t.home.projects.subtitle}
             </p>
           </div>
         </div>

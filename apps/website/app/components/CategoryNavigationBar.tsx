@@ -1,11 +1,35 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
+import {
+  Route,
+  Droplets,
+  Building2,
+  Zap,
+  Trees,
+  Building,
+  Wind,
+  Recycle,
+} from "lucide-react";
+
+const ICONS = {
+  Route,
+  Droplets,
+  Building2,
+  Zap,
+  Trees,
+  Building,
+  Wind,
+  Recycle,
+} as const;
+
+export type IconName = keyof typeof ICONS;
 
 interface Category {
-  name: string;
-  icon: string;
+  title: string;
+  iconName: IconName;
   count: number;
+  slug: string;
 }
 
 interface CategoryNavigationBarProps {
@@ -20,7 +44,7 @@ export function CategoryNavigationBar({
   const navScrollRef = useRef<HTMLDivElement | null>(null);
   const navButtonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
   const [activeCategory, setActiveCategory] = useState<string>(
-    categories[0]?.name || ""
+    categories[0]?.slug || ""
   );
   const isScrollingRef = useRef(false);
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -38,23 +62,23 @@ export function CategoryNavigationBar({
         const clientHeight = window.innerHeight;
 
         if (scrollTop < 200) {
-          setActiveCategory(categories[0]?.name || "");
+          setActiveCategory(categories[0]?.slug || "");
           rafId = null;
           return;
         }
 
         if (scrollTop + clientHeight >= scrollHeight - 100) {
-          setActiveCategory(categories[categories.length - 1]?.name || "");
+          setActiveCategory(categories[categories.length - 1]?.slug || "");
           rafId = null;
           return;
         }
 
         const viewportCenter = scrollTop + clientHeight / 2;
-        let closestCategory = categories[0]?.name || "";
+        let closestCategory = categories[0]?.slug || "";
         let closestDistance = Infinity;
 
         categories.forEach((category) => {
-          const element = sectionRefs.current[category.name];
+          const element = sectionRefs.current[category.slug];
           if (element) {
             const rect = element.getBoundingClientRect();
             const elementCenter = scrollTop + rect.top + rect.height / 2;
@@ -62,7 +86,7 @@ export function CategoryNavigationBar({
 
             if (distance < closestDistance) {
               closestDistance = distance;
-              closestCategory = category.name;
+              closestCategory = category.slug;
             }
           }
         });
@@ -146,23 +170,24 @@ export function CategoryNavigationBar({
         >
           <div className="flex items-center gap-4 min-w-max">
             {categories.map((category) => {
-              const isActive = activeCategory === category.name;
+              const isActive = activeCategory === category.slug;
+              const Icon = ICONS[category.iconName as IconName];
 
               return (
                 <button
-                  key={category.name}
+                  key={category.slug}
                   ref={(el) => {
-                    navButtonRefs.current[category.name] = el;
+                    navButtonRefs.current[category.slug] = el;
                   }}
-                  onClick={() => scrollToCategory(category.name)}
+                  onClick={() => scrollToCategory(category.slug)}
                   className={`flex-shrink-0 px-4 py-1.5 rounded-full transition-all font-medium text-sm whitespace-nowrap flex items-center gap-2 cursor-pointer ${
                     isActive
                       ? "bg-[var(--color-red)] text-[var(--color-white)] shadow-md"
                       : "bg-[#e8e8e8] text-[#888888] hover:bg-[#ffe5e5] hover:text-[var(--color-red)]"
                   }`}
                 >
-                  <span className="text-lg">{category.icon}</span>
-                  {category.name}
+                  {Icon ? <Icon /> : null}
+                  {category.title}
                   <span className="opacity-70">({category.count})</span>
                 </button>
               );

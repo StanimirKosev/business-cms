@@ -11,7 +11,7 @@ export type ProjectCategory =
 export interface Project {
   id?: number | string;
   title?: string;
-  category?: ProjectCategory;
+  category?: string;
   location?: string;
   description?: string;
   image?: string;
@@ -27,7 +27,7 @@ export const recentProjects: Project[] = [
   {
     id: 1,
     title: "Жилищен комплекс Витоша",
-    category: "Стоманобетонни и метални конструкции",
+    category: "transport-infrastructure",
     location: "СОФИЯ, БЪЛГАРИЯ",
     description:
       "Модерен жилищен комплекс с 120 апартамента и подземен паркинг в централната част на столицата.",
@@ -39,7 +39,7 @@ export const recentProjects: Project[] = [
   {
     id: 2,
     title: "Бизнес сграда София Тех Парк",
-    category: "Инженерно-укрепителни и хидросъоръжения",
+    category: "water-supply-sewerage",
     location: "СОФИЯ, БЪЛГАРИЯ",
     description:
       "Съвременна офис сграда клас А с площ от 15,000 кв.м. и интелигентни системи за управление.",
@@ -51,7 +51,7 @@ export const recentProjects: Project[] = [
   {
     id: 3,
     title: "Стоманобетонна конструкция на жилищен комплекс",
-    category: "Стоманобетонни и метални конструкции",
+    category: "residential-building-construction",
     location: "ВАРНА, БЪЛГАРИЯ",
     description: "Конструктивна рамка на жилищен блок със 100 апартамента",
     image:
@@ -62,7 +62,7 @@ export const recentProjects: Project[] = [
   {
     id: 4,
     title: "Метална конструкция на производствена хале",
-    category: "Стоманобетонни и метални конструкции",
+    category: "public-buildings-facilities",
     location: "БУРГАС, БЪЛГАРИЯ",
     description:
       "Стоманена рамка за индустриално производство с мостови кранове",
@@ -74,7 +74,7 @@ export const recentProjects: Project[] = [
   {
     id: 5,
     title: "Саниране на жилищен блок",
-    category: "Саниране и рехабилитация",
+    category: "energy-efficiency",
     location: "СОФИЯ, БЪЛГАРИЯ",
     description:
       "Енергийно обновяване на жилищна сграда - топлоизолация, дограма, покрив",
@@ -86,7 +86,7 @@ export const recentProjects: Project[] = [
   {
     id: 6,
     title: "Реставрация на исторична фасада",
-    category: "Саниране и рехабилитация",
+    category: "energy-efficiency",
     location: "ПЛОВДИВ, БЪЛГАРИЯ",
     description: "Възстановяване на фасада на къща от Възраждането",
     image:
@@ -97,7 +97,7 @@ export const recentProjects: Project[] = [
   {
     id: 7,
     title: "Цялостен ремонт на училище",
-    category: "Саниране и рехабилитация",
+    category: "public-buildings-facilities",
     location: "ВАРНА, БЪЛГАРИЯ",
     description:
       "Реконструкция и обновяване на СУ 'Христо Ботев' - фасада, покрив, вътрешни помещения",
@@ -109,7 +109,7 @@ export const recentProjects: Project[] = [
   {
     id: 8,
     title: "Ремонт на покрив на административна сграда",
-    category: "Саниране и рехабилитация",
+    category: "energy-efficiency",
     location: "БУРГАС, БЪЛГАРИЯ",
     description: "Хидроизолация и топлоизолация на плосък покрив",
     image:
@@ -120,7 +120,7 @@ export const recentProjects: Project[] = [
   {
     id: 9,
     title: "Укрепителна подпорна стена",
-    category: "Инженерно-укрепителни и хидросъоръжения",
+    category: "landscaping-greenery",
     location: "СОФИЯ, БЪЛГАРИЯ",
     description: "Изграждане на подпорна стена за стабилизиране на терен",
     image:
@@ -131,7 +131,7 @@ export const recentProjects: Project[] = [
   {
     id: 10,
     title: "Помпена станция за отпадни води",
-    category: "Инженерно-укрепителни и хидросъоръжения",
+    category: "landscaping-greenery",
     location: "ПЛОВДИВ, БЪЛГАРИЯ",
     description: "Изграждане на съоръжение за пречистване и помпене на води",
     image:
@@ -142,7 +142,7 @@ export const recentProjects: Project[] = [
   {
     id: 11,
     title: "Укрепване на срутище",
-    category: "Инженерно-укрепителни и хидросъоръжения",
+    category: "landscaping-greenery",
     location: "ВАРНА, БЪЛГАРИЯ",
     description: "Стабилизация на свлачище с габиони и дренажна система",
     image:
@@ -153,7 +153,7 @@ export const recentProjects: Project[] = [
   {
     id: 12,
     title: "Електрическа инсталация на офис сграда",
-    category: "Инсталации – Ел, ВиК, ОВК",
+    category: "hvac-ventilation",
     location: "СОФИЯ, БЪЛГАРИЯ",
     description:
       "Цялостно изграждане на ел. инсталация, пожароизвестяване, контрол достъп",
@@ -165,7 +165,7 @@ export const recentProjects: Project[] = [
   {
     id: 13,
     title: "ОВК система на търговски център",
-    category: "Инсталации – Ел, ВиК, ОВК",
+    category: "hvac-ventilation",
     location: "ПЛОВДИВ, БЪЛГАРИЯ",
     description: "Отопление, вентилация и климатизация на търговски комплекс",
     image:
@@ -176,7 +176,7 @@ export const recentProjects: Project[] = [
   {
     id: 14,
     title: "ВиК инсталация на жилищна сграда",
-    category: "Инсталации – Ел, ВиК, ОВК",
+    category: "hvac-ventilation",
     location: "ВАРНА, БЪЛГАРИЯ",
     description: "Водопровод, канализация и отоплителна инсталация",
     image:
@@ -187,7 +187,7 @@ export const recentProjects: Project[] = [
   {
     id: 15,
     title: "Вентилационна система на фабрика",
-    category: "Инсталации – Ел, ВиК, ОВК",
+    category: "hvac-ventilation",
     location: "БУРГАС, БЪЛГАРИЯ",
     description: "Индустриална вентилация и прахоулавяне",
     image:
@@ -198,7 +198,7 @@ export const recentProjects: Project[] = [
   {
     id: 16,
     title: "Рехабилитация на магистрала 'Тракия'",
-    category: "Пътно строителство и инфраструктура",
+    category: "waste-treatment-facilities",
     location: "ПЛОВДИВ - СТАРА ЗАГОРА, БЪЛГАРИЯ",
     description: "Основен ремонт на 15 км участък от АМ 'Тракия'",
     image:
@@ -209,7 +209,7 @@ export const recentProjects: Project[] = [
   {
     id: 17,
     title: "Мост над река Струма",
-    category: "Пътно строителство и инфраструктура",
+    category: "waste-treatment-facilities",
     location: "БЛАГОЕВГРАД, БЪЛГАРИЯ",
     description: "Изграждане на нов пътен мост с дължина 120 метра",
     image:
@@ -220,7 +220,7 @@ export const recentProjects: Project[] = [
   {
     id: 18,
     title: "Реконструкция на бул. 'България'",
-    category: "Пътно строителство и инфраструктура",
+    category: "waste-treatment-facilities",
     location: "СОФИЯ, БЪЛГАРИЯ",
     description: "Основен ремонт и разширение на градски булевард - 2.5 км",
     image:
@@ -231,7 +231,7 @@ export const recentProjects: Project[] = [
   {
     id: 19,
     title: "Паркинг и вертикална планировка",
-    category: "Пътно строителство и инфраструктура",
+    category: "waste-treatment-facilities",
     location: "ВАРНА, БЪЛГАРИЯ",
     description: "Изграждане на паркинг с озеленяване и алеи",
     image:
@@ -242,7 +242,7 @@ export const recentProjects: Project[] = [
   {
     id: 20,
     title: "Реконструкция на тротоари и алеи",
-    category: "Пътно строителство и инфраструктура",
+    category: "waste-treatment-facilities",
     location: "ПЛОВДИВ, БЪЛГАРИЯ",
     description: "Обновяване на пешеходни зони с гранитни плочи и осветление",
     image:
@@ -250,14 +250,6 @@ export const recentProjects: Project[] = [
     year: 2024,
     slug: "sidewalk-renovation-plovdiv",
   },
-];
-
-export const PROJECT_CATEGORIES: ProjectCategory[] = [
-  "Стоманобетонни и метални конструкции",
-  "Саниране и рехабилитация",
-  "Инженерно-укрепителни и хидросъоръжения",
-  "Инсталации – Ел, ВиК, ОВК",
-  "Пътно строителство и инфраструктура",
 ];
 
 // Convert category to URL-friendly slug
@@ -285,7 +277,7 @@ export function slugToCategory(slug: string): ProjectCategory | null {
 }
 
 // Get projects by category
-export function getProjectsByCategory(category: ProjectCategory): Project[] {
+export function getProjectsByCategory(category: string): Project[] {
   return recentProjects.filter((p) => p.category === category);
 }
 

@@ -1,10 +1,11 @@
 "use client";
 
 import { Card } from "./Card";
-import { Project, ProjectCategory, getCategoryInfo, categoryToSlug } from "@/lib/mock-data";
+import { Project } from "@/lib/mock-data";
+import { useLanguage } from "@/app/context/LanguageContext";
 
 interface ServiceProjectsSectionProps {
-  category: ProjectCategory;
+  category: { title: string; description: string; slug: string };
   projects: Project[];
 }
 
@@ -12,15 +13,14 @@ export function ServiceProjectsSection({
   category,
   projects,
 }: ServiceProjectsSectionProps) {
-  const categoryInfo = getCategoryInfo(category);
+  const { t } = useLanguage();
   const heroImage = projects[0]?.image || "/placeholder.jpg";
-  const serviceSlug = categoryToSlug(category);
 
   const serviceCardProps = {
-    title: category,
-    description: categoryInfo.description,
+    title: category.title,
+    description: category.description,
     image: heroImage,
-    slug: `/projects/${serviceSlug}`,
+    slug: `/projects/${category.slug}`,
   };
 
   return (
@@ -30,7 +30,7 @@ export function ServiceProjectsSection({
         <Card {...serviceCardProps} variant="service-mobile" />
         <div className="bg-[#f7f7f7] px-6 py-6 mb-8">
           <p className="text-sm text-[#6b6b6b] font-medium">
-            Избрани проекти — {category}
+            {t.projects.selectedProjectsLabel} — {category.title}
           </p>
         </div>
       </div>
@@ -49,7 +49,7 @@ export function ServiceProjectsSection({
             <div className="lg:col-span-7">
               <div className="hidden lg:block mb-8 pb-4 border-b border-[#e8e8e8]">
                 <p className="text-sm text-[#5a5a5a] font-medium">
-                  Избрани проекти — {category}
+                  {t.projects.selectedProjectsLabel} — {category.title}
                 </p>
               </div>
 
@@ -60,7 +60,7 @@ export function ServiceProjectsSection({
                     title={project.title}
                     description={project.description}
                     image={project.image}
-                    slug={`/projects/${serviceSlug}/${project.slug}`}
+                    slug={`/projects/${category.slug}/${project.slug}`}
                     location={project.location}
                   />
                 ))}

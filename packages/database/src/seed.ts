@@ -1,171 +1,157 @@
-import { PrismaClient } from '@prisma/client'
-import * as bcrypt from 'bcryptjs'
+import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
 async function main() {
-  console.log('🌱 Starting database seed...')
-
-  // 1. Create admin user
-  const hashedPassword = await bcrypt.hash('admin123', 10)
-  const admin = await prisma.user.upsert({
-    where: { email: 'admin@example.com' },
-    update: {},
-    create: {
-      email: 'admin@example.com',
-      password: hashedPassword,
-      name: 'Admin User',
-    },
-  })
-  console.log('✅ Created admin user:', admin.email)
+  console.log("🌱 Starting database seed...");
 
   // 2. Create categories (services)
   const categories = [
     {
-      name: 'Стоманобетонни и метални конструкции',
-      slug: 'steel-concrete-structures',
-      description: 'Изграждане на конструктивната рамка на сгради и съоръжения',
-      iconName: 'building',
+      titleBg: "Транспортна инфракструктура",
+      titleEn: "Transport Infrastructure",
+      slug: "transport-infrastructure",
+      descriptionBg:
+        "Изграждане и рехабилитация на общински пътища, улици, мостове и паркинги",
+      descriptionEn:
+        "Construction and rehabilitation of municipal roads, streets, bridges and parking facilities",
+      heroImageUrl: null,
+      contentBg:
+        "Реконструкция и рехабилитация на пътна инфраструктура - общински пътища, улици, пешеходни мостове и паркинги.",
+      contentEn:
+        "Reconstruction and rehabilitation of road infrastructure - municipal roads, streets, pedestrian bridges and parking facilities.",
+      iconName: "Route",
+      order: 0,
+    },
+    {
+      titleBg: "ВИК проекти",
+      titleEn: "Water Supply & Sewerage",
+      slug: "water-supply-sewerage",
+      descriptionBg:
+        "Реконструкция на водопроводни и канализационни мрежи, пречиствателни станции",
+      descriptionEn:
+        "Reconstruction of water supply and sewerage networks, treatment plants",
+      heroImageUrl: null,
+      contentBg:
+        "Реконструкция на улични водопроводи и канализация, изграждане на пречиствателни станции за питейни води.",
+      contentEn:
+        "Reconstruction of street water supply and sewerage, construction of drinking water treatment plants.",
+      iconName: "Droplets",
       order: 1,
     },
     {
-      name: 'Саниране и рехабилитация',
-      slug: 'renovation-rehabilitation',
-      description: 'Енергийно обновяване, ремонт на фасади и покриви',
-      iconName: 'wrench',
+      titleBg: "Жилищно и сградно строителство",
+      titleEn: "Residential & Building Construction",
+      slug: "residential-building-construction",
+      descriptionBg:
+        "Изграждане на многофамилни жилищни сгради и апартаментни комплекси",
+      descriptionEn:
+        "Construction of multi-family residential buildings and apartment complexes",
+      heroImageUrl: null,
+      contentBg:
+        "Изпълнение на жилищни сгради - многофамилни блокове и апартаментни комплекси.",
+      contentEn:
+        "Execution of residential buildings - multi-family blocks and apartment complexes.",
+      iconName: "Building2",
       order: 2,
     },
     {
-      name: 'Инженерно-укрепителни и хидросъоръжения',
-      slug: 'engineering-hydro',
-      description: 'Изпълнение на укрепителни съоръжения и водни системи',
-      iconName: 'droplet',
+      titleBg: "Енергийна ефективност",
+      titleEn: "Energy Efficiency",
+      slug: "energy-efficiency",
+      descriptionBg:
+        "Саниране, топлоизолация и мерки за енергийна ефективност на сгради",
+      descriptionEn:
+        "Renovation, insulation and energy efficiency measures for buildings",
+      heroImageUrl: null,
+      contentBg:
+        "Професионално саниране и енергийно обновяване на жилищни и обществени сгради.",
+      contentEn:
+        "Professional renovation and energy upgrading of residential and public buildings.",
+      iconName: "Zap",
       order: 3,
     },
     {
-      name: 'Инсталации – Ел, ВиК, ОВК',
-      slug: 'installations',
-      description: 'Електро, водопроводни, канализационни и климатични системи',
-      iconName: 'zap',
+      titleBg: "Благоустройство и озеленяване",
+      titleEn: "Landscaping & Greenery",
+      slug: "landscaping-greenery",
+      descriptionBg:
+        "Парково строителство, детски площадки, спортни площадки и благоустрояване",
+      descriptionEn:
+        "Park construction, playgrounds, sports facilities and landscaping",
+      heroImageUrl: null,
+      contentBg:
+        "Обновяване на паркове, изграждане на открити детски и спортни площадки, благоустрояване на жилищни територии.",
+      contentEn:
+        "Park renovation, construction of outdoor playgrounds and sports facilities, landscaping of residential areas.",
+      iconName: "Trees",
       order: 4,
     },
     {
-      name: 'Пътно строителство и инфраструктура',
-      slug: 'road-construction',
-      description: 'Изграждане и рехабилитация на пътища и инфраструктура',
-      iconName: 'road',
+      titleBg: "Сгради и съоръжения за обществено ползване",
+      titleEn: "Public Buildings & Facilities",
+      slug: "public-buildings-facilities",
+      descriptionBg:
+        "Спортни зали, училища, читалища, административни сгради, музеи и културни центрове",
+      descriptionEn:
+        "Sports halls, schools, community centers, administrative buildings, museums and cultural centers",
+      heroImageUrl: null,
+      contentBg:
+        "Изграждане и ремонт на обществени сгради - спортни зали, училища, читалища, музеи и административни сгради.",
+      contentEn:
+        "Construction and renovation of public buildings - sports halls, schools, community centers, museums and administrative buildings.",
+      iconName: "Building",
       order: 5,
     },
-  ]
+    {
+      titleBg: "ОВК системи и вентилзации",
+      titleEn: "HVAC & Ventilation Systems",
+      slug: "hvac-ventilation",
+      descriptionBg:
+        "Отоплителни инсталации, геотермални инсталации и газоснабдяване",
+      descriptionEn: "Heating installations, geothermal systems and gas supply",
+      heroImageUrl: null,
+      contentBg:
+        "Монтаж на отоплителни инсталации, изграждане на геотермални системи и газорегулиращи станции.",
+      contentEn:
+        "Installation of heating systems, construction of geothermal installations and gas regulation stations.",
+      iconName: "Wind",
+      order: 6,
+    },
+    {
+      titleBg: "Съоръжения и инсталации за третиране на отпадъци",
+      titleEn: "Waste Treatment Facilities",
+      slug: "waste-treatment-facilities",
+      descriptionBg:
+        "Депа за битови отпадъци, рекултивация и площадки за биологично третиране",
+      descriptionEn:
+        "Municipal waste landfills, reclamation and biological treatment facilities",
+      heroImageUrl: null,
+      contentBg:
+        "Изграждане на депа за битови отпадъци, рекултивация на съществуващи депа и площадки за биологично третиране.",
+      contentEn:
+        "Construction of municipal waste landfills, reclamation of existing landfills and biological treatment facilities.",
+      iconName: "Recycle",
+      order: 7,
+    },
+  ];
 
   for (const category of categories) {
     await prisma.category.upsert({
       where: { slug: category.slug },
       update: {},
       create: category,
-    })
+    });
   }
-  console.log('✅ Created 5 categories')
-
-  // 3. Create sample projects
-  const steelCategory = await prisma.category.findUnique({
-    where: { slug: 'steel-concrete-structures' },
-  })
-  const renovationCategory = await prisma.category.findUnique({
-    where: { slug: 'renovation-rehabilitation' },
-  })
-
-  if (steelCategory) {
-    await prisma.project.upsert({
-      where: { slug: 'multifunctional-building-sofia' },
-      update: {},
-      create: {
-        title: 'Многофункционална сграда София',
-        slug: 'multifunctional-building-sofia',
-        description:
-          'Изграждане на стоманобетонна конструкция на 8-етажна многофункционална сграда в центъра на София. Проектът включва изпълнение на основи, колони, греди и плочи.',
-        location: 'София, бул. Витоша',
-        client: 'ABC Строй ООД',
-        year: 2023,
-        size: '8,500 m²',
-        featured: true,
-        categoryId: steelCategory.id,
-      },
-    })
-  }
-
-  if (renovationCategory) {
-    await prisma.project.upsert({
-      where: { slug: 'residential-building-renovation' },
-      update: {},
-      create: {
-        title: 'Саниране на жилищна сграда',
-        slug: 'residential-building-renovation',
-        description:
-          'Цялостно саниране и енергийна ефективност на жилищна сграда. Включва топлоизолация на фасада, подмяна на дограма, ремонт на покрив.',
-        location: 'Пловдив, ж.к. Тракия',
-        client: 'Етажна собственост',
-        year: 2024,
-        size: '3,200 m²',
-        featured: true,
-        categoryId: renovationCategory.id,
-      },
-    })
-  }
-
-  console.log('✅ Created 2 sample projects')
-
-  // 4. Create sample clients
-  await prisma.client.upsert({
-    where: { id: 'sample-client-1' },
-    update: {},
-    create: {
-      id: 'sample-client-1',
-      name: 'Client Logo 1',
-      logoUrl: 'https://via.placeholder.com/200x100?text=Client+1',
-      order: 1,
-    },
-  })
-
-  await prisma.client.upsert({
-    where: { id: 'sample-client-2' },
-    update: {},
-    create: {
-      id: 'sample-client-2',
-      name: 'Client Logo 2',
-      logoUrl: 'https://via.placeholder.com/200x100?text=Client+2',
-      order: 2,
-    },
-  })
-
-  console.log('✅ Created 2 sample clients')
-
-  // 5. Create site settings
-  const settings = [
-    { key: 'founded_year', value: '1995' },
-    { key: 'total_clients', value: '150' },
-    { key: 'total_projects', value: '134' },
-    { key: 'awards_count', value: '12' },
-    { key: 'company_about', value: 'Водеща строителна компания в България с над 25 години опит.' },
-  ]
-
-  for (const setting of settings) {
-    await prisma.siteSetting.upsert({
-      where: { key: setting.key },
-      update: { value: setting.value },
-      create: setting,
-    })
-  }
-
-  console.log('✅ Created site settings')
-  console.log('🎉 Seed completed successfully!')
+  console.log("✅ Created 8 categories");
+  console.log("🎉 Seed completed successfully!");
 }
 
 main()
   .catch((e) => {
-    console.error('❌ Seed failed:', e)
-    process.exit(1)
+    console.error("❌ Seed failed:", e);
+    process.exit(1);
   })
   .finally(async () => {
-    await prisma.$disconnect()
-  })
+    await prisma.$disconnect();
+  });

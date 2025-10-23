@@ -22,15 +22,20 @@ model User {
 
 // Service categories (Дейности)
 model Category {
-  id          String    @id @default(cuid())
-  name        String    @unique
-  slug        String    @unique
-  description String?
-  iconName    String?   // Icon identifier for frontend
-  order       Int       @default(0)
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  projects    Project[]
+  id             String    @id @default(cuid())
+  titleBg        String    @unique // Bulgarian title
+  titleEn        String    @unique // English title
+  slug           String    @unique // URL-safe English slug
+  descriptionBg  String    @db.Text // Bulgarian description
+  descriptionEn  String    @db.Text // English description
+  heroImageUrl   String?   // Cloudinary URL for category hero image
+  contentBg      String?   @db.Text // Additional Bulgarian content for category page
+  contentEn      String?   @db.Text // Additional English content for category page
+  iconName       String?   // Optional: lucide-react icon name if suitable icon exists
+  order          Int       @default(0)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  projects       Project[]
 
   @@index([slug])
 }

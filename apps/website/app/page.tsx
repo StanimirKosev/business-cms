@@ -13,13 +13,13 @@ export default function HomePage() {
       {/* About Section */}
       <AboutSection />
 
+      {/* Clients Map */}
+      <ClientsMap />
+
       {/* Recent Projects */}
       <FeaturedProjects />
 
       <ServicesSection />
-
-      {/* Clients Map */}
-      <ClientsMap />
     </div>
   );
 }

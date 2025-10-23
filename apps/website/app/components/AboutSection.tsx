@@ -19,8 +19,8 @@ const AboutSection = () => {
 
     const timer = setInterval(() => {
       current++;
-      setProjectCount(Math.floor((200 / steps) * current));
-      setClientCount(Math.floor((300 / steps) * current));
+      setProjectCount(Math.floor((300 / steps) * current));
+      setClientCount(Math.floor((40 / steps) * current));
       if (current >= steps) clearInterval(timer);
     }, 2000 / steps);
 
@@ -115,8 +115,12 @@ const AboutSection = () => {
                         : "opacity-0 translate-y-[10px]"
                     }`}
                   >
-                    <div className="text-3xl font-bold">{t.home.about.stats.foundedYear}</div>
-                    <div className="text-sm opacity-90">{t.home.about.stats.founded}</div>
+                    <div className="text-3xl font-bold">
+                      {t.home.about.stats.foundedYear}
+                    </div>
+                    <div className="text-sm opacity-90">
+                      {t.home.about.stats.founded}
+                    </div>
                   </div>
                   <div className="w-px h-12 bg-white/30" />
                   <div
@@ -127,7 +131,9 @@ const AboutSection = () => {
                     }`}
                   >
                     <div className="text-3xl font-bold">{projectCount}+</div>
-                    <div className="text-sm opacity-90">{t.home.about.stats.projects}</div>
+                    <div className="text-sm opacity-90">
+                      {t.home.about.stats.projects}
+                    </div>
                   </div>
                   <div className="w-px h-12 bg-white/30" />
                   <div
@@ -138,7 +144,9 @@ const AboutSection = () => {
                     }`}
                   >
                     <div className="text-3xl font-bold">{clientCount}+</div>
-                    <div className="text-sm opacity-90">{t.home.about.stats.clients}</div>
+                    <div className="text-sm opacity-90">
+                      {t.home.about.stats.clients}
+                    </div>
                   </div>
                 </div>
               </div>
