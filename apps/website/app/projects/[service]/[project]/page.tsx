@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { recentProjects, slugToCategory } from "@/lib/mock-data";
+import { recentProjects } from "@/lib/mock-data";
 import { ProjectPageClient } from "./ProjectPageClient";
 
 interface ProjectPageProps {
@@ -9,15 +9,9 @@ interface ProjectPageProps {
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { service, project } = await params;
 
-  // Convert service slug to category
-  const category = slugToCategory(service);
-  if (!category) {
-    notFound();
-  }
-
   // Find project by slug and verify it belongs to the service category
   const foundProject = recentProjects.find(
-    (p) => p.slug === project && p.category === category
+    (p) => p.slug === project && p.category === service
   );
 
   if (!foundProject) {

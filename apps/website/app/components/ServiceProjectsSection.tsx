@@ -14,37 +14,14 @@ export function ServiceProjectsSection({
   projects,
 }: ServiceProjectsSectionProps) {
   const { t } = useLanguage();
-  const heroImage = projects[0]?.image || "/placeholder.jpg";
-
-  const serviceCardProps = {
-    title: category.title,
-    description: category.description,
-    image: heroImage,
-    slug: `/projects/${category.slug}`,
-  };
 
   return (
     <section className="py-12 md:py-16">
       {/* Mobile: Full-width service card + intro block */}
-      <div className="lg:hidden">
-        <Card {...serviceCardProps} variant="service-mobile" />
-        <div className="bg-[#f7f7f7] px-6 py-6 mb-8">
-          <p className="text-sm text-[#6b6b6b] font-medium">
-            {t.projects.selectedProjectsLabel} — {category.title}
-          </p>
-        </div>
-      </div>
 
       <div className="px-6 md:px-40">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-            {/* Desktop: Sticky service card */}
-            <div className="hidden lg:block lg:col-span-5">
-              <div className="lg:sticky lg:top-32">
-                <Card {...serviceCardProps} variant="service" />
-              </div>
-            </div>
-
             {/* Project cards grid */}
             <div className="lg:col-span-7">
               <div className="hidden lg:block mb-8 pb-4 border-b border-[#e8e8e8]">

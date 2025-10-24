@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { prisma } from "@repo/database/client";
 import ProjectsPageClient from "./ProjectsPageClient";
 
@@ -11,5 +12,9 @@ export default async function ProjectsPage() {
     orderBy: { order: "asc" },
   });
 
-  return <ProjectsPageClient categories={categories} />;
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ProjectsPageClient categories={categories} />
+    </Suspense>
+  );
 }

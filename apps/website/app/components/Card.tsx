@@ -11,7 +11,7 @@ interface ProjectCardProps {
   image?: string;
   slug?: string;
   category?: string;
-  variant?: "default" | "compact" | "service" | "service-mobile" | "hero";
+  variant?: "default" | "compact" | "hero";
   priority?: boolean;
 }
 
@@ -30,22 +30,6 @@ const VARIANT_CONFIG = {
     padding: "p-5",
     rounded: "rounded-xl",
     showDescription: false,
-    showArrow: true,
-  },
-  service: {
-    height: "h-[500px] lg:h-[600px]",
-    titleSize: "text-3xl md:text-4xl lg:text-5xl",
-    padding: "p-8 md:p-10",
-    rounded: "rounded-xl",
-    showDescription: true,
-    showArrow: true,
-  },
-  "service-mobile": {
-    height: "h-[500px] lg:h-[600px]",
-    titleSize: "text-3xl md:text-4xl lg:text-5xl",
-    padding: "p-8 md:p-10",
-    rounded: "",
-    showDescription: true,
     showArrow: true,
   },
   hero: {

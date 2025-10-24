@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
+import { useSearchParams } from "next/navigation";
 import {
   Route,
   Droplets,
@@ -41,6 +42,7 @@ export function CategoryNavigationBar({
   categories,
   sectionRefs,
 }: CategoryNavigationBarProps) {
+  const searchParams = useSearchParams();
   const navScrollRef = useRef<HTMLDivElement | null>(null);
   const navButtonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
   const [activeCategory, setActiveCategory] = useState<string>(
@@ -119,47 +121,59 @@ export function CategoryNavigationBar({
     }
   }, [activeCategory]);
 
-  const scrollToCategory = (categoryName: string) => {
-    const element = sectionRefs.current[categoryName];
-    if (!element) return;
+  const scrollToCategory = useCallback(
+    (categoryName: string) => {
+      const element = sectionRefs.current[categoryName];
+      if (!element) return;
 
-    if (scrollTimeoutRef.current) {
-      clearTimeout(scrollTimeoutRef.current);
-    }
-
-    isScrollingRef.current = true;
-    setActiveCategory(categoryName);
-
-    const isMobile = window.innerWidth < 768;
-    const headerOffset = isMobile ? 150 : 120;
-    const offsetPosition =
-      element.getBoundingClientRect().top + window.pageYOffset - headerOffset;
-
-    window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-
-    let lastScrollTop = window.pageYOffset;
-    let scrollCheckCount = 0;
-
-    const checkScrollEnd = () => {
-      const currentScrollTop = window.pageYOffset;
-
-      if (
-        Math.abs(currentScrollTop - lastScrollTop) < 1 ||
-        scrollCheckCount >= 100
-      ) {
-        scrollTimeoutRef.current = setTimeout(() => {
-          setActiveCategory(categoryName);
-          isScrollingRef.current = false;
-        }, 200);
-      } else {
-        lastScrollTop = currentScrollTop;
-        scrollCheckCount++;
-        scrollTimeoutRef.current = setTimeout(checkScrollEnd, 50);
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
       }
-    };
 
-    scrollTimeoutRef.current = setTimeout(checkScrollEnd, 100);
-  };
+      isScrollingRef.current = true;
+      setActiveCategory(categoryName);
+
+      const isMobile = window.innerWidth < 768;
+      const headerOffset = isMobile ? 150 : 120;
+      const offsetPosition =
+        element.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+
+      let lastScrollTop = window.pageYOffset;
+      let scrollCheckCount = 0;
+
+      const checkScrollEnd = () => {
+        const currentScrollTop = window.pageYOffset;
+
+        if (
+          Math.abs(currentScrollTop - lastScrollTop) < 1 ||
+          scrollCheckCount >= 100
+        ) {
+          scrollTimeoutRef.current = setTimeout(() => {
+            setActiveCategory(categoryName);
+            isScrollingRef.current = false;
+          }, 200);
+        } else {
+          lastScrollTop = currentScrollTop;
+          scrollCheckCount++;
+          scrollTimeoutRef.current = setTimeout(checkScrollEnd, 50);
+        }
+      };
+
+      scrollTimeoutRef.current = setTimeout(checkScrollEnd, 100);
+    },
+    [sectionRefs]
+  );
+
+  // Scroll to category from URL params on mount
+  useEffect(() => {
+    const categoryParam = searchParams.get("category");
+
+    if (categoryParam) {
+      scrollToCategory(categoryParam);
+    }
+  }, [searchParams, scrollToCategory]);
 
   return (
     <div className="sticky top-[60px] md:top-[56px] z-40 bg-white border-b border-[var(--color-border)] pt-4 md:pt-7">
