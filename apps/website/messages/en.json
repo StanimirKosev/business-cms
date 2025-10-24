@@ -64,18 +64,10 @@
     },
     "projects": {
       "title": "Our Projects",
-      "subtitle": "Part of our portfolio of completed projects",
-      "intro": "Since its establishment, \"Techno Stroy Bulgaria\" Ltd. has participated in various public procurement projects in the field of construction, financed by international institutions, state and private investors.",
-      "classified": "The company has experience in executing special public procurement contracts regulated according to the Classified Information Protection Act."
+      "subtitle": "Part of our portfolio of completed projects"
     },
     "clients": {
       "title": "Clients",
-      "intro": "The key to the company's success is putting the client's needs first.",
-      "partnership": "In partnership with subcontractors and suppliers, \"Techno Stroy Bulgaria\" Ltd. offers solutions that fully meet the clients' wishes. The company works with materials and equipment of proven quality from leading Bulgarian and international manufacturers.",
-      "technology": "In the implementation of projects, the company applies all modern technologies and materials established in European construction practice, striving to satisfy the highest client requirements regarding quality and price.",
-      "financial": "\"Techno Stroy Bulgaria\" Ltd. maintains stable relationships with financial institutions, which allows the company to be a stable partner in every investment project.",
-      "relationships": "The company values its clients and builds partnership relationships with them, striving to find flexible and individual solutions for each of them, professionally and responsibly executing projects with quality and on time.",
-      "types": "Among the clients are both private investment companies and large state enterprises.",
       "map": {
         "title": "Our Clients",
         "description": "\"Techno Stroy Bulgaria\" has completed construction projects in over 18 regions across the country, in partnership with state institutions, municipalities and private investors.",
@@ -94,6 +86,11 @@
       "description": "Since its establishment, \"Techno Stroy Bulgaria\" Ltd. has participated in various public procurement projects in the field of construction, financed by international institutions, state and private investors. The company has experience in executing special public procurement contracts regulated according to the Classified Information Protection Act."
     },
     "selectedProjectsLabel": "Selected Projects"
+  },
+  "machinery": {
+    "title": "Machinery",
+    "intro": "\"Techno Stroy Bulgaria\" Ltd. possesses a wide range of specialized construction machinery that meets modern standards for safety and efficiency.",
+    "description": "Our machinery includes modern heavy and specialized equipment from leading manufacturers. Each machine is maintained in excellent technical condition and operated by experienced operators to ensure maximum efficiency and safety on the construction site."
   },
   "quality": {
     "title": "Quality",

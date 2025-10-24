@@ -392,257 +392,188 @@ export function getCategoryInfo(category: ProjectCategory) {
   return categoryInfo[category];
 }
 
-// Machinery Types based on functional grouping
-export type MachineryCategory =
-  | "Земни Работи и Изкопи"
-  | "Товарене и Преместване"
-  | "Пътно Строителство и Настилки"
-  | "Транспорт и Логистика"
-  | "Специализирани и Помощни Работи";
-
-export interface Machinery {
-  id: number;
+// Machinery Types - Card-based structure
+export interface MachineryCategory {
+  id: string;
   name: string;
-  category: MachineryCategory;
+  count: number;
+  models: MachineryModel[];
   image: string;
-  specs: {
-    label: string;
-    value: string;
-  }[];
 }
 
-export const machineryData: Machinery[] = [
-  // Земни Работи и Изкопи
-  {
-    id: 1,
-    name: "Верижен Багер CAT 320",
-    category: "Земни Работи и Изкопи",
-    image:
-      "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1600&q=80",
-    specs: [
-      { label: "Капацитет кофа", value: "1.2 m³" },
-      { label: "Дълбочина на изкоп", value: "6.5 m" },
-      { label: "Мощност", value: "147 HP" },
-    ],
-  },
-  {
-    id: 2,
-    name: "Колесен Багер Liebherr A914",
-    category: "Земни Работи и Изкопи",
-    image:
-      "https://images.unsplash.com/photo-1590856029826-c7a73142bbf1?w=1600&q=80",
-    specs: [
-      { label: "Капацитет кофа", value: "0.8 m³" },
-      { label: "Дълбочина на изкоп", value: "5.8 m" },
-      { label: "Мобилност", value: "Висока" },
-    ],
-  },
-  {
-    id: 3,
-    name: "Булдозер Komatsu D65",
-    category: "Земни Работи и Изкопи",
-    image:
-      "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1600&q=80",
-    specs: [
-      { label: "Мощност", value: "215 HP" },
-      { label: "Тегло", value: "20 тона" },
-      { label: "Ширина на острието", value: "3.7 m" },
-    ],
-  },
+export interface MachineryModel {
+  name: string;
+  count: number;
+}
 
-  // Товарене и Преместване
+export const machineryCategories: MachineryCategory[] = [
   {
-    id: 4,
-    name: "Челен Товарач CAT 950",
-    category: "Товарене и Преместване",
-    image:
-      "https://images.unsplash.com/photo-1519331379826-f10be5486c6f?w=1600&q=80",
-    specs: [
-      { label: "Капацитет кофа", value: "3.0 m³" },
-      { label: "Товароподемност", value: "5 тона" },
-      { label: "Мощност", value: "195 HP" },
+    id: "tracked-excavators",
+    name: "Верижни багери",
+    count: 9,
+    models: [
+      { name: "JCB JS220 LC", count: 1 },
+      { name: "JCB JS160", count: 1 },
+      { name: "Volvo EC200 EL", count: 1 },
+      { name: "JCB 86C серии", count: 5 },
+      { name: "JCB 86C-1", count: 1 },
     ],
+    image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=800&q=80",
   },
   {
-    id: 5,
-    name: "Телескопичен Товарач Manitou MLT 735",
-    category: "Товарене и Преместване",
-    image:
-      "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1600&q=80",
-    specs: [
-      { label: "Товароподемност", value: "3.5 тона" },
-      { label: "Височина на повдигане", value: "7 m" },
-      { label: "Обхват", value: "4.5 m" },
+    id: "wheeled-excavators",
+    name: "Колесни багери",
+    count: 1,
+    models: [
+      { name: "JCB JS175W", count: 1 },
     ],
+    image: "https://images.unsplash.com/photo-1590856029826-c7a73142bbf1?w=800&q=80",
   },
   {
-    id: 6,
-    name: "Мини Товарач Bobcat S650",
-    category: "Товарене и Преместване",
-    image:
-      "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=1600&q=80",
-    specs: [
-      { label: "Товароподемност", value: "1.1 тона" },
-      { label: "Мощност", value: "74 HP" },
-      { label: "Приложение", value: "Тесни пространства" },
+    id: "combined-excavators",
+    name: "Комбинирани колесни багери",
+    count: 7,
+    models: [
+      { name: "JCB 3CX", count: 7 },
     ],
-  },
-
-  // Пътно Строителство и Настилки
-  {
-    id: 7,
-    name: "Асфалтополагач Vogele Super 1800",
-    category: "Пътно Строителство и Настилки",
-    image:
-      "https://images.unsplash.com/photo-1621544402532-90a61dc8ccd7?w=1600&q=80",
-    specs: [
-      { label: "Ширина на полагане", value: "2.5-9 m" },
-      { label: "Производителност", value: "450 т/ч" },
-      { label: "Тип управление", value: "Електронно" },
-    ],
+    image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80",
   },
   {
-    id: 8,
-    name: "Пътна Фреза Wirtgen W100",
-    category: "Пътно Строителство и Настилки",
-    image:
-      "https://images.unsplash.com/photo-1589395937772-510c8f1f623e?w=1600&q=80",
-    specs: [
-      { label: "Работна ширина", value: "1 m" },
-      { label: "Дълбочина на фрезоване", value: "0-32 cm" },
-      { label: "Мощност", value: "335 HP" },
+    id: "bulldozers",
+    name: "Булдозери",
+    count: 1,
+    models: [
+      { name: "Hitachi D180 LPG", count: 1 },
     ],
+    image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80",
   },
   {
-    id: 9,
-    name: "Вибрационен Валяк Bomag BW 213",
-    category: "Пътно Строителство и Настилки",
-    image:
-      "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1600&q=80",
-    specs: [
-      { label: "Тегло", value: "13 тона" },
-      { label: "Ширина на валяка", value: "2.13 m" },
-      { label: "Тип", value: "Двувалков" },
+    id: "telescopic-loaders",
+    name: "Телескопични товарачи",
+    count: 2,
+    models: [
+      { name: "JCB 531-170", count: 1 },
+      { name: "JCB 536-95", count: 1 },
     ],
-  },
-
-  // Транспорт и Логистика
-  {
-    id: 10,
-    name: "Самосвал MAN TGS 6x4",
-    category: "Транспорт и Логистика",
-    image:
-      "https://images.unsplash.com/photo-1519331379826-f10be5486c6f?w=1600&q=80",
-    specs: [
-      { label: "Товароподемност", value: "20 тона" },
-      { label: "Обем на коша", value: "15 m³" },
-      { label: "Задвижване", value: "6x4" },
-    ],
+    image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80",
   },
   {
-    id: 11,
-    name: "Товарен Автомобил Mercedes Actros",
-    category: "Транспорт и Логистика",
-    image:
-      "https://images.unsplash.com/photo-1590856029826-c7a73142bbf1?w=1600&q=80",
-    specs: [
-      { label: "Товароподемност", value: "25 тона" },
-      { label: "Дължина платформа", value: "7.5 m" },
-      { label: "Приложение", value: "Дълги товари" },
+    id: "mini-excavators",
+    name: "Мини багери",
+    count: 3,
+    models: [
+      { name: "JCB 8025", count: 2 },
+      { name: "Takeuchi TB016", count: 1 },
     ],
-  },
-
-  // Специализирани и Помощни Работи
-  {
-    id: 12,
-    name: "Мини Багер Kubota U17",
-    category: "Специализирани и Помощни Работи",
-    image:
-      "https://images.unsplash.com/photo-1581093458791-9f3c3250a8e5?w=1600&q=80",
-    specs: [
-      { label: "Тегло", value: "1.7 тона" },
-      { label: "Дълбочина на изкоп", value: "2.4 m" },
-      { label: "Приложение", value: "Стесни места" },
-    ],
+    image: "https://images.unsplash.com/photo-1581093458791-9f3c3250a8e5?w=800&q=80",
   },
   {
-    id: 13,
-    name: "Електрическа Платформа Genie Z-45",
-    category: "Специализирани и Помощни Работи",
-    image:
-      "https://images.unsplash.com/photo-1519331379826-f10be5486c6f?w=1600&q=80",
-    specs: [
-      { label: "Работна височина", value: "15.7 m" },
-      { label: "Хоризонтален обхват", value: "7.5 m" },
-      { label: "Товароподемност", value: "230 kg" },
+    id: "mini-loaders",
+    name: "Мини челни товарачи",
+    count: 3,
+    models: [
+      { name: "JCB 155SSL", count: 1 },
+      { name: "BOBCAT T190", count: 1 },
+      { name: "CATERPILLAR 216b", count: 1 },
     ],
+    image: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=800&q=80",
   },
   {
-    id: 14,
-    name: "Хидравличен Кран Liebherr LTM 1050",
-    category: "Специализирани и Помощни Работи",
-    image:
-      "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=1600&q=80",
-    specs: [
-      { label: "Товароподемност", value: "50 тона" },
-      { label: "Височина на повдигане", value: "40 m" },
-      { label: "Обхват", value: "35 m" },
+    id: "front-loaders",
+    name: "Челни товарачи",
+    count: 2,
+    models: [
+      { name: "Komatsu WA 65", count: 1 },
+      { name: "JCB 406 WLS", count: 1 },
     ],
+    image: "https://images.unsplash.com/photo-1519331379826-f10be5486c6f?w=800&q=80",
+  },
+  {
+    id: "rollers",
+    name: "Валяци (вибрационни / пътни)",
+    count: 6,
+    models: [
+      { name: "Dynapac CC 422", count: 1 },
+      { name: "JCB VM 75D", count: 1 },
+      { name: "Dynapac CC-122", count: 1 },
+      { name: "JCB VMT 260-120", count: 1 },
+      { name: "JCB CT 260-120", count: 1 },
+      { name: "JCB VMT 160-80", count: 1 },
+    ],
+    image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80",
+  },
+  {
+    id: "road-mill",
+    name: "Пътна фреза",
+    count: 1,
+    models: [
+      { name: "Wirtgen W120 F", count: 1 },
+    ],
+    image: "https://images.unsplash.com/photo-1589395937772-510c8f1f623e?w=800&q=80",
+  },
+  {
+    id: "asphalt-pavers",
+    name: "Асфалтополагачи",
+    count: 2,
+    models: [
+      { name: "Vogele Super 1800-2", count: 1 },
+      { name: "DF 135 C Svedala-Demag", count: 1 },
+    ],
+    image: "https://images.unsplash.com/photo-1621544402532-90a61dc8ccd7?w=800&q=80",
+  },
+  {
+    id: "curb-machine",
+    name: "Машина за полагане на банкети",
+    count: 1,
+    models: [
+      { name: "Hydrog DG-1500", count: 1 },
+    ],
+    image: "https://images.unsplash.com/photo-1589395937772-510c8f1f623e?w=800&q=80",
+  },
+  {
+    id: "dump-trucks",
+    name: "Самосвали",
+    count: 9,
+    models: [
+      { name: "MAN TGS 35.400", count: 2 },
+      { name: "Скания G 410", count: 1 },
+      { name: "Скания G 420", count: 1 },
+      { name: "IVECO", count: 1 },
+      { name: "Скания R124", count: 2 },
+      { name: "Скания P114GB", count: 1 },
+      { name: "Скания 94", count: 1 },
+    ],
+    image: "https://images.unsplash.com/photo-1519331379826-f10be5486c6f?w=800&q=80",
+  },
+  {
+    id: "cargo-trucks",
+    name: "Товарни автомобили",
+    count: 7,
+    models: [
+      { name: "MAN TGL 8.150", count: 4 },
+      { name: "MAN L2000", count: 2 },
+      { name: "MITSUBISHI CANTER 75", count: 1 },
+    ],
+    image: "https://images.unsplash.com/photo-1590856029826-c7a73142bbf1?w=800&q=80",
+  },
+  {
+    id: "trailers",
+    name: "Ремаркета",
+    count: 2,
+    models: [
+      { name: "Wograndi Doka 1622", count: 1 },
+      { name: "Schwarzmueller TU 30 100", count: 1 },
+    ],
+    image: "https://images.unsplash.com/photo-1519331379826-f10be5486c6f?w=800&q=80",
+  },
+  {
+    id: "other-equipment",
+    name: "Друго оборудване",
+    count: 0,
+    models: [
+      { name: "Електрически платформи (Alimak, Elektroesla)", count: 15 },
+      { name: "Строително скеле", count: 15000 },
+    ],
+    image: "https://images.unsplash.com/photo-1519331379826-f10be5486c6f?w=800&q=80",
   },
 ];
-
-export const MACHINERY_CATEGORIES: MachineryCategory[] = [
-  "Земни Работи и Изкопи",
-  "Товарене и Преместване",
-  "Пътно Строителство и Настилки",
-  "Транспорт и Логистика",
-  "Специализирани и Помощни Работи",
-];
-
-// Get machinery by category
-export function getMachineryByCategory(
-  category: MachineryCategory
-): Machinery[] {
-  return machineryData.filter((m) => m.category === category);
-}
-
-// Get category info for machinery
-export function getMachineryCategoryInfo(category: MachineryCategory) {
-  const categoryInfo: Record<
-    MachineryCategory,
-    { description: string; icon: string; subtitle: string }
-  > = {
-    "Земни Работи и Изкопи": {
-      description:
-        "Започваме всеки проект с прецизност. Нашата тежка техника осигурява бързо и точно изкопаване на всякакъв терен.",
-      icon: "⛏️",
-      subtitle: "Прецизност и сила при земни работи",
-    },
-    "Товарене и Преместване": {
-      description:
-        "Ефективност и сила при работа с насипни материали и товари. Максимална производителност на обекта.",
-      icon: "🏗️",
-      subtitle: "Високопроизводителни товарни решения",
-    },
-    "Пътно Строителство и Настилки": {
-      description:
-        "Технологии за перфектен път. Прецизно полагане, фрезоване и уплътняване за дълготрайни резултати.",
-      icon: "🛣️",
-      subtitle: "Качествени пътни настилки",
-    },
-    "Транспорт и Логистика": {
-      description:
-        "Надеждна и навременна доставка на материали. Голям автопарк от самосвали за всякакъв обем товари.",
-      icon: "🚛",
-      subtitle: "Бърза и надеждна логистика",
-    },
-    "Специализирани и Помощни Работи": {
-      description:
-        "Гъвкави решения за специфични задачи. Мини-техника за тесни пространства и повдигателни съоръжения за височина.",
-      icon: "🔧",
-      subtitle: "Решения за всяка специфична нужда",
-    },
-  };
-
-  return categoryInfo[category];
-}

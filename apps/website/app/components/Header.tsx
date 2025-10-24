@@ -77,7 +77,12 @@ const Header = () => {
           </Link>
           <LanguageSwitcher />
         </nav>
-        <HamburgerMenu />
+
+        {/* Mobile: Language Switcher + Hamburger */}
+        <div className="md:hidden flex items-center gap-4">
+          <LanguageSwitcher />
+          <HamburgerMenu />
+        </div>
       </div>
     </header>
   );

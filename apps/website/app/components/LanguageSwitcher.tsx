@@ -3,30 +3,12 @@
 import { Languages } from "lucide-react";
 import { useLanguage } from "@/app/context/LanguageContext";
 
-interface LanguageSwitcherProps {
-  variant?: "desktop" | "mobile";
-  onToggle?: () => void;
-}
-
-export function LanguageSwitcher({ variant = "desktop", onToggle }: LanguageSwitcherProps) {
+export function LanguageSwitcher() {
   const { locale, setLocale } = useLanguage();
 
   const toggleLanguage = () => {
     setLocale(locale === "bg" ? "en" : "bg");
-    onToggle?.();
   };
-
-  if (variant === "mobile") {
-    return (
-      <button
-        onClick={toggleLanguage}
-        className="w-full px-5 py-4 min-h-[44px] flex items-center text-[var(--color-charcoal)] text-left"
-        aria-label={`Switch to ${locale === "bg" ? "English" : "Bulgarian"}`}
-      >
-        {locale === "bg" ? "English" : "Български"}
-      </button>
-    );
-  }
 
   return (
     <button

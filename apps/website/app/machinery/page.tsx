@@ -1,97 +1,21 @@
 "use client";
 
-import {
-  MACHINERY_CATEGORIES,
-  type Machinery,
-  getMachineryByCategory,
-  getMachineryCategoryInfo,
-} from "@/lib/mock-data";
-import { useState, useRef } from "react";
+import { machineryCategories } from "@/lib/mock-data";
 import { useScrollAnimation } from "@/app/hooks/useScrollAnimation";
+import { useLanguage } from "@/app/context/LanguageContext";
 import Image from "next/image";
-import Lightbox from "yet-another-react-lightbox";
-import Captions from "yet-another-react-lightbox/plugins/captions";
-import "yet-another-react-lightbox/styles.css";
-import "yet-another-react-lightbox/plugins/captions.css";
-import { CategoryNavigationBar } from "../components/CategoryNavigationBar";
-
-interface MachineryGalleryProps {
-  machinery: Machinery[];
-}
-
-function MachineryGallery({ machinery }: MachineryGalleryProps) {
-  const [lightboxIndex, setLightboxIndex] = useState(-1);
-
-  return (
-    <>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {machinery.map((item, index) => (
-          <div
-            key={item.id}
-            onClick={() => setLightboxIndex(index)}
-            className="relative aspect-[4/3] rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer group"
-          >
-            <Image
-              src={item.image}
-              alt={item.name}
-              fill
-              className="object-cover group-hover:scale-105 transition-transform duration-300"
-              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            />
-            {/* Overlay with name */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end">
-              <h3 className="text-white font-bold text-lg p-4 w-full group-hover:from-black/80 transition-all duration-300">
-                {item.name}
-              </h3>
-            </div>
-            {/* Hover icon */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <svg
-                  className="w-12 h-12 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"
-                  />
-                </svg>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <Lightbox
-        open={lightboxIndex >= 0}
-        index={lightboxIndex}
-        close={() => setLightboxIndex(-1)}
-        slides={machinery.map((item) => ({
-          src: item.image,
-          alt: item.name,
-          title: item.name,
-        }))}
-        plugins={[Captions]}
-      />
-    </>
-  );
-}
 
 export default function MachineryPage() {
   const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation(0.5);
-  const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
+  const { t } = useLanguage();
 
   return (
-    <main className="bg-[var(--color-bg)]">
+    <main className="bg-white">
       {/* Hero Section */}
       <section
         ref={heroRef}
         className="pt-32 pb-20 md:pt-40 md:pb-20 px-6 md:px-40 bg-white"
-        aria-label="Механизация"
+        aria-label={t.machinery.title}
       >
         <div className="max-w-7xl mx-auto">
           <div className="flex gap-6">
@@ -110,7 +34,7 @@ export default function MachineryPage() {
                     : "opacity-0 -translate-x-[30px]"
                 }`}
               >
-                Механизация
+                {t.machinery.title}
               </h1>
 
               <div className="space-y-6 leading-relaxed text-[var(--color-charcoal)]">
@@ -121,9 +45,7 @@ export default function MachineryPage() {
                       : "opacity-0 translate-y-[20px]"
                   }`}
                 >
-                  Разполагаме с пълната гама специализирана техника, необходима
-                  за всеки етап от вашия проект - от първия изкоп до финалната
-                  настилка.
+                  {t.machinery.intro}
                 </p>
 
                 <p
@@ -133,11 +55,7 @@ export default function MachineryPage() {
                       : "opacity-0 translate-y-[20px]"
                   }`}
                 >
-                  Нашата механизация включва съвременна тежка и специализирана
-                  техника от водещи производители. Всяка машина се поддържа в
-                  отлично техническо състояние и се управлява от опитни
-                  оператори, за да гарантираме максимална ефективност и
-                  безопасност на строителния обект.
+                  {t.machinery.description}
                 </p>
               </div>
             </div>
@@ -145,52 +63,93 @@ export default function MachineryPage() {
         </div>
       </section>
 
-      <CategoryNavigationBar
-        categories={MACHINERY_CATEGORIES.map((cat) => ({
-          name: cat,
-          icon: getMachineryCategoryInfo(cat).icon,
-          count: getMachineryByCategory(cat).length,
-        }))}
-        sectionRefs={sectionRefs}
-      />
-
-      {/* Machinery Sections */}
+      {/* Machinery Alternating Sections */}
       <div>
-        {MACHINERY_CATEGORIES.map((category) => {
-          const machinery = getMachineryByCategory(category);
-          const info = getMachineryCategoryInfo(category);
+        {machineryCategories.map((category, index) => {
+          const isEven = index % 2 === 0;
 
-          return machinery.length > 0 ? (
+          return (
             <section
-              key={category}
-              ref={(el) => {
-                sectionRefs.current[category] = el;
-              }}
-              id={category}
-              className="py-16 px-6 md:px-40 bg-white border-b border-[var(--color-border)]"
+              key={category.id}
+              className={`py-16 px-6 md:px-40 ${
+                index % 2 === 0
+                  ? "bg-[var(--color-concrete-grey-light)]"
+                  : "bg-white"
+              }`}
             >
               <div className="max-w-7xl mx-auto">
-                {/* Category Header */}
-                <div className="mb-12">
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="text-3xl">{info.icon}</span>
-                    <h2 className="text-3xl md:text-4xl font-bold text-[var(--color-charcoal)]">
-                      {category}
-                    </h2>
+                <div
+                  className={`grid md:grid-cols-2 gap-12 md:gap-16 items-center ${
+                    isEven ? "" : "md:grid-flow-dense"
+                  }`}
+                >
+                  {/* Image */}
+                  <div
+                    className={`relative h-[350px] md:h-[420px] overflow-hidden rounded-lg shadow-xl ${
+                      isEven ? "" : "md:col-start-2"
+                    }`}
+                  >
+                    <Image
+                      src={category.image}
+                      alt={category.name}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
                   </div>
-                  <p className="text-lg text-[var(--color-charcoal)] opacity-80 mb-2">
-                    {info.subtitle}
-                  </p>
-                  <p className="text-base text-[var(--color-charcoal)] opacity-70 leading-relaxed">
-                    {info.description}
-                  </p>
-                </div>
 
-                {/* Machinery Gallery */}
-                <MachineryGallery machinery={machinery} />
+                  {/* Content */}
+                  <div
+                    className={`flex gap-6 ${isEven ? "" : "md:col-start-1 md:row-start-1"}`}
+                  >
+                    {/* Vertical Red Line - Hidden on mobile */}
+                    <div
+                      className="hidden md:block w-1 bg-[var(--color-red)] transition-all duration-[400ms] ease-out h-16 flex-shrink-0"
+                    />
+
+                    <div className="flex-1">
+                      {/* Title and Count */}
+                      <div className="mb-8">
+                        <div className="flex items-start gap-4 mb-2">
+                          <h2 className="text-4xl md:text-5xl font-bold text-[var(--color-charcoal)] leading-tight flex-1">
+                            {category.name}
+                          </h2>
+                          {category.count > 0 && (
+                            <div className="flex-shrink-0 bg-[var(--color-red)] text-white text-xl font-bold px-5 py-3 rounded-xl shadow-md">
+                              {category.count}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Models List */}
+                      <div className="space-y-3">
+                        {category.models.map((model, modelIndex) => (
+                          <div
+                            key={modelIndex}
+                            className="flex justify-between items-center gap-6 py-3 border-b border-gray-200 last:border-0"
+                          >
+                            <span className="text-[var(--color-charcoal)] font-medium text-lg">
+                              {model.name}
+                            </span>
+                            {model.count > 0 && (
+                              <span className="flex-shrink-0 text-[var(--color-muted-foreground)] font-semibold text-base">
+                                {model.count === 15000
+                                  ? "15 000 м²"
+                                  : model.count === 15
+                                    ? "15 бр."
+                                    : `${model.count} бр.`}
+                              </span>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </section>
-          ) : null;
+          );
         })}
       </div>
     </main>

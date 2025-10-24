@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { LanguageSwitcher } from "./LanguageSwitcher";
 import { useLanguage } from "@/app/context/LanguageContext";
 
 const HamburgerMenu = () => {
@@ -87,10 +86,6 @@ const HamburgerMenu = () => {
               {link.label}
             </Link>
           ))}
-          <LanguageSwitcher
-            variant="mobile"
-            onToggle={() => setIsMobileMenuOpen(false)}
-          />
         </div>
       )}
     </div>

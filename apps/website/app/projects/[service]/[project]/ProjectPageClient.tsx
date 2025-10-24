@@ -116,11 +116,9 @@ export function ProjectPageClient({ project }: ProjectPageClientProps) {
                 style={{ transitionDelay: "240ms" }}
               >
                 <h3 className="text-sm text-gray-500 uppercase tracking-wider mb-2">
-                  Период на реализация
+                  Група строителство
                 </h3>
-                <p className="text-lg font-medium text-gray-900">
-                  май 2023 г. - юли 2025 г.
-                </p>
+                <p className="text-lg font-medium text-gray-900">1ва до 5та</p>
               </div>
 
               <div
@@ -172,27 +170,6 @@ export function ProjectPageClient({ project }: ProjectPageClientProps) {
             </div>
           </div>
 
-          {/* Характер на работите */}
-          <div className="space-y-6">
-            <div className="flex gap-6">
-              <div className="hidden md:block w-1 h-12 bg-[var(--color-red)]" />
-              <h2 className="text-3xl md:text-4xl font-bold text-[var(--color-charcoal)]">
-                Характер на работите
-              </h2>
-            </div>
-            <div className="space-y-6 leading-relaxed text-[var(--color-charcoal)] max-w-4xl">
-              <p className="text-lg">
-                Възстановяване на проектните параметри на гара Разград. Извършва
-                се ремонт на перони и подмяна на контактната мрежа на гаровата
-                територия.
-              </p>
-              <p className="text-lg">
-                Цялостната реконструкция ще спомогне за повишаване на скоростта,
-                надежността и сигурността на железопътния транспорт.
-              </p>
-            </div>
-          </div>
-
           {/* Image Gallery */}
           <section ref={galleryRef} className="space-y-6">
             <div className="flex gap-6">
@@ -203,9 +180,21 @@ export function ProjectPageClient({ project }: ProjectPageClientProps) {
             </div>
             <ImageGallery
               images={[
-                { id: "1", src: project.image!, alt: `${project.title} - Снимка 1` },
-                { id: "2", src: project.image!, alt: `${project.title} - Снимка 2` },
-                { id: "3", src: project.image!, alt: `${project.title} - Снимка 3` },
+                {
+                  id: "1",
+                  src: project.image!,
+                  alt: `${project.title} - Снимка 1`,
+                },
+                {
+                  id: "2",
+                  src: project.image!,
+                  alt: `${project.title} - Снимка 2`,
+                },
+                {
+                  id: "3",
+                  src: project.image!,
+                  alt: `${project.title} - Снимка 3`,
+                },
               ]}
               columns={{ mobile: 1, tablet: 2, desktop: 3 }}
               aspectRatio="landscape"
