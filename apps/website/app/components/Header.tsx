@@ -69,6 +69,9 @@ const Header = () => {
           <Link href="/projects" className="link-underline">
             {t.nav.projects}
           </Link>
+          <Link href="/clients" className="link-underline">
+            {t.nav.clients}
+          </Link>
           <Link href="/quality" className="link-underline">
             {t.nav.quality}
           </Link>

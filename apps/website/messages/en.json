@@ -18,6 +18,7 @@
   "nav": {
     "home": "Home",
     "projects": "Projects",
+    "clients": "Clients",
     "quality": "Quality",
     "contact": "Contact"
   },
@@ -32,6 +33,17 @@
       "privacy": "Privacy",
       "cookies": "Cookies"
     }
+  },
+  "clients": {
+    "hero": {
+      "title": "Our Clients",
+      "intro": "We believe that the key to the company's success is putting the client's needs first.",
+      "paragraph1": "In partnership with our subcontractors and suppliers, we offer solutions that fully meet the clients' desires. We work with materials and equipment of proven quality from leading Bulgarian and international manufacturers.",
+      "paragraph2": "In the implementation of projects, we apply all modern technologies and materials established in European construction practice and strive to meet the highest client requirements in terms of quality and price.",
+      "paragraph3": "We value our clients and build partnerships with them, striving to find a flexible and individual solution for each of them, professionally and responsibly executing our projects with quality and on time."
+    },
+    "projectSingular": "project",
+    "projectPlural": "projects"
   },
   "home": {
     "about": {

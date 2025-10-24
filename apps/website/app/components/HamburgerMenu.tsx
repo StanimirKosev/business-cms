@@ -15,6 +15,7 @@ const HamburgerMenu = () => {
   const menuLinks = [
     { href: "/", label: t.nav.home },
     { href: "/projects", label: t.nav.projects },
+    { href: "/clients", label: t.nav.clients },
     { href: "/quality", label: t.nav.quality },
     { href: "/contact", label: t.nav.contact },
   ];
