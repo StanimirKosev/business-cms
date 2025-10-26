@@ -28,9 +28,6 @@ model Category {
   slug           String    @unique // URL-safe English slug
   descriptionBg  String    @db.Text // Bulgarian description
   descriptionEn  String    @db.Text // English description
-  heroImageUrl   String?   // Cloudinary URL for category hero image
-  contentBg      String?   @db.Text // Additional Bulgarian content for category page
-  contentEn      String?   @db.Text // Additional English content for category page
   iconName       String?   // Optional: lucide-react icon name if suitable icon exists
   order          Int       @default(0)
   createdAt      DateTime  @default(now())
@@ -102,15 +99,43 @@ model Certificate {
   @@index([order])
 }
 
-// Machinery/Equipment
-model Equipment {
-  id             String   @id @default(cuid())
-  name           String
-  description    String   @db.Text
-  imageUrl       String?  // Cloudinary URL
-  specifications String?  @db.Text // JSON string of specs
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+// Machinery Categories
+model MachineryCategory {
+  id        String           @id @default(cuid())
+  nameBg    String           // "Верижни багери"
+  nameEn    String           // "Tracked Excavators"
+  count     Int              // Total count (sum of all models, or manual override)
+  imageUrl  String           // Cloudinary URL for category card
+  order     Int              @default(0)
+  models    MachineryModel[]
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+
+  @@index([order])
+}
+
+// Individual Machinery Models
+model MachineryModel {
+  id         String            @id @default(cuid())
+  categoryId String
+  category   MachineryCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  nameBg     String            // Bulgarian name
+  nameEn     String            // English name
+  count      Int               // Numeric count: 1, 2, 15, 15000
+  unit       MachineryUnit     @default(PIECES)
+  order      Int               @default(0) // Display order within category
+
+  createdAt  DateTime          @default(now())
+  updatedAt  DateTime          @updatedAt
+
+  @@index([categoryId])
+  @@index([order])
+}
+
+enum MachineryUnit {
+  PIECES          // бр. / pcs.
+  SQUARE_METERS   // м²
 }
 
 // Contact form submissions

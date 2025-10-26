@@ -13,7 +13,10 @@
     "build:website": "npm run build --workspace=apps/website",
     "build:admin": "npm run build --workspace=apps/admin",
     "lint:website": "npm run lint --workspace=apps/website",
-    "lint:admin": "npm run lint --workspace=apps/admin"
+    "lint:admin": "npm run lint --workspace=apps/admin",
+    "db:backup": "node scripts/backup-db.js",
+    "db:generate": "cd packages/database && npx prisma generate",
+    "db:push": "cd packages/database && npx prisma db push"
   },
   "engines": {
     "node": ">=18.0.0",

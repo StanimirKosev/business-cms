@@ -18,4 +18,10 @@ export const prisma =
 if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
 
 // Export Prisma types for use in other packages
-export type { Certificate, Policy, Category } from "@prisma/client";
+export type {
+  Certificate,
+  Policy,
+  Category,
+  MachineryCategory,
+  MachineryModel,
+} from "@prisma/client";
