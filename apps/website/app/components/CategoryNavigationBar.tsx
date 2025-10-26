@@ -2,33 +2,11 @@
 
 import { useRef, useEffect, useState, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
-import {
-  Route,
-  Droplets,
-  Building2,
-  Zap,
-  Trees,
-  Building,
-  Wind,
-  Recycle,
-} from "lucide-react";
-
-const ICONS = {
-  Route,
-  Droplets,
-  Building2,
-  Zap,
-  Trees,
-  Building,
-  Wind,
-  Recycle,
-} as const;
-
-export type IconName = keyof typeof ICONS;
+import { getLucideIcon } from "@/lib/icons";
 
 interface Category {
   title: string;
-  iconName: IconName;
+  iconName: string;
   count: number;
   slug: string;
 }
@@ -185,7 +163,7 @@ export function CategoryNavigationBar({
           <div className="flex items-center gap-4 min-w-max">
             {categories.map((category) => {
               const isActive = activeCategory === category.slug;
-              const Icon = ICONS[category.iconName as IconName];
+              const Icon = getLucideIcon(category.iconName);
 
               return (
                 <button

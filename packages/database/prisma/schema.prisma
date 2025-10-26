@@ -88,15 +88,23 @@ model Client {
 
 // Quality certificates
 model Certificate {
-  id                 String   @id @default(cuid())
-  titleBg            String   @map("title")
-  titleEn            String   @default("")
-  cloudinaryPublicId String
-  order              Int      @default(0)
-  createdAt          DateTime @default(now())
-  updatedAt          DateTime @updatedAt
+  id                   String   @id @default(cuid())
+  titleBg              String   @map("title")
+  titleEn              String
+  cloudinaryPublicIdBg String
+  cloudinaryPublicIdEn String
+  order                Int      @default(0)
+
+  // Timeline feature fields
+  isFeaturedInTimeline Boolean  @default(false)
+  timelineYear         String?  // e.g., "2008", "2020"
+  timelineIconName     String?  // Lucide icon name (e.g., "Award", "Shield")
+
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
 
   @@index([order])
+  @@index([isFeaturedInTimeline])
 }
 
 // Machinery Categories
@@ -164,15 +172,16 @@ model SiteSetting {
 
 // Policy documents
 model Policy {
-  id                 String   @id @default(cuid())
-  titleBg            String
-  titleEn            String
-  subtitleBg         String
-  subtitleEn         String
-  cloudinaryPublicId String   // PDF file on Cloudinary
-  order              Int      @default(0)
-  createdAt          DateTime @default(now())
-  updatedAt          DateTime @updatedAt
+  id                   String   @id @default(cuid())
+  titleBg              String
+  titleEn              String
+  subtitleBg           String
+  subtitleEn           String
+  cloudinaryPublicIdBg String   // Bulgarian PDF
+  cloudinaryPublicIdEn String   // English PDF
+  order                Int      @default(0)
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
 
   @@index([order])
 }

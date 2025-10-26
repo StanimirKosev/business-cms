@@ -1,22 +1,21 @@
 "use client";
 
 import { useScrollAnimation } from "@/app/hooks/useScrollAnimation";
-import { FileText, Award, Shield, Leaf, Users, Zap } from "lucide-react";
 import { ImageGallery } from "@/app/components/ImageGallery";
 import { useLanguage } from "@/app/context/LanguageContext";
 import type { Certificate, Policy } from "@repo/database/client";
 import { CLOUDINARY_BASE_URL } from "@/lib/cloudinary";
+import { getLucideIcon } from "@/lib/icons";
 
-// ISO Standards timeline data
-const ISO_STANDARDS_DATA = [
-  { year: "2008", icon: Award },
-  { year: "2009", icon: Shield },
-  { year: "2020", icon: Users },
-  { year: "2025", icon: Zap },
+// Hardcoded timeline entries (historical milestones)
+const HARDCODED_TIMELINE = [
+  { year: "2008", iconName: "Award", type: "hardcoded" as const },
+  { year: "2009", iconName: "Shield", type: "hardcoded" as const },
+  { year: "2020", iconName: "Users", type: "hardcoded" as const },
 ];
 
 // Icon mapping for policies (order matters)
-const POLICY_ICONS = [FileText, Users, Shield, Award, Zap, Leaf];
+const POLICY_ICONS = ["FileText", "Users", "Shield", "Award", "Zap", "Leaf"];
 
 interface QualityPageClientProps {
   certificates: Certificate[];
@@ -29,9 +28,29 @@ export default function QualityPageClient({
 }: QualityPageClientProps) {
   const { locale, t } = useLanguage();
 
+  const timelineCertificates = certificates.filter(
+    (cert) =>
+      cert.isFeaturedInTimeline && cert.timelineYear && cert.timelineIconName
+  );
+
+  const timelineData = [
+    ...HARDCODED_TIMELINE.map((item) => ({
+      year: item.year,
+      iconName: item.iconName,
+      type: "hardcoded" as const,
+      certificate: null as Certificate | null,
+    })),
+    ...timelineCertificates.map((cert) => ({
+      year: cert.timelineYear!,
+      iconName: cert.timelineIconName!,
+      type: "certificate" as const,
+      certificate: cert,
+    })),
+  ].sort((a, b) => parseInt(a.year) - parseInt(b.year));
+
   const certificateImages = certificates.map((cert) => ({
     id: cert.id,
-    src: `${CLOUDINARY_BASE_URL}/${cert.cloudinaryPublicId}`,
+    src: `${CLOUDINARY_BASE_URL}/${locale === "bg" ? cert.cloudinaryPublicIdBg : cert.cloudinaryPublicIdEn}`,
     alt: locale === "bg" ? cert.titleBg : cert.titleEn,
     title: locale === "bg" ? cert.titleBg : cert.titleEn,
   }));
@@ -40,7 +59,7 @@ export default function QualityPageClient({
     id: policy.id,
     title: locale === "bg" ? policy.titleBg : policy.titleEn,
     subtitle: locale === "bg" ? policy.subtitleBg : policy.subtitleEn,
-    file: `${CLOUDINARY_BASE_URL}/${policy.cloudinaryPublicId}.pdf`,
+    file: `${CLOUDINARY_BASE_URL}/${locale === "bg" ? policy.cloudinaryPublicIdBg : policy.cloudinaryPublicIdEn}.pdf`,
   }));
 
   const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation(0.5);
@@ -112,18 +131,31 @@ export default function QualityPageClient({
 
           <div className="relative max-w-4xl">
             <div className="space-y-0">
-              {ISO_STANDARDS_DATA.map((standard, index) => {
-                const Icon = standard.icon;
-                const isLast = index === ISO_STANDARDS_DATA.length - 1;
+              {timelineData.map((item, index) => {
+                const Icon = getLucideIcon(item.iconName);
+                const isLast = index === timelineData.length - 1;
+
+                const title =
+                  item.type === "certificate"
+                    ? locale === "bg"
+                      ? item.certificate?.titleBg
+                      : item.certificate?.titleEn
+                    : t.quality.standards[
+                        item.year as keyof typeof t.quality.standards
+                      ]?.title;
+
                 return (
-                  <div key={standard.year} className="flex gap-6 md:gap-8 pb-8 relative">
+                  <div
+                    key={`${item.type}-${item.year}-${index}`}
+                    className="flex gap-6 md:gap-8 pb-8 relative"
+                  >
                     <div className="flex-shrink-0 w-20 md:w-24 relative flex flex-col items-center">
                       <div className="relative z-10 w-12 h-12 bg-[var(--color-red)] rounded-full flex items-center justify-center shadow-lg">
                         <Icon className="w-6 h-6 text-white" />
                       </div>
 
                       <div className="mt-2 mb-3 text-2xl font-bold text-[var(--color-red)]">
-                        {standard.year}
+                        {item.year}
                       </div>
 
                       {/* Line segment after year text with gap */}
@@ -134,20 +166,9 @@ export default function QualityPageClient({
 
                     <div className="flex-1">
                       <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                        <h3 className="text-xl font-bold text-[var(--color-charcoal)] mb-2">
-                          {
-                            t.quality.standards[
-                              standard.year as keyof typeof t.quality.standards
-                            ].title
-                          }
-                        </h3>
-                        <p className="text-gray-600">
-                          {
-                            t.quality.standards[
-                              standard.year as keyof typeof t.quality.standards
-                            ].description
-                          }
-                        </p>
+                        <h4 className="text-xl text-[var(--color-charcoal)] mb-2">
+                          {title}
+                        </h4>
                       </div>
                     </div>
                   </div>
@@ -237,7 +258,7 @@ export default function QualityPageClient({
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {policyDocuments.map((doc, index) => {
-              const Icon = POLICY_ICONS[index];
+              const Icon = getLucideIcon(POLICY_ICONS[index]);
               return (
                 <a
                   key={doc.id}
