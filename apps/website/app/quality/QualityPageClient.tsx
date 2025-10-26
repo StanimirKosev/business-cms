@@ -6,6 +6,7 @@ import { useLanguage } from "@/app/context/LanguageContext";
 import type { Certificate, Policy } from "@repo/database/client";
 import { CLOUDINARY_BASE_URL } from "@/lib/cloudinary";
 import { getLucideIcon } from "@/lib/icons";
+import { Award } from "lucide-react";
 
 // Hardcoded timeline entries (historical milestones)
 const HARDCODED_TIMELINE = [
@@ -258,7 +259,7 @@ export default function QualityPageClient({
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {policyDocuments.map((doc, index) => {
-              const Icon = getLucideIcon(POLICY_ICONS[index]);
+              const Icon = getLucideIcon(POLICY_ICONS[index]) || <Award />;
               return (
                 <a
                   key={doc.id}

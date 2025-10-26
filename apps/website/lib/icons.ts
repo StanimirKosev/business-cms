@@ -8,5 +8,5 @@ export function getLucideIcon(iconName: string) {
   const IconComponent = (
     LucideIcons as unknown as Record<string, React.ElementType>
   )[iconName];
-  return IconComponent || LucideIcons.Award;
+  return IconComponent || null;
 }

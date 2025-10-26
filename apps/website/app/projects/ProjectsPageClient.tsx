@@ -1,10 +1,7 @@
 "use client";
 
 import { ServiceProjectsSection } from "../components/ServiceProjectsSection";
-import {
-  CategoryNavigationBar,
-  IconName,
-} from "../components/CategoryNavigationBar";
+import { CategoryNavigationBar } from "../components/CategoryNavigationBar";
 import { getProjectsByCategory } from "@/lib/mock-data";
 import { useScrollAnimation } from "@/app/hooks/useScrollAnimation";
 import { useRef } from "react";
@@ -31,7 +28,7 @@ export default function ProjectsPageClient({
     description:
       locale === "bg" ? category.descriptionBg : category.descriptionEn,
     slug: category.slug,
-    iconName: category.iconName as IconName,
+    iconName: category.iconName || "",
     count: category._count.projects,
   }));
 

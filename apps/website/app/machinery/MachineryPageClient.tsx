@@ -4,6 +4,8 @@ import { useScrollAnimation } from "@/app/hooks/useScrollAnimation";
 import { useLanguage } from "@/app/context/LanguageContext";
 import Image from "next/image";
 import type { MachineryCategory, MachineryModel } from "@repo/database/client";
+import { CategoryNavigationBar } from "../components/CategoryNavigationBar";
+import { useRef } from "react";
 
 // Helper function to format machinery count with proper unit
 function formatMachineryCount(
@@ -17,9 +19,14 @@ function formatMachineryCount(
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
   };
 
-  const unitText = unit === "SQUARE_METERS"
-    ? (locale === "bg" ? "м²" : "m²")
-    : (locale === "bg" ? "бр." : "pcs.");
+  const unitText =
+    unit === "SQUARE_METERS"
+      ? locale === "bg"
+        ? "м²"
+        : "m²"
+      : locale === "bg"
+        ? "бр."
+        : "pcs.";
 
   return `${formatNumber(count)} ${unitText}`;
 }
@@ -33,6 +40,14 @@ export default function MachineryPageClient({
 }: MachineryPageClientProps) {
   const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation(0.5);
   const { t, locale } = useLanguage();
+  const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
+
+  const categoriesLocalized = categories.map((category) => ({
+    title: locale === "bg" ? category.nameBg : category.nameEn,
+    count: category.count,
+    slug: category.id,
+    iconName: "",
+  }));
 
   return (
     <main className="bg-white">
@@ -88,6 +103,11 @@ export default function MachineryPageClient({
         </div>
       </section>
 
+      <CategoryNavigationBar
+        categories={categoriesLocalized}
+        sectionRefs={sectionRefs}
+      />
+
       {/* Machinery Alternating Sections */}
       <div>
         {categories.map((category, index) => {
@@ -103,6 +123,10 @@ export default function MachineryPageClient({
                   ? "bg-[var(--color-concrete-grey-light)]"
                   : "bg-white"
               }`}
+              ref={(el) => {
+                sectionRefs.current[category.id] = el;
+              }}
+              id={category.id}
             >
               <div className="max-w-7xl mx-auto">
                 <div
