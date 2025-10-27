@@ -4,7 +4,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import { Card } from "./Card";
 import ChevronButton from "./ChevronButton";
 import { useScrollAnimation } from "@/app/hooks/useScrollAnimation";
-import { recentProjects, categoryToSlug } from "@/lib/mock-data";
+import { recentProjects } from "@/lib/mock-data";
 import { useLanguage } from "../context/LanguageContext";
 
 export function FeaturedProjects() {
@@ -76,7 +76,7 @@ export function FeaturedProjects() {
                     location={project.location}
                     description={project.description}
                     image={project.image}
-                    slug={`/projects/${categoryToSlug(project.category!)}/${project.slug}`}
+                    slug={`/projects/${project.category}/${project.slug}`}
                     category={project.category}
                   />
                 </div>

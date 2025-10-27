@@ -252,18 +252,6 @@ export const recentProjects: Project[] = [
   },
 ];
 
-// Convert category to URL-friendly slug
-export function categoryToSlug(category: ProjectCategory): string {
-  const slugMap: Record<ProjectCategory, string> = {
-    "Стоманобетонни и метални конструкции": "steel-concrete-structures",
-    "Саниране и рехабилитация": "renovation-rehabilitation",
-    "Инженерно-укрепителни и хидросъоръжения": "engineering-hydro",
-    "Инсталации – Ел, ВиК, ОВК": "installations",
-    "Пътно строителство и инфраструктура": "road-construction",
-  };
-  return slugMap[category];
-}
-
 // Get projects by category
 export function getProjectsByCategory(category: string): Project[] {
   return recentProjects.filter((p) => p.category === category);
