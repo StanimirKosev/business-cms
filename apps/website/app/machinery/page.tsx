@@ -1,5 +1,6 @@
 import { prisma } from "@repo/database/client";
 import MachineryPageClient from "./MachineryPageClient";
+import { Suspense } from "react";
 
 export default async function MachineryPage() {
   const categories = await prisma.machineryCategory.findMany({
@@ -11,5 +12,9 @@ export default async function MachineryPage() {
     orderBy: { order: "asc" },
   });
 
-  return <MachineryPageClient categories={categories} />;
+  return (
+    <Suspense fallback={<div className="min-h-screen" />}>
+      <MachineryPageClient categories={categories} />
+    </Suspense>
+  );
 }
