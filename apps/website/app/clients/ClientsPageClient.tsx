@@ -1,18 +1,38 @@
 "use client";
 
+import { useState, useMemo } from "react";
 import { mockClients } from "@/lib/clients-data";
 import { useLanguage } from "@/app/context/LanguageContext";
 import { useScrollAnimation } from "@/app/hooks/useScrollAnimation";
 import Image from "next/image";
+import { ClientsMapFilter } from "./ClientsMapFilter";
+import { projectsByRegion } from "@/lib/map-data";
 
 export default function ClientsPageClient() {
   const { t } = useLanguage();
   const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation(0.5);
-
-  // Sort clients alphabetically
-  const sortedClients = [...mockClients].sort((a, b) =>
-    a.name.localeCompare(b.name, "bg")
+  const [selectedRegions, setSelectedRegions] = useState<Set<string>>(
+    new Set()
   );
+
+  // Filter and sort clients based on selected regions
+  const sortedClients = useMemo(() => {
+    let filtered = mockClients;
+
+    if (selectedRegions.size > 0) {
+      const clientsInRegions = new Set<string>();
+      selectedRegions.forEach((region) => {
+        projectsByRegion[region]?.clients.forEach((client) => {
+          clientsInRegions.add(client);
+        });
+      });
+      filtered = mockClients.filter((client) =>
+        clientsInRegions.has(client.name)
+      );
+    }
+
+    return filtered.sort((a, b) => a.name.localeCompare(b.name, "bg"));
+  }, [selectedRegions]);
 
   return (
     <main className="bg-[var(--color-bg)]">
@@ -87,9 +107,27 @@ export default function ClientsPageClient() {
         </div>
       </section>
 
-      {/* Clients List Section */}
-      <section className="py-20 px-6 md:px-40 bg-[var(--color-concrete-grey-light)]">
+      {/* Interactive Map with Filtering */}
+      <section className="pt-8 pb-20 px-6 md:px-40 bg-[var(--color-concrete-grey-light)]">
         <div className="max-w-7xl mx-auto">
+          <ClientsMapFilter
+            selectedRegions={selectedRegions}
+            onRegionToggle={setSelectedRegions}
+          />
+        </div>
+      </section>
+
+      {/* Clients List Section */}
+      <section className="py-20 px-6 md:px-40 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-8">
+            <h2 className="text-2xl md:text-3xl font-bold text-[var(--color-charcoal)]">
+              {sortedClients.length === mockClients.length
+                ? `Всички клиенти (${sortedClients.length})`
+                : `${sortedClients.length} ${sortedClients.length === 1 ? "клиент" : "клиента"}`}
+            </h2>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {sortedClients.map((client) => (
               <div key={client.id} className="flex items-start gap-4">
