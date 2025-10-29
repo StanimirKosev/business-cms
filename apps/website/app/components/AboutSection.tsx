@@ -20,7 +20,7 @@ const AboutSection = () => {
     const timer = setInterval(() => {
       current++;
       setProjectCount(Math.floor((300 / steps) * current));
-      setClientCount(Math.floor((40 / steps) * current));
+      setClientCount(Math.floor((50 / steps) * current));
       if (current >= steps) clearInterval(timer);
     }, 2000 / steps);
 

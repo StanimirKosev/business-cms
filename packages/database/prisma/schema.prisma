@@ -44,18 +44,20 @@ model Project {
   slug        String         @unique
   description String         @db.Text
   location    String?
-  client      String?
   year        Int?
   size        String?        // e.g. "5000 m²"
   featured    Boolean        @default(false) // Show on homepage
   categoryId  String
   category    Category       @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  clientId    String
+  client      Client         @relation(fields: [clientId], references: [id], onDelete: Restrict)
   images      ProjectImage[]
   createdAt   DateTime       @default(now())
   updatedAt   DateTime       @updatedAt
 
   @@index([slug])
   @@index([categoryId])
+  @@index([clientId])
   @@index([featured])
 }
 
@@ -74,16 +76,21 @@ model ProjectImage {
   @@index([order])
 }
 
-// Client logos
+// Client companies
 model Client {
-  id        String   @id @default(cuid())
-  name      String
-  logoUrl   String   // Cloudinary URL
-  order     Int      @default(0)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String    @id @default(cuid())
+  nameBg    String
+  nameEn    String
+  logoUrl   String?   // Cloudinary URL (optional)
+  website   String?   // Optional website
+  order     Int       @default(0)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  projects  Project[]
 
   @@index([order])
+  @@index([nameBg])
+  @@index([nameEn])
 }
 
 // Quality certificates

@@ -50,7 +50,7 @@ export function ClientsMapFilter({
         <div className="absolute left-0 right-0 flex items-center justify-center">
           <p className="text-sm text-gray-500 animate-chevron-nudge flex items-center gap-2">
             <MousePointerClick className="w-4 h-4" />
-            Кликнете на регион, за да филтрирате клиентите
+            Кликнете на област, за да филтрирате клиентите
           </p>
         </div>
       )}

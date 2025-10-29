@@ -24,4 +24,5 @@ export type {
   Category,
   MachineryCategory,
   MachineryModel,
+  Client,
 } from "@prisma/client";

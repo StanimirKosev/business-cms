@@ -5,145 +5,372 @@ const prisma = new PrismaClient();
 async function main() {
   console.log("🌱 Starting database seed...");
 
-  // 2. Create categories (services)
-  const categories = [
+  // 1. Create clients
+  const clients = [
     {
-      titleBg: "Транспортна инфракструктура",
-      titleEn: "Transport Infrastructure",
-      slug: "transport-infrastructure",
-      descriptionBg:
-        "Изграждане и рехабилитация на общински пътища, улици, мостове и паркинги",
-      descriptionEn:
-        "Construction and rehabilitation of municipal roads, streets, bridges and parking facilities",
-      heroImageUrl: null,
-      contentBg:
-        "Реконструкция и рехабилитация на пътна инфраструктура - общински пътища, улици, пешеходни мостове и паркинги.",
-      contentEn:
-        "Reconstruction and rehabilitation of road infrastructure - municipal roads, streets, pedestrian bridges and parking facilities.",
-      iconName: "Route",
+      nameBg: "ДП Национална компания железопътна инфраструктура",
+      nameEn: "National Railway Infrastructure Company",
+      logoUrl: "",
+      website: "",
       order: 0,
     },
     {
-      titleBg: "ВИК проекти",
-      titleEn: "Water Supply & Sewerage",
-      slug: "water-supply-sewerage",
-      descriptionBg:
-        "Реконструкция на водопроводни и канализационни мрежи, пречиствателни станции",
-      descriptionEn:
-        "Reconstruction of water supply and sewerage networks, treatment plants",
-      heroImageUrl: null,
-      contentBg:
-        "Реконструкция на улични водопроводи и канализация, изграждане на пречиствателни станции за питейни води.",
-      contentEn:
-        "Reconstruction of street water supply and sewerage, construction of drinking water treatment plants.",
-      iconName: "Droplets",
+      nameBg: "Национална електрическа компания ЕАД",
+      nameEn: "National Electric Company EAD",
+      logoUrl: "",
+      website: "",
       order: 1,
     },
     {
-      titleBg: "Жилищно и сградно строителство",
-      titleEn: "Residential & Building Construction",
-      slug: "residential-building-construction",
-      descriptionBg:
-        "Изграждане на многофамилни жилищни сгради и апартаментни комплекси",
-      descriptionEn:
-        "Construction of multi-family residential buildings and apartment complexes",
-      heroImageUrl: null,
-      contentBg:
-        "Изпълнение на жилищни сгради - многофамилни блокове и апартаментни комплекси.",
-      contentEn:
-        "Execution of residential buildings - multi-family blocks and apartment complexes.",
-      iconName: "Building2",
+      nameBg: "Министерски съвет",
+      nameEn: "Council of Ministers",
+      logoUrl: "",
+      website: "",
       order: 2,
     },
     {
-      titleBg: "Енергийна ефективност",
-      titleEn: "Energy Efficiency",
-      slug: "energy-efficiency",
-      descriptionBg:
-        "Саниране, топлоизолация и мерки за енергийна ефективност на сгради",
-      descriptionEn:
-        "Renovation, insulation and energy efficiency measures for buildings",
-      heroImageUrl: null,
-      contentBg:
-        "Професионално саниране и енергийно обновяване на жилищни и обществени сгради.",
-      contentEn:
-        "Professional renovation and energy upgrading of residential and public buildings.",
-      iconName: "Zap",
+      nameBg: "Министерство на икономиката, енергетиката и туризма",
+      nameEn: "Ministry of Economy, Energy and Tourism",
+      logoUrl: "",
+      website: "",
       order: 3,
     },
     {
-      titleBg: "Благоустройство и озеленяване",
-      titleEn: "Landscaping & Greenery",
-      slug: "landscaping-greenery",
-      descriptionBg:
-        "Парково строителство, детски площадки, спортни площадки и благоустрояване",
-      descriptionEn:
-        "Park construction, playgrounds, sports facilities and landscaping",
-      heroImageUrl: null,
-      contentBg:
-        "Обновяване на паркове, изграждане на открити детски и спортни площадки, благоустрояване на жилищни територии.",
-      contentEn:
-        "Park renovation, construction of outdoor playgrounds and sports facilities, landscaping of residential areas.",
-      iconName: "Trees",
+      nameBg: "Министерство на образованието",
+      nameEn: "Ministry of Education",
+      logoUrl: "",
+      website: "",
       order: 4,
     },
     {
-      titleBg: "Сгради и съоръжения за обществено ползване",
-      titleEn: "Public Buildings & Facilities",
-      slug: "public-buildings-facilities",
-      descriptionBg:
-        "Спортни зали, училища, читалища, административни сгради, музеи и културни центрове",
-      descriptionEn:
-        "Sports halls, schools, community centers, administrative buildings, museums and cultural centers",
-      heroImageUrl: null,
-      contentBg:
-        "Изграждане и ремонт на обществени сгради - спортни зали, училища, читалища, музеи и административни сгради.",
-      contentEn:
-        "Construction and renovation of public buildings - sports halls, schools, community centers, museums and administrative buildings.",
-      iconName: "Building",
+      nameBg: "Министерство на отбраната",
+      nameEn: "Ministry of Defense",
+      logoUrl: "",
+      website: "",
       order: 5,
     },
     {
-      titleBg: "ОВК системи и вентилзации",
-      titleEn: "HVAC & Ventilation Systems",
-      slug: "hvac-ventilation",
-      descriptionBg:
-        "Отоплителни инсталации, геотермални инсталации и газоснабдяване",
-      descriptionEn: "Heating installations, geothermal systems and gas supply",
-      heroImageUrl: null,
-      contentBg:
-        "Монтаж на отоплителни инсталации, изграждане на геотермални системи и газорегулиращи станции.",
-      contentEn:
-        "Installation of heating systems, construction of geothermal installations and gas regulation stations.",
-      iconName: "Wind",
+      nameBg: "Министерство на вътрешните работи",
+      nameEn: "Ministry of Interior",
+      logoUrl: "",
+      website: "",
       order: 6,
     },
     {
-      titleBg: "Съоръжения и инсталации за третиране на отпадъци",
-      titleEn: "Waste Treatment Facilities",
-      slug: "waste-treatment-facilities",
-      descriptionBg:
-        "Депа за битови отпадъци, рекултивация и площадки за биологично третиране",
-      descriptionEn:
-        "Municipal waste landfills, reclamation and biological treatment facilities",
-      heroImageUrl: null,
-      contentBg:
-        "Изграждане на депа за битови отпадъци, рекултивация на съществуващи депа и площадки за биологично третиране.",
-      contentEn:
-        "Construction of municipal waste landfills, reclamation of existing landfills and biological treatment facilities.",
-      iconName: "Recycle",
+      nameBg: "Мини Марица Изток ЕАД",
+      nameEn: "Mini Maritsa East EAD",
+      logoUrl: "",
+      website: "",
       order: 7,
+    },
+    {
+      nameBg: "Пристанище Варна ЕАД",
+      nameEn: "Port of Varna EAD",
+      logoUrl: "",
+      website: "",
+      order: 8,
+    },
+    {
+      nameBg: "Агенция за дипломатически имоти в страната",
+      nameEn: "Agency for Diplomatic Properties in the Country",
+      logoUrl: "",
+      website: "",
+      order: 9,
+    },
+    {
+      nameBg: "ТЕЦ Марица изток 2 ЕАД",
+      nameEn: "TPP Maritsa East 2 EAD",
+      logoUrl: "",
+      website: "",
+      order: 10,
+    },
+    {
+      nameBg: "Булгартрансгаз ЕАД",
+      nameEn: "Bulgartransgaz EAD",
+      logoUrl: "",
+      website: "",
+      order: 11,
+    },
+    {
+      nameBg: "Електроенергиен системен оператор ЕАД",
+      nameEn: "Electricity System Operator EAD",
+      logoUrl: "",
+      website: "",
+      order: 12,
+    },
+    {
+      nameBg: "Община София",
+      nameEn: "Sofia Municipality",
+      logoUrl: "",
+      website: "",
+      order: 13,
+    },
+    {
+      nameBg: "Община Златица",
+      nameEn: "Zlatitsa Municipality",
+      logoUrl: "",
+      website: "",
+      order: 14,
+    },
+    {
+      nameBg: "Община Левски",
+      nameEn: "Levski Municipality",
+      logoUrl: "",
+      website: "",
+      order: 15,
+    },
+    {
+      nameBg: "Община Бяла",
+      nameEn: "Byala Municipality",
+      logoUrl: "",
+      website: "",
+      order: 16,
+    },
+    {
+      nameBg: "Община Раднево",
+      nameEn: "Radnevo Municipality",
+      logoUrl: "",
+      website: "",
+      order: 17,
+    },
+    {
+      nameBg: "Община Средец",
+      nameEn: "Sredets Municipality",
+      logoUrl: "",
+      website: "",
+      order: 18,
+    },
+    {
+      nameBg: "Община Никопол",
+      nameEn: "Nikopol Municipality",
+      logoUrl: "",
+      website: "",
+      order: 19,
+    },
+    {
+      nameBg: "Община Бургас",
+      nameEn: "Burgas Municipality",
+      logoUrl: "",
+      website: "",
+      order: 20,
+    },
+    {
+      nameBg: "Община Хасково",
+      nameEn: "Haskovo Municipality",
+      logoUrl: "",
+      website: "",
+      order: 21,
+    },
+    {
+      nameBg: "Община Стара Загора",
+      nameEn: "Stara Zagora Municipality",
+      logoUrl: "",
+      website: "",
+      order: 22,
+    },
+    {
+      nameBg: "Община Трявна",
+      nameEn: "Tryavna Municipality",
+      logoUrl: "",
+      website: "",
+      order: 23,
+    },
+    {
+      nameBg: "Община Шумен",
+      nameEn: "Shumen Municipality",
+      logoUrl: "",
+      website: "",
+      order: 24,
+    },
+    {
+      nameBg: "Община Плевен",
+      nameEn: "Pleven Municipality",
+      logoUrl: "",
+      website: "",
+      order: 25,
+    },
+    {
+      nameBg: "Община Белово",
+      nameEn: "Belovo Municipality",
+      logoUrl: "",
+      website: "",
+      order: 26,
+    },
+    {
+      nameBg: "Община Велинград",
+      nameEn: "Velingrad Municipality",
+      logoUrl: "",
+      website: "",
+      order: 27,
+    },
+    {
+      nameBg: "Община Сандански",
+      nameEn: "Sandanski Municipality",
+      logoUrl: "",
+      website: "",
+      order: 28,
+    },
+    {
+      nameBg: "Община Белоградчик",
+      nameEn: "Belogradchik Municipality",
+      logoUrl: "",
+      website: "",
+      order: 29,
+    },
+    {
+      nameBg: "Община Борово",
+      nameEn: "Borovo Municipality",
+      logoUrl: "",
+      website: "",
+      order: 30,
+    },
+    {
+      nameBg: "Община Дряново",
+      nameEn: "Dryanovo Municipality",
+      logoUrl: "",
+      website: "",
+      order: 31,
+    },
+    {
+      nameBg: "Община Две Могили",
+      nameEn: "Dve Mogili Municipality",
+      logoUrl: "",
+      website: "",
+      order: 32,
+    },
+    {
+      nameBg: "Община Баните",
+      nameEn: "Banite Municipality",
+      logoUrl: "",
+      website: "",
+      order: 33,
+    },
+    {
+      nameBg: "Община Русе",
+      nameEn: "Ruse Municipality",
+      logoUrl: "",
+      website: "",
+      order: 34,
+    },
+    {
+      nameBg: "Община Габрово",
+      nameEn: "Gabrovo Municipality",
+      logoUrl: "",
+      website: "",
+      order: 35,
+    },
+    {
+      nameBg: "Община Пловдив",
+      nameEn: "Plovdiv Municipality",
+      logoUrl: "",
+      website: "",
+      order: 36,
+    },
+    {
+      nameBg: "Община Долни чифлик",
+      nameEn: "Dolni Chiflik Municipality",
+      logoUrl: "",
+      website: "",
+      order: 37,
+    },
+    {
+      nameBg: "Община Смолян",
+      nameEn: "Smolyan Municipality",
+      logoUrl: "",
+      website: "",
+      order: 38,
+    },
+    {
+      nameBg: "Община Елена",
+      nameEn: "Elena Municipality",
+      logoUrl: "",
+      website: "",
+      order: 39,
+    },
+    {
+      nameBg: "Община Роман",
+      nameEn: "Roman Municipality",
+      logoUrl: "",
+      website: "",
+      order: 40,
+    },
+    {
+      nameBg: "Община Сливен",
+      nameEn: "Sliven Municipality",
+      logoUrl: "",
+      website: "",
+      order: 41,
+    },
+    {
+      nameBg: "Община Струмяни",
+      nameEn: "Strumyani Municipality",
+      logoUrl: "",
+      website: "",
+      order: 42,
+    },
+    {
+      nameBg: "Община Кнежа",
+      nameEn: "Knezha Municipality",
+      logoUrl: "",
+      website: "",
+      order: 43,
+    },
+    {
+      nameBg: "Община Ямбол",
+      nameEn: "Yambol Municipality",
+      logoUrl: "",
+      website: "",
+      order: 44,
+    },
+    {
+      nameBg: "Община Костенец",
+      nameEn: "Kostenets Municipality",
+      logoUrl: "",
+      website: "",
+      order: 45,
+    },
+    {
+      nameBg: "Община Белене",
+      nameEn: "Belene Municipality",
+      logoUrl: "",
+      website: "",
+      order: 46,
+    },
+    {
+      nameBg: "Община Твърдица",
+      nameEn: "Tvarditsa Municipality",
+      logoUrl: "",
+      website: "",
+      order: 47,
+    },
+    {
+      nameBg: 'МБАЛ "Д-р Тота Венкова" АД',
+      nameEn: 'MBAL "Dr. Tota Venkova" AD',
+      logoUrl: "",
+      website: "",
+      order: 48,
+    },
+    {
+      nameBg: "Частни инвеститори",
+      nameEn: "Private Investors",
+      logoUrl: "",
+      website: "",
+      order: 49,
     },
   ];
 
-  for (const category of categories) {
-    await prisma.category.upsert({
-      where: { slug: category.slug },
-      update: {},
-      create: category,
+  for (const client of clients) {
+    const existing = await prisma.client.findFirst({
+      where: { nameBg: client.nameBg },
     });
+    if (!existing) {
+      await prisma.client.create({
+        data: client,
+      });
+    }
   }
-  console.log("✅ Created 8 categories");
+  console.log("✅ Created 50 clients");
+
   console.log("🎉 Seed completed successfully!");
 }
 
