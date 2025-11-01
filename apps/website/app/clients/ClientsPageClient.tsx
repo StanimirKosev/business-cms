@@ -158,7 +158,7 @@ export default function ClientsPageClient({ clients }: ClientsPageClientProps) {
                         href={client.website!}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-shrink-0 w-32 h-32 flex items-center justify-center cursor-pointer bg-gray-100 hover:bg-transparent rounded p-3 transition-colors duration-300"
+                        className="flex-shrink-0 w-32 h-32 flex items-center justify-center cursor-pointer rounded p-3 group"
                       >
                         <Image
                           src={logoUrl}
@@ -166,18 +166,18 @@ export default function ClientsPageClient({ clients }: ClientsPageClientProps) {
                           width={172}
                           height={200}
                           unoptimized
-                          className="w-full h-full object-contain invert grayscale brightness-150 opacity-70"
+                          className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
                         />
                       </a>
                     ) : (
-                      <div className="flex-shrink-0 w-32 h-32 flex items-center justify-center bg-gray-100 rounded p-3">
+                      <div className="flex-shrink-0 w-32 h-32 flex items-center justify-center rounded p-3">
                         <Image
                           src={logoUrl}
                           alt={clientName}
                           width={172}
                           height={200}
                           unoptimized
-                          className="w-full h-full object-contain invert grayscale brightness-150 opacity-70"
+                          className="w-full h-full object-contain grayscale"
                         />
                       </div>
                     )
