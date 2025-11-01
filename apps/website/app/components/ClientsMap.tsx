@@ -1,26 +1,50 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useScrollAnimation } from "@/app/hooks/useScrollAnimation";
 import { useLanguage } from "@/app/context/LanguageContext";
 import {
-  MOCK_PROJECTS,
-  projectsByRegion,
   REGION_NAMES,
   getRegionId,
   getTooltipX,
   getTooltipY,
-  mapStats,
 } from "@/lib/map-data";
+import { computeProjectsByRegion } from "@/lib/map-utils";
+import type { Prisma } from "@prisma/client";
+
+type ProjectWithRelations = Prisma.ProjectGetPayload<{
+  include: {
+    category: true;
+    client: true;
+  };
+}>;
+
+interface ClientsMapProps {
+  projects: ProjectWithRelations[];
+}
 
 /**
  * Homepage map component with hover tooltips
  * Shows project distribution across Bulgaria with passive discovery
  */
-export function ClientsMap() {
-  const { t } = useLanguage();
+export function ClientsMap({ projects }: ClientsMapProps) {
+  const { t, locale } = useLanguage();
   const [hoveredRegion, setHoveredRegion] = useState<string | null>(null);
   const { ref: sectionRef, isVisible } = useScrollAnimation(0.2);
+
+  // Compute map data from database projects using shared utility
+  const { projectsByRegion, mapStats } = useMemo(() => {
+    const byRegion = computeProjectsByRegion(projects);
+
+    const clientNameField = locale === "bg" ? "nameBg" : "nameEn";
+    const stats = {
+      totalRegions: Object.keys(byRegion).length,
+      totalProjects: projects.length,
+      totalClients: new Set(projects.map((p) => p.client[clientNameField])).size,
+    };
+
+    return { projectsByRegion: byRegion, mapStats: stats };
+  }, [projects, locale]);
 
   return (
     <section
@@ -97,11 +121,11 @@ export function ClientsMap() {
             ))}
 
             {/* Static project dots */}
-            {MOCK_PROJECTS.map((project) => (
+            {projects.map((project) => (
               <circle
                 key={project.id}
-                cx={project.x}
-                cy={project.y}
+                cx={project.mapX}
+                cy={project.mapY}
                 r="3"
                 fill="#CC0000"
                 className="pointer-events-none"
@@ -128,7 +152,10 @@ export function ClientsMap() {
                 >
                   <div className="mb-3 pb-3 border-b border-gray-100">
                     <div className="font-bold text-lg text-[var(--color-charcoal)]">
-                      Област {REGION_NAMES[hoveredRegion] || hoveredRegion}
+                      {locale === "bg" ? "Област" : "Region"}{" "}
+                      {locale === "bg"
+                        ? REGION_NAMES[hoveredRegion] || hoveredRegion
+                        : hoveredRegion}
                     </div>
                     <div className="text-sm text-gray-600 mt-1">
                       {projectsByRegion[hoveredRegion].projects.length}{" "}
@@ -136,14 +163,14 @@ export function ClientsMap() {
                         ? "проект"
                         : "проекта"}
                       {" · "}
-                      {projectsByRegion[hoveredRegion].clients.size}{" "}
-                      {projectsByRegion[hoveredRegion].clients.size === 1
+                      {projectsByRegion[hoveredRegion].clientNames[locale].size}{" "}
+                      {projectsByRegion[hoveredRegion].clientNames[locale].size === 1
                         ? "клиент"
                         : "клиента"}
                     </div>
                   </div>
                   <div className="space-y-2 max-h-48 overflow-y-auto [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-[var(--color-red)] [&::-webkit-scrollbar-thumb]:rounded-full">
-                    {Array.from(projectsByRegion[hoveredRegion].clients).map(
+                    {Array.from(projectsByRegion[hoveredRegion].clientNames[locale]).map(
                       (client, idx) => (
                         <div
                           key={idx}

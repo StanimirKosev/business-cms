@@ -25,4 +25,7 @@ export type {
   MachineryCategory,
   MachineryModel,
   Client,
+  Project,
+  ProjectImage,
+  Prisma,
 } from "@prisma/client";

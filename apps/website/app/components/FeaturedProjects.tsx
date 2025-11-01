@@ -4,11 +4,21 @@ import useEmblaCarousel from "embla-carousel-react";
 import { Card } from "./Card";
 import ChevronButton from "./ChevronButton";
 import { useScrollAnimation } from "@/app/hooks/useScrollAnimation";
-import { recentProjects } from "@/lib/mock-data";
 import { useLanguage } from "../context/LanguageContext";
+import type { Project, Category, Client } from "@repo/database/client";
+import { CLOUDINARY_BASE_URL } from "@/lib/cloudinary";
 
-export function FeaturedProjects() {
-  const { t } = useLanguage();
+type ProjectWithRelations = Project & {
+  category: Category;
+  client: Client;
+};
+
+interface FeaturedProjectsProps {
+  projects: ProjectWithRelations[];
+}
+
+export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
+  const { t, locale } = useLanguage();
   const { ref: sectionRef, isVisible } = useScrollAnimation(0.5);
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
@@ -66,21 +76,37 @@ export function FeaturedProjects() {
           {/* Carousel */}
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex gap-6">
-              {recentProjects.map((project) => (
-                <div
-                  key={project.id}
-                  className="flex-[0_0_100%] md:flex-[0_0_calc(33.333%-16px)] min-w-0"
-                >
-                  <Card
-                    title={project.title}
-                    location={project.location}
-                    description={project.description}
-                    image={project.image}
-                    slug={`/projects/${project.category}/${project.slug}`}
-                    category={project.category}
-                  />
-                </div>
-              ))}
+              {projects.map((project) => {
+                const title =
+                  locale === "bg" ? project.titleBg : project.titleEn;
+                const description =
+                  locale === "bg"
+                    ? project.descriptionBg
+                    : project.descriptionEn;
+                const location =
+                  locale === "bg" ? project.locationBg : project.locationEn;
+                const categoryName =
+                  locale === "bg"
+                    ? project.category.titleBg
+                    : project.category.titleEn;
+                const imageUrl = `${CLOUDINARY_BASE_URL}/${project.heroImageUrl}`;
+
+                return (
+                  <div
+                    key={project.id}
+                    className="flex-[0_0_100%] md:flex-[0_0_calc(33.333%-16px)] min-w-0"
+                  >
+                    <Card
+                      title={title}
+                      location={location}
+                      description={description}
+                      image={imageUrl}
+                      slug={`/projects/${project.category.slug}/${project.slug}`}
+                      category={categoryName}
+                    />
+                  </div>
+                );
+              })}
             </div>
           </div>
 

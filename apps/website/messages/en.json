@@ -83,7 +83,7 @@
       "title": "Clients",
       "map": {
         "title": "Our Clients",
-        "description": "\"Techno Stroy Bulgaria\" has completed construction projects in over 18 regions across the country, in partnership with state institutions, municipalities and private investors.",
+        "description": "\"Techno Stroy Bulgaria\" has completed construction projects in over {count} regions across the country, in partnership with state institutions, municipalities and private investors.",
         "stats": {
           "regions": "regions",
           "projects": "projects",

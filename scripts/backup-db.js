@@ -37,6 +37,9 @@ async function backupDatabase() {
       { name: "policy", model: prisma.policy },
       { name: "machineryCategories", model: prisma.machineryCategory },
       { name: "machineryModels", model: prisma.machineryModel },
+      { name: "clients", model: prisma.client },
+      { name: "projects", model: prisma.project },
+      { name: "projectImages", model: prisma.projectImage },
     ];
 
     let totalRecords = 0;

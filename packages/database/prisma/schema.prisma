@@ -40,35 +40,64 @@ model Category {
 // Construction projects
 model Project {
   id          String         @id @default(cuid())
-  title       String
+
+  // Basic Info (bilingual)
+  titleBg     String
+  titleEn     String
   slug        String         @unique
-  description String         @db.Text
-  location    String?
-  year        Int?
-  size        String?        // e.g. "5000 m²"
-  featured    Boolean        @default(false) // Show on homepage
-  categoryId  String
-  category    Category       @relation(fields: [categoryId], references: [id], onDelete: Restrict)
-  clientId    String
-  client      Client         @relation(fields: [clientId], references: [id], onDelete: Restrict)
-  images      ProjectImage[]
-  createdAt   DateTime       @default(now())
-  updatedAt   DateTime       @updatedAt
+  descriptionBg String       @db.Text
+  descriptionEn String       @db.Text
+
+  // Project Details (bilingual)
+  locationBg    String       // "гр. София, бул. Цариградско шосе 125"
+  locationEn    String       // "Sofia, Tsarigradsko Shosse Blvd 125"
+  workNatureBg  String?      @db.Text // "Характер на работите" (optional)
+  workNatureEn  String?      @db.Text
+
+  // Technical Info (bilingual where needed)
+  constructionGroupBg String? // "1ва до 5та" (optional)
+  constructionGroupEn String? // "1st to 5th"
+  roleBg        String?      // "Главен изпълнител" (optional)
+  roleEn        String?      // "Main Contractor"
+
+  // Technical Specifications (bilingual long text)
+  specificationsBg String?   @db.Text // Multiple paragraphs of details
+  specificationsEn String?   @db.Text
+
+  // Map Integration
+  region        String       // "Sofia", "Varna" - matches REGION_NAMES keys in map-data.ts
+  mapX          Float        // SVG coordinate (0-1000)
+  mapY          Float        // SVG coordinate (0-651)
+
+  // Media
+  heroImageUrl  String       // Cloudinary public ID for main card image
+
+  // Status
+  featured      Boolean      @default(false) // Show on homepage featured section
+
+  // Relations
+  categoryId    String
+  category      Category     @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  clientId      String
+  client        Client       @relation(fields: [clientId], references: [id], onDelete: Restrict)
+  images        ProjectImage[]
+
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
 
   @@index([slug])
   @@index([categoryId])
   @@index([clientId])
+  @@index([region])
   @@index([featured])
 }
 
-// Project images stored on Cloudinary
+// Project gallery images stored on Cloudinary
 model ProjectImage {
   id                String   @id @default(cuid())
   projectId         String
   project           Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
-  cloudinaryUrl     String
-  cloudinaryPublicId String  // For deletion
-  alt               String?
+  cloudinaryPublicId String  // e.g., "projects/train-station-gallery-1"
   order             Int      @default(0) // Display order in gallery
   createdAt         DateTime @default(now())
 

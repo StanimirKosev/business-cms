@@ -2,10 +2,9 @@
 
 import { ServiceProjectsSection } from "../components/ServiceProjectsSection";
 import { CategoryNavigationBar } from "../components/CategoryNavigationBar";
-import { getProjectsByCategory } from "@/lib/mock-data";
 import { useScrollAnimation } from "@/app/hooks/useScrollAnimation";
 import { useRef } from "react";
-import type { Category } from "@repo/database/client";
+import type { Category, Prisma } from "@repo/database/client";
 import { useLanguage } from "../context/LanguageContext";
 
 type CategoryWithCount = Category & {
@@ -14,12 +13,21 @@ type CategoryWithCount = Category & {
   };
 };
 
+type ProjectWithRelations = Prisma.ProjectGetPayload<{
+  include: {
+    category: true;
+    client: true;
+  };
+}>;
+
 interface ProjectsPageClientProps {
   categories: CategoryWithCount[];
+  projects: ProjectWithRelations[];
 }
 
 export default function ProjectsPageClient({
   categories,
+  projects,
 }: ProjectsPageClientProps) {
   const { locale, t } = useLanguage();
 
@@ -34,6 +42,18 @@ export default function ProjectsPageClient({
 
   const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation(0.5);
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
+
+  const projectsByCategory = projects.reduce(
+    (acc, project) => {
+      const categorySlug = project.category.slug;
+      if (!acc[categorySlug]) {
+        acc[categorySlug] = [];
+      }
+      acc[categorySlug].push(project);
+      return acc;
+    },
+    {} as Record<string, ProjectWithRelations[]>
+  );
 
   return (
     <main className="bg-[var(--color-bg)]">
@@ -97,8 +117,8 @@ export default function ProjectsPageClient({
       {/* Project Sections */}
       <div>
         {categoriesLocalized.map((category) => {
-          const projects = getProjectsByCategory(category.slug);
-          return projects.length > 0 ? (
+          const categoryProjects = projectsByCategory[category.slug] || [];
+          return categoryProjects.length > 0 ? (
             <section
               key={category.slug}
               ref={(el) => {
@@ -106,7 +126,10 @@ export default function ProjectsPageClient({
               }}
               id={category.slug}
             >
-              <ServiceProjectsSection category={category} projects={projects} />
+              <ServiceProjectsSection
+                category={category}
+                projects={categoryProjects}
+              />
             </section>
           ) : null;
         })}

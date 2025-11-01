@@ -1,13 +1,13 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import type { Client } from "@repo/database/client";
+import type { Client, Prisma } from "@repo/database/client";
 import { useLanguage } from "@/app/context/LanguageContext";
 import { useScrollAnimation } from "@/app/hooks/useScrollAnimation";
 import Image from "next/image";
 import { ClientsMapFilter } from "./ClientsMapFilter";
-import { projectsByRegion } from "@/lib/map-data";
-import { CLOUDINARY_BASE_URL } from "@/lib/cloudinary";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
+import { computeProjectsByRegion } from "@/lib/map-utils";
 
 type ClientWithCount = Client & {
   _count: {
@@ -15,36 +15,54 @@ type ClientWithCount = Client & {
   };
 };
 
+type ProjectWithClient = Prisma.ProjectGetPayload<{
+  include: {
+    client: true;
+  };
+}>;
+
 interface ClientsPageClientProps {
   clients: ClientWithCount[];
+  projects: ProjectWithClient[];
 }
 
-export default function ClientsPageClient({ clients }: ClientsPageClientProps) {
+export default function ClientsPageClient({
+  clients,
+  projects,
+}: ClientsPageClientProps) {
   const { t, locale } = useLanguage();
   const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation(0.5);
   const [selectedRegions, setSelectedRegions] = useState<Set<string>>(
     new Set()
   );
 
-  // Filter and sort clients based on selected regions
+  // Compute projectsByRegion - now supports both locales
+  const projectsByRegion = computeProjectsByRegion(projects);
+
   const sortedClients = useMemo(() => {
     let filtered = clients;
 
     if (selectedRegions.size > 0) {
       const clientsInRegions = new Set<string>();
+      const clientNameField = locale === "bg" ? "nameBg" : "nameEn";
+
       selectedRegions.forEach((region) => {
-        projectsByRegion[region]?.clients.forEach((clientName) => {
+        projectsByRegion[region]?.clientNames[locale].forEach((clientName) => {
           clientsInRegions.add(clientName);
         });
       });
+
       filtered = clients.filter((client) =>
-        clientsInRegions.has(client.nameBg)
+        clientsInRegions.has(client[clientNameField])
       );
     }
 
-    // Sort by Bulgarian name
-    return [...filtered].sort((a, b) => a.nameBg.localeCompare(b.nameBg, "bg"));
-  }, [clients, selectedRegions]);
+    // Sort by current locale
+    const sortField = locale === "bg" ? "nameBg" : "nameEn";
+    return [...filtered].sort((a, b) =>
+      a[sortField].localeCompare(b[sortField], locale)
+    );
+  }, [clients, selectedRegions, projectsByRegion, locale]);
 
   return (
     <main className="bg-[var(--color-bg)]">
@@ -123,6 +141,8 @@ export default function ClientsPageClient({ clients }: ClientsPageClientProps) {
       <section className="pt-8 pb-20 px-6 md:px-40 bg-[var(--color-concrete-grey-light)]">
         <div className="max-w-7xl mx-auto">
           <ClientsMapFilter
+            projects={projects}
+            projectsByRegion={projectsByRegion}
             selectedRegions={selectedRegions}
             onRegionToggle={setSelectedRegions}
           />
@@ -135,8 +155,18 @@ export default function ClientsPageClient({ clients }: ClientsPageClientProps) {
           <div className="mb-8">
             <h2 className="text-2xl md:text-3xl font-bold text-[var(--color-charcoal)]">
               {sortedClients.length === clients.length
-                ? `Всички клиенти (${sortedClients.length})`
-                : `${sortedClients.length} ${sortedClients.length === 1 ? "клиент" : "клиента"}`}
+                ? locale === "bg"
+                  ? `Всички клиенти (${sortedClients.length})`
+                  : `All Clients (${sortedClients.length})`
+                : `${sortedClients.length} ${
+                    sortedClients.length === 1
+                      ? locale === "bg"
+                        ? "клиент"
+                        : "client"
+                      : locale === "bg"
+                        ? "клиента"
+                        : "clients"
+                  }`}
             </h2>
           </div>
 
@@ -146,9 +176,7 @@ export default function ClientsPageClient({ clients }: ClientsPageClientProps) {
                 locale === "bg" ? client.nameBg : client.nameEn;
               const projectCount = client._count.projects;
               const hasWebsite = client.website && client.website.trim() !== "";
-              const logoUrl = client.logoUrl
-                ? `${CLOUDINARY_BASE_URL}/${client.logoUrl}`
-                : null;
+              const logoUrl = getCloudinaryUrl(client.logoUrl);
 
               return (
                 <div key={client.id} className="flex items-center gap-4">

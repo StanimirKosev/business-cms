@@ -1,411 +1,60 @@
-import { Project } from "./mock-data";
+/**
+ * Converts Google Maps GPS coordinates (latitude, longitude) to SVG map coordinates (mapX, mapY)
+ *
+ * Calibrated using reference point:
+ * GPS: lat=42.49610279129718, lng=27.471405457632592
+ * SVG: mapX=791, mapY=379
+ *
+ * Bulgaria geographic bounds used for projection:
+ * - North: 44.22° N, South: 41.24° N
+ * - West: 22.36° E, East: 28.61° E
+ *
+ * SVG viewBox: 1000 x 651
+ */
+export function gpsToSvgCoordinates(
+  lat: number,
+  lng: number
+): { mapX: number; mapY: number } {
+  // Bulgaria's geographic bounds (adjusted for accurate projection)
+  const bounds = {
+    north: 44.22,
+    south: 41.24,
+    west: 22.36,
+    east: 28.61,
+  };
 
-// TODO: Replace with database query when admin is ready
-// Future: const projects = await prisma.project.findMany();
-// Each project will have: title, client, region, coordinateX, coordinateY
+  // SVG viewBox dimensions
+  const svgWidth = 1000;
+  const svgHeight = 651;
 
-// MOCK DATA - Will be replaced with Prisma query
-export const MOCK_PROJECTS: Project[] = [
-  // София област (10 projects)
-  {
-    id: "1",
-    title: "Административна сграда НЕК",
-    client: "Национална електрическа компания ЕАД",
-    region: "Sofia",
-    x: 230,
-    y: 410,
-  },
-  {
-    id: "2",
-    title: "Газопровод Булгартрансгаз",
-    client: "Булгартрансгаз ЕАД",
-    region: "Sofia",
-    x: 235,
-    y: 405,
-  },
-  {
-    id: "3",
-    title: "Правителствена сграда",
-    client: "Министерски съвет",
-    region: "Sofia",
-    x: 225,
-    y: 415,
-  },
-  {
-    id: "4",
-    title: "Офис МИ",
-    client: "Министерство на икономиката",
-    region: "Sofia",
-    x: 228,
-    y: 408,
-  },
-  {
-    id: "5",
-    title: "Административна сграда МОН",
-    client: "Министерство на образованието",
-    region: "Sofia",
-    x: 233,
-    y: 412,
-  },
-  {
-    id: "6",
-    title: "Казарми МО",
-    client: "Министерство на отбраната",
-    region: "Sofia",
-    x: 227,
-    y: 407,
-  },
-  {
-    id: "7",
-    title: "Сграда МВР",
-    client: "Министерство на вътрешните работи",
-    region: "Sofia",
-    x: 232,
-    y: 413,
-  },
-  {
-    id: "8",
-    title: "Железопътна инфраструктура",
-    client: "ДП НКЖИ",
-    region: "Sofia",
-    x: 229,
-    y: 409,
-  },
-  {
-    id: "9",
-    title: "Дипломатически имоти",
-    client: "Агенция за дипломатически имоти",
-    region: "Sofia",
-    x: 226,
-    y: 411,
-  },
-  {
-    id: "10",
-    title: "ЕСО сграда",
-    client: "Електроенергиен системен оператор ЕАД",
-    region: "Sofia",
-    x: 231,
-    y: 414,
-  },
-  {
-    id: "11",
-    title: "Болница Д-р Венкова",
-    client: 'МБАЛ "Д-р Тота Венкова" АД',
-    region: "Sofia",
-    x: 234,
-    y: 406,
-  },
+  // Calculate normalized position (0 to 1)
+  const normalizedX = (lng - bounds.west) / (bounds.east - bounds.west);
+  const normalizedY = (bounds.north - lat) / (bounds.north - bounds.south); // Inverted for SVG coordinates
 
-  // Варна област
-  {
-    id: "12",
-    title: "Пристанище Варна",
-    client: "Пристанище Варна ЕАД",
-    region: "Varna",
-    x: 770,
-    y: 250,
-  },
+  // Apply calibration correction based on reference point
+  // Reference: GPS(42.49610279, 27.471405457632592) should map to SVG(791, 379)
+  const refLat = 42.49610279129718;
+  const refLng = 27.471405457632592;
+  const refMapX = 791;
+  const refMapY = 379;
 
-  // Стара Загора област
-  {
-    id: "13",
-    title: "Мини Марица Изток",
-    client: "Мини Марица Изток ЕАД",
-    region: "Stara Zagora",
-    x: 500,
-    y: 420,
-  },
-  {
-    id: "14",
-    title: "ТЕЦ Марица",
-    client: "ТЕЦ Марица изток 2 ЕАД",
-    region: "Stara Zagora",
-    x: 505,
-    y: 425,
-  },
+  // Calculate what the reference point would map to with current bounds
+  const refNormalizedX = (refLng - bounds.west) / (bounds.east - bounds.west);
+  const refNormalizedY =
+    (bounds.north - refLat) / (bounds.north - bounds.south);
+  const calculatedRefX = refNormalizedX * svgWidth;
+  const calculatedRefY = refNormalizedY * svgHeight;
 
-  // All municipalities (one project each for simplicity in mock data)
-  {
-    id: "15",
-    title: "Общински проект",
-    client: "Община София",
-    region: "Sofia",
-    x: 228,
-    y: 412,
-  },
-  {
-    id: "16",
-    title: "Общински проект",
-    client: "Община Златица",
-    region: "Sofia",
-    x: 380,
-    y: 380,
-  },
-  {
-    id: "17",
-    title: "Общински проект",
-    client: "Община Левски",
-    region: "Pleven",
-    x: 480,
-    y: 220,
-  },
-  {
-    id: "18",
-    title: "Общински проект",
-    client: "Община Бяла",
-    region: "Ruse",
-    x: 520,
-    y: 250,
-  },
-  {
-    id: "19",
-    title: "Общински проект",
-    client: "Община Раднево",
-    region: "Stara Zagora",
-    x: 530,
-    y: 450,
-  },
-  {
-    id: "20",
-    title: "Общински проект",
-    client: "Община Средец",
-    region: "Burgas",
-    x: 720,
-    y: 450,
-  },
-  {
-    id: "21",
-    title: "Общински проект",
-    client: "Община Никопол",
-    region: "Pleven",
-    x: 420,
-    y: 210,
-  },
-  {
-    id: "22",
-    title: "Общински проект",
-    client: "Община Бургас",
-    region: "Burgas",
-    x: 730,
-    y: 460,
-  },
-  {
-    id: "23",
-    title: "Общински проект",
-    client: "Община Хасково",
-    region: "Haskovo",
-    x: 520,
-    y: 530,
-  },
-  {
-    id: "24",
-    title: "Общински проект",
-    client: "Община Стара Загора",
-    region: "Stara Zagora",
-    x: 498,
-    y: 418,
-  },
-  {
-    id: "25",
-    title: "Общински проект",
-    client: "Община Трявна",
-    region: "Gabrovo",
-    x: 520,
-    y: 310,
-  },
-  {
-    id: "26",
-    title: "Общински проект",
-    client: "Община Шумен",
-    region: "Shumen",
-    x: 730,
-    y: 240,
-  },
-  {
-    id: "27",
-    title: "Общински проект",
-    client: "Община Плевен",
-    region: "Pleven",
-    x: 450,
-    y: 250,
-  },
-  {
-    id: "28",
-    title: "Общински проект",
-    client: "Община Белово",
-    region: "Pazardzhik",
-    x: 420,
-    y: 450,
-  },
-  {
-    id: "29",
-    title: "Общински проект",
-    client: "Община Велинград",
-    region: "Pazardzhik",
-    x: 380,
-    y: 480,
-  },
-  {
-    id: "30",
-    title: "Общински проект",
-    client: "Община Сандански",
-    region: "Blagoevgrad",
-    x: 270,
-    y: 520,
-  },
-  {
-    id: "31",
-    title: "Общински проект",
-    client: "Община Белоградчик",
-    region: "Vidin",
-    x: 280,
-    y: 190,
-  },
-  {
-    id: "32",
-    title: "Общински проект",
-    client: "Община Борово",
-    region: "Ruse",
-    x: 520,
-    y: 140,
-  },
-  {
-    id: "33",
-    title: "Общински проект",
-    client: "Община Дряново",
-    region: "Gabrovo",
-    x: 500,
-    y: 310,
-  },
-  {
-    id: "34",
-    title: "Общински проект",
-    client: "Община Две Могили",
-    region: "Ruse",
-    x: 520,
-    y: 150,
-  },
-  {
-    id: "35",
-    title: "Общински проект",
-    client: "Община Баните",
-    region: "Smolyan",
-    x: 440,
-    y: 480,
-  },
-  {
-    id: "36",
-    title: "Общински проект",
-    client: "Община Русе",
-    region: "Ruse",
-    x: 620,
-    y: 100,
-  },
-  {
-    id: "37",
-    title: "Общински проект",
-    client: "Община Габрово",
-    region: "Gabrovo",
-    x: 500,
-    y: 330,
-  },
-  {
-    id: "38",
-    title: "Общински проект",
-    client: "Община Пловдив",
-    region: "Plovdiv",
-    x: 420,
-    y: 430,
-  },
-  {
-    id: "39",
-    title: "Общински проект",
-    client: "Община Долни чифлик",
-    region: "Varna",
-    x: 750,
-    y: 230,
-  },
-  {
-    id: "40",
-    title: "Общински проект",
-    client: "Община Смолян",
-    region: "Smolyan",
-    x: 410,
-    y: 540,
-  },
-  {
-    id: "41",
-    title: "Общински проект",
-    client: "Община Елена",
-    region: "Veliko Tarnovo",
-    x: 540,
-    y: 310,
-  },
-  {
-    id: "42",
-    title: "Общински проект",
-    client: "Община Роман",
-    region: "Vratsa",
-    x: 620,
-    y: 250,
-  },
-  {
-    id: "43",
-    title: "Общински проект",
-    client: "Община Сливен",
-    region: "Sliven",
-    x: 650,
-    y: 420,
-  },
-  {
-    id: "44",
-    title: "Общински проект",
-    client: "Община Струмяни",
-    region: "Blagoevgrad",
-    x: 250,
-    y: 520,
-  },
-  {
-    id: "45",
-    title: "Общински проект",
-    client: "Община Кнежа",
-    region: "Pleven",
-    x: 390,
-    y: 210,
-  },
-  {
-    id: "46",
-    title: "Общински проект",
-    client: "Община Ямбол",
-    region: "Yambol",
-    x: 670,
-    y: 450,
-  },
-  {
-    id: "47",
-    title: "Общински проект",
-    client: "Община Костенец",
-    region: "Sofia",
-    x: 350,
-    y: 410,
-  },
-  {
-    id: "48",
-    title: "Общински проект",
-    client: "Община Белене",
-    region: "Pleven",
-    x: 480,
-    y: 190,
-  },
-  {
-    id: "49",
-    title: "Общински проект",
-    client: "Община Твърдица",
-    region: "Sliven",
-    x: 580,
-    y: 450,
-  },
-];
+  // Calculate correction offsets
+  const offsetX = refMapX - calculatedRefX;
+  const offsetY = refMapY - calculatedRefY;
+
+  // Apply transformation with correction
+  const mapX = Math.round(normalizedX * svgWidth + offsetX);
+  const mapY = Math.round(normalizedY * svgHeight + offsetY);
+
+  return { mapX, mapY };
+}
 
 // Region names mapping (SVG name to Bulgarian name)
 export const REGION_NAMES: Record<string, string> = {
@@ -438,22 +87,6 @@ export const REGION_NAMES: Record<string, string> = {
   Targovishte: "Търговище",
   "Grad Sofiya": "Град София",
 };
-
-// Group projects by region
-export const projectsByRegion = MOCK_PROJECTS.reduce(
-  (acc, project) => {
-    if (!acc[project.region!]) {
-      acc[project.region!] = {
-        projects: [],
-        clients: new Set<string>(),
-      };
-    }
-    acc[project.region!].projects.push(project);
-    acc[project.region!].clients.add(project.client!);
-    return acc;
-  },
-  {} as Record<string, { projects: Project[]; clients: Set<string> }>
-);
 
 // Helper function to get region SVG ID (from bg-white.svg)
 export function getRegionId(region: string): string {
@@ -560,10 +193,3 @@ export function getTooltipY(region: string): number {
   };
   return (centerY[region] || 325) - 100;
 }
-
-// Calculate statistics
-export const mapStats = {
-  totalRegions: Object.keys(projectsByRegion).length,
-  totalProjects: MOCK_PROJECTS.length,
-  totalClients: new Set(MOCK_PROJECTS.map((p) => p.client)).size,
-};

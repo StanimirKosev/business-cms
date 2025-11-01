@@ -2,26 +2,38 @@
 
 import { useState, useEffect } from "react";
 import {
-  MOCK_PROJECTS,
-  projectsByRegion,
   REGION_NAMES,
   getRegionId,
   getTooltipX,
   getTooltipY,
 } from "@/lib/map-data";
 import { MousePointerClick } from "lucide-react";
+import { useLanguage } from "@/app/context/LanguageContext";
+import type { Prisma } from "@repo/database/client";
+import type { ProjectsByRegion } from "@/lib/map-utils";
+
+type ProjectWithClient = Prisma.ProjectGetPayload<{
+  include: {
+    client: true;
+  };
+}>;
 
 /**
  * Interactive map component with click-to-filter functionality
  * Used on the dedicated clients page for filtering client list by region
  */
 export function ClientsMapFilter({
+  projects,
+  projectsByRegion,
   selectedRegions,
   onRegionToggle,
 }: {
+  projects: ProjectWithClient[];
+  projectsByRegion: ProjectsByRegion;
   selectedRegions: Set<string>;
   onRegionToggle: (regions: Set<string>) => void;
 }) {
+  const { locale } = useLanguage();
   const [hoveredRegion, setHoveredRegion] = useState<string | null>(null);
   const [showHelper, setShowHelper] = useState(true);
 
@@ -50,7 +62,9 @@ export function ClientsMapFilter({
         <div className="absolute left-0 right-0 flex items-center justify-center">
           <p className="text-sm text-gray-500 animate-chevron-nudge flex items-center gap-2">
             <MousePointerClick className="w-4 h-4" />
-            Кликнете на област, за да филтрирате клиентите
+            {locale === "bg"
+              ? "Кликнете на област, за да филтрирате клиентите"
+              : "Click on a region to filter clients"}
           </p>
         </div>
       )}
@@ -93,11 +107,11 @@ export function ClientsMapFilter({
           })}
 
           {/* Static project dots */}
-          {MOCK_PROJECTS.map((project) => (
+          {projects.map((project) => (
             <circle
               key={project.id}
-              cx={project.x}
-              cy={project.y}
+              cx={project.mapX}
+              cy={project.mapY}
               r="3"
               fill="#CC0000"
               className="pointer-events-none"
@@ -119,23 +133,38 @@ export function ClientsMapFilter({
             >
               <div className="bg-white shadow-lg rounded-lg px-4 py-3 border-l-2 border-[var(--color-red)]">
                 <div className="font-bold text-base text-[var(--color-charcoal)]">
-                  Област {REGION_NAMES[hoveredRegion] || hoveredRegion}
+                  {locale === "bg" ? "Област" : "Region"}{" "}
+                  {locale === "bg"
+                    ? REGION_NAMES[hoveredRegion] || hoveredRegion
+                    : hoveredRegion}
                 </div>
                 <div className="text-sm text-gray-600 mt-1">
                   {projectsByRegion[hoveredRegion].projects.length}{" "}
                   {projectsByRegion[hoveredRegion].projects.length === 1
-                    ? "проект"
-                    : "проекта"}
+                    ? locale === "bg"
+                      ? "проект"
+                      : "project"
+                    : locale === "bg"
+                      ? "проекта"
+                      : "projects"}
                   {" · "}
-                  {projectsByRegion[hoveredRegion].clients.size}{" "}
-                  {projectsByRegion[hoveredRegion].clients.size === 1
-                    ? "клиент"
-                    : "клиента"}
+                  {projectsByRegion[hoveredRegion].clientNames[locale].size}{" "}
+                  {projectsByRegion[hoveredRegion].clientNames[locale].size === 1
+                    ? locale === "bg"
+                      ? "клиент"
+                      : "client"
+                    : locale === "bg"
+                      ? "клиента"
+                      : "clients"}
                 </div>
                 <div className="text-xs text-[var(--color-red)] mt-2 font-medium">
                   {selectedRegions.has(hoveredRegion)
-                    ? "Кликнете за премахване"
-                    : "Кликнете за филтриране"}
+                    ? locale === "bg"
+                      ? "Кликнете за премахване"
+                      : "Click to remove"
+                    : locale === "bg"
+                      ? "Кликнете за филтриране"
+                      : "Click to filter"}
                 </div>
               </div>
             </foreignObject>
@@ -149,18 +178,21 @@ export function ClientsMapFilter({
                 <button
                   key={region}
                   onClick={() => handleRegionToggle(region)}
-                  className="inline-flex items-center gap-2 px-3 py-1.5 bg-[var(--color-red)] text-white rounded-full text-sm font-medium hover:bg-red-700 transition-colors"
+                  className="inline-flex items-center gap-2 px-3 py-1.5 bg-[var(--color-red)] text-white rounded-full text-sm font-medium hover:bg-red-700 transition-colors cursor-pointer"
                 >
-                  <span>Област {REGION_NAMES[region] || region}</span>
+                  <span>
+                    {locale === "bg" ? "Област" : "Region"}{" "}
+                    {locale === "bg" ? REGION_NAMES[region] || region : region}
+                  </span>
                   <span className="text-xs">✕</span>
                 </button>
               ))}
             </div>
             <button
               onClick={() => onRegionToggle(new Set())}
-              className="text-sm text-[var(--color-red)] hover:underline font-medium"
+              className="text-sm text-[var(--color-red)] hover:underline font-medium cursor-pointer"
             >
-              Изчисти всички филтри
+              {locale === "bg" ? "Изчисти всички филтри" : "Clear all filters"}
             </button>
           </div>
         )}
