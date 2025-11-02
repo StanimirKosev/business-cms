@@ -160,13 +160,21 @@ export function ClientsMap({ projects }: ClientsMapProps) {
                     <div className="text-sm text-gray-600 mt-1">
                       {projectsByRegion[hoveredRegion].projects.length}{" "}
                       {projectsByRegion[hoveredRegion].projects.length === 1
-                        ? "проект"
-                        : "проекта"}
+                        ? locale === "bg"
+                          ? "проект"
+                          : "project"
+                        : locale === "bg"
+                          ? "проекта"
+                          : "projects"}
                       {" · "}
                       {projectsByRegion[hoveredRegion].clientNames[locale].size}{" "}
                       {projectsByRegion[hoveredRegion].clientNames[locale].size === 1
-                        ? "клиент"
-                        : "клиента"}
+                        ? locale === "bg"
+                          ? "клиент"
+                          : "client"
+                        : locale === "bg"
+                          ? "клиента"
+                          : "clients"}
                     </div>
                   </div>
                   <div className="space-y-2 max-h-48 overflow-y-auto [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-[var(--color-red)] [&::-webkit-scrollbar-thumb]:rounded-full">

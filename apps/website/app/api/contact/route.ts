@@ -14,7 +14,19 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
 
-    const validationResult = contactSchema.safeParse(body);
+    // Bot detection: Check submission time (must be >= 3 seconds)
+    const { _submitTime, ...formData } = body;
+    if (typeof _submitTime === "number" && _submitTime < 3000) {
+      console.log("[CONTACT FORM] Bot detected: submission too fast", {
+        submitTime: _submitTime,
+      });
+      return NextResponse.json(
+        { success: false, errorCode: ContactErrorCodes.RATE_LIMIT_EXCEEDED },
+        { status: 429 }
+      );
+    }
+
+    const validationResult = contactSchema.safeParse(formData);
 
     if (!validationResult.success) {
       return NextResponse.json(
@@ -26,7 +38,12 @@ export async function POST(request: NextRequest) {
     const { name, email, phone, message, consent, website } =
       validationResult.data;
 
+    // Honeypot check: if website field is filled, it's a bot
     if (!consent || website) {
+      console.log("[CONTACT FORM] Bot detected: honeypot triggered or no consent", {
+        website: !!website,
+        consent,
+      });
       return NextResponse.json(
         { success: false, errorCode: ContactErrorCodes.VALIDATION_ERROR },
         { status: 400 }

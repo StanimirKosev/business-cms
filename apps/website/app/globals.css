@@ -54,19 +54,6 @@
   transform: scaleX(1);
 }
 
-/* Sonner toast notifications */
-.toast-success {
-  background: #10b981 !important;
-  color: white !important;
-  border: none !important;
-}
-
-.toast-error {
-  background: #ef4444 !important;
-  color: white !important;
-  border: none !important;
-}
-
 /* Animations */
 @keyframes slide-up {
   from {

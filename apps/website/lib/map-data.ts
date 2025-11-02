@@ -1,10 +1,46 @@
 /**
+ * GPS to SVG Coordinate Conversion with Iterative Calibration
+ *
+ * OVERVIEW:
  * Converts Google Maps GPS coordinates (latitude, longitude) to SVG map coordinates (mapX, mapY)
+ * for the Bulgarian map (SVG viewBox: 1000 x 651).
  *
- * 28-point calibration using all Bulgarian region capitals for maximum accuracy
- * Uses inverse distance weighting for smooth interpolation across the country
+ * ALGORITHM:
+ * Uses Inverse Distance Weighting (IDW) interpolation with multiple calibration points.
+ * - Weight for each point = 1 / (distance²) where distance = sqrt((lat1-lat2)² + (lng1-lng2)²)
+ * - Final coordinates = weighted average of all calibration points
+ * - Points exactly on a calibration point return exact SVG coordinates (weight = 1e10)
  *
- * SVG viewBox: 1000 x 651
+ * CALIBRATION PROCESS (How to improve accuracy):
+ * 1. User adds a project with GPS coordinates from Google Maps
+ * 2. Function calculates SVG position using current calibration points
+ * 3. User visually checks if the red dot appears in correct location on map
+ * 4. If incorrect, user provides the correct SVG coordinates (by inspecting map)
+ * 5. Add/update calibration point in the array below
+ *
+ * EXAMPLE - Adding a new calibration point:
+ * User says: "GPS 42.6556, 23.2709 maps to (265, 400) but should be (180, 350)"
+ *
+ * Action: Update or add entry:
+ * { name: "Location Name", gps: { lat: 42.6556, lng: 23.2709 }, svg: { x: 180, y: 350 } }
+ *
+ * CONTINUOUS IMPROVEMENT:
+ * - Started with 4 regional points, now has 29 calibration points
+ * - Each verified project location improves accuracy for nearby areas
+ * - The more calibration points, the better the interpolation accuracy
+ * - Geographic coverage: North (Byala, Levski), South (pending), East (Burgas),
+ *   West (Sofia), Center (Gabrovo) - well distributed
+ *
+ * VERIFIED CALIBRATION POINTS (user-confirmed accurate):
+ * - Burgas (42.4961, 27.4714) → (791, 379)
+ * - Grad Sofiya (42.6556, 23.2709) → (180, 350)
+ * - Byala near Ruse (43.5112, 25.7108) → (535, 180)
+ * - Gabrovo (42.8887, 25.3159) → (480, 300)
+ * - Levski near Pleven (43.3701, 25.1394) → (450, 200)
+ *
+ * FUTURE IMPROVEMENTS:
+ * As more projects are added, especially in southern Bulgaria (Plovdiv, Kardzhali,
+ * Smolyan areas), add calibration points there to improve accuracy in those regions.
  */
 export function gpsToSvgCoordinates(
   lat: number,

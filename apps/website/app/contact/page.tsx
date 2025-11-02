@@ -16,22 +16,20 @@ import {
 import { Input } from "@repo/ui/components/input";
 import { Textarea } from "@repo/ui/components/textarea";
 import { Checkbox } from "@repo/ui/components/checkbox";
-import { contactSchema, type ContactFormValues } from "@repo/ui/validation";
+import {
+  createContactSchema,
+  type ContactFormValues,
+} from "@repo/ui/validation";
 import Link from "next/link";
-
-// Translation map for API response codes
-// TODO: Add English translations when language toggle is implemented
-const CONTACT_MESSAGES = {
-  CONTACT_SUCCESS: "Благодарим ви! Вашето съобщение е изпратено успешно.",
-  VALIDATION_ERROR: "Невалидни данни. Моля, проверете формата.",
-  RATE_LIMIT_EXCEEDED: "Твърде много заявки. Моля, изчакайте малко.",
-  EMAIL_SEND_FAILED: "Грешка при изпращане на имейл. Моля, опитайте отново.",
-  SERVER_ERROR: "Възникна грешка. Моля, опитайте отново.",
-} as const;
+import { useLanguage } from "@/app/context/LanguageContext";
+import { useState } from "react";
 
 const ContactPage = () => {
+  const { t, locale } = useLanguage();
+  const [formRenderTime] = useState(Date.now());
+
   const form = useForm<ContactFormValues>({
-    resolver: zodResolver(contactSchema),
+    resolver: zodResolver(createContactSchema(locale)),
     mode: "onBlur",
     defaultValues: {
       name: "",
@@ -45,34 +43,40 @@ const ContactPage = () => {
 
   async function onSubmit(values: ContactFormValues) {
     try {
+      // Calculate time since form was rendered (bot detection)
+      const timeSinceRender = Date.now() - formRenderTime;
+
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
+        body: JSON.stringify({ ...values, _submitTime: timeSinceRender }),
       });
 
       const data = await response.json();
 
       if (!response.ok) {
         // Map error code to translated message
+        const errorMessages: Record<string, string> = {
+          VALIDATION_ERROR: t.contact.messages.validationError,
+          RATE_LIMIT_EXCEEDED: t.contact.messages.rateLimitExceeded,
+          EMAIL_SEND_FAILED: t.contact.messages.emailSendFailed,
+          SERVER_ERROR: t.contact.messages.serverError,
+        };
         const errorMessage =
-          data.errorCode && data.errorCode in CONTACT_MESSAGES
-            ? CONTACT_MESSAGES[data.errorCode as keyof typeof CONTACT_MESSAGES]
-            : CONTACT_MESSAGES.SERVER_ERROR;
+          data.errorCode && data.errorCode in errorMessages
+            ? errorMessages[data.errorCode]
+            : t.contact.messages.serverError;
         throw new Error(errorMessage);
       }
 
       // Success - map success code to translated message
-      const successMessage =
-        data.messageCode && data.messageCode in CONTACT_MESSAGES
-          ? CONTACT_MESSAGES[data.messageCode as keyof typeof CONTACT_MESSAGES]
-          : CONTACT_MESSAGES.CONTACT_SUCCESS;
+      const successMessage = t.contact.messages.success;
 
       toast.success(successMessage);
       form.reset({}, { keepErrors: false });
     } catch (error) {
       const errorMessage =
-        error instanceof Error ? error.message : CONTACT_MESSAGES.SERVER_ERROR;
+        error instanceof Error ? error.message : t.contact.messages.serverError;
       toast.error(errorMessage);
     }
   }
@@ -88,11 +92,10 @@ const ContactPage = () => {
                 className="text-4xl md:text-5xl font-bold mb-4 text-[var(--color-charcoal)]"
                 id="contact-form-heading"
               >
-                Свържете се с нас
+                {t.contact.title}
               </h1>
               <p className="text-lg text-[var(--color-charcoal)] opacity-70 leading-relaxed">
-                Изпратете ни вашето запитване и ще се свържем с вас възможно
-                най-скоро
+                {t.contact.subtitle}
               </p>
             </div>
 
@@ -120,11 +123,12 @@ const ContactPage = () => {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>
-                          Име <span className="text-[var(--color-red)]">*</span>
+                          {t.contact.form.name}{" "}
+                          <span className="text-[var(--color-red)]">*</span>
                         </FormLabel>
                         <FormControl>
                           <Input
-                            placeholder="Вашето име"
+                            placeholder={t.contact.form.placeholders.name}
                             className="bg-white border-[var(--color-concrete-grey)]"
                             {...field}
                           />
@@ -140,13 +144,13 @@ const ContactPage = () => {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>
-                          Имейл{" "}
+                          {t.contact.form.email}{" "}
                           <span className="text-[var(--color-red)]">*</span>
                         </FormLabel>
                         <FormControl>
                           <Input
                             type="email"
-                            placeholder="email@example.com"
+                            placeholder={t.contact.form.placeholders.email}
                             className="bg-white border-[var(--color-concrete-grey)]"
                             {...field}
                           />
@@ -162,13 +166,13 @@ const ContactPage = () => {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>
-                          Телефон{" "}
+                          {t.contact.form.phone}{" "}
                           <span className="text-[var(--color-red)]">*</span>
                         </FormLabel>
                         <FormControl>
                           <Input
                             type="tel"
-                            placeholder="+359 XXX XXX XXX"
+                            placeholder={t.contact.form.placeholders.phone}
                             className="bg-white border-[var(--color-concrete-grey)]"
                             {...field}
                           />
@@ -184,12 +188,12 @@ const ContactPage = () => {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>
-                          Съобщение{" "}
+                          {t.contact.form.message}{" "}
                           <span className="text-[var(--color-red)]">*</span>
                         </FormLabel>
                         <FormControl>
                           <Textarea
-                            placeholder="Вашето съобщение..."
+                            placeholder={t.contact.form.placeholders.message}
                             rows={6}
                             className="bg-white border-[var(--color-concrete-grey)] resize-none"
                             {...field}
@@ -213,16 +217,20 @@ const ContactPage = () => {
                               onCheckedChange={field.onChange}
                             />
                           </FormControl>
-                          <FormLabel htmlFor="consent" className="text-sm font-normal leading-snug cursor-pointer">
-                            Съгласен съм с{" "}
+                          <FormLabel
+                            htmlFor="consent"
+                            className="text-sm font-normal leading-snug cursor-pointer"
+                          >
+                            {t.contact.form.consent}{" "}
                             <Link
                               href="/privacy"
                               className="text-[var(--color-red)] hover:underline font-medium"
                               onClick={(e) => e.stopPropagation()}
                             >
-                              политиката за поверителност
+                              {t.contact.form.privacyLink}
                             </Link>{" "}
-                            и обработка на данните ми. <span className="text-[var(--color-red)]">*</span>
+                            {t.contact.form.consentText}{" "}
+                            <span className="text-[var(--color-red)]">*</span>
                           </FormLabel>
                         </div>
                         <FormMessage className="ml-6" />
@@ -238,10 +246,10 @@ const ContactPage = () => {
                     {form.formState.isSubmitting ? (
                       <>
                         <Loader2 className="animate-spin -ml-1 mr-3 h-5 w-5" />
-                        Изпращане...
+                        {t.contact.form.submitting}
                       </>
                     ) : (
-                      "Изпрати"
+                      t.contact.form.submit
                     )}
                   </Button>
                 </form>
@@ -254,15 +262,19 @@ const ContactPage = () => {
             {/* Company Info */}
             <div className="bg-[var(--color-red)] text-white rounded-lg p-8 shadow-lg flex-shrink-0">
               <h2 className="text-2xl font-bold mb-8">
-                Техно Строй България ООД
+                {t.contact.info.companyName}
               </h2>
 
               <div className="space-y-5">
                 <div className="flex gap-4 items-start">
                   <MapPin className="w-6 h-6 flex-shrink-0 mt-0.5" />
                   <div className="leading-relaxed">
-                    <p className="font-medium text-lg">гр. София</p>
-                    <p className="text-white/95">бул. Витоша № 188</p>
+                    <p className="font-medium text-lg">
+                      {t.contact.info.address.city}
+                    </p>
+                    <p className="text-white/95">
+                      {t.contact.info.address.street}
+                    </p>
                   </div>
                 </div>
 

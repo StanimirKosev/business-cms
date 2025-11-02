@@ -69,13 +69,13 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
 
         {/* Cards Container with Controls */}
         <div
-          className={`transition-all duration-700 ${
+          className={`transition-all duration-700 overflow-hidden ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
           {/* Carousel */}
-          <div className="overflow-hidden" ref={emblaRef}>
-            <div className="flex gap-6">
+          <div className="-mr-6" ref={emblaRef}>
+            <div className="flex">
               {projects.map((project) => {
                 const title =
                   locale === "bg" ? project.titleBg : project.titleEn;
@@ -94,7 +94,7 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
                 return (
                   <div
                     key={project.id}
-                    className="flex-[0_0_100%] md:flex-[0_0_calc(33.333%-16px)] min-w-0"
+                    className="flex-[0_0_100%] md:flex-[0_0_33.333%] min-w-0 pr-6"
                   >
                     <Card
                       title={title}

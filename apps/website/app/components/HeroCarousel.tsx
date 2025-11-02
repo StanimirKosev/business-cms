@@ -145,24 +145,28 @@ const HeroCarousel = () => {
               </h1>
               <p
                 key={`subtitle-${selectedIndex}`}
-                className="text-lg md:text-xl text-[var(--color-white)] mb-8 animate-slide-up-delayed"
+                className="text-lg md:text-xl text-[var(--color-white)] animate-slide-up-delayed"
               >
                 {t.hero.slides[selectedIndex].subtitle}
               </p>
             </div>
           </div>
-          <div className="hidden md:flex gap-4 pointer-events-auto">
-            <ChevronButton
-              direction="left"
-              onClick={() => handleNavigation("prev")}
-              ariaLabel="Previous slide"
-            />
-            <ChevronButton
-              direction="right"
-              onClick={() => handleNavigation("next")}
-              ariaLabel="Next slide"
-            />
-          </div>
+        </div>
+      </div>
+
+      {/* Chevrons - positioned independently to prevent movement */}
+      <div className="absolute bottom-[30vh] left-6 md:left-40 z-10 pointer-events-none">
+        <div className="hidden md:flex gap-4 ml-5 pointer-events-auto">
+          <ChevronButton
+            direction="left"
+            onClick={() => handleNavigation("prev")}
+            ariaLabel="Previous slide"
+          />
+          <ChevronButton
+            direction="right"
+            onClick={() => handleNavigation("next")}
+            ariaLabel="Next slide"
+          />
         </div>
       </div>
 

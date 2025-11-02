@@ -35,19 +35,7 @@ export default function RootLayout({
           <Header />
           {children}
           <Footer />
-          <Toaster
-            position="top-center"
-            toastOptions={{
-              style: {
-                background: 'white',
-                border: '1px solid #e0e0e0',
-              },
-              classNames: {
-                success: 'toast-success',
-                error: 'toast-error',
-              },
-            }}
-          />
+          <Toaster position="top-center" richColors />
         </LanguageProvider>
       </body>
     </html>

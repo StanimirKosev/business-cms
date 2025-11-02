@@ -29,7 +29,7 @@ export function ProjectPageClient({
   const { locale } = useLanguage();
   const { ref: infoRef, isVisible: infoVisible } = useScrollAnimation(0.3);
   const { ref: galleryRef, isVisible: galleryVisible } =
-    useScrollAnimation(0.1);
+    useScrollAnimation(0.05);
   const { ref: relatedRef, isVisible: relatedVisible } =
     useScrollAnimation(0.3);
 
