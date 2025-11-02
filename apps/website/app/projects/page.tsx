@@ -4,24 +4,23 @@ import ProjectsPageClient from "./ProjectsPageClient";
 export const revalidate = 3600; // ISR: Revalidate every hour
 
 export default async function ProjectsPage() {
-  const allProjects = await prisma.project.findMany({
+  const projects = await prisma.project.findMany({
     include: { category: true, client: true },
-    orderBy: { createdAt: "desc" },
+    orderBy: { createdAt: "asc" },
   });
 
-  const categoriesMap = new Map();
+  // Build categories with project counts from the fetched projects
+  const categoryMap: Record<string, typeof projects[0]["category"] & { _count: { projects: number } }> = {};
 
-  allProjects.forEach((p) => {
-    const cat = p.category;
-    if (!categoriesMap.has(cat.id)) {
-      categoriesMap.set(cat.id, { ...cat, _count: { projects: 0 } });
+  projects.forEach((project) => {
+    const catId = project.category.id;
+    if (!categoryMap[catId]) {
+      categoryMap[catId] = { ...project.category, _count: { projects: 0 } };
     }
-    categoriesMap.get(cat.id)._count.projects++;
+    categoryMap[catId]._count.projects++;
   });
 
-  const categories = Array.from(categoriesMap.values()).sort(
-    (a, b) => a.order - b.order
-  );
+  const categories = Object.values(categoryMap);
 
-  return <ProjectsPageClient categories={categories} projects={allProjects} />;
+  return <ProjectsPageClient categories={categories} projects={projects} />;
 }

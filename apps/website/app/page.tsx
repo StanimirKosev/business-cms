@@ -13,7 +13,7 @@ export default async function HomePage() {
       category: true,
       client: true,
     },
-    orderBy: { createdAt: "desc" },
+    orderBy: { createdAt: "asc" },
   });
 
   const featuredProjects = allProjects.filter((p) => p.featured);

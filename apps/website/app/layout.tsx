@@ -5,6 +5,7 @@ import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import { Toaster } from "sonner";
 import { LanguageProvider } from "@/app/context/LanguageContext";
+import { ScrollToTop } from "@/app/components/ScrollToTop";
 
 // Font
 const manrope = Manrope({
@@ -30,6 +31,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${manrope.variable} antialiased`}>
         <LanguageProvider>
+          <ScrollToTop />
           <Header />
           {children}
           <Footer />

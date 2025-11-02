@@ -1,13 +1,8 @@
 /**
  * Converts Google Maps GPS coordinates (latitude, longitude) to SVG map coordinates (mapX, mapY)
  *
- * Calibrated using reference point:
- * GPS: lat=42.49610279129718, lng=27.471405457632592
- * SVG: mapX=791, mapY=379
- *
- * Bulgaria geographic bounds used for projection:
- * - North: 44.22° N, South: 41.24° N
- * - West: 22.36° E, East: 28.61° E
+ * 28-point calibration using all Bulgarian region capitals for maximum accuracy
+ * Uses inverse distance weighting for smooth interpolation across the country
  *
  * SVG viewBox: 1000 x 651
  */
@@ -15,45 +10,67 @@ export function gpsToSvgCoordinates(
   lat: number,
   lng: number
 ): { mapX: number; mapY: number } {
-  // Bulgaria's geographic bounds (adjusted for accurate projection)
-  const bounds = {
-    north: 44.22,
-    south: 41.24,
-    west: 22.36,
-    east: 28.61,
+  // All Bulgarian region calibration points with GPS coordinates and SVG positions
+  // Additional project-specific points added for higher accuracy
+  const calibrationPoints = [
+    { name: "Blagoevgrad", gps: { lat: 42.0116, lng: 23.0941 }, svg: { x: 250, y: 520 } },
+    { name: "Burgas", gps: { lat: 42.4961, lng: 27.4714 }, svg: { x: 791, y: 379 } },
+    { name: "Byala (near Ruse)", gps: { lat: 43.5112, lng: 25.7108 }, svg: { x: 535, y: 180 } },
+    { name: "Dobrich", gps: { lat: 43.5667, lng: 27.8272 }, svg: { x: 800, y: 140 } },
+    { name: "Gabrovo", gps: { lat: 42.8887, lng: 25.3159 }, svg: { x: 480, y: 300 } },
+    { name: "Haskovo", gps: { lat: 41.9344, lng: 25.5557 }, svg: { x: 520, y: 530 } },
+    { name: "Kardzhali", gps: { lat: 41.6486, lng: 25.3781 }, svg: { x: 500, y: 500 } },
+    { name: "Kyustendil", gps: { lat: 42.2858, lng: 22.6897 }, svg: { x: 180, y: 410 } },
+    { name: "Levski (near Pleven)", gps: { lat: 43.3701, lng: 25.1394 }, svg: { x: 450, y: 200 } },
+    { name: "Lovech", gps: { lat: 43.1363, lng: 24.7141 }, svg: { x: 380, y: 270 } },
+    { name: "Montana", gps: { lat: 43.4092, lng: 23.2254 }, svg: { x: 200, y: 180 } },
+    { name: "Pazardzhik", gps: { lat: 42.1887, lng: 24.3332 }, svg: { x: 350, y: 470 } },
+    { name: "Pernik", gps: { lat: 42.6054, lng: 23.0336 }, svg: { x: 220, y: 380 } },
+    { name: "Pleven", gps: { lat: 43.4170, lng: 24.6167 }, svg: { x: 450, y: 250 } },
+    { name: "Plovdiv", gps: { lat: 42.1354, lng: 24.7453 }, svg: { x: 420, y: 430 } },
+    { name: "Razgrad", gps: { lat: 43.5258, lng: 26.5236 }, svg: { x: 680, y: 160 } },
+    { name: "Ruse", gps: { lat: 43.8564, lng: 25.9656 }, svg: { x: 620, y: 100 } },
+    { name: "Shumen", gps: { lat: 43.2706, lng: 26.9225 }, svg: { x: 730, y: 240 } },
+    { name: "Silistra", gps: { lat: 44.1167, lng: 27.2606 }, svg: { x: 820, y: 80 } },
+    { name: "Sliven", gps: { lat: 42.6824, lng: 26.3228 }, svg: { x: 650, y: 420 } },
+    { name: "Smolyan", gps: { lat: 41.5771, lng: 24.7014 }, svg: { x: 410, y: 540 } },
+    { name: "Sofia", gps: { lat: 42.6977, lng: 23.3219 }, svg: { x: 300, y: 410 } },
+    { name: "Grad Sofiya", gps: { lat: 42.6556, lng: 23.2709 }, svg: { x: 180, y: 350 } },
+    { name: "Stara Zagora", gps: { lat: 42.4258, lng: 25.6342 }, svg: { x: 500, y: 420 } },
+    { name: "Targovishte", gps: { lat: 43.2503, lng: 26.5722 }, svg: { x: 700, y: 200 } },
+    { name: "Varna", gps: { lat: 43.2141, lng: 27.9147 }, svg: { x: 770, y: 250 } },
+    { name: "Veliko Tarnovo", gps: { lat: 43.0757, lng: 25.6172 }, svg: { x: 520, y: 180 } },
+    { name: "Vidin", gps: { lat: 43.9859, lng: 22.8578 }, svg: { x: 150, y: 140 } },
+    { name: "Vratsa", gps: { lat: 43.2100, lng: 23.5628 }, svg: { x: 300, y: 240 } },
+    { name: "Yambol", gps: { lat: 42.4841, lng: 26.5106 }, svg: { x: 670, y: 450 } },
+  ];
+
+  // Calculate distance-based weights for each calibration point
+  const weights = calibrationPoints.map((point) => {
+    const latDiff = lat - point.gps.lat;
+    const lngDiff = lng - point.gps.lng;
+    const distance = Math.sqrt(latDiff * latDiff + lngDiff * lngDiff);
+    // Inverse distance weighting (closer points have more influence)
+    // If exactly on a calibration point, return that point's coordinates
+    return distance === 0 ? 1e10 : 1 / (distance * distance);
+  });
+
+  const totalWeight = weights.reduce((sum, w) => sum + w, 0);
+
+  // Weighted average of all calibration points
+  let mapX = 0;
+  let mapY = 0;
+
+  calibrationPoints.forEach((point, i) => {
+    const normalizedWeight = weights[i] / totalWeight;
+    mapX += point.svg.x * normalizedWeight;
+    mapY += point.svg.y * normalizedWeight;
+  });
+
+  return {
+    mapX: Math.round(mapX),
+    mapY: Math.round(mapY),
   };
-
-  // SVG viewBox dimensions
-  const svgWidth = 1000;
-  const svgHeight = 651;
-
-  // Calculate normalized position (0 to 1)
-  const normalizedX = (lng - bounds.west) / (bounds.east - bounds.west);
-  const normalizedY = (bounds.north - lat) / (bounds.north - bounds.south); // Inverted for SVG coordinates
-
-  // Apply calibration correction based on reference point
-  // Reference: GPS(42.49610279, 27.471405457632592) should map to SVG(791, 379)
-  const refLat = 42.49610279129718;
-  const refLng = 27.471405457632592;
-  const refMapX = 791;
-  const refMapY = 379;
-
-  // Calculate what the reference point would map to with current bounds
-  const refNormalizedX = (refLng - bounds.west) / (bounds.east - bounds.west);
-  const refNormalizedY =
-    (bounds.north - refLat) / (bounds.north - bounds.south);
-  const calculatedRefX = refNormalizedX * svgWidth;
-  const calculatedRefY = refNormalizedY * svgHeight;
-
-  // Calculate correction offsets
-  const offsetX = refMapX - calculatedRefX;
-  const offsetY = refMapY - calculatedRefY;
-
-  // Apply transformation with correction
-  const mapX = Math.round(normalizedX * svgWidth + offsetX);
-  const mapY = Math.round(normalizedY * svgHeight + offsetY);
-
-  return { mapX, mapY };
 }
 
 // Region names mapping (SVG name to Bulgarian name)
