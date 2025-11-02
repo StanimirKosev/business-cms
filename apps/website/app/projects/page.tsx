@@ -1,7 +1,20 @@
 import { prisma } from "@repo/database/client";
 import ProjectsPageClient from "./ProjectsPageClient";
+import { Metadata } from "next";
 
 export const revalidate = 3600; // ISR: Revalidate every hour
+
+export const metadata: Metadata = {
+  title: "Проекти",
+  description:
+    "Портфолио от завършени строителни проекти в България - жилищно, промишлено и инфраструктурно строителство.",
+  openGraph: {
+    title: "Проекти | Техно Строй България",
+    description:
+      "Портфолио от завършени строителни проекти в България.",
+    url: "https://technostroy.bg/projects",
+  },
+};
 
 export default async function ProjectsPage() {
   const projects = await prisma.project.findMany({

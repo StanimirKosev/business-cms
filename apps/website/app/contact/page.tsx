@@ -302,13 +302,14 @@ const ContactPage = () => {
 
             <div className="flex-1 min-h-[400px] lg:min-h-0 rounded-lg overflow-hidden shadow-lg">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d259.27039387559444!2d23.308923145918758!3d42.67598251733605!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40aa851d53a0542d%3A0x8c0abb7ddb14c66f!2z0JjQstCw0L0g0JLQsNC30L7Qsiwg0LHRg9C7LiDigJ7QktC40YLQvtGI0LDigJwgMTg4LCAxNDA4INCh0L7RhNC40Y8!5e0!3m2!1sbg!2sbg!4v1759401675908!5m2!1sbg!2sbg"
+                src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2934.6!2d23.308923!3d42.675983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xec718dc53639c4a9!2zVGVjaG5vIFN0cm95IEJ1bGdhcmlhIOKAkyBUZWtubyDQodGC0YDQvtC5INCR0YrQu9Cz0LDRgNC40Y8!5e0!3m2!1s${locale}!2sbg!4v1234567890!5m2!1s${locale}!2sbg`}
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
                 allow="fullscreen"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
+                title="Techno Stroy Bulgaria Location"
               />
             </div>
           </div>

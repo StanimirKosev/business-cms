@@ -6,6 +6,7 @@ import Footer from "@/app/components/Footer";
 import { Toaster } from "sonner";
 import { LanguageProvider } from "@/app/context/LanguageContext";
 import { ScrollToTop } from "@/app/components/ScrollToTop";
+import { HtmlWrapper } from "@/app/components/HtmlWrapper";
 
 // Font
 const manrope = Manrope({
@@ -16,9 +17,37 @@ const manrope = Manrope({
 
 // SEO Metadata
 export const metadata: Metadata = {
-  title: "Construction Company - Professional Building Services in Bulgaria",
+  title: {
+    default:
+      "Строителна фирма Техно Строй България ООД - строителство, реконструкция, рехабилитация и модернизация",
+    template: "%s | Техно Строй България",
+  },
   description:
-    "Professional construction services in Bulgaria. View our portfolio of completed projects and contact us for your construction needs.",
+    "Строителна фирма в София с над 15 години опит. Предлагаме строителни услуги - жилищно, промишлено и инфраструктурно строителство, реконструкция, рехабилитация и модернизация в България.",
+  keywords: [
+    "строителна фирма София",
+    "строителство България",
+    "реконструкция",
+    "рехабилитация",
+    "модернизация",
+    "строителни услуги",
+    "жилищно строителство",
+    "промишлено строителство",
+    "инфраструктурни проекти",
+    "Техно Строй",
+  ],
+  authors: [{ name: "Техно Строй България ООД" }],
+  openGraph: {
+    type: "website",
+    locale: "bg_BG",
+    alternateLocale: "en_US",
+    url: "https://technostroy.bg",
+    siteName: "Техно Строй България",
+    title:
+      "Строителна фирма Техно Строй България ООД - строителство, реконструкция, рехабилитация и модернизация",
+    description:
+      "Строителна фирма в София с над 15 години опит. Жилищно, промишлено и инфраструктурно строителство.",
+  },
 };
 
 export default function RootLayout({
@@ -27,17 +56,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // Language for SEO
-    <html lang="en">
-      <body className={`${manrope.variable} antialiased`}>
-        <LanguageProvider>
+    <LanguageProvider>
+      <HtmlWrapper>
+        <body className={`${manrope.variable} antialiased`}>
           <ScrollToTop />
           <Header />
           {children}
           <Footer />
           <Toaster position="top-center" richColors />
-        </LanguageProvider>
-      </body>
-    </html>
+        </body>
+      </HtmlWrapper>
+    </LanguageProvider>
   );
 }

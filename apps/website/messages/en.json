@@ -185,5 +185,141 @@
       "emailSendFailed": "Error sending email. Please try again.",
       "serverError": "An error occurred. Please try again."
     }
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: October 15, 2025",
+    "sections": {
+      "introduction": {
+        "title": "1. Introduction",
+        "content": "Welcome to the website of **Techno Stroy Bulgaria** Ltd. We respect your privacy and are committed to protecting your personal data. This policy explains how we collect and process your data when using the contact form."
+      },
+      "dataController": {
+        "title": "2. Data Controller",
+        "company": "Techno Stroy Bulgaria Ltd.",
+        "ein": "EIN: 175410402",
+        "address": "188 Vitosha Blvd, Sofia, Bulgaria",
+        "phone": "02/953 27 90",
+        "email": "office@technostroy.bg"
+      },
+      "dataCollection": {
+        "title": "3. What Data We Collect",
+        "intro": "Through the **contact form** we collect:",
+        "items": [
+          "Name (required)",
+          "Email address (required)",
+          "Phone number (required)",
+          "Message (required)"
+        ],
+        "note": "**Note:** We do not collect IP addresses, tracking cookies or analytics data."
+      },
+      "dataUsage": {
+        "title": "4. How We Use Your Data",
+        "intro": "We use your data solely to respond to your inquiry and communicate regarding construction services.",
+        "legalBasis": "Legal Basis (GDPR):",
+        "legalItems": [
+          "**Art. 6(1)(a)** - Your explicit consent (from the contact form)",
+          "**Art. 6(1)(b)** - Performance of a contract or taking steps at your request"
+        ]
+      },
+      "dataSharing": {
+        "title": "5. Data Sharing",
+        "intro": "Your data may be shared with:",
+        "items": [
+          "**Resend.com** (email provider) - for sending messages from the form",
+          "**Vercel Inc.** (hosting) - for website operation",
+          "**Google LLC** (Google Maps) - for displaying location"
+        ],
+        "note": "**Note:** All providers outside the EU use Standard Contractual Clauses (SCC) approved by the EU."
+      },
+      "retention": {
+        "title": "6. Retention Period",
+        "content": "Emails from the contact form are stored for up to **1 year** after receipt, unless longer retention is necessary for contract performance or legal obligation."
+      },
+      "rights": {
+        "title": "7. Your Rights",
+        "intro": "Under GDPR you have the right to:",
+        "items": [
+          "**Access** to your personal data",
+          "**Rectification** of inaccurate data",
+          "**Erasure** of your data (\"right to be forgotten\")",
+          "**Restriction** of processing",
+          "**Data portability**",
+          "**Object** to processing",
+          "**Withdraw consent** at any time"
+        ],
+        "complaint": {
+          "title": "Right to lodge a complaint with supervisory authority:",
+          "authority": "Commission for Personal Data Protection (CPDP)",
+          "address": "Sofia 1592, Prof. Tsvetan Lazarov Blvd 2",
+          "phone": "02/915 3 518",
+          "email": "kzld@cpdp.bg",
+          "website": "www.cpdp.bg"
+        }
+      },
+      "contact": {
+        "title": "8. Contact for Exercising Rights",
+        "intro": "To exercise your rights or inquire about data processing:",
+        "responseTime": "We will respond to your request within **1 month** pursuant to Art. 12 of GDPR."
+      }
+    },
+    "cookiesLink": "Cookie Policy"
+  },
+  "cookies": {
+    "title": "Cookie Policy",
+    "lastUpdated": "Last updated: October 15, 2025",
+    "sections": {
+      "dataController": {
+        "title": "1. Data Controller",
+        "company": "Techno Stroy Bulgaria Ltd.",
+        "address": "188 Vitosha Blvd, Sofia, Bulgaria",
+        "phone": "02/953 27 90",
+        "email": "office@technostroy.bg"
+      },
+      "whatAreCookies": {
+        "title": "2. What Are Cookies?",
+        "content": "Cookies are small text files stored on your device when visiting a website. They are used to improve website functionality and efficiency."
+      },
+      "cookiesUsed": {
+        "title": "3. What Cookies We Use",
+        "important": "**Important:** Our website **DOES NOT use** marketing cookies, analytics cookies (Google Analytics) or behavior tracking cookies.",
+        "technical": {
+          "title": "3.1 Technically Necessary Cookies",
+          "content": "Next.js (the website platform) may use temporary session cookies for contact form functionality and security. These cookies are technically necessary and are deleted when the browser closes."
+        },
+        "googleMaps": {
+          "title": "3.2 Google Maps Cookies",
+          "intro": "We use Google Maps to display our location on the contacts page. Google Maps may set the following cookies:",
+          "table": {
+            "headers": ["Cookie", "Provider", "Purpose", "Duration"],
+            "rows": [
+              ["NID", "Google LLC", "Map functionality", "6 months"],
+              ["CONSENT", "Google LLC", "Store preferences", "2 years"]
+            ]
+          },
+          "note": "**Note:** These cookies are set by Google when loading the map and are technically necessary for its functionality. For more information see [Google's Cookie Policy](https://policies.google.com/technologies/cookies)."
+        }
+      },
+      "legalBasis": {
+        "title": "4. Legal Basis",
+        "content": "According to Art. 5(3) of Directive 2002/58/EC (ePrivacy), technically necessary cookies that are strictly necessary to provide a service explicitly requested by you (such as displaying a location on a map) **do not require prior consent**."
+      },
+      "management": {
+        "title": "5. How to Manage Cookies",
+        "intro": "You can block or delete cookies through your browser settings:",
+        "browsers": [
+          "**Google Chrome:** Settings → Privacy and security → Cookies",
+          "**Mozilla Firefox:** Options → Privacy & Security → Cookies",
+          "**Safari:** Preferences → Privacy → Cookies",
+          "**Microsoft Edge:** Settings → Privacy → Cookies"
+        ],
+        "warning": "**Important:** Blocking cookies may interfere with Google Maps functionality on the contacts page."
+      },
+      "additionalInfo": {
+        "title": "6. Additional Information",
+        "content": "For information regarding the processing of personal data (name, email, phone from the contact form), please see our [Privacy Policy](/privacy)."
+      }
+    },
+    "privacyLink": "Privacy Policy"
   }
 }
