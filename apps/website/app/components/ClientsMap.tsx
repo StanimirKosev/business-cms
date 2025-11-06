@@ -40,7 +40,8 @@ export function ClientsMap({ projects }: ClientsMapProps) {
     const stats = {
       totalRegions: Object.keys(byRegion).length,
       totalProjects: projects.length,
-      totalClients: new Set(projects.map((p) => p.client[clientNameField])).size,
+      totalClients: new Set(projects.map((p) => p.client![clientNameField]))
+        .size,
     };
 
     return { projectsByRegion: byRegion, mapStats: stats };
@@ -90,9 +91,10 @@ export function ClientsMap({ projects }: ClientsMapProps) {
                   : "opacity-0 translate-y-[20px]"
               }`}
             >
-              {mapStats.totalRegions} {t.home.clients.map.stats.regions} |{" "}
-              {mapStats.totalProjects} {t.home.clients.map.stats.projects} |{" "}
-              {mapStats.totalClients} {t.home.clients.map.stats.clients}
+              {t.home.clients.map.visualized} {mapStats.totalRegions}{" "}
+              {t.home.clients.map.stats.regions} • {mapStats.totalProjects}{" "}
+              {t.home.clients.map.stats.projects} • {mapStats.totalClients}{" "}
+              {t.home.clients.map.stats.clients}
             </p>
           </div>
         </div>
@@ -104,36 +106,46 @@ export function ClientsMap({ projects }: ClientsMapProps) {
             <image href="/bg-white.svg" width="1000" height="651" />
 
             {/* Hoverable regions with red fill overlay */}
-            {Object.keys(projectsByRegion).map((region) => (
-              <use
-                key={region}
-                href={`/bg-white.svg#${getRegionId(region)}`}
-                fill={
-                  hoveredRegion === region
-                    ? "rgba(204, 0, 0, 0.2)"
-                    : "rgba(204, 0, 0, 0.1)"
-                }
-                className="cursor-pointer transition-all duration-200"
-                onMouseEnter={() => setHoveredRegion(region)}
-                onMouseLeave={() => setHoveredRegion(null)}
-                style={{ mixBlendMode: "multiply" }}
-              />
-            ))}
+            {Object.keys(projectsByRegion).map((region) => {
+              // Skip empty region names from database
+              if (!region || region.trim() === "") return null;
+
+              return (
+                <use
+                  key={region}
+                  href={`/bg-white.svg#${getRegionId(region)}`}
+                  fill={
+                    hoveredRegion === region
+                      ? "rgba(204, 0, 0, 0.2)"
+                      : "rgba(204, 0, 0, 0.1)"
+                  }
+                  className="cursor-pointer transition-all duration-200"
+                  onMouseEnter={() => setHoveredRegion(region)}
+                  onMouseLeave={() => setHoveredRegion(null)}
+                  style={{ mixBlendMode: "multiply" }}
+                />
+              );
+            })}
 
             {/* Static project dots */}
-            {projects.map((project) => (
-              <circle
-                key={project.id}
-                cx={project.mapX}
-                cy={project.mapY}
-                r="3"
-                fill="#CC0000"
-                className="pointer-events-none"
-                style={{
-                  filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.3))",
-                }}
-              />
-            ))}
+            {projects.map((project) => {
+              // Skip projects without map coordinates
+              if (project.mapX == null || project.mapY == null) return null;
+
+              return (
+                <circle
+                  key={project.id}
+                  cx={project.mapX}
+                  cy={project.mapY}
+                  r="3"
+                  fill="#CC0000"
+                  className="pointer-events-none"
+                  style={{
+                    filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.3))",
+                  }}
+                />
+              );
+            })}
 
             {/* Tooltip */}
             {hoveredRegion && projectsByRegion[hoveredRegion] && (
@@ -141,7 +153,7 @@ export function ClientsMap({ projects }: ClientsMapProps) {
                 x={getTooltipX(hoveredRegion)}
                 y={getTooltipY(hoveredRegion)}
                 width="260"
-                height="auto"
+                height="300"
                 className="pointer-events-auto"
                 style={{ overflow: "visible", zIndex: 9999 }}
               >
@@ -167,8 +179,11 @@ export function ClientsMap({ projects }: ClientsMapProps) {
                           ? "проекта"
                           : "projects"}
                       {" · "}
-                      {projectsByRegion[hoveredRegion].clientNames[locale].size}{" "}
-                      {projectsByRegion[hoveredRegion].clientNames[locale].size === 1
+                      {
+                        projectsByRegion[hoveredRegion].clientNames[locale].size
+                      }{" "}
+                      {projectsByRegion[hoveredRegion].clientNames[locale]
+                        .size === 1
                         ? locale === "bg"
                           ? "клиент"
                           : "client"
@@ -178,16 +193,16 @@ export function ClientsMap({ projects }: ClientsMapProps) {
                     </div>
                   </div>
                   <div className="space-y-2 max-h-48 overflow-y-auto [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-[var(--color-red)] [&::-webkit-scrollbar-thumb]:rounded-full">
-                    {Array.from(projectsByRegion[hoveredRegion].clientNames[locale]).map(
-                      (client, idx) => (
-                        <div
-                          key={idx}
-                          className="text-sm text-gray-700 leading-relaxed pl-3 border-l-2 border-transparent hover:border-gray-300 transition-colors"
-                        >
-                          {client}
-                        </div>
-                      )
-                    )}
+                    {Array.from(
+                      projectsByRegion[hoveredRegion].clientNames[locale]
+                    ).map((client, idx) => (
+                      <div
+                        key={idx}
+                        className="text-sm text-gray-700 leading-relaxed pl-3 border-l-2 border-transparent hover:border-gray-300 transition-colors"
+                      >
+                        {client}
+                      </div>
+                    ))}
                   </div>
                 </div>
               </foreignObject>

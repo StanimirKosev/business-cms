@@ -101,15 +101,19 @@ export function ProjectPageClient({
                 </p>
               </div>
 
-              <div
-                className={`bg-[var(--color-concrete-grey-light)] p-6 rounded-lg transition-all duration-500 ${infoVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}
-                style={{ transitionDelay: "60ms" }}
-              >
-                <h3 className="text-sm text-gray-500 uppercase tracking-wider mb-2">
-                  {locale === "bg" ? "Локация" : "Location"}
-                </h3>
-                <p className="text-lg font-medium text-gray-900">{location}</p>
-              </div>
+              {location && (
+                <div
+                  className={`bg-[var(--color-concrete-grey-light)] p-6 rounded-lg transition-all duration-500 ${infoVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}
+                  style={{ transitionDelay: "60ms" }}
+                >
+                  <h3 className="text-sm text-gray-500 uppercase tracking-wider mb-2">
+                    {locale === "bg" ? "Локация" : "Location"}
+                  </h3>
+                  <p className="text-lg font-medium text-gray-900">
+                    {location}
+                  </p>
+                </div>
+              )}
 
               {workNature && (
                 <div
@@ -125,17 +129,19 @@ export function ProjectPageClient({
                 </div>
               )}
 
-              <div
-                className={`bg-[var(--color-concrete-grey-light)] p-6 rounded-lg transition-all duration-500 ${infoVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}
-                style={{ transitionDelay: "180ms" }}
-              >
-                <h3 className="text-sm text-gray-500 uppercase tracking-wider mb-2">
-                  {locale === "bg" ? "Възложител" : "Client"}
-                </h3>
-                <p className="text-lg font-medium text-gray-900">
-                  {clientName}
-                </p>
-              </div>
+              {clientName && (
+                <div
+                  className={`bg-[var(--color-concrete-grey-light)] p-6 rounded-lg transition-all duration-500 ${infoVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}
+                  style={{ transitionDelay: "180ms" }}
+                >
+                  <h3 className="text-sm text-gray-500 uppercase tracking-wider mb-2">
+                    {locale === "bg" ? "Възложител" : "Client"}
+                  </h3>
+                  <p className="text-lg font-medium text-gray-900">
+                    {clientName}
+                  </p>
+                </div>
+              )}
 
               {constructionGroup && (
                 <div

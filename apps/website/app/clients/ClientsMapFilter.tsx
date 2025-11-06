@@ -77,6 +77,9 @@ export function ClientsMapFilter({
 
           {/* Clickable regions with visual feedback */}
           {Object.keys(projectsByRegion).map((region) => {
+            // Skip empty region names from database
+            if (!region || region.trim() === "") return null;
+
             const isSelected = selectedRegions.has(region);
             const isHovered = hoveredRegion === region;
             const shouldFade = hasSelection && !isSelected;
@@ -97,7 +100,10 @@ export function ClientsMapFilter({
                 className="cursor-pointer transition-all duration-300"
                 onMouseEnter={() => setHoveredRegion(region)}
                 onMouseLeave={() => setHoveredRegion(null)}
-                onClick={() => handleRegionToggle(region)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleRegionToggle(region);
+                }}
                 style={{
                   mixBlendMode: "multiply",
                   opacity: shouldFade ? 0.5 : 1,
@@ -107,19 +113,24 @@ export function ClientsMapFilter({
           })}
 
           {/* Static project dots */}
-          {projects.map((project) => (
-            <circle
-              key={project.id}
-              cx={project.mapX}
-              cy={project.mapY}
-              r="3"
-              fill="#CC0000"
-              className="pointer-events-none"
-              style={{
-                filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.3))",
-              }}
-            />
-          ))}
+          {projects.map((project) => {
+            // Skip projects without map coordinates
+            if (project.mapX == null || project.mapY == null) return null;
+
+            return (
+              <circle
+                key={project.id}
+                cx={project.mapX}
+                cy={project.mapY}
+                r="3"
+                fill="#CC0000"
+                className="pointer-events-none"
+                style={{
+                  filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.3))",
+                }}
+              />
+            );
+          })}
 
           {/* Hover tooltip */}
           {hoveredRegion && projectsByRegion[hoveredRegion] && (
@@ -127,7 +138,7 @@ export function ClientsMapFilter({
               x={getTooltipX(hoveredRegion)}
               y={getTooltipY(hoveredRegion)}
               width="220"
-              height="auto"
+              height="200"
               className="pointer-events-none"
               style={{ overflow: "visible" }}
             >

@@ -84,6 +84,7 @@
       "map": {
         "title": "Our Clients",
         "description": "\"Techno Stroy Bulgaria\" has completed construction projects in over {count} regions across the country, in partnership with state institutions, municipalities and private investors.",
+        "visualized": "Visualized:",
         "stats": {
           "regions": "regions",
           "projects": "projects",

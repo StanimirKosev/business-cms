@@ -23,15 +23,18 @@ export function localizeProject(
   }>,
   locale: "bg" | "en"
 ) {
+  const specifications = getLocalizedValue(project, "specifications", locale);
+
   return {
     title: getLocalizedValue(project, "title", locale),
     description: getLocalizedValue(project, "description", locale),
     location: getLocalizedValue(project, "location", locale),
     categoryName: getLocalizedValue(project.category, "title", locale),
-    clientName: getLocalizedValue(project.client, "name", locale),
+    clientName: getLocalizedValue(project.client || {}, "name", locale),
     workNature: getLocalizedValue(project, "workNature", locale),
     constructionGroup: getLocalizedValue(project, "constructionGroup", locale),
     role: getLocalizedValue(project, "role", locale),
-    specifications: getLocalizedValue(project, "specifications", locale),
+    // Handle both literal \n strings and actual newlines in specifications
+    specifications: specifications.replace(/\\n/g, "\n"),
   };
 }

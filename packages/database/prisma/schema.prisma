@@ -49,8 +49,8 @@ model Project {
   descriptionEn String       @db.Text
 
   // Project Details (bilingual)
-  locationBg    String       // "гр. София, бул. Цариградско шосе 125"
-  locationEn    String       // "Sofia, Tsarigradsko Shosse Blvd 125"
+  locationBg    String?      // "гр. София, бул. Цариградско шосе 125" (optional)
+  locationEn    String?      // "Sofia, Tsarigradsko Shosse Blvd 125" (optional)
   workNatureBg  String?      @db.Text // "Характер на работите" (optional)
   workNatureEn  String?      @db.Text
 
@@ -66,8 +66,8 @@ model Project {
 
   // Map Integration
   region        String       // "Sofia", "Varna" - matches REGION_NAMES keys in map-data.ts
-  mapX          Float        // SVG coordinate (0-1000)
-  mapY          Float        // SVG coordinate (0-651)
+  mapX          Float?        // SVG coordinate (0-1000)
+  mapY          Float?        // SVG coordinate (0-651)
 
   // Media
   heroImageUrl  String       // Cloudinary public ID for main card image
@@ -78,8 +78,8 @@ model Project {
   // Relations
   categoryId    String
   category      Category     @relation(fields: [categoryId], references: [id], onDelete: Restrict)
-  clientId      String
-  client        Client       @relation(fields: [clientId], references: [id], onDelete: Restrict)
+  clientId      String?      // Optional - some projects have unknown clients
+  client        Client?      @relation(fields: [clientId], references: [id], onDelete: Restrict)
   images        ProjectImage[]
 
   createdAt     DateTime     @default(now())

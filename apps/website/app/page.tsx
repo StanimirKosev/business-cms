@@ -16,6 +16,9 @@ export default async function HomePage() {
     orderBy: { createdAt: "asc" },
   });
 
+  // Filter projects for map - only show projects with clients
+  const projectsWithClients = allProjects.filter((p) => p.client !== null);
+
   const featuredProjects = allProjects.filter((p) => p.featured);
 
   // LocalBusiness Schema for SEO
@@ -72,7 +75,7 @@ export default async function HomePage() {
 
       <AboutSection />
 
-      <ClientsMap projects={allProjects} />
+      <ClientsMap projects={projectsWithClients} />
 
       <FeaturedProjects projects={featuredProjects} />
 

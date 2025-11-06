@@ -36,8 +36,13 @@ export function computeProjectsByRegion(
       };
     }
     acc[project.region].projects.push(project);
-    acc[project.region].clientNames.bg.add(project.client.nameBg);
-    acc[project.region].clientNames.en.add(project.client.nameEn);
+
+    // Only add client names if client exists (handle null clients)
+    if (project.client) {
+      acc[project.region].clientNames.bg.add(project.client.nameBg);
+      acc[project.region].clientNames.en.add(project.client.nameEn);
+    }
+
     return acc;
   }, {} as ProjectsByRegion);
 }
