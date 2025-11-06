@@ -59,7 +59,7 @@ export function ClientsMapFilter({
     <div className="relative">
       {/* Helper text - absolutely positioned in the middle of space above map */}
       {showHelper && (
-        <div className="absolute left-0 right-0 flex items-center justify-center">
+        <div className="absolute left-0 right-0 top-0 flex items-center justify-center px-4">
           <p className="text-sm text-gray-500 animate-chevron-nudge flex items-center gap-2">
             <MousePointerClick className="w-4 h-4" />
             {locale === "bg"
@@ -69,8 +69,8 @@ export function ClientsMapFilter({
         </div>
       )}
 
-      {/* Map - stays in fixed position with mt-12 from section top */}
-      <div className="relative w-full max-w-5xl mx-auto pb-8">
+      {/* Map - stays in fixed position with extra top padding for helper text on mobile */}
+      <div className="relative w-full max-w-5xl mx-auto pb-8 pt-12 md:pt-0">
         <svg viewBox="0 0 1000 651" className="w-full h-auto touch-auto">
           {/* Base map */}
           <image href="/bg-white.svg" width="1000" height="651" />
@@ -148,8 +148,11 @@ export function ClientsMapFilter({
                       ? "проекта"
                       : "projects"}
                   {" · "}
-                  {projectsByRegion[hoveredRegion].clientNames[locale].size}{" "}
-                  {projectsByRegion[hoveredRegion].clientNames[locale].size === 1
+                  {
+                    projectsByRegion[hoveredRegion].clientNames[locale].size
+                  }{" "}
+                  {projectsByRegion[hoveredRegion].clientNames[locale].size ===
+                  1
                     ? locale === "bg"
                       ? "клиент"
                       : "client"
@@ -170,18 +173,18 @@ export function ClientsMapFilter({
             </foreignObject>
           )}
         </svg>
-        {/* Filter controls - positioned below map in reserved space */}
+        {/* Filter controls - positioned below map, scaled for mobile */}
         {hasSelection && (
-          <div className="absolute -bottom-13 left-0 right-0 flex flex-col items-center gap-2">
-            <div className="flex flex-wrap gap-2 justify-center">
+          <div className="absolute -bottom-13 left-0 right-0 flex flex-col items-center gap-2 md:gap-2 scale-75 md:scale-100 origin-top">
+            <div className="flex flex-wrap gap-1.5 md:gap-2 justify-center max-w-full px-2">
               {Array.from(selectedRegions).map((region) => (
                 <button
                   key={region}
                   onClick={() => handleRegionToggle(region)}
-                  className="inline-flex items-center gap-2 px-3 py-1.5 bg-[var(--color-red)] text-white rounded-full text-sm font-medium hover:bg-red-700 transition-colors cursor-pointer"
+                  className="inline-flex items-center gap-1.5 md:gap-2 px-2 md:px-3 py-1 md:py-1.5 bg-[var(--color-red)] text-white rounded-full text-xs md:text-sm font-medium hover:bg-red-700 transition-colors cursor-pointer"
                 >
-                  <span>
-                    {locale === "bg" ? "Област" : "Region"}{" "}
+                  <span className="whitespace-nowrap">
+                    {locale === "bg" ? "Обл." : "Reg."}{" "}
                     {locale === "bg" ? REGION_NAMES[region] || region : region}
                   </span>
                   <span className="text-xs">✕</span>
@@ -190,7 +193,7 @@ export function ClientsMapFilter({
             </div>
             <button
               onClick={() => onRegionToggle(new Set())}
-              className="text-sm text-[var(--color-red)] hover:underline font-medium cursor-pointer"
+              className="text-xs md:text-sm text-[var(--color-red)] hover:underline font-medium cursor-pointer"
             >
               {locale === "bg" ? "Изчисти всички филтри" : "Clear all filters"}
             </button>

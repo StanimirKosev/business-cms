@@ -106,7 +106,7 @@ const AboutSection = () => {
               />
 
               {/* Stats Overlay */}
-              <div className="absolute bottom-0 left-0 right-0 bg-[var(--color-red)]/90 text-white p-6">
+              <div className="absolute bottom-0 left-0 right-0 bg-[var(--color-red)]/90 text-white p-4 md:p-6">
                 <div className="flex justify-around items-center">
                   <div
                     className={`text-center transition-all duration-500 ease-out delay-[1000ms] ${
@@ -115,14 +115,14 @@ const AboutSection = () => {
                         : "opacity-0 translate-y-[10px]"
                     }`}
                   >
-                    <div className="text-3xl font-bold">
+                    <div className="text-2xl md:text-3xl font-bold">
                       {t.home.about.stats.foundedYear}
                     </div>
-                    <div className="text-sm opacity-90">
+                    <div className="text-xs md:text-sm opacity-90">
                       {t.home.about.stats.founded}
                     </div>
                   </div>
-                  <div className="w-px h-12 bg-white/30" />
+                  <div className="w-px h-8 md:h-12 bg-white/30" />
                   <div
                     className={`text-center transition-all duration-500 ease-out delay-[1200ms] ${
                       isVisible
@@ -130,12 +130,12 @@ const AboutSection = () => {
                         : "opacity-0 translate-y-[10px]"
                     }`}
                   >
-                    <div className="text-3xl font-bold">{projectCount}+</div>
-                    <div className="text-sm opacity-90">
+                    <div className="text-2xl md:text-3xl font-bold">{projectCount}+</div>
+                    <div className="text-xs md:text-sm opacity-90">
                       {t.home.about.stats.projects}
                     </div>
                   </div>
-                  <div className="w-px h-12 bg-white/30" />
+                  <div className="w-px h-8 md:h-12 bg-white/30" />
                   <div
                     className={`text-center transition-all duration-500 ease-out delay-[1400ms] ${
                       isVisible
@@ -143,8 +143,8 @@ const AboutSection = () => {
                         : "opacity-0 translate-y-[10px]"
                     }`}
                   >
-                    <div className="text-3xl font-bold">{clientCount}+</div>
-                    <div className="text-sm opacity-90">
+                    <div className="text-2xl md:text-3xl font-bold">{clientCount}+</div>
+                    <div className="text-xs md:text-sm opacity-90">
                       {t.home.about.stats.clients}
                     </div>
                   </div>

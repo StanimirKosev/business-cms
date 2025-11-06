@@ -8,6 +8,7 @@ import Image from "next/image";
 import { ClientsMapFilter } from "./ClientsMapFilter";
 import { getCloudinaryUrl } from "@/lib/cloudinary";
 import { computeProjectsByRegion } from "@/lib/map-utils";
+import { Briefcase } from "lucide-react";
 
 type ClientWithCount = Client & {
   _count: {
@@ -175,42 +176,29 @@ export default function ClientsPageClient({
               const clientName =
                 locale === "bg" ? client.nameBg : client.nameEn;
               const projectCount = client._count.projects;
-              const hasWebsite = client.website && client.website.trim() !== "";
               const logoUrl = getCloudinaryUrl(client.logoUrl);
+              // Note: Client website links disabled per client request (DB field retained)
 
               return (
-                <div key={client.id} className="flex items-center gap-4">
+                <div key={client.id} className="flex items-center gap-4 group">
                   {logoUrl ? (
-                    hasWebsite ? (
-                      <a
-                        href={client.website!}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-shrink-0 w-32 h-32 flex items-center justify-center cursor-pointer rounded p-3 group"
-                      >
-                        <Image
-                          src={logoUrl}
-                          alt={clientName}
-                          width={172}
-                          height={200}
-                          unoptimized
-                          className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
-                        />
-                      </a>
-                    ) : (
-                      <div className="flex-shrink-0 w-32 h-32 flex items-center justify-center rounded p-3">
-                        <Image
-                          src={logoUrl}
-                          alt={clientName}
-                          width={172}
-                          height={200}
-                          unoptimized
-                          className="w-full h-full object-contain grayscale"
-                        />
-                      </div>
-                    )
+                    <div className="flex-shrink-0 w-32 h-32 flex items-center justify-center rounded p-3">
+                      <Image
+                        src={logoUrl}
+                        alt={clientName}
+                        width={172}
+                        height={200}
+                        unoptimized
+                        className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
+                      />
+                    </div>
                   ) : (
-                    <div className="flex-shrink-0 w-32 h-32 bg-gray-100 rounded" />
+                    <div className="flex-shrink-0 w-32 h-32 flex items-center justify-center rounded p-3">
+                      {/* Special case: Private Investors client gets Briefcase icon with hover effect */}
+                      {client.id === "cmhaou0sk001dgzdshhbtc1e2" ? (
+                        <Briefcase className="w-16 h-16 text-gray-400 group-hover:text-[var(--color-charcoal)] transition-all duration-300" />
+                      ) : null}
+                    </div>
                   )}
                   <div className="flex-1 min-w-0">
                     <h3 className="font-semibold text-[var(--color-charcoal)] text-base leading-tight mb-1.5">

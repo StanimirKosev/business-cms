@@ -7,7 +7,7 @@ import { useLanguage } from "@/app/context/LanguageContext";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 
 const ServicesSection = () => {
-  const { ref: sectionRef, isVisible } = useScrollAnimation(0.5);
+  const { ref: sectionRef, isVisible } = useScrollAnimation(0.05);
   const { t } = useLanguage();
 
   return (
@@ -69,8 +69,15 @@ const ServicesSection = () => {
                         >
                           <CheckCircle2 className="w-6 h-6 text-[var(--color-red)] flex-shrink-0 mt-0.5" />
                           <span className="text-base leading-relaxed">
-                            <span className="font-bold text-[var(--color-charcoal)] text-[17px]">{title}</span>
-                            {description && <span className="text-[var(--color-muted-foreground)]"> - {description}</span>}
+                            <span className="font-bold text-[var(--color-charcoal)] text-[17px]">
+                              {title}
+                            </span>
+                            {description && (
+                              <span className="text-[var(--color-muted-foreground)]">
+                                {" "}
+                                - {description}
+                              </span>
+                            )}
                           </span>
                         </div>
                       );

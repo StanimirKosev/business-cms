@@ -151,16 +151,16 @@ export default function MachineryPageClient({
 
                   {/* Content */}
                   <div
-                    className={`flex gap-6 ${isEven ? "" : "md:col-start-1 md:row-start-1"}`}
+                    className={`flex gap-6 ${isEven ? "" : "md:col-start-1 md:row-start-1"} min-w-0`}
                   >
                     {/* Vertical Red Line - Hidden on mobile */}
                     <div className="hidden md:block w-1 bg-[var(--color-red)] transition-all duration-[400ms] ease-out h-16 flex-shrink-0" />
 
-                    <div className="flex-1">
+                    <div className="flex-1 min-w-0">
                       {/* Title and Count */}
                       <div className="mb-8">
                         <div className="flex items-start gap-4 mb-2">
-                          <h2 className="text-4xl md:text-5xl font-bold text-[var(--color-charcoal)] leading-tight flex-1">
+                          <h2 className="text-4xl md:text-5xl font-bold text-[var(--color-charcoal)] leading-tight flex-1 break-words min-w-0">
                             {categoryName}
                           </h2>
                           {category.count > 0 && (

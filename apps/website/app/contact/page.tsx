@@ -209,31 +209,34 @@ const ContactPage = () => {
                     name="consent"
                     render={({ field }) => (
                       <FormItem className="space-y-2">
-                        <div className="flex gap-2">
+                        <div className="flex gap-3 items-start">
                           <FormControl>
                             <Checkbox
                               id="consent"
                               checked={field.value}
                               onCheckedChange={field.onChange}
+                              className="mt-1 flex-shrink-0"
                             />
                           </FormControl>
-                          <FormLabel
-                            htmlFor="consent"
-                            className="text-sm font-normal leading-snug cursor-pointer"
-                          >
-                            {t.contact.form.consent}{" "}
-                            <Link
-                              href="/privacy"
-                              className="text-[var(--color-red)] hover:underline font-medium"
-                              onClick={(e) => e.stopPropagation()}
+                          <div className="flex-1 min-w-0">
+                            <FormLabel
+                              htmlFor="consent"
+                              className="text-sm font-normal leading-normal cursor-pointer block"
                             >
-                              {t.contact.form.privacyLink}
-                            </Link>{" "}
-                            {t.contact.form.consentText}{" "}
-                            <span className="text-[var(--color-red)]">*</span>
-                          </FormLabel>
+                              {t.contact.form.consent}{" "}
+                              <Link
+                                href="/privacy"
+                                className="text-[var(--color-red)] hover:underline font-medium"
+                                onClick={(e) => e.stopPropagation()}
+                              >
+                                {t.contact.form.privacyLink}
+                              </Link>{" "}
+                              {t.contact.form.consentText}{" "}
+                              <span className="text-[var(--color-red)]">*</span>
+                            </FormLabel>
+                          </div>
                         </div>
-                        <FormMessage className="ml-6" />
+                        <FormMessage className="ml-8" />
                       </FormItem>
                     )}
                   />
