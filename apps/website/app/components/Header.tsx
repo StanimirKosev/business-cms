@@ -12,11 +12,15 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const pathname = usePathname();
   const isHomePage = pathname === "/";
+  // Check if current page is a project detail page (e.g., /projects/residential/example-project)
+  const isProjectPage = pathname.startsWith("/projects/") && pathname.split("/").length === 4;
   const { t } = useLanguage();
 
-  // Only track scroll on homepage
+  // Track scroll on homepage and project pages
+  const shouldTrackScroll = isHomePage || isProjectPage;
+
   useEffect(() => {
-    if (!isHomePage) return;
+    if (!shouldTrackScroll) return;
 
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -26,15 +30,15 @@ const Header = () => {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isHomePage]);
+  }, [shouldTrackScroll]);
 
-  // Use compact version for all non-homepage routes
-  const isCompact = !isHomePage || isScrolled;
+  // Use compact version for all routes except homepage/project pages at top
+  const isCompact = (!isHomePage && !isProjectPage) || isScrolled;
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-[999] text-[var(--color-white)] transition-[background-color,box-shadow] duration-[400ms] ease-in-out ${
-        isHomePage && !isScrolled
+        (isHomePage || isProjectPage) && !isScrolled
           ? "bg-transparent backdrop-blur-[2px]"
           : "bg-[var(--color-red)] shadow-md"
       }`}
