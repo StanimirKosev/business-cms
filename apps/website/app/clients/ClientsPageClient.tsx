@@ -196,7 +196,7 @@ export default function ClientsPageClient({
                     <div className="flex-shrink-0 w-32 h-32 flex items-center justify-center rounded p-3">
                       {/* Special case: Private Investors client gets Briefcase icon with hover effect */}
                       {client.id === "cmhaou0sk001dgzdshhbtc1e2" ? (
-                        <Briefcase className="w-16 h-16 text-gray-400 group-hover:text-[var(--color-charcoal)] transition-all duration-300" />
+                        <Briefcase className="w-16 h-16 text-gray-500 group-hover:text-gray-900 transition-all duration-300 opacity-60 group-hover:opacity-100" />
                       ) : null}
                     </div>
                   )}

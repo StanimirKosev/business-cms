@@ -195,7 +195,7 @@ export function ClientsMapFilter({
                   className="inline-flex items-center gap-1.5 md:gap-2 px-2 md:px-3 py-1 md:py-1.5 bg-[var(--color-red)] text-white rounded-full text-xs md:text-sm font-medium hover:bg-red-700 transition-colors cursor-pointer"
                 >
                   <span className="whitespace-nowrap">
-                    {locale === "bg" ? "Обл." : "Reg."}{" "}
+                    {locale === "bg" ? "Област" : "Region"}{" "}
                     {locale === "bg" ? REGION_NAMES[region] || region : region}
                   </span>
                   <span className="text-xs">✕</span>
