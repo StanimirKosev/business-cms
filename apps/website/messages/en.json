@@ -62,18 +62,8 @@
     "services": {
       "title": "Activities",
       "intro": "\"Techno Stroy Bulgaria\" Ltd. performs a full range of construction activities in the following areas:",
-      "items": [
-        "Transport Infrastructure - construction, rehabilitation and repair of roads, streets, bridges and road facilities",
-        "Water Supply and Sewerage Projects - construction and rehabilitation of water supply and sewerage networks and facilities",
-        "Residential and Building Construction - construction, reconstruction and repair of residential and industrial buildings",
-        "Energy Efficiency - renovation of residential and public buildings",
-        "Landscaping and Greenery - construction and renovation of parks, gardens, playgrounds and urban areas",
-        "Public Use Buildings and Facilities - construction and repair of educational, sports, cultural and other public facilities",
-        "HVAC Systems - design and construction of heating, ventilation and air conditioning installations",
-        "Waste Treatment Facilities and Installations - construction of landfills, installations and treatment plants for wastewater and waste"
-      ],
-      "machineryLink": "View machinery",
-      "footer": "\"Techno Stroy Bulgaria\" Ltd. possesses a wide range of specialized construction machinery and construction assets necessary for the operation of any construction company."
+      "footer": "\"Techno Stroy Bulgaria\" Ltd. possesses a wide range of specialized construction machinery and construction assets necessary for the operation of any construction company.",
+      "machineryLink": "View machinery"
     },
     "projects": {
       "title": "Our Projects",

@@ -10,7 +10,7 @@ import { CLOUDINARY_BASE_URL } from "@/lib/cloudinary";
 
 type ProjectWithRelations = Project & {
   category: Category;
-  client: Client;
+  client: Client | null;
 };
 
 interface FeaturedProjectsProps {
@@ -84,7 +84,7 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
                     ? project.descriptionBg
                     : project.descriptionEn;
                 const location =
-                  locale === "bg" ? project.locationBg : project.locationEn;
+                  (locale === "bg" ? project.locationBg : project.locationEn) || undefined;
                 const categoryName =
                   locale === "bg"
                     ? project.category.titleBg

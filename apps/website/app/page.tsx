@@ -16,6 +16,10 @@ export default async function HomePage() {
     orderBy: { createdAt: "asc" },
   });
 
+  const categories = await prisma.category.findMany({
+    orderBy: { order: "asc" },
+  });
+
   // Filter projects for map - only show projects with clients
   const projectsWithClients = allProjects.filter((p) => p.client !== null);
 
@@ -39,8 +43,8 @@ export default async function HomePage() {
     },
     geo: {
       "@type": "GeoCoordinates",
-      latitude: 42.67598251733605,
-      longitude: 23.308923145918758,
+      latitude: 42.67604815562336,
+      longitude: 23.309074845574987,
     },
     telephone: "+359-2-953-27-90",
     email: "office@technostroy.bg",
@@ -79,7 +83,7 @@ export default async function HomePage() {
 
       <FeaturedProjects projects={featuredProjects} />
 
-      <ServicesSection />
+      <ServicesSection categories={categories} />
     </div>
   );
 }
