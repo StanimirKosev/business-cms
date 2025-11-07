@@ -6,12 +6,16 @@ import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import ChevronButton from "./ChevronButton";
 import { useLanguage } from "@/app/context/LanguageContext";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
 
-const SLIDE_IMAGES = [
-  "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1920&q=80",
-  "https://images.unsplash.com/photo-1759239572496-4ec13e7643d6?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1920&q=80",
+// Cloudinary image public IDs for hero carousel
+const HERO_IMAGE_IDS = [
+  "1769-800_pbbh64",
+  "2639-800_ijugrx",
+  "2615-800_g4nfhr",
 ];
+
+const SLIDE_IMAGES = HERO_IMAGE_IDS.map((id) => getCloudinaryUrl(id)!);
 
 const AUTOPLAY_DELAY = 10000;
 
