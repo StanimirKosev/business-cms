@@ -10,12 +10,6 @@ import { getCloudinaryUrl } from "@/lib/cloudinary";
 import { computeProjectsByRegion } from "@/lib/map-utils";
 import { Briefcase } from "lucide-react";
 
-type ClientWithCount = Client & {
-  _count: {
-    projects: number;
-  };
-};
-
 type ProjectWithClient = Prisma.ProjectGetPayload<{
   include: {
     client: true;
@@ -23,7 +17,7 @@ type ProjectWithClient = Prisma.ProjectGetPayload<{
 }>;
 
 interface ClientsPageClientProps {
-  clients: ClientWithCount[];
+  clients: Client[];
   projects: ProjectWithClient[];
 }
 
@@ -175,7 +169,6 @@ export default function ClientsPageClient({
             {sortedClients.map((client) => {
               const clientName =
                 locale === "bg" ? client.nameBg : client.nameEn;
-              const projectCount = client._count.projects;
               const logoUrl = getCloudinaryUrl(client.logoUrl);
               // Note: Client website links disabled per client request (DB field retained)
 
@@ -204,12 +197,6 @@ export default function ClientsPageClient({
                     <h3 className="font-semibold text-[var(--color-charcoal)] text-base leading-tight mb-1.5">
                       {clientName}
                     </h3>
-                    <p className="text-sm text-gray-600">
-                      {projectCount}{" "}
-                      {projectCount === 1
-                        ? t.clients.projectSingular
-                        : t.clients.projectPlural}
-                    </p>
                   </div>
                 </div>
               );

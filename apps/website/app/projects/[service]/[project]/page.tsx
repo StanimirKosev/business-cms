@@ -79,8 +79,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     notFound();
   }
 
-  // Get related projects (same category, exclude current)
-  const relatedProjects = await prisma.project.findMany({
+  // Get related projects (same category, exclude current, randomized)
+  const allRelatedProjects = await prisma.project.findMany({
     where: {
       categoryId: foundProject.categoryId,
       id: { not: foundProject.id },
@@ -89,8 +89,12 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       category: true,
       client: true,
     },
-    take: 3,
   });
+
+  // Randomize and take first 3
+  const relatedProjects = allRelatedProjects
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 3);
 
   return (
     <ProjectPageClient project={foundProject} relatedProjects={relatedProjects} />

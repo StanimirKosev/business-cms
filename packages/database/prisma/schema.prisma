@@ -54,12 +54,6 @@ model Project {
   workNatureBg  String?      @db.Text // "Характер на работите" (optional)
   workNatureEn  String?      @db.Text
 
-  // Technical Info (bilingual where needed)
-  constructionGroupBg String? // "1ва до 5та" (optional)
-  constructionGroupEn String? // "1st to 5th"
-  roleBg        String?      // "Главен изпълнител" (optional)
-  roleEn        String?      // "Main Contractor"
-
   // Technical Specifications (bilingual long text)
   specificationsBg String?   @db.Text // Multiple paragraphs of details
   specificationsEn String?   @db.Text

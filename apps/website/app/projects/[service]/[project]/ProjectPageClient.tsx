@@ -39,10 +39,7 @@ export function ProjectPageClient({
     description,
     location,
     categoryName,
-    clientName,
     workNature,
-    constructionGroup,
-    role,
     specifications,
   } = localizeProject(project, locale);
   const heroImageUrl = getCloudinaryUrl(project.heroImageUrl)!;
@@ -121,53 +118,11 @@ export function ProjectPageClient({
                   style={{ transitionDelay: "120ms" }}
                 >
                   <h3 className="text-sm text-gray-500 uppercase tracking-wider mb-2">
-                    {locale === "bg" ? "Характер на работите" : "Work Nature"}
+                    {locale === "bg" ? "Обект" : "Site"}
                   </h3>
                   <p className="text-lg font-medium text-gray-900">
                     {workNature}
                   </p>
-                </div>
-              )}
-
-              {clientName && (
-                <div
-                  className={`bg-[var(--color-concrete-grey-light)] p-6 rounded-lg transition-all duration-500 ${infoVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}
-                  style={{ transitionDelay: "180ms" }}
-                >
-                  <h3 className="text-sm text-gray-500 uppercase tracking-wider mb-2">
-                    {locale === "bg" ? "Възложител" : "Client"}
-                  </h3>
-                  <p className="text-lg font-medium text-gray-900">
-                    {clientName}
-                  </p>
-                </div>
-              )}
-
-              {constructionGroup && (
-                <div
-                  className={`bg-[var(--color-concrete-grey-light)] p-6 rounded-lg transition-all duration-500 ${infoVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}
-                  style={{ transitionDelay: "240ms" }}
-                >
-                  <h3 className="text-sm text-gray-500 uppercase tracking-wider mb-2">
-                    {locale === "bg"
-                      ? "Група строителство"
-                      : "Construction Group"}
-                  </h3>
-                  <p className="text-lg font-medium text-gray-900">
-                    {constructionGroup}
-                  </p>
-                </div>
-              )}
-
-              {role && (
-                <div
-                  className={`bg-[var(--color-concrete-grey-light)] p-6 rounded-lg transition-all duration-500 ${infoVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}
-                  style={{ transitionDelay: "300ms" }}
-                >
-                  <h3 className="text-sm text-gray-500 uppercase tracking-wider mb-2">
-                    {locale === "bg" ? "Роля в проекта" : "Project Role"}
-                  </h3>
-                  <p className="text-lg font-medium text-gray-900">{role}</p>
                 </div>
               )}
             </div>

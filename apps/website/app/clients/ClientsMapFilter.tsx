@@ -150,18 +150,7 @@ export function ClientsMapFilter({
                     : hoveredRegion}
                 </div>
                 <div className="text-sm text-gray-600 mt-1">
-                  {projectsByRegion[hoveredRegion].projects.length}{" "}
-                  {projectsByRegion[hoveredRegion].projects.length === 1
-                    ? locale === "bg"
-                      ? "проект"
-                      : "project"
-                    : locale === "bg"
-                      ? "проекта"
-                      : "projects"}
-                  {" · "}
-                  {
-                    projectsByRegion[hoveredRegion].clientNames[locale].size
-                  }{" "}
+                  {projectsByRegion[hoveredRegion].clientNames[locale].size}{" "}
                   {projectsByRegion[hoveredRegion].clientNames[locale].size ===
                   1
                     ? locale === "bg"

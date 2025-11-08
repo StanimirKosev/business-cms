@@ -30,10 +30,7 @@ export function localizeProject(
     description: getLocalizedValue(project, "description", locale),
     location: getLocalizedValue(project, "location", locale),
     categoryName: getLocalizedValue(project.category, "title", locale),
-    clientName: getLocalizedValue(project.client || {}, "name", locale),
     workNature: getLocalizedValue(project, "workNature", locale),
-    constructionGroup: getLocalizedValue(project, "constructionGroup", locale),
-    role: getLocalizedValue(project, "role", locale),
     // Handle both literal \n strings and actual newlines in specifications
     specifications: specifications.replace(/\\n/g, "\n"),
   };
