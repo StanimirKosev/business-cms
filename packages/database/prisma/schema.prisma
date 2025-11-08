@@ -10,16 +10,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Admin user authentication
-model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  password  String   // bcrypt hashed
-  name      String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
 // Service categories (Дейности)
 model Category {
   id             String    @id @default(cuid())
@@ -174,30 +164,6 @@ model MachineryModel {
 enum MachineryUnit {
   PIECES          // бр. / pcs.
   SQUARE_METERS   // м²
-}
-
-// Contact form submissions
-model ContactSubmission {
-  id        String   @id @default(cuid())
-  name      String
-  email     String
-  phone     String?
-  message   String   @db.Text
-  read      Boolean  @default(false)
-  createdAt DateTime @default(now())
-
-  @@index([createdAt])
-  @@index([read])
-}
-
-// Site settings (homepage stats, company info)
-model SiteSetting {
-  id        String   @id @default(cuid())
-  key       String   @unique
-  value     String   @db.Text
-  updatedAt DateTime @updatedAt
-
-  @@index([key])
 }
 
 // Policy documents
