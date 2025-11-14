@@ -13,7 +13,8 @@ const Header = () => {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
   // Check if current page is a project detail page (e.g., /projects/residential/example-project)
-  const isProjectPage = pathname.startsWith("/projects/") && pathname.split("/").length === 4;
+  const isProjectPage =
+    pathname.startsWith("/projects/") && pathname.split("/").length === 4;
   const { t } = useLanguage();
 
   // Track scroll on homepage and project pages
@@ -25,8 +26,6 @@ const Header = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-
-    handleScroll();
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
