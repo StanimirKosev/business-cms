@@ -1,3 +1,28 @@
 @import "../../../packages/ui/base.css";
 @source "../../**/*.{ts,tsx,js,jsx}";
 @source "../../../packages/ui/**/*.{ts,tsx,js,jsx}";
+
+/* Admin-specific colors and utilities */
+:root {
+  --color-admin-sidebar: #212121;
+  --color-admin-sidebar-light: #2c2c2c;
+}
+
+/* Utility classes for admin sidebar */
+@layer utilities {
+  .bg-sidebar {
+    @apply bg-[#212121];
+  }
+
+  .hover\:bg-sidebar-hover:hover {
+    @apply bg-[#2c2c2c];
+  }
+
+  .text-sidebar {
+    @apply text-white;
+  }
+
+  .border-sidebar {
+    @apply border-[#2c2c2c];
+  }
+}
