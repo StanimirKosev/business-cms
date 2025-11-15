@@ -29,7 +29,7 @@ const navItems = [
   },
   {
     label: "Оборудване",
-    href: "/dashboard/equipment",
+    href: "/dashboard/machinery",
     icon: Hammer,
   },
 ];
@@ -39,8 +39,8 @@ export function Sidebar() {
     <aside className="w-64 bg-sidebar text-sidebar h-screen sticky top-0">
       {/* Logo */}
       <div className="p-6 border-b border-sidebar">
-        <Link href="/dashboard" className="text-xl font-bold">
-          TSB Admin
+        <Link href="/dashboard" className="text-lg font-bold">
+          Техно Строй България
         </Link>
       </div>
 

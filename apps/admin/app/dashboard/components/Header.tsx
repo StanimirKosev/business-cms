@@ -26,17 +26,18 @@ export function Header() {
 
   return (
     <header className="bg-white border-b border-gray-200 h-16 flex items-center justify-between px-8">
-      <h1 className="text-2xl font-bold text-gray-900">Панел</h1>
+      <h1 className="text-2xl font-bold text-gray-900">
+        Администраторски панел
+      </h1>
 
       <Button
         onClick={handleLogout}
         disabled={isLoggingOut}
         size="sm"
-        variant="outline"
-        className="gap-2"
+        className="gap-2 hover:bg-red-700 text-white"
       >
         <LogOut size={16} />
-        {isLoggingOut ? "Изход..." : "Изход"}
+        {isLoggingOut ? "Излизане..." : "Излизане"}
       </Button>
     </header>
   );

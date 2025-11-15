@@ -1,4 +1,14 @@
-export default function DashboardPage() {
+import { prisma } from "@repo/database/client";
+
+export default async function DashboardPage() {
+  const [projectCount, categoryCount, clientCount, certificateCount] =
+    await Promise.all([
+      prisma.project.count(),
+      prisma.category.count(),
+      prisma.client.count(),
+      prisma.certificate.count(),
+    ]);
+
   return (
     <div className="p-8">
       <div className="max-w-4xl">
@@ -6,10 +16,10 @@ export default function DashboardPage() {
         <p className="text-gray-600 mb-8">Добре дошли в администраторския панел.</p>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <StatCard label="Проекти" value="0" />
-          <StatCard label="Категории" value="5" />
-          <StatCard label="Клиенти" value="0" />
-          <StatCard label="Съобщения" value="0" />
+          <StatCard label="Проекти" value={projectCount.toString()} />
+          <StatCard label="Категории" value={categoryCount.toString()} />
+          <StatCard label="Клиенти" value={clientCount.toString()} />
+          <StatCard label="Сертификати" value={certificateCount.toString()} />
         </div>
       </div>
     </div>

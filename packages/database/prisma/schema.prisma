@@ -60,7 +60,7 @@ model Project {
   specificationsEn String?   @db.Text
 
   // Map Integration
-  region        String       // "Sofia", "Varna" - matches REGION_NAMES keys in map-data.ts
+  region        String?      // "Sofia", "Varna" - matches REGION_NAMES keys in map-data.ts (optional)
   mapX          Float?        // SVG coordinate (0-1000)
   mapY          Float?        // SVG coordinate (0-651)
 
