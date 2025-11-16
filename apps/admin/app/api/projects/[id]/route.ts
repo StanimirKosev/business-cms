@@ -2,6 +2,7 @@ import { prisma } from "@repo/database/client";
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
 import { authConfig } from "@/auth";
+import { triggerWebsiteRebuild } from "@/lib/github";
 
 export async function PUT(
   req: NextRequest,
@@ -42,6 +43,11 @@ export async function PUT(
       include: { category: true, client: true, images: true },
     });
 
+    // Trigger website rebuild (async, don't await - fire and forget)
+    triggerWebsiteRebuild().catch((err) =>
+      console.error("Website rebuild trigger failed:", err)
+    );
+
     return NextResponse.json(project);
   } catch (error) {
     console.error("[Projects PUT] Error:", error);
@@ -67,6 +73,11 @@ export async function DELETE(
     await prisma.project.delete({
       where: { id },
     });
+
+    // Trigger website rebuild (async, don't await - fire and forget)
+    triggerWebsiteRebuild().catch((err) =>
+      console.error("Website rebuild trigger failed:", err)
+    );
 
     return NextResponse.json({ success: true });
   } catch (error) {

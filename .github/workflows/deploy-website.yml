@@ -1,0 +1,23 @@
+name: Deploy Website and Admin to Vercel
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger Website rebuild on Vercel
+        run: |
+          curl -X POST "https://api.vercel.com/v1/deployments?forceNew=1" \
+            -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d '{"projectId":"${{ secrets.VERCEL_PROJECT_ID }}"}'
+
+      - name: Trigger Admin app rebuild on Vercel
+        run: |
+          curl -X POST "https://api.vercel.com/v1/deployments?forceNew=1" \
+            -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d '{"projectId":"${{ secrets.VERCEL_ADMIN_PROJECT_ID }}"}'
