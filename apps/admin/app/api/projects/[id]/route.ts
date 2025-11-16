@@ -30,9 +30,15 @@ export async function PUT(
       }
     }
 
+    // Ensure region is always a string (empty or valid value)
+    const cleanData = {
+      ...body,
+      region: body.region || "",
+    };
+
     const project = await prisma.project.update({
       where: { id },
-      data: body,
+      data: cleanData,
       include: { category: true, client: true, images: true },
     });
 

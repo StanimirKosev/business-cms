@@ -78,7 +78,7 @@ export async function POST(req: NextRequest) {
         clientId: clientId || null,
         heroImageUrl,
         featured: featured || false,
-        region: region || null,
+        region: region || "",
         mapX: mapX || null,
         mapY: mapY || null,
       },

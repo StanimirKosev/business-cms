@@ -26,6 +26,11 @@ export function computeProjectsByRegion(
   projects: ProjectWithClient[]
 ): ProjectsByRegion {
   return projects.reduce((acc, project) => {
+    // Skip projects without a region
+    if (!project.region) {
+      return acc;
+    }
+
     if (!acc[project.region]) {
       acc[project.region] = {
         projects: [],

@@ -1,13 +1,11 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import Image from "next/image";
 import { Button } from "@repo/ui/components/button";
-import { Input } from "@repo/ui/components/input";
-import { Label } from "@repo/ui/components/label";
 import { toast } from "sonner";
-import { Plus, Trash2, Edit2, X, Upload } from "lucide-react";
+import { Plus, Trash2, Edit2, X } from "lucide-react";
 import type { Project, Category, Client } from "@repo/database/client";
+import { ProjectForm } from "./project-form";
 
 // Cutoff date: projects created after this can be deleted by users
 // Projects created before this are locked (created by you)
@@ -62,7 +60,6 @@ export default function ProjectsPage() {
   const [formData, setFormData] = useState<Partial<Project>>({
     titleBg: "",
     titleEn: "",
-    slug: "",
     descriptionBg: "",
     descriptionEn: "",
     locationBg: "",
@@ -117,6 +114,12 @@ export default function ProjectsPage() {
       .replace(/\s+/g, "-") // Replace spaces with hyphens
       .replace(/-+/g, "-") // Replace multiple hyphens with single
       .replace(/^-|-$/g, ""); // Remove leading/trailing hyphens
+  };
+
+  const generateSlug = (title: string): string => {
+    const sanitized = sanitizeFolderName(title);
+    const timestamp = Date.now().toString().slice(-6); // Last 6 digits of timestamp
+    return `${sanitized}-${timestamp}`;
   };
 
   const handleGalleryImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -272,11 +275,6 @@ export default function ProjectsPage() {
       return;
     }
 
-    if (!formData.slug?.trim()) {
-      toast.error("Код е задължителен");
-      return;
-    }
-
     if (!formData.categoryId) {
       toast.error("Категория е задължителна");
       return;
@@ -295,20 +293,6 @@ export default function ProjectsPage() {
 
     if (formData.titleEn.trim().length < 5) {
       toast.error("Заглавие (EN) трябва да е поне 5 символа");
-      return;
-    }
-
-    // Validate slug format (lowercase letters, numbers, hyphens, underscores only)
-    const slugRegex = /^[a-z0-9\-_]+$/;
-    if (!slugRegex.test(formData.slug.trim())) {
-      toast.error(
-        "Код може да съдържа само малки букви, цифри, тирета и подчертания"
-      );
-      return;
-    }
-
-    if (formData.slug.trim().length < 2) {
-      toast.error("Код трябва да е поне 2 символа");
       return;
     }
 
@@ -434,11 +418,16 @@ export default function ProjectsPage() {
       const url = editingId ? `/api/projects/${editingId}` : "/api/projects";
       const method = editingId ? "PUT" : "POST";
 
+      // Auto-generate slug for new projects, keep existing slug for edits
+      const slug = editingId
+        ? formData.slug
+        : generateSlug(formData.titleEn || "");
+
       // Explicitly define fields to send (for both POST and PUT)
       const dataToSend = {
         titleBg: formData.titleBg,
         titleEn: formData.titleEn,
-        slug: formData.slug,
+        slug,
         descriptionBg: formData.descriptionBg,
         descriptionEn: formData.descriptionEn,
         locationBg: formData.locationBg || null,
@@ -587,28 +576,7 @@ export default function ProjectsPage() {
 
       setEditingId(null);
       setShowForm(false);
-      setSelectedImages([]);
-      setExistingImages([]);
-      setFormData({
-        titleBg: "",
-        titleEn: "",
-        slug: "",
-        descriptionBg: "",
-        descriptionEn: "",
-        locationBg: "",
-        locationEn: "",
-        workNatureBg: "",
-        workNatureEn: "",
-        specificationsBg: "",
-        specificationsEn: "",
-        categoryId: "",
-        clientId: "",
-        heroImageUrl: "",
-        region: "",
-        mapX: undefined,
-        mapY: undefined,
-        featured: false,
-      });
+      resetForm();
     } catch (error) {
       console.error("Error:", error);
       const errorMessage =
@@ -626,7 +594,6 @@ export default function ProjectsPage() {
   ) => {
     setFormData(project);
     setEditingId(project.id);
-    setShowForm(true);
     // Load existing images for this project
     if (project.images && Array.isArray(project.images)) {
       setExistingImages(project.images);
@@ -635,6 +602,30 @@ export default function ProjectsPage() {
     }
     // Clear any previously selected new images
     setSelectedImages([]);
+  };
+
+  const resetForm = () => {
+    setSelectedImages([]);
+    setExistingImages([]);
+    setFormData({
+      titleBg: "",
+      titleEn: "",
+      descriptionBg: "",
+      descriptionEn: "",
+      locationBg: "",
+      locationEn: "",
+      workNatureBg: "",
+      workNatureEn: "",
+      specificationsBg: "",
+      specificationsEn: "",
+      categoryId: "",
+      clientId: "",
+      heroImageUrl: "",
+      region: "",
+      mapX: undefined,
+      mapY: undefined,
+      featured: false,
+    });
   };
 
   const handleDelete = async (id: string) => {
@@ -666,28 +657,7 @@ export default function ProjectsPage() {
             setEditingId(null);
             setShowForm(!showForm);
             if (showForm) {
-              setSelectedImages([]);
-              setExistingImages([]);
-              setFormData({
-                titleBg: "",
-                titleEn: "",
-                slug: "",
-                descriptionBg: "",
-                descriptionEn: "",
-                locationBg: "",
-                locationEn: "",
-                workNatureBg: "",
-                workNatureEn: "",
-                specificationsBg: "",
-                specificationsEn: "",
-                categoryId: "",
-                clientId: "",
-                heroImageUrl: "",
-                region: "",
-                mapX: undefined,
-                mapY: undefined,
-                featured: false,
-              });
+              resetForm();
             }
           }}
           className="gap-2"
@@ -697,529 +667,105 @@ export default function ProjectsPage() {
         </Button>
       </div>
 
-      {(showForm || editingId) && (
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mb-8">
-          <div className="flex justify-between items-center mb-6">
-            <h3 className="text-xl font-semibold">
-              {editingId ? "Редактирай проект" : "Нов проект"}
-            </h3>
-            <button
-              onClick={() => {
-                setShowForm(false);
-                setEditingId(null);
-                setSelectedImages([]);
-                setExistingImages([]);
-                setFormData({
-                  titleBg: "",
-                  titleEn: "",
-                  slug: "",
-                  descriptionBg: "",
-                  descriptionEn: "",
-                  locationBg: "",
-                  locationEn: "",
-                  workNatureBg: "",
-                  workNatureEn: "",
-                  specificationsBg: "",
-                  specificationsEn: "",
-                  categoryId: "",
-                  clientId: "",
-                  heroImageUrl: "",
-                  region: "",
-                  mapX: undefined,
-                  mapY: undefined,
-                  featured: false,
-                });
-              }}
-              className="text-gray-500 hover:text-gray-700"
-            >
-              <X size={20} />
-            </button>
-          </div>
-
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <Label className="text-sm font-semibold">Заглавие (БГ) *</Label>
-                <Input
-                  value={formData.titleBg || ""}
-                  onChange={(e) =>
-                    setFormData({ ...formData, titleBg: e.target.value })
-                  }
-                  placeholder="Заглавие на български"
-                  className="mt-1"
-                />
-              </div>
-              <div>
-                <Label className="text-sm font-semibold">Заглавие (EN) *</Label>
-                <Input
-                  value={formData.titleEn || ""}
-                  onChange={(e) =>
-                    setFormData({ ...formData, titleEn: e.target.value })
-                  }
-                  placeholder="Title in English"
-                  className="mt-1"
-                />
-              </div>
-            </div>
-
-            <div>
-              <Label className="text-sm font-semibold">Код *</Label>
-              <Input
-                value={formData.slug || ""}
-                onChange={(e) =>
-                  setFormData({ ...formData, slug: e.target.value })
-                }
-                placeholder="project-slug"
-                className="mt-1"
-              />
-              <p className="text-xs text-gray-500 mt-1">
-                Вижда се в URL адреса на проекта. Трябва да е уникален, съдържа
-                само малки букви, цифри, тирета и подчертания. Пример:
-                railway-station-renovation-2024
-              </p>
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <Label className="text-sm font-semibold">Категория *</Label>
-                <select
-                  value={formData.categoryId || ""}
-                  onChange={(e) =>
-                    setFormData({ ...formData, categoryId: e.target.value })
-                  }
-                  className="w-full mt-1 px-3 py-2 border border-gray-300 rounded-md text-sm"
-                >
-                  <option value="">Изберете категория</option>
-                  {categories.map((cat) => (
-                    <option key={cat.id} value={cat.id}>
-                      {cat.titleBg}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div>
-                <Label className="text-sm font-semibold">Клиент</Label>
-                <select
-                  value={formData.clientId || ""}
-                  onChange={(e) =>
-                    setFormData({ ...formData, clientId: e.target.value })
-                  }
-                  className="w-full mt-1 px-3 py-2 border border-gray-300 rounded-md text-sm"
-                >
-                  <option value="">Без клиент</option>
-                  {clients.map((client) => (
-                    <option key={client.id} value={client.id}>
-                      {client.nameBg}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            <div>
-              <Label className="text-sm font-semibold">Галерия снимки *</Label>
-              <div className="mt-1 space-y-3">
-                <label className="flex items-center justify-center px-4 py-3 border-2 border-dashed border-gray-300 rounded-md cursor-pointer hover:border-gray-400 transition">
-                  <div className="flex items-center gap-2">
-                    <Upload size={18} className="text-gray-500" />
-                    <span className="text-sm text-gray-600">
-                      {uploading ? "Качване..." : "Кликни за избор на снимки"}
-                    </span>
-                  </div>
-                  <input
-                    ref={fileInputRef}
-                    type="file"
-                    accept="image/*"
-                    multiple
-                    onChange={handleGalleryImageSelect}
-                    disabled={uploading}
-                    className="hidden"
-                  />
-                </label>
-
-                {existingImages.length > 0 && (
-                  <div className="space-y-2">
-                    <p className="text-xs text-gray-600 font-semibold">
-                      Текущи снимки ({existingImages.length})
-                    </p>
-                    <div className="space-y-2">
-                      {existingImages.map((image) => (
-                        <div
-                          key={image.id}
-                          className="flex items-center gap-3 p-2 bg-blue-50 rounded-md border border-blue-200"
-                        >
-                          <div className="relative w-16 h-16 flex-shrink-0">
-                            <Image
-                              src={`https://res.cloudinary.com/dn7bynzv7/image/upload/${image.cloudinaryPublicId}`}
-                              alt="Existing image"
-                              fill
-                              className="object-cover rounded-md"
-                            />
-                            {image.order === 0 && (
-                              <div className="absolute top-1 left-1 bg-blue-500 text-white text-xs px-2 py-1 rounded">
-                                Корица
-                              </div>
-                            )}
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <p className="text-sm text-gray-700 truncate">
-                              {image.cloudinaryPublicId.split("/").pop()}
-                            </p>
-                            <p className="text-xs text-gray-500">
-                              Ред: {image.order}
-                            </p>
-                          </div>
-                          <div className="flex items-center gap-1 flex-shrink-0">
-                            {image.order > 0 && (
-                              <button
-                                type="button"
-                                onClick={() =>
-                                  moveExistingImage(image.id, "up")
-                                }
-                                className="p-1 text-gray-500 hover:text-gray-700"
-                                title="Преместване нагоре"
-                              >
-                                ↑
-                              </button>
-                            )}
-                            {image.order < existingImages.length - 1 && (
-                              <button
-                                type="button"
-                                onClick={() =>
-                                  moveExistingImage(image.id, "down")
-                                }
-                                className="p-1 text-gray-500 hover:text-gray-700"
-                                title="Преместване надолу"
-                              >
-                                ↓
-                              </button>
-                            )}
-                            <button
-                              type="button"
-                              onClick={() => removeExistingImage(image.id)}
-                              className="p-1 text-red-500 hover:text-red-700"
-                              title="Премахване"
-                            >
-                              <Trash2 size={16} />
-                            </button>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {selectedImages.length > 0 && (
-                  <div className="space-y-2">
-                    <p className="text-xs text-gray-600 font-semibold">
-                      Нови снимки ({selectedImages.length})
-                    </p>
-                    <div className="space-y-2">
-                      {selectedImages.map((image, index) => (
-                        <div
-                          key={index}
-                          className="flex items-center gap-3 p-2 bg-gray-50 rounded-md"
-                        >
-                          <div className="relative w-16 h-16 flex-shrink-0">
-                            <Image
-                              src={image.preview}
-                              alt={`Preview ${index + 1}`}
-                              fill
-                              className="object-cover rounded-md"
-                            />
-                            {index === 0 && existingImages.length === 0 && (
-                              <div className="absolute top-1 left-1 bg-blue-500 text-white text-xs px-2 py-1 rounded">
-                                Корица
-                              </div>
-                            )}
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <p className="text-sm text-gray-700 truncate">
-                              {image.file.name}
-                            </p>
-                            <p className="text-xs text-gray-500">
-                              {(image.file.size / 1024).toFixed(1)} KB
-                            </p>
-                          </div>
-                          <div className="flex items-center gap-1 flex-shrink-0">
-                            {index > 0 && (
-                              <button
-                                type="button"
-                                onClick={() => moveImage(index, "up")}
-                                className="p-1 text-gray-500 hover:text-gray-700"
-                                title="Преместване нагоре"
-                              >
-                                ↑
-                              </button>
-                            )}
-                            {index < selectedImages.length - 1 && (
-                              <button
-                                type="button"
-                                onClick={() => moveImage(index, "down")}
-                                className="p-1 text-gray-500 hover:text-gray-700"
-                                title="Преместване надолу"
-                              >
-                                ↓
-                              </button>
-                            )}
-                            <button
-                              type="button"
-                              onClick={() => removeImage(index)}
-                              className="p-1 text-red-500 hover:text-red-700"
-                              title="Премахване"
-                            >
-                              <Trash2 size={16} />
-                            </button>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <Label className="text-sm font-semibold">
-                  Подзаглавие (БГ)
-                </Label>
-                <textarea
-                  value={formData.descriptionBg || ""}
-                  onChange={(e) =>
-                    setFormData({ ...formData, descriptionBg: e.target.value })
-                  }
-                  placeholder="Подзаглавие на български"
-                  className="w-full mt-1 px-3 py-2 border border-gray-300 rounded-md text-sm"
-                  rows={3}
-                />
-              </div>
-              <div>
-                <Label className="text-sm font-semibold">
-                  Подзаглавие (EN)
-                </Label>
-                <textarea
-                  value={formData.descriptionEn || ""}
-                  onChange={(e) =>
-                    setFormData({ ...formData, descriptionEn: e.target.value })
-                  }
-                  placeholder="Subtitle in English"
-                  className="w-full mt-1 px-3 py-2 border border-gray-300 rounded-md text-sm"
-                  rows={3}
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <Label className="text-sm font-semibold">Локация (БГ)</Label>
-                <Input
-                  value={formData.locationBg || ""}
-                  onChange={(e) =>
-                    setFormData({ ...formData, locationBg: e.target.value })
-                  }
-                  placeholder="гр. София"
-                  className="mt-1"
-                />
-              </div>
-              <div>
-                <Label className="text-sm font-semibold">Локация (EN)</Label>
-                <Input
-                  value={formData.locationEn || ""}
-                  onChange={(e) =>
-                    setFormData({ ...formData, locationEn: e.target.value })
-                  }
-                  placeholder="Sofia"
-                  className="mt-1"
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <Label className="text-sm font-semibold">Обект (БГ) *</Label>
-                <textarea
-                  value={formData.workNatureBg || ""}
-                  onChange={(e) =>
-                    setFormData({ ...formData, workNatureBg: e.target.value })
-                  }
-                  placeholder="Обект"
-                  className="w-full mt-1 px-3 py-2 border border-gray-300 rounded-md text-sm"
-                  rows={3}
-                />
-              </div>
-              <div>
-                <Label className="text-sm font-semibold">Site (EN) *</Label>
-                <textarea
-                  value={formData.workNatureEn || ""}
-                  onChange={(e) =>
-                    setFormData({ ...formData, workNatureEn: e.target.value })
-                  }
-                  placeholder="Site"
-                  className="w-full mt-1 px-3 py-2 border border-gray-300 rounded-md text-sm"
-                  rows={3}
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <Label className="text-sm font-semibold">
-                  Технически характеристики (БГ)
-                </Label>
-                <textarea
-                  value={formData.specificationsBg || ""}
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      specificationsBg: e.target.value,
-                    })
-                  }
-                  placeholder="Технически характеристики"
-                  className="w-full mt-1 px-3 py-2 border border-gray-300 rounded-md text-sm"
-                  rows={4}
-                />
-              </div>
-              <div>
-                <Label className="text-sm font-semibold">
-                  Технически характеристики (EN)
-                </Label>
-                <textarea
-                  value={formData.specificationsEn || ""}
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      specificationsEn: e.target.value,
-                    })
-                  }
-                  placeholder="Technical Specifications"
-                  className="w-full mt-1 px-3 py-2 border border-gray-300 rounded-md text-sm"
-                  rows={4}
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-3 gap-4">
-              <div>
-                <Label className="text-sm font-semibold">Област</Label>
-                <select
-                  value={formData.region || ""}
-                  onChange={(e) =>
-                    setFormData({ ...formData, region: e.target.value })
-                  }
-                  className="w-full mt-1 px-3 py-2 border border-gray-300 rounded-md text-sm"
-                >
-                  <option value="">Без област</option>
-                  {Object.keys(REGION_NAMES).map((regionKey) => (
-                    <option key={regionKey} value={regionKey}>
-                      {regionKey}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div>
-                <Label className="text-sm font-semibold">Координата X</Label>
-                <Input
-                  type="number"
-                  step="1"
-                  value={formData.mapX || ""}
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      mapX: e.target.value
-                        ? parseFloat(e.target.value)
-                        : undefined,
-                    })
-                  }
-                  placeholder="0-1000"
-                  className="mt-1"
-                />
-              </div>
-              <div>
-                <Label className="text-sm font-semibold">Координата Y</Label>
-                <Input
-                  type="number"
-                  step="1"
-                  value={formData.mapY || ""}
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      mapY: e.target.value
-                        ? parseFloat(e.target.value)
-                        : undefined,
-                    })
-                  }
-                  placeholder="0-651"
-                  className="mt-1"
-                />
-              </div>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                checked={formData.featured || false}
-                onChange={(e) =>
-                  setFormData({ ...formData, featured: e.target.checked })
-                }
-                id="featured"
-              />
-              <Label htmlFor="featured" className="text-sm font-semibold">
-                Покажи в &quot;Нашите проекти&quot;
-              </Label>
-            </div>
-
-            <Button type="submit" className="w-full" disabled={uploading}>
-              {uploading
-                ? "Зареждане..."
-                : editingId
-                  ? "Актуализирай"
-                  : "Създай"}
-            </Button>
-          </form>
-        </div>
+      {showForm && (
+        <ProjectForm
+          mode="create"
+          formData={formData}
+          setFormData={setFormData}
+          selectedImages={selectedImages}
+          existingImages={existingImages}
+          categories={categories}
+          clients={clients}
+          uploading={uploading}
+          fileInputRef={fileInputRef}
+          onGalleryImageSelect={handleGalleryImageSelect}
+          onMoveImage={moveImage}
+          onRemoveImage={removeImage}
+          onMoveExistingImage={moveExistingImage}
+          onRemoveExistingImage={removeExistingImage}
+          onSubmit={handleSubmit}
+          onCancel={() => {
+            setShowForm(false);
+            resetForm();
+          }}
+          regionNames={REGION_NAMES}
+          submitButtonText="Създай"
+          submitButtonLoadingText="Зареждане..."
+          title="Нов проект"
+        />
       )}
 
-      <div className="space-y-2">
+      <div className="space-y-2 mb-8">
         {projects.map((project) => (
-          <div
-            key={project.id}
-            className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 flex justify-between items-start"
-          >
-            <div className="flex-1">
-              <h3 className="font-semibold text-gray-900">{project.titleBg}</h3>
-              <p className="text-sm text-gray-600">
-                Локация: {project.locationBg || "-"}
-              </p>
-              <p className="text-xs text-gray-500 mt-1">Код: {project.slug}</p>
-              {project.featured && (
-                <span className="inline-block mt-2 px-2 py-1 bg-red-100 text-red-800 text-xs rounded">
-                  Показан в &quot;Нашите проекти&quot;
-                </span>
-              )}
-            </div>
-            <div className="flex gap-2">
-              <Button
-                onClick={() => handleEdit(project)}
-                size="sm"
-                variant="outline"
-                className="gap-1"
-              >
-                <Edit2 size={14} />
-                Редактирай
-              </Button>
-              {new Date(project.createdAt) > PROJECTS_CUTOFF_DATE && (
+          <div key={project.id}>
+            <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 flex justify-between items-start">
+              <div className="flex-1">
+                <h3 className="font-semibold text-gray-900">
+                  {project.titleBg}
+                </h3>
+                <p className="text-sm text-gray-600">
+                  Локация: {project.locationBg || "-"}
+                </p>
+                <p className="text-xs text-gray-500 mt-1">
+                  Код: {project.slug}
+                </p>
+                {project.featured && (
+                  <span className="inline-block mt-2 px-2 py-1 bg-red-100 text-red-800 text-xs rounded">
+                    Показан в начална страница - &quot;Нашите проекти&quot;
+                  </span>
+                )}
+              </div>
+              <div className="flex gap-2">
                 <Button
-                  onClick={() => handleDelete(project.id)}
+                  onClick={() => handleEdit(project)}
                   size="sm"
                   variant="outline"
-                  className="gap-1 text-red-600 hover:text-red-700"
+                  className="gap-1"
                 >
-                  <Trash2 size={14} />
-                  Изтрий
+                  <Edit2 size={14} />
+                  Редактирай
                 </Button>
-              )}
+                {new Date(project.createdAt) > PROJECTS_CUTOFF_DATE && (
+                  <Button
+                    onClick={() => handleDelete(project.id)}
+                    size="sm"
+                    variant="outline"
+                    className="gap-1 text-red-600 hover:text-red-700"
+                  >
+                    <Trash2 size={14} />
+                    Изтрий
+                  </Button>
+                )}
+              </div>
             </div>
+
+            {editingId === project.id && (
+              <ProjectForm
+                mode="edit"
+                formData={formData}
+                setFormData={setFormData}
+                selectedImages={selectedImages}
+                existingImages={existingImages}
+                categories={categories}
+                clients={clients}
+                uploading={uploading}
+                fileInputRef={fileInputRef}
+                onGalleryImageSelect={handleGalleryImageSelect}
+                onMoveImage={moveImage}
+                onRemoveImage={removeImage}
+                onMoveExistingImage={moveExistingImage}
+                onRemoveExistingImage={removeExistingImage}
+                onSubmit={handleSubmit}
+                onCancel={() => {
+                  setEditingId(null);
+                  resetForm();
+                }}
+                regionNames={REGION_NAMES}
+                submitButtonText="Актуализирай"
+                submitButtonLoadingText="Зареждане..."
+                title="Редактирай проект"
+              />
+            )}
           </div>
         ))}
 
