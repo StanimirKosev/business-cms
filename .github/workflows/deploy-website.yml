@@ -21,11 +21,11 @@ jobs:
         run: npm ci
 
       - name: Build website
-        run: npm run build:website
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: ${{ secrets.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME }}
-          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+        run: |
+          export DATABASE_URL="${{ secrets.DATABASE_URL }}"
+          export NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME="${{ secrets.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME }}"
+          export RESEND_API_KEY="${{ secrets.RESEND_API_KEY }}"
+          npm run build:website
 
       - name: Build admin app
         run: npm run build:admin
