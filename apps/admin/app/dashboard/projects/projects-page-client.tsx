@@ -651,15 +651,30 @@ export function ProjectsPageClient({
                 )}
               </div>
               <div className="flex gap-2">
-                <Button
-                  onClick={() => handleEdit(project)}
-                  size="sm"
-                  variant="outline"
-                  className="gap-1"
-                >
-                  <Edit2 size={14} />
-                  Редактирай
-                </Button>
+                {editingId === project.id ? (
+                  <Button
+                    onClick={() => {
+                      setEditingId(null);
+                      resetForm();
+                    }}
+                    size="sm"
+                    variant="outline"
+                    className="gap-1"
+                  >
+                    <X size={14} />
+                    Отмени
+                  </Button>
+                ) : (
+                  <Button
+                    onClick={() => handleEdit(project)}
+                    size="sm"
+                    variant="outline"
+                    className="gap-1"
+                  >
+                    <Edit2 size={14} />
+                    Редактирай
+                  </Button>
+                )}
                 {new Date(project.createdAt) > projectsCutoffDate && (
                   <Button
                     onClick={() => handleDelete(project.id)}
