@@ -25,6 +25,7 @@ jobs:
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: ${{ secrets.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
 
       - name: Build admin app
         run: npm run build:admin
