@@ -5,6 +5,10 @@ import "./globals.css";
 import { Toaster } from "sonner";
 import { Providers } from "./providers";
 
+// Disable all caching - fetch fresh data on every request for instant updates
+export const fetchCache = 'force-no-store';
+export const revalidate = 0;
+
 // Font - same as website for consistency
 const manrope = Manrope({
   subsets: ["latin", "latin-ext"],

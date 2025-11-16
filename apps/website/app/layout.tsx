@@ -8,6 +8,10 @@ import { LanguageProvider } from "@/app/context/LanguageContext";
 import { ScrollToTop } from "@/app/components/ScrollToTop";
 import { HtmlWrapper } from "@/app/components/HtmlWrapper";
 
+// Disable all caching - fetch fresh data on every request for instant updates
+export const fetchCache = 'force-no-store';
+export const revalidate = 0;
+
 // Font - optimized weights for performance
 const manrope = Manrope({
   subsets: ["latin", "latin-ext"], // latin-ext for Bulgarian characters
