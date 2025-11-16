@@ -8,16 +8,44 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Trigger Website rebuild on Vercel
-        run: |
-          curl -X POST "https://api.vercel.com/v12/deployments" \
-            -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
-            -H "Content-Type: application/json" \
-            -d '{"projectId":"${{ secrets.VERCEL_PROJECT_ID }}","name":"website","skipGitConnectivity":true}'
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Trigger Admin app rebuild on Vercel
-        run: |
-          curl -X POST "https://api.vercel.com/v12/deployments" \
-            -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
-            -H "Content-Type: application/json" \
-            -d '{"projectId":"${{ secrets.VERCEL_ADMIN_PROJECT_ID }}","name":"admin","skipGitConnectivity":true}'
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build website
+        run: npm run build:website
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: ${{ secrets.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME }}
+
+      - name: Build admin app
+        run: npm run build:admin
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+          NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL_PRODUCTION }}
+          NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: ${{ secrets.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME }}
+          CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
+          CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
+
+      - name: Deploy website to Vercel
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: npx vercel deploy --prod --prebuilt -t ${{ secrets.VERCEL_TOKEN }} --cwd apps/website
+
+      - name: Deploy admin to Vercel
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_ADMIN_PROJECT_ID }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: npx vercel deploy --prod --prebuilt -t ${{ secrets.VERCEL_TOKEN }} --cwd apps/admin
