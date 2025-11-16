@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { titleBg, titleEn, slug, descriptionBg, descriptionEn } = body;
+    const { titleBg, titleEn, slug, descriptionBg, descriptionEn, iconName, order } = body;
 
     if (!titleBg || !titleEn || !slug || !descriptionBg || !descriptionEn) {
       return NextResponse.json(
@@ -48,6 +48,8 @@ export async function POST(req: NextRequest) {
         slug,
         descriptionBg,
         descriptionEn,
+        iconName: iconName || null,
+        order: order ?? 0,
       },
     });
 

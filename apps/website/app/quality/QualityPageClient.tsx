@@ -56,12 +56,14 @@ export default function QualityPageClient({
     title: locale === "bg" ? cert.titleBg : cert.titleEn,
   }));
 
-  const policyDocuments = policies.map((policy) => ({
-    id: policy.id,
-    title: locale === "bg" ? policy.titleBg : policy.titleEn,
-    subtitle: locale === "bg" ? policy.subtitleBg : policy.subtitleEn,
-    file: `${CLOUDINARY_BASE_URL}/${locale === "bg" ? policy.cloudinaryPublicIdBg : policy.cloudinaryPublicIdEn}.pdf`,
-  }));
+  const policyDocuments = policies
+    .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+    .map((policy) => ({
+      id: policy.id,
+      title: locale === "bg" ? policy.titleBg : policy.titleEn,
+      subtitle: locale === "bg" ? policy.subtitleBg : policy.subtitleEn,
+      file: `${CLOUDINARY_BASE_URL}/${locale === "bg" ? policy.cloudinaryPublicIdBg : policy.cloudinaryPublicIdEn}`,
+    }));
 
   const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation(0.5);
   const { ref: certificatesRef, isVisible: certificatesVisible } =
@@ -259,7 +261,7 @@ export default function QualityPageClient({
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {policyDocuments.map((doc, index) => {
-              const Icon = getLucideIcon(POLICY_ICONS[index]) || <Award />;
+              const Icon = getLucideIcon(POLICY_ICONS[index]) || Award;
               return (
                 <a
                   key={doc.id}

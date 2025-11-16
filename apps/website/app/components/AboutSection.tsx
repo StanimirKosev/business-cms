@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useScrollAnimation } from "@/app/hooks/useScrollAnimation";
 import { useLanguage } from "@/app/context/LanguageContext";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
 
 const AboutSection = () => {
   const { ref: sectionRef, isVisible } = useScrollAnimation(0.5);
@@ -97,7 +98,7 @@ const AboutSection = () => {
               }`}
             >
               <Image
-                src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop"
+                src={getCloudinaryUrl("2204-800_bnd0sg") || ""}
                 alt={`${t.home.about.title} - Techno Stroy Bulgaria`}
                 fill
                 className="object-cover"

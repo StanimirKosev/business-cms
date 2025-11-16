@@ -5,6 +5,7 @@ import { useLanguage } from "@/app/context/LanguageContext";
 import Image from "next/image";
 import type { MachineryCategory, MachineryModel } from "@repo/database/client";
 import { CategoryNavigationBar } from "../components/CategoryNavigationBar";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
 import { useRef } from "react";
 
 // Helper function to format machinery count with proper unit
@@ -141,7 +142,7 @@ export default function MachineryPageClient({
                     }`}
                   >
                     <Image
-                      src={category.imageUrl}
+                      src={getCloudinaryUrl(category.imageUrl) || ""}
                       alt={categoryName}
                       fill
                       className="object-cover"

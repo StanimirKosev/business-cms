@@ -10,18 +10,15 @@ export async function GET() {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const categories = await prisma.machineryCategory.findMany({
-      include: {
-        models: { orderBy: { order: "asc" } },
-      },
+    const policies = await prisma.policy.findMany({
       orderBy: { order: "asc" },
     });
 
-    return NextResponse.json(categories);
+    return NextResponse.json(policies);
   } catch (error) {
-    console.error("[Machinery GET] Error:", error);
+    console.error("[Policies GET] Error:", error);
     return NextResponse.json(
-      { error: "Failed to fetch machinery" },
+      { error: "Failed to fetch policies" },
       { status: 500 }
     );
   }
@@ -35,31 +32,40 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { nameBg, nameEn, count, imageUrl, order } = body;
+    const {
+      titleBg,
+      titleEn,
+      subtitleBg,
+      subtitleEn,
+      cloudinaryPublicIdBg,
+      cloudinaryPublicIdEn,
+      order
+    } = body;
 
-    if (!nameBg || !nameEn || !count || !imageUrl) {
+    if (!titleBg || !titleEn || !subtitleBg || !subtitleEn || !cloudinaryPublicIdBg || !cloudinaryPublicIdEn) {
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 }
       );
     }
 
-    const category = await prisma.machineryCategory.create({
+    const policy = await prisma.policy.create({
       data: {
-        nameBg,
-        nameEn,
-        count,
-        imageUrl,
+        titleBg,
+        titleEn,
+        subtitleBg,
+        subtitleEn,
+        cloudinaryPublicIdBg,
+        cloudinaryPublicIdEn,
         order: order ?? 0,
       },
-      include: { models: true },
     });
 
-    return NextResponse.json(category, { status: 201 });
+    return NextResponse.json(policy, { status: 201 });
   } catch (error) {
-    console.error("[Machinery POST] Error:", error);
+    console.error("[Policies POST] Error:", error);
     return NextResponse.json(
-      { error: "Failed to create machinery category" },
+      { error: "Failed to create policy" },
       { status: 500 }
     );
   }

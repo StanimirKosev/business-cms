@@ -6,7 +6,7 @@ import { isRecordProtected } from "@/lib/constants";
 
 export async function PUT(
   req: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string; modelId: string }> }
 ) {
   try {
     const session = await getServerSession(authConfig);
@@ -14,20 +14,19 @@ export async function PUT(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { id } = await params;
+    const { id, modelId } = await params;
     const body = await req.json();
 
-    const category = await prisma.machineryCategory.update({
-      where: { id },
+    const model = await prisma.machineryModel.update({
+      where: { id: modelId },
       data: body,
-      include: { models: true },
     });
 
-    return NextResponse.json(category);
+    return NextResponse.json(model);
   } catch (error) {
-    console.error("[Machinery PUT] Error:", error);
+    console.error("[Machinery Model PUT] Error:", error);
     return NextResponse.json(
-      { error: "Failed to update machinery" },
+      { error: "Failed to update machinery model" },
       { status: 500 }
     );
   }
@@ -35,7 +34,7 @@ export async function PUT(
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string; modelId: string }> }
 ) {
   try {
     const session = await getServerSession(authConfig);
@@ -43,36 +42,39 @@ export async function DELETE(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { id } = await params;
+    const { id, modelId } = await params;
 
-    const category = await prisma.machineryCategory.findUnique({
-      where: { id },
+    const model = await prisma.machineryModel.findUnique({
+      where: { id: modelId },
     });
 
-    if (!category) {
-      return NextResponse.json({ error: "Machinery not found" }, { status: 404 });
+    if (!model) {
+      return NextResponse.json(
+        { error: "Machinery model not found" },
+        { status: 404 }
+      );
     }
 
-    // Check if machinery is protected (created before or on cutoff date)
-    if (isRecordProtected(category.createdAt)) {
+    // Check if model is protected (created before or on cutoff date)
+    if (isRecordProtected(model.createdAt)) {
       return NextResponse.json(
         {
           error: "Cannot delete protected record",
-          message: "This machinery is part of the initial dataset and cannot be deleted.",
+          message: "This machinery model is part of the initial dataset and cannot be deleted.",
         },
         { status: 403 }
       );
     }
 
-    await prisma.machineryCategory.delete({
-      where: { id },
+    await prisma.machineryModel.delete({
+      where: { id: modelId },
     });
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("[Machinery DELETE] Error:", error);
+    console.error("[Machinery Model DELETE] Error:", error);
     return NextResponse.json(
-      { error: "Failed to delete machinery" },
+      { error: "Failed to delete machinery model" },
       { status: 500 }
     );
   }

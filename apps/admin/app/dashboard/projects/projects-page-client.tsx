@@ -5,6 +5,7 @@ import { Button } from "@repo/ui/components/button";
 import { toast } from "sonner";
 import { Plus, Trash2, Edit2, X } from "lucide-react";
 import type { Project, Category, Client } from "@repo/database/client";
+import { isRecordProtected } from "@/lib/constants";
 import { ProjectForm } from "./project-form";
 
 const REGION_NAMES: Record<string, string> = {
@@ -52,14 +53,12 @@ interface ProjectsPageClientProps {
   })[];
   initialCategories: Category[];
   initialClients: Client[];
-  projectsCutoffDate: Date;
 }
 
 export function ProjectsPageClient({
   initialProjects,
   initialCategories,
   initialClients,
-  projectsCutoffDate,
 }: ProjectsPageClientProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [projects, setProjects] = useState(initialProjects);
@@ -675,7 +674,7 @@ export function ProjectsPageClient({
                     Редактирай
                   </Button>
                 )}
-                {new Date(project.createdAt) > projectsCutoffDate && (
+                {!isRecordProtected(project.createdAt) && (
                   <Button
                     onClick={() => handleDelete(project.id)}
                     size="sm"

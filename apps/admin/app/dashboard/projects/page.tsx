@@ -1,8 +1,6 @@
 import { prisma } from "@repo/database/client";
 import { ProjectsPageClient } from "./projects-page-client";
 
-const PROJECTS_CUTOFF_DATE = new Date("2025-11-15T10:39:35.960Z");
-
 export default async function ProjectsPage() {
   const [projects, categories, clients] = await Promise.all([
     prisma.project.findMany({
@@ -14,10 +12,10 @@ export default async function ProjectsPage() {
       orderBy: { createdAt: "desc" },
     }),
     prisma.category.findMany({
-      orderBy: { order: "asc" },
+      orderBy: { createdAt: "desc" },
     }),
     prisma.client.findMany({
-      orderBy: { order: "asc" },
+      orderBy: { createdAt: "desc" },
     }),
   ]);
 
@@ -26,7 +24,6 @@ export default async function ProjectsPage() {
       initialProjects={projects}
       initialCategories={categories}
       initialClients={clients}
-      projectsCutoffDate={PROJECTS_CUTOFF_DATE}
     />
   );
 }

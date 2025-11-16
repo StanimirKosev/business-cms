@@ -32,8 +32,16 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { titleBg, titleEn, cloudinaryPublicIdBg, cloudinaryPublicIdEn } =
-      body;
+    const {
+      titleBg,
+      titleEn,
+      cloudinaryPublicIdBg,
+      cloudinaryPublicIdEn,
+      isFeaturedInTimeline,
+      timelineYear,
+      timelineIconName,
+      order
+    } = body;
 
     if (!titleBg || !titleEn || !cloudinaryPublicIdBg || !cloudinaryPublicIdEn) {
       return NextResponse.json(
@@ -48,6 +56,10 @@ export async function POST(req: NextRequest) {
         titleEn,
         cloudinaryPublicIdBg,
         cloudinaryPublicIdEn,
+        isFeaturedInTimeline: isFeaturedInTimeline ?? false,
+        timelineYear: timelineYear || null,
+        timelineIconName: timelineIconName || null,
+        order: order ?? 0,
       },
     });
 

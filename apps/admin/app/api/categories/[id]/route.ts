@@ -41,13 +41,15 @@ export async function DELETE(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { id } = await params;
-
-    await prisma.category.delete({
-      where: { id },
-    });
-
-    return NextResponse.json({ success: true });
+    // Categories cannot be deleted due to foreign key constraints (projects depend on them)
+    return NextResponse.json(
+      {
+        error: "Cannot delete category",
+        message:
+          "Categories cannot be deleted as projects depend on them. You can edit the category instead.",
+      },
+      { status: 403 }
+    );
   } catch (error) {
     console.error("[Categories DELETE] Error:", error);
     return NextResponse.json(

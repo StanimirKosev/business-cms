@@ -2,6 +2,7 @@ import { prisma } from "@repo/database/client";
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
 import { authConfig } from "@/auth";
+import { isRecordProtected } from "@/lib/constants";
 
 export async function PUT(
   req: NextRequest,
@@ -63,6 +64,25 @@ export async function DELETE(
     }
 
     const { id } = await params;
+
+    const project = await prisma.project.findUnique({
+      where: { id },
+    });
+
+    if (!project) {
+      return NextResponse.json({ error: "Project not found" }, { status: 404 });
+    }
+
+    // Check if project is protected (created before or on cutoff date)
+    if (isRecordProtected(project.createdAt)) {
+      return NextResponse.json(
+        {
+          error: "Cannot delete protected record",
+          message: "This project is part of the initial dataset and cannot be deleted.",
+        },
+        { status: 403 }
+      );
+    }
 
     await prisma.project.delete({
       where: { id },

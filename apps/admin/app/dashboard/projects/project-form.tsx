@@ -84,7 +84,9 @@ export function ProjectForm({
       <form onSubmit={onSubmit} className="space-y-6">
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <Label className="text-sm font-semibold">Заглавие (БГ) *</Label>
+            <Label className="text-sm font-semibold">
+              Заглавие (БГ) <span className="text-red-500">*</span>
+            </Label>
             <Input
               value={formData.titleBg || ""}
               onChange={(e) =>
@@ -95,7 +97,9 @@ export function ProjectForm({
             />
           </div>
           <div>
-            <Label className="text-sm font-semibold">Заглавие (EN) *</Label>
+            <Label className="text-sm font-semibold">
+              Заглавие (EN) <span className="text-red-500">*</span>
+            </Label>
             <Input
               value={formData.titleEn || ""}
               onChange={(e) =>
@@ -109,7 +113,9 @@ export function ProjectForm({
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <Label className="text-sm font-semibold">Категория *</Label>
+            <Label className="text-sm font-semibold">
+              Категория <span className="text-red-500">*</span>
+            </Label>
             <select
               value={formData.categoryId || ""}
               onChange={(e) =>
@@ -145,7 +151,9 @@ export function ProjectForm({
         </div>
 
         <div>
-          <Label className="text-sm font-semibold">Галерия снимки *</Label>
+          <Label className="text-sm font-semibold">
+            Галерия снимки <span className="text-red-500">*</span>
+          </Label>
           <div className="mt-1 space-y-3">
             <label className="flex items-center justify-center px-4 py-3 border-2 border-dashed border-gray-300 rounded-md cursor-pointer hover:border-gray-400 transition">
               <div className="flex items-center gap-2">
@@ -307,7 +315,9 @@ export function ProjectForm({
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <Label className="text-sm font-semibold">Подзаглавие (БГ) *</Label>
+            <Label className="text-sm font-semibold">
+              Подзаглавие (БГ) <span className="text-red-500">*</span>
+            </Label>
             <textarea
               value={formData.descriptionBg || ""}
               onChange={(e) =>
@@ -319,7 +329,9 @@ export function ProjectForm({
             />
           </div>
           <div>
-            <Label className="text-sm font-semibold">Подзаглавие (EN) *</Label>
+            <Label className="text-sm font-semibold">
+              Подзаглавие (EN) <span className="text-red-500">*</span>
+            </Label>
             <textarea
               value={formData.descriptionEn || ""}
               onChange={(e) =>
@@ -359,7 +371,9 @@ export function ProjectForm({
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <Label className="text-sm font-semibold">Обект (БГ) *</Label>
+            <Label className="text-sm font-semibold">
+              Обект (БГ) <span className="text-red-500">*</span>
+            </Label>
             <textarea
               value={formData.workNatureBg || ""}
               onChange={(e) =>
@@ -371,7 +385,9 @@ export function ProjectForm({
             />
           </div>
           <div>
-            <Label className="text-sm font-semibold">Site (EN) *</Label>
+            <Label className="text-sm font-semibold">
+              Site (EN) <span className="text-red-500">*</span>
+            </Label>
             <textarea
               value={formData.workNatureEn || ""}
               onChange={(e) =>

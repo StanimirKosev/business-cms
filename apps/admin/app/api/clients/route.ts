@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { nameBg, nameEn, logoUrl, website } = body;
+    const { nameBg, nameEn, logoUrl, website, order } = body;
 
     if (!nameBg || !nameEn) {
       return NextResponse.json(
@@ -47,6 +47,7 @@ export async function POST(req: NextRequest) {
         nameEn,
         logoUrl: logoUrl || null,
         website: website || null,
+        order: order ?? 0,
       },
     });
 

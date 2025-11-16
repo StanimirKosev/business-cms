@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BarChart3, FolderOpen, Tag, Users, Award, Hammer } from "lucide-react";
+import { BarChart3, FolderOpen, Tag, Users, Award, Hammer, FileText } from "lucide-react";
 
 const navItems = [
   {
@@ -28,9 +28,14 @@ const navItems = [
     icon: Award,
   },
   {
-    label: "Оборудване",
+    label: "Механизация",
     href: "/dashboard/machinery",
     icon: Hammer,
+  },
+  {
+    label: "Политики",
+    href: "/dashboard/policies",
+    icon: FileText,
   },
 ];
 
