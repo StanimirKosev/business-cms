@@ -5,25 +5,27 @@ import ServicesSection from "./components/ServicesSection";
 import { ClientsMap } from "./components/ClientsMap";
 import { prisma } from "@repo/database/client";
 
-export const revalidate = 3600; // Revalidate every hour
-
 export default async function HomePage() {
-  const allProjects = await prisma.project.findMany({
-    include: {
-      category: true,
-      client: true,
-    },
-    orderBy: { createdAt: "asc" },
-  });
-
-  const categories = await prisma.category.findMany({
-    orderBy: { order: "asc" },
-  });
-
-  // Filter projects for map - only show projects with clients
-  const projectsWithClients = allProjects.filter((p) => p.client !== null);
-
-  const featuredProjects = allProjects.filter((p) => p.featured);
+  const [featuredProjects, projectsWithClients, categories] = await Promise.all([
+    prisma.project.findMany({
+      where: { featured: true },
+      include: {
+        category: true,
+        client: true,
+      },
+      orderBy: { createdAt: "asc" },
+    }),
+    prisma.project.findMany({
+      where: { client: { isNot: null } },
+      include: {
+        category: true,
+        client: true,
+      },
+    }),
+    prisma.category.findMany({
+      orderBy: { order: "asc" },
+    }),
+  ]);
 
   // LocalBusiness Schema for SEO
   const schemaOrg = {

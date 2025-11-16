@@ -2,7 +2,6 @@ import { prisma } from "@repo/database/client";
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
 import { authConfig } from "@/auth";
-import { triggerWebsiteRebuild } from "@/lib/github";
 
 export async function GET() {
   try {
@@ -85,11 +84,6 @@ export async function POST(req: NextRequest) {
       },
       include: { category: true, client: true, images: true },
     });
-
-    // Trigger website rebuild (async, don't await - fire and forget)
-    triggerWebsiteRebuild().catch((err) =>
-      console.error("Website rebuild trigger failed:", err)
-    );
 
     return NextResponse.json(project, { status: 201 });
   } catch (error) {

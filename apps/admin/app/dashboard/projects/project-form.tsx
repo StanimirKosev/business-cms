@@ -307,7 +307,7 @@ export function ProjectForm({
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <Label className="text-sm font-semibold">Подзаглавие (БГ)</Label>
+            <Label className="text-sm font-semibold">Подзаглавие (БГ) *</Label>
             <textarea
               value={formData.descriptionBg || ""}
               onChange={(e) =>
@@ -319,7 +319,7 @@ export function ProjectForm({
             />
           </div>
           <div>
-            <Label className="text-sm font-semibold">Подзаглавие (EN)</Label>
+            <Label className="text-sm font-semibold">Подзаглавие (EN) *</Label>
             <textarea
               value={formData.descriptionEn || ""}
               onChange={(e) =>

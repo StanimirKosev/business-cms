@@ -2,8 +2,6 @@ import { prisma } from "@repo/database/client";
 import ProjectsPageClient from "./ProjectsPageClient";
 import { Metadata } from "next";
 
-export const revalidate = 3600; // ISR: Revalidate every hour
-
 export const metadata: Metadata = {
   title: "Проекти",
   description:

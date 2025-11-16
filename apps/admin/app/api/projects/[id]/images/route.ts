@@ -2,7 +2,6 @@ import { prisma } from "@repo/database/client";
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
 import { authConfig } from "@/auth";
-import { triggerWebsiteRebuild } from "@/lib/github";
 
 export async function POST(
   req: NextRequest,
@@ -40,11 +39,6 @@ export async function POST(
         order: order ?? 0,
       },
     });
-
-    // Trigger website rebuild (async, don't await - fire and forget)
-    triggerWebsiteRebuild().catch((err) =>
-      console.error("Website rebuild trigger failed:", err)
-    );
 
     return NextResponse.json(projectImage, { status: 201 });
   } catch (error) {
@@ -94,11 +88,6 @@ export async function DELETE(
     const deletedImage = await prisma.projectImage.delete({
       where: { id: imageId },
     });
-
-    // Trigger website rebuild (async, don't await - fire and forget)
-    triggerWebsiteRebuild().catch((err) =>
-      console.error("Website rebuild trigger failed:", err)
-    );
 
     return NextResponse.json(deletedImage);
   } catch (error) {
@@ -150,11 +139,6 @@ export async function PATCH(
       where: { projectId: id },
       orderBy: { order: "asc" },
     });
-
-    // Trigger website rebuild (async, don't await - fire and forget)
-    triggerWebsiteRebuild().catch((err) =>
-      console.error("Website rebuild trigger failed:", err)
-    );
 
     return NextResponse.json(updatedImages);
   } catch (error) {

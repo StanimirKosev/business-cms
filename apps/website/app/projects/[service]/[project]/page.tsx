@@ -7,8 +7,6 @@ interface ProjectPageProps {
   params: Promise<{ service: string; project: string }>;
 }
 
-export const revalidate = 3600; // ISR: Revalidate every hour
-
 // Generate dynamic metadata for each project page
 export async function generateMetadata({
   params,
@@ -23,6 +21,7 @@ export async function generateMetadata({
     include: {
       category: true,
       client: true,
+      images: { orderBy: { order: "asc" } },
     },
   });
 
