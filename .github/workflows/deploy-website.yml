@@ -10,14 +10,16 @@ jobs:
     steps:
       - name: Trigger Website rebuild on Vercel
         run: |
-          curl -X POST "https://api.vercel.com/v1/deployments?forceNew=1" \
+          curl -X POST "https://api.vercel.com/v12/deployments" \
             -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
             -H "Content-Type: application/json" \
-            -d '{"projectId":"${{ secrets.VERCEL_PROJECT_ID }}"}'
+            -d '{"projectId":"${{ secrets.VERCEL_PROJECT_ID }}","skipGitConnectivity":true}' \
+            -v
 
       - name: Trigger Admin app rebuild on Vercel
         run: |
-          curl -X POST "https://api.vercel.com/v1/deployments?forceNew=1" \
+          curl -X POST "https://api.vercel.com/v12/deployments" \
             -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
             -H "Content-Type: application/json" \
-            -d '{"projectId":"${{ secrets.VERCEL_ADMIN_PROJECT_ID }}"}'
+            -d '{"projectId":"${{ secrets.VERCEL_ADMIN_PROJECT_ID }}","skipGitConnectivity":true}' \
+            -v
