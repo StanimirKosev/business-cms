@@ -31,7 +31,7 @@ export default async function ProjectsPage() {
     categoryMap[catId]._count.projects++;
   });
 
-  const categories = Object.values(categoryMap);
+  const categories = Object.values(categoryMap).sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 
   return <ProjectsPageClient categories={categories} projects={projects} />;
 }

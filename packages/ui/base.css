@@ -16,6 +16,7 @@
 
   /* Overlays */
   --overlay: rgba(0, 0, 0, 0.5);
+  --overlay-hero: rgba(0, 0, 0, 0.4);
   --overlay-dark: rgba(0, 0, 0, 0.7);
 }
 

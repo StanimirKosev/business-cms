@@ -49,6 +49,7 @@ export function ServiceProjectsSection({
                   image={imageUrl}
                   slug={`/projects/${category.slug}/${project.slug}`}
                   location={localized.location}
+                  variant="compact"
                 />
               );
             })}

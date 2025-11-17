@@ -23,6 +23,7 @@ const VARIANT_CONFIG = {
     rounded: "rounded-xl",
     showDescription: false,
     showArrow: true,
+    overlay: "bg-[var(--overlay)]",
   },
   compact: {
     height: "h-[300px]",
@@ -31,6 +32,7 @@ const VARIANT_CONFIG = {
     rounded: "rounded-xl",
     showDescription: false,
     showArrow: true,
+    overlay: "bg-[var(--overlay)]",
   },
   hero: {
     height: "h-[500px] lg:h-[600px]",
@@ -39,6 +41,7 @@ const VARIANT_CONFIG = {
     rounded: "",
     showDescription: true,
     showArrow: false,
+    overlay: "bg-[var(--overlay-hero)]",
   },
 } as const;
 
@@ -70,7 +73,7 @@ export function Card({
         }
         priority={priority}
       />
-      <div className="absolute inset-0 bg-[var(--overlay)] transition-all duration-300 group-hover:bg-[var(--overlay-dark)]"></div>
+      <div className={`absolute inset-0 ${config.overlay} transition-all duration-300 group-hover:bg-[var(--overlay-dark)]`}></div>
 
       {!!category && (
         <div className="absolute top-4 left-4 z-20 flex items-center gap-2 bg-[var(--color-brand)] text-white text-sm font-semibold px-4 py-2 rounded-lg shadow-lg backdrop-blur-sm">

@@ -372,7 +372,8 @@ export function ProjectForm({
         <div className="grid grid-cols-2 gap-4">
           <div>
             <Label className="text-sm font-semibold">
-              Обект (БГ) <span className="text-red-500">*</span>
+              Характер на дейностите (БГ){" "}
+              <span className="text-red-500">*</span>
             </Label>
             <textarea
               value={formData.workNatureBg || ""}
@@ -386,7 +387,8 @@ export function ProjectForm({
           </div>
           <div>
             <Label className="text-sm font-semibold">
-              Site (EN) <span className="text-red-500">*</span>
+              Характер на дейностите (EN){" "}
+              <span className="text-red-500">*</span>
             </Label>
             <textarea
               value={formData.workNatureEn || ""}

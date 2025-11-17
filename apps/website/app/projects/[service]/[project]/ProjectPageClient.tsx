@@ -118,7 +118,9 @@ export function ProjectPageClient({
                   style={{ transitionDelay: "120ms" }}
                 >
                   <h3 className="text-sm text-gray-500 uppercase tracking-wider mb-2">
-                    {locale === "bg" ? "Обект" : "Site"}
+                    {locale === "bg"
+                      ? "Характер на дейностите"
+                      : "Nature of Activities"}
                   </h3>
                   <p className="text-lg font-medium text-gray-900">
                     {workNature}

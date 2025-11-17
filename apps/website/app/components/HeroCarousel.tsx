@@ -125,7 +125,7 @@ const HeroCarousel = () => {
                   quality={90}
                   draggable={false}
                 />
-                <div className="absolute inset-0 bg-gradient-to-br from-[var(--overlay)] via-[var(--overlay)] to-transparent z-10" />
+                <div className="absolute inset-0 bg-gradient-to-br from-[var(--overlay-hero)] via-[var(--overlay-hero)] to-transparent z-10" />
               </div>
             </div>
           ))}
