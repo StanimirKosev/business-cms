@@ -1,5 +1,7 @@
 "use client";
 
+import { Input } from "@repo/ui/components/input";
+
 interface ProjectCoordinatePickerProps {
   mapX: number | undefined;
   mapY: number | undefined;
@@ -10,6 +12,7 @@ interface ProjectCoordinatePickerProps {
 /**
  * Interactive map component for selecting project coordinates
  * Click anywhere on the map to place a red dot at exact coordinates
+ * Or manually enter X and Y coordinates in the input fields
  * Region is colored based on the selected region value
  */
 export function ProjectCoordinatePicker({
@@ -35,6 +38,22 @@ export function ProjectCoordinatePicker({
     const finalY = Math.round(svgY);
 
     onCoordinatesChange(finalX, finalY);
+  };
+
+  const handleMapXChange = (value: string) => {
+    const x = value === "" ? undefined : parseInt(value, 10);
+    if (x === undefined || !isNaN(x)) {
+      // Update X coordinate, use existing Y or 0 as default
+      onCoordinatesChange(x ?? 0, mapY ?? 0);
+    }
+  };
+
+  const handleMapYChange = (value: string) => {
+    const y = value === "" ? undefined : parseInt(value, 10);
+    if (y === undefined || !isNaN(y)) {
+      // Update Y coordinate, use existing X or 0 as default
+      onCoordinatesChange(mapX ?? 0, y ?? 0);
+    }
   };
 
   return (
@@ -112,17 +131,33 @@ export function ProjectCoordinatePicker({
         </svg>
       </div>
 
-      {/* Current Coordinates Display */}
-      {mapX !== undefined && mapY !== undefined && (
-        <div className="flex gap-3">
-          <div className="flex-1 bg-red-50 p-3 rounded-md border border-red-200">
-            <p className="text-xs text-gray-600 font-semibold">Координат X</p>
-            <p className="text-lg font-bold text-red-600">{mapX}</p>
-          </div>
-          <div className="flex-1 bg-red-50 p-3 rounded-md border border-red-200">
-            <p className="text-xs text-gray-600 font-semibold">Координат Y</p>
-            <p className="text-lg font-bold text-red-600">{mapY}</p>
-          </div>
+      {/* Coordinate Input Fields & Clear Button */}
+      <div className="flex gap-3">
+        <div className="flex-1">
+          <label className="text-xs text-gray-600 font-semibold block mb-1">
+            Координат X
+          </label>
+          <Input
+            type="number"
+            value={mapX ?? ""}
+            onChange={(e) => handleMapXChange(e.target.value)}
+            placeholder="Въведете X координат"
+            className="mt-0"
+          />
+        </div>
+        <div className="flex-1">
+          <label className="text-xs text-gray-600 font-semibold block mb-1">
+            Координат Y
+          </label>
+          <Input
+            type="number"
+            value={mapY ?? ""}
+            onChange={(e) => handleMapYChange(e.target.value)}
+            placeholder="Въведете Y координат"
+            className="mt-0"
+          />
+        </div>
+        {mapX !== undefined && mapY !== undefined && (
           <button
             type="button"
             onClick={() => onCoordinatesChange(0, 0)}
@@ -130,8 +165,8 @@ export function ProjectCoordinatePicker({
           >
             Изчисти
           </button>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }

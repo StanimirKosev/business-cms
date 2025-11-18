@@ -65,7 +65,7 @@ model Project {
   mapY          Float?        // SVG coordinate (0-651)
 
   // Media
-  heroImageUrl  String       // Cloudinary public ID for main card image
+  heroImageUrl  String?      // Cloudinary public ID for main card image (optional)
 
   // Status
   featured      Boolean      @default(false) // Show on homepage featured section

@@ -7,7 +7,7 @@ import { ArrowUpRight, Building2 } from "lucide-react";
 interface ProjectCardProps {
   title: string;
   description: string;
-  image: string;
+  image?: string;
   slug: string;
   location?: string;
   category?: string;
@@ -62,17 +62,23 @@ export function Card({
       href={slug}
       className={`relative block w-full ${config.height} ${config.rounded} overflow-hidden group`}
     >
-      {/* Background Image */}
-      <Image
-        src={image}
-        alt={title}
-        fill
-        className="object-cover"
-        sizes={
-          config.showDescription ? "50vw" : "(max-width: 768px) 100vw, 450px"
-        }
-        priority={priority}
-      />
+      {/* Background Image or Fallback */}
+      {image ? (
+        <>
+          <Image
+            src={image}
+            alt={title}
+            fill
+            className="object-cover"
+            sizes={
+              config.showDescription ? "50vw" : "(max-width: 768px) 100vw, 450px"
+            }
+            priority={priority}
+          />
+        </>
+      ) : (
+        <div className="absolute inset-0 bg-stone-200" />
+      )}
       <div className={`absolute inset-0 ${config.overlay} transition-all duration-300 group-hover:bg-[var(--overlay-dark)]`}></div>
 
       {!!category && (

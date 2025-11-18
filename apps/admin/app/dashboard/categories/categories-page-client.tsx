@@ -60,7 +60,9 @@ export function CategoriesPageClient({
       !formData.titleBg ||
       !formData.titleEn ||
       !formData.descriptionBg ||
-      !formData.descriptionEn
+      !formData.descriptionEn ||
+      formData.order === undefined ||
+      formData.order === null
     ) {
       toast.error("Попълнете всички задължителни полета");
       return;
@@ -73,19 +75,10 @@ export function CategoriesPageClient({
         : "/api/categories";
       const method = editingId ? "PUT" : "POST";
 
-      // Calculate new order for new categories
-      let newOrder = formData.order;
-      if (!editingId) {
-        const maxOrder = categories.length > 0
-          ? Math.max(...categories.map((c) => c.order ?? 0))
-          : -1;
-        newOrder = maxOrder + 1;
-      }
-
       const dataToSend = {
         ...formData,
         iconName: formData.iconName ? transformIconName(formData.iconName) : "",
-        order: newOrder,
+        order: formData.order ?? (editingId ? 0 : getSuggestedOrder()),
       };
 
       const response = await fetch(url, {
@@ -134,6 +127,12 @@ export function CategoriesPageClient({
       descriptionEn: "",
       iconName: "",
     });
+  };
+
+  const getSuggestedOrder = (): number => {
+    if (categories.length === 0) return 0;
+    const maxOrder = Math.max(...categories.map((c) => c.order ?? 0));
+    return maxOrder + 1;
   };
 
   return (
@@ -236,19 +235,39 @@ export function CategoriesPageClient({
               </div>
             </div>
 
-            <div>
-              <Label className="text-sm font-semibold">Icon Name (опционално)</Label>
-              <Input
-                value={formData.iconName || ""}
-                onChange={(e) =>
-                  setFormData({ ...formData, iconName: e.target.value })
-                }
-                placeholder="arrow-left"
-                className="mt-1"
-              />
-              <p className="mt-1 text-xs text-gray-500">
-                Отидете на https://lucide.dev/icons/ и изберете име на икона. При преглед на икона се показва името с малки букви и дефиси (arrow-left).
-              </p>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <Label className="text-sm font-semibold">Icon Name</Label>
+                <Input
+                  value={formData.iconName || ""}
+                  onChange={(e) =>
+                    setFormData({ ...formData, iconName: e.target.value })
+                  }
+                  placeholder="arrow-left"
+                  className="mt-1"
+                />
+                <p className="mt-1 text-xs text-gray-500">
+                  Отидете на https://lucide.dev/icons/ и изберете име на икона. При преглед на икона се показва името с малки букви и дефиси (arrow-left).
+                </p>
+              </div>
+              <div>
+                <Label className="text-sm font-semibold">
+                  Ред <span className="text-red-500">*</span>
+                </Label>
+                <Input
+                  type="number"
+                  value={formData.order ?? getSuggestedOrder()}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    setFormData({
+                      ...formData,
+                      order: val === "" ? undefined : parseInt(val, 10)
+                    });
+                  }}
+                  className="mt-1"
+                  required
+                />
+              </div>
             </div>
 
             <Button type="submit" disabled={uploading} className="w-full">
@@ -267,6 +286,7 @@ export function CategoriesPageClient({
                   {category.titleBg}
                 </h3>
                 <p className="text-sm text-gray-600">{category.titleEn}</p>
+                <p className="text-xs text-gray-500 mt-1">Ред: {category.order}</p>
               </div>
               <div className="flex gap-2">
                 {editingId === category.id ? (
@@ -381,19 +401,39 @@ export function CategoriesPageClient({
                     </div>
                   </div>
 
-                  <div>
-                    <Label className="text-sm font-semibold">Icon Name (опционално)</Label>
-                    <Input
-                      value={formData.iconName || ""}
-                      onChange={(e) =>
-                        setFormData({ ...formData, iconName: e.target.value })
-                      }
-                      placeholder="arrow-left"
-                      className="mt-1"
-                    />
-                    <p className="mt-1 text-xs text-gray-500">
-                      Отидете на https://lucide.dev/icons/ и изберете име на икона. При преглед на икона се показва името с малки букви и дефиси (arrow-left).
-                    </p>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <Label className="text-sm font-semibold">Icon Name</Label>
+                      <Input
+                        value={formData.iconName || ""}
+                        onChange={(e) =>
+                          setFormData({ ...formData, iconName: e.target.value })
+                        }
+                        placeholder="arrow-left"
+                        className="mt-1"
+                      />
+                      <p className="mt-1 text-xs text-gray-500">
+                        Отидете на https://lucide.dev/icons/ и изберете име на икона. При преглед на икона се показва името с малки букви и дефиси (arrow-left).
+                      </p>
+                    </div>
+                    <div>
+                      <Label className="text-sm font-semibold">
+                        Ред <span className="text-red-500">*</span>
+                      </Label>
+                      <Input
+                        type="number"
+                        value={formData.order ?? 0}
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          setFormData({
+                            ...formData,
+                            order: val === "" ? undefined : parseInt(val, 10)
+                          });
+                        }}
+                        className="mt-1"
+                        required
+                      />
+                    </div>
                   </div>
 
                   <Button type="submit" disabled={uploading} className="w-full">

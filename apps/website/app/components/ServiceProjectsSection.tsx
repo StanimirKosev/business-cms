@@ -39,7 +39,9 @@ export function ServiceProjectsSection({
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project) => {
               const localized = localizeProject(project, locale);
-              const imageUrl = getCloudinaryUrl(project.heroImageUrl)!;
+              const imageUrl = project.heroImageUrl
+                ? getCloudinaryUrl(project.heroImageUrl)!
+                : undefined;
 
               return (
                 <Card

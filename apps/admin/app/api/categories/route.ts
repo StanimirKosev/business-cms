@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { titleBg, titleEn, slug, descriptionBg, descriptionEn, iconName, order } = body;
 
-    if (!titleBg || !titleEn || !slug || !descriptionBg || !descriptionEn) {
+    if (!titleBg || !titleEn || !slug || !descriptionBg || !descriptionEn || order === undefined || order === null) {
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 }
@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
         descriptionBg,
         descriptionEn,
         iconName: iconName || null,
-        order: order ?? 0,
+        order,
       },
     });
 

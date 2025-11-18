@@ -254,7 +254,7 @@ export function ClientsPageClient({ initialClients }: ClientsPageClientProps) {
             </div>
 
             <div>
-              <Label className="text-sm font-semibold">Logo (опционално)</Label>
+              <Label className="text-sm font-semibold">Logo</Label>
               <div className="mt-1 space-y-3">
                 <label className="flex items-center justify-center px-4 py-3 border-2 border-dashed border-gray-300 rounded-md cursor-pointer hover:border-gray-400 transition">
                   <div className="flex items-center gap-2">
@@ -275,11 +275,12 @@ export function ClientsPageClient({ initialClients }: ClientsPageClientProps) {
 
                 {selectedImage && (
                   <div className="flex items-center gap-3 p-2 bg-gray-50 rounded-md">
-                    <div className="w-16 h-16 flex-shrink-0 rounded-md overflow-hidden bg-white flex items-center justify-center">
-                      <img
+                    <div className="relative w-16 h-16 flex-shrink-0 rounded-md overflow-hidden bg-white flex items-center justify-center">
+                      <Image
                         src={selectedImage.preview}
                         alt="Logo preview"
-                        className="w-full h-full object-contain"
+                        fill
+                        className="object-contain"
                       />
                     </div>
                     <div className="flex-1 min-w-0">
@@ -315,11 +316,12 @@ export function ClientsPageClient({ initialClients }: ClientsPageClientProps) {
             <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 flex justify-between items-start">
               <div className="flex-1 flex gap-4">
                 {client.logoUrl && (
-                  <div className="w-16 h-16 flex-shrink-0 rounded-md overflow-hidden bg-gray-100 flex items-center justify-center">
-                    <img
+                  <div className="relative w-16 h-16 flex-shrink-0 rounded-md overflow-hidden bg-gray-100 flex items-center justify-center">
+                    <Image
                       src={`https://res.cloudinary.com/dn7bynzv7/image/upload/${client.logoUrl}`}
                       alt={client.nameBg}
-                      className="w-full h-full object-contain"
+                      fill
+                      className="object-contain"
                     />
                   </div>
                 )}
@@ -432,11 +434,12 @@ export function ClientsPageClient({ initialClients }: ClientsPageClientProps) {
 
                       {formData.logoUrl && !selectedImage && (
                         <div className="flex items-center gap-3 p-2 bg-blue-50 rounded-md border border-blue-200">
-                          <div className="w-16 h-16 flex-shrink-0 rounded-md overflow-hidden bg-white flex items-center justify-center">
-                            <img
+                          <div className="relative w-16 h-16 flex-shrink-0 rounded-md overflow-hidden bg-white flex items-center justify-center">
+                            <Image
                               src={`https://res.cloudinary.com/dn7bynzv7/image/upload/${formData.logoUrl}`}
                               alt="Current logo"
-                              className="w-full h-full object-contain"
+                              fill
+                              className="object-contain"
                             />
                           </div>
                           <div className="flex-1 min-w-0">
@@ -456,11 +459,12 @@ export function ClientsPageClient({ initialClients }: ClientsPageClientProps) {
 
                       {selectedImage && (
                         <div className="flex items-center gap-3 p-2 bg-gray-50 rounded-md">
-                          <div className="w-16 h-16 flex-shrink-0 rounded-md overflow-hidden bg-white flex items-center justify-center">
-                            <img
+                          <div className="relative w-16 h-16 flex-shrink-0 rounded-md overflow-hidden bg-white flex items-center justify-center">
+                            <Image
                               src={selectedImage.preview}
                               alt="Logo preview"
-                              className="w-full h-full object-contain"
+                              fill
+                              className="object-contain"
                             />
                           </div>
                           <div className="flex-1 min-w-0">

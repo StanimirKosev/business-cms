@@ -9,7 +9,11 @@ import { useLanguage } from "@/app/context/LanguageContext";
 import { getCloudinaryUrl } from "@/lib/cloudinary";
 
 // Cloudinary image public IDs for hero carousel
-const HERO_IMAGE_IDS = ["гара_r9o6sd", "2639-800_ijugrx", "2615-800_g4nfhr"];
+const HERO_IMAGE_IDS = [
+  "гара_r9o6sd",
+  "2639-800_ijugrx",
+  "DJI_20250914152048_0538_D_hpbhoo",
+];
 
 const SLIDE_IMAGES = HERO_IMAGE_IDS.map((id) => getCloudinaryUrl(id)!);
 

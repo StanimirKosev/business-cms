@@ -89,7 +89,9 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
                   locale === "bg"
                     ? project.category.titleBg
                     : project.category.titleEn;
-                const imageUrl = `${CLOUDINARY_BASE_URL}/${project.heroImageUrl}`;
+                const imageUrl = project.heroImageUrl
+                  ? `${CLOUDINARY_BASE_URL}/${project.heroImageUrl}`
+                  : undefined;
 
                 return (
                   <div

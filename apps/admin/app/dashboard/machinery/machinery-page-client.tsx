@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useRef } from "react";
+import React, { useState, useRef } from "react";
+import Image from "next/image";
 import { Button } from "@repo/ui/components/button";
 import { Input } from "@repo/ui/components/input";
 import { Label } from "@repo/ui/components/label";
@@ -129,7 +130,9 @@ export function MachineryPageClient({
       !categoryFormData.nameBg ||
       !categoryFormData.nameEn ||
       categoryFormData.count === undefined ||
-      (!categoryFormData.imageUrl && !selectedImage)
+      (!categoryFormData.imageUrl && !selectedImage) ||
+      categoryFormData.order === undefined ||
+      categoryFormData.order === null
     ) {
       toast.error("Попълнете всички необходими полета");
       return;
@@ -148,20 +151,12 @@ export function MachineryPageClient({
         : "/api/machinery";
       const method = editingCategoryId ? "PUT" : "POST";
 
-      let newOrder = categoryFormData.order;
-      if (!editingCategoryId) {
-        const maxOrder = categories.length > 0
-          ? Math.max(...categories.map((c) => c.order ?? 0))
-          : -1;
-        newOrder = maxOrder + 1;
-      }
-
       const dataToSubmit = {
         nameBg: categoryFormData.nameBg,
         nameEn: categoryFormData.nameEn,
         count: categoryFormData.count,
         imageUrl: uploadedImageUrl,
-        order: newOrder,
+        order: categoryFormData.order ?? (editingCategoryId ? 0 : getSuggestedOrder()),
       };
 
       const response = await fetch(url, {
@@ -369,6 +364,12 @@ export function MachineryPageClient({
     setCategoryFormData({ ...categoryFormData, imageUrl: "" });
   };
 
+  const getSuggestedOrder = (): number => {
+    if (categories.length === 0) return 0;
+    const maxOrder = Math.max(...categories.map((c) => c.order ?? 0));
+    return maxOrder + 1;
+  };
+
   return (
     <div className="p-8">
       <div className="flex justify-between items-center mb-8">
@@ -397,18 +398,13 @@ export function MachineryPageClient({
         </Button>
       </div>
 
-      {(showCategoryForm || editingCategoryId) && (
+      {showCategoryForm && !editingCategoryId && (
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mb-8">
           <div className="flex justify-between items-center mb-6">
-            <h3 className="text-xl font-semibold">
-              {editingCategoryId
-                ? "Редактирай категория"
-                : "Нова категория"}
-            </h3>
+            <h3 className="text-xl font-semibold">Нова категория</h3>
             <button
               onClick={() => {
                 setShowCategoryForm(false);
-                setEditingCategoryId(null);
                 resetCategoryForm();
               }}
               className="text-gray-500 hover:text-gray-700"
@@ -455,22 +451,42 @@ export function MachineryPageClient({
               </div>
             </div>
 
-            <div>
-              <Label className="text-sm font-semibold">
-                Брой <span className="text-red-500">*</span>
-              </Label>
-              <Input
-                type="number"
-                value={categoryFormData.count ?? ""}
-                onChange={(e) =>
-                  setCategoryFormData({
-                    ...categoryFormData,
-                    count: e.target.value === "" ? 0 : parseInt(e.target.value),
-                  })
-                }
-                className="mt-1"
-                required
-              />
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <Label className="text-sm font-semibold">
+                  Брой <span className="text-red-500">*</span>
+                </Label>
+                <Input
+                  type="number"
+                  value={categoryFormData.count ?? ""}
+                  onChange={(e) =>
+                    setCategoryFormData({
+                      ...categoryFormData,
+                      count: e.target.value === "" ? 0 : parseInt(e.target.value),
+                    })
+                  }
+                  className="mt-1"
+                  required
+                />
+              </div>
+              <div>
+                <Label className="text-sm font-semibold">
+                  Ред <span className="text-red-500">*</span>
+                </Label>
+                <Input
+                  type="number"
+                  value={categoryFormData.order ?? getSuggestedOrder()}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    setCategoryFormData({
+                      ...categoryFormData,
+                      order: val === "" ? undefined : parseInt(val, 10)
+                    });
+                  }}
+                  className="mt-1"
+                  required
+                />
+              </div>
             </div>
 
             <div>
@@ -497,11 +513,12 @@ export function MachineryPageClient({
 
                 {selectedImage && (
                   <div className="flex items-center gap-3 p-2 bg-gray-50 rounded-md">
-                    <div className="w-16 h-16 flex-shrink-0 rounded-md overflow-hidden bg-white flex items-center justify-center">
-                      <img
+                    <div className="relative w-16 h-16 flex-shrink-0 rounded-md overflow-hidden bg-white flex items-center justify-center">
+                      <Image
                         src={selectedImage.preview}
                         alt="Image preview"
-                        className="w-full h-full object-contain"
+                        fill
+                        className="object-contain"
                       />
                     </div>
                     <div className="flex-1 min-w-0">
@@ -524,11 +541,12 @@ export function MachineryPageClient({
 
                 {categoryFormData.imageUrl && !selectedImage && (
                   <div className="flex items-center gap-3 p-2 bg-blue-50 rounded-md border border-blue-200">
-                    <div className="w-16 h-16 flex-shrink-0 rounded-md overflow-hidden bg-white flex items-center justify-center">
-                      <img
+                    <div className="relative w-16 h-16 flex-shrink-0 rounded-md overflow-hidden bg-white flex items-center justify-center">
+                      <Image
                         src={`https://res.cloudinary.com/dn7bynzv7/image/upload/${categoryFormData.imageUrl}`}
                         alt="Current image"
-                        className="w-full h-full object-contain"
+                        fill
+                        className="object-contain"
                       />
                     </div>
                     <div className="flex-1 min-w-0">
@@ -547,11 +565,7 @@ export function MachineryPageClient({
             </div>
 
             <Button type="submit" disabled={uploading} className="w-full">
-              {uploading
-                ? "Запазване..."
-                : editingCategoryId
-                  ? "Актуализирай"
-                  : "Създай"}
+              {uploading ? "Запазване..." : "Създай"}
             </Button>
           </form>
         </div>
@@ -572,6 +586,7 @@ export function MachineryPageClient({
                 <p className="text-xs text-gray-500 mt-1">
                   Брой: {category.count} • Модели: {category.models.length}
                 </p>
+                <p className="text-xs text-gray-500 mt-1">Ред: {category.order}</p>
               </div>
               <div className="flex gap-2">
                 <Button
@@ -631,24 +646,35 @@ export function MachineryPageClient({
                   <h4 className="font-semibold text-gray-800">Модели</h4>
                   <Button
                     onClick={() => {
-                      setShowModelForm(category.id);
                       setEditingModelId(null);
-                      resetModelForm();
+                      setShowModelForm(showModelForm === category.id ? null : category.id);
+                      if (showModelForm === category.id) {
+                        resetModelForm();
+                      } else {
+                        resetModelForm();
+                      }
                     }}
                     size="sm"
                     className="gap-1"
                   >
-                    <Plus size={14} />
-                    Добави модел
+                    {showModelForm === category.id && !editingModelId ? (
+                      <>
+                        <X size={14} />
+                        Откажи
+                      </>
+                    ) : (
+                      <>
+                        <Plus size={14} />
+                        Добави модел
+                      </>
+                    )}
                   </Button>
                 </div>
 
-                {showModelForm === category.id && (
-                  <div className="bg-white p-4 rounded border border-gray-300">
+                {showModelForm === category.id && !editingModelId && (
+                  <div className="bg-white p-4 rounded border border-gray-300 mt-2">
                     <div className="flex justify-between items-center mb-4">
-                      <h5 className="font-semibold">
-                        {editingModelId ? "Редактирай модел" : "Нов модел"}
-                      </h5>
+                      <h5 className="font-semibold">Нов модел</h5>
                       <button
                         onClick={() => {
                           setShowModelForm(null);
@@ -744,11 +770,7 @@ export function MachineryPageClient({
                         disabled={uploading}
                         className="w-full"
                       >
-                        {uploading
-                          ? "Запазване..."
-                          : editingModelId
-                            ? "Актуализирай"
-                            : "Създай"}
+                        {uploading ? "Запазване..." : "Създай"}
                       </Button>
                     </form>
                   </div>
@@ -761,28 +783,70 @@ export function MachineryPageClient({
                     </p>
                   ) : (
                     category.models.map((model) => (
-                      <div
-                        key={model.id}
-                        className="bg-white p-3 rounded border border-gray-200 flex justify-between items-start"
-                      >
-                        <div className="flex-1">
-                          <h5 className="font-semibold text-sm">
-                            {model.nameBg}
-                          </h5>
-                          <p className="text-xs text-gray-600">
-                            {model.nameEn}
-                          </p>
-                          <p className="text-xs text-gray-500 mt-1">
-                            {model.count}{" "}
-                            {model.unit === "PIECES" ? "бр." : "м²"}
-                          </p>
+                      <React.Fragment key={model.id}>
+                        <div
+                          className="bg-white p-3 rounded border border-gray-200 flex justify-between items-start"
+                        >
+                          <div className="flex-1">
+                            <h5 className="font-semibold text-sm">
+                              {model.nameBg}
+                            </h5>
+                            <p className="text-xs text-gray-600">
+                              {model.nameEn}
+                            </p>
+                            <p className="text-xs text-gray-500 mt-1">
+                              {model.count}{" "}
+                              {model.unit === "PIECES" ? "бр." : "м²"}
+                            </p>
+                          </div>
+                          <div className="flex gap-1">
+                            {editingModelId === model.id ? (
+                              <Button
+                                onClick={() => {
+                                  setEditingModelId(null);
+                                  setShowModelForm(null);
+                                  resetModelForm();
+                                }}
+                                size="sm"
+                                variant="outline"
+                                className="gap-1"
+                              >
+                                <X size={12} />
+                              </Button>
+                            ) : (
+                              <Button
+                                onClick={() => {
+                                  handleEditModel(model);
+                                  setShowModelForm(category.id);
+                                }}
+                                size="sm"
+                                variant="outline"
+                                className="gap-1"
+                              >
+                                Редактирай
+                              </Button>
+                            )}
+                            <Button
+                              onClick={() =>
+                                handleDeleteModel(category.id, model.id)
+                              }
+                              size="sm"
+                              variant="outline"
+                              className="text-red-600 hover:text-red-700"
+                            >
+                              <Trash2 size={12} />
+                            </Button>
+                          </div>
                         </div>
-                        <div className="flex gap-1">
-                          {editingModelId === model.id ? (
+
+                        {editingModelId === model.id && (
+                        <div className="bg-gray-100 p-4 rounded border border-gray-300 border-t-0 rounded-t-none">
+                          <div className="flex justify-between items-center mb-4">
+                            <h5 className="font-semibold">Редактирай модел</h5>
                             <Button
                               onClick={() => {
                                 setEditingModelId(null);
-                                setShowModelForm(category.id);
+                                setShowModelForm(null);
                                 resetModelForm();
                               }}
                               size="sm"
@@ -790,35 +854,276 @@ export function MachineryPageClient({
                               className="gap-1"
                             >
                               <X size={12} />
+                              Откажи
                             </Button>
-                          ) : (
-                            <Button
-                              onClick={() => {
-                                handleEditModel(model);
-                                setShowModelForm(category.id);
-                              }}
-                              size="sm"
-                              variant="outline"
-                              className="gap-1"
-                            >
-                              Редактирай
-                            </Button>
-                          )}
-                          <Button
-                            onClick={() =>
-                              handleDeleteModel(category.id, model.id)
-                            }
-                            size="sm"
-                            variant="outline"
-                            className="text-red-600 hover:text-red-700"
+                          </div>
+
+                          <form
+                            onSubmit={(e) => handleModelSubmit(e, category.id)}
+                            className="space-y-4"
                           >
-                            <Trash2 size={12} />
-                          </Button>
+                            <div className="grid grid-cols-2 gap-4">
+                              <div>
+                                <Label className="text-sm font-semibold">
+                                  Име (БГ)
+                                </Label>
+                                <Input
+                                  value={modelFormData.nameBg || ""}
+                                  onChange={(e) =>
+                                    setModelFormData({
+                                      ...modelFormData,
+                                      nameBg: e.target.value,
+                                    })
+                                  }
+                                  placeholder="Име на български"
+                                  className="mt-1"
+                                />
+                              </div>
+                              <div>
+                                <Label className="text-sm font-semibold">
+                                  Име (EN)
+                                </Label>
+                                <Input
+                                  value={modelFormData.nameEn || ""}
+                                  onChange={(e) =>
+                                    setModelFormData({
+                                      ...modelFormData,
+                                      nameEn: e.target.value,
+                                    })
+                                  }
+                                  placeholder="Name in English"
+                                  className="mt-1"
+                                />
+                              </div>
+                            </div>
+
+                            <div className="grid grid-cols-2 gap-4">
+                              <div>
+                                <Label className="text-sm font-semibold">Брой</Label>
+                                <Input
+                                  type="number"
+                                  value={modelFormData.count || 0}
+                                  onChange={(e) =>
+                                    setModelFormData({
+                                      ...modelFormData,
+                                      count: parseInt(e.target.value),
+                                    })
+                                  }
+                                  className="mt-1"
+                                />
+                              </div>
+                              <div>
+                                <Label className="text-sm font-semibold">
+                                  Мерна единица
+                                </Label>
+                                <select
+                                  value={modelFormData.unit || "PIECES"}
+                                  onChange={(e) =>
+                                    setModelFormData({
+                                      ...modelFormData,
+                                      unit: e.target.value as
+                                        | "PIECES"
+                                        | "SQUARE_METERS",
+                                    })
+                                  }
+                                  className="w-full mt-1 px-3 py-2 border border-gray-300 rounded-md text-sm"
+                                >
+                                  <option value="PIECES">бр. (Pieces)</option>
+                                  <option value="SQUARE_METERS">
+                                    м² (Square Meters)
+                                  </option>
+                                </select>
+                              </div>
+                            </div>
+
+                            <Button
+                              type="submit"
+                              disabled={uploading}
+                              className="w-full"
+                            >
+                              {uploading ? "Запазване..." : "Актуализирай"}
+                            </Button>
+                          </form>
                         </div>
-                      </div>
+                      )}
+                      </React.Fragment>
                     ))
                   )}
                 </div>
+              </div>
+            )}
+
+            {editingCategoryId === category.id && (
+              <div className="bg-blue-50 p-6 rounded-lg shadow-sm border border-blue-200 border-t-0 rounded-t-none">
+                <div className="flex justify-between items-center mb-6">
+                  <h3 className="text-xl font-semibold">Редактирай категория</h3>
+                  <button
+                    onClick={() => {
+                      setEditingCategoryId(null);
+                      setShowCategoryForm(false);
+                      resetCategoryForm();
+                    }}
+                    className="text-gray-500 hover:text-gray-700"
+                  >
+                    <X size={20} />
+                  </button>
+                </div>
+
+                <form onSubmit={handleCategorySubmit} className="space-y-6">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <Label className="text-sm font-semibold">
+                        Име (БГ) <span className="text-red-500">*</span>
+                      </Label>
+                      <Input
+                        value={categoryFormData.nameBg || ""}
+                        onChange={(e) =>
+                          setCategoryFormData({
+                            ...categoryFormData,
+                            nameBg: e.target.value,
+                          })
+                        }
+                        placeholder="Име на български"
+                        className="mt-1"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <Label className="text-sm font-semibold">
+                        Име (EN) <span className="text-red-500">*</span>
+                      </Label>
+                      <Input
+                        value={categoryFormData.nameEn || ""}
+                        onChange={(e) =>
+                          setCategoryFormData({
+                            ...categoryFormData,
+                            nameEn: e.target.value,
+                          })
+                        }
+                        placeholder="Name in English"
+                        className="mt-1"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <Label className="text-sm font-semibold">
+                        Брой <span className="text-red-500">*</span>
+                      </Label>
+                      <Input
+                        type="number"
+                        value={categoryFormData.count ?? ""}
+                        onChange={(e) =>
+                          setCategoryFormData({
+                            ...categoryFormData,
+                            count: e.target.value === "" ? 0 : parseInt(e.target.value),
+                          })
+                        }
+                        className="mt-1"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <Label className="text-sm font-semibold">
+                        Ред <span className="text-red-500">*</span>
+                      </Label>
+                      <Input
+                        type="number"
+                        value={categoryFormData.order ?? 0}
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          setCategoryFormData({
+                            ...categoryFormData,
+                            order: val === "" ? undefined : parseInt(val, 10)
+                          });
+                        }}
+                        className="mt-1"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <Label className="text-sm font-semibold">
+                      Снимка <span className="text-red-500">*</span>
+                    </Label>
+                    <div className="mt-1 space-y-3">
+                      <label className="flex items-center justify-center px-4 py-3 border-2 border-dashed border-gray-300 rounded-md cursor-pointer hover:border-gray-400 transition">
+                        <div className="flex items-center gap-2">
+                          <Upload size={18} className="text-gray-500" />
+                          <span className="text-sm text-gray-600">
+                            {uploading ? "Качване..." : "Кликни за избор на снимка"}
+                          </span>
+                        </div>
+                        <input
+                          ref={fileInputRef}
+                          type="file"
+                          accept="image/*"
+                          onChange={handleImageSelect}
+                          disabled={uploading}
+                          className="hidden"
+                        />
+                      </label>
+
+                      {selectedImage && (
+                        <div className="flex items-center gap-3 p-2 bg-gray-50 rounded-md">
+                          <div className="relative w-16 h-16 flex-shrink-0 rounded-md overflow-hidden bg-white flex items-center justify-center">
+                            <Image
+                              src={selectedImage.preview}
+                              alt="Image preview"
+                              fill
+                              className="object-contain"
+                            />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm text-gray-700 truncate">
+                              {selectedImage.file.name}
+                            </p>
+                            <p className="text-xs text-gray-500">
+                              {(selectedImage.file.size / 1024).toFixed(1)} KB
+                            </p>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={removeSelectedImage}
+                            className="p-1 text-red-500 hover:text-red-700 flex-shrink-0"
+                          >
+                            <Trash2 size={16} />
+                          </button>
+                        </div>
+                      )}
+
+                      {categoryFormData.imageUrl && !selectedImage && (
+                        <div className="flex items-center gap-3 p-2 bg-blue-50 rounded-md border border-blue-200">
+                          <div className="relative w-16 h-16 flex-shrink-0 rounded-md overflow-hidden bg-white flex items-center justify-center">
+                            <Image
+                              src={`https://res.cloudinary.com/dn7bynzv7/image/upload/${categoryFormData.imageUrl}`}
+                              alt="Current image"
+                              fill
+                              className="object-contain"
+                            />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm text-gray-700">Текуща снимка</p>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={removeCurrentImage}
+                            className="p-1 text-red-500 hover:text-red-700 flex-shrink-0"
+                          >
+                            <Trash2 size={16} />
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  <Button type="submit" disabled={uploading} className="w-full">
+                    {uploading ? "Запазване..." : "Актуализирай"}
+                  </Button>
+                </form>
               </div>
             )}
           </div>

@@ -42,7 +42,7 @@ export async function POST(req: NextRequest) {
       locationBg, locationEn, workNatureBg, workNatureEn, specificationsBg, specificationsEn, region, mapX, mapY
     } = body;
 
-    if (!titleBg || !titleEn || !slug || !descriptionBg || !descriptionEn || !categoryId || !heroImageUrl) {
+    if (!titleBg || !titleEn || !slug || !descriptionBg || !descriptionEn || !categoryId) {
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 }
@@ -76,7 +76,7 @@ export async function POST(req: NextRequest) {
         specificationsEn: specificationsEn || null,
         categoryId,
         clientId: clientId || null,
-        heroImageUrl,
+        heroImageUrl: heroImageUrl || null,
         featured: featured || false,
         region: region || "",
         mapX: mapX || null,

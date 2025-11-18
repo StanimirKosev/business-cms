@@ -169,12 +169,12 @@ export function ProjectsPageClient({
   };
 
   const uploadGalleryImages = async (): Promise<string[]> => {
-    if (selectedImages.length === 0) {
-      throw new Error("Трябва да изберете поне една снимка");
-    }
-
     if (!formData.titleEn?.trim()) {
       throw new Error("Моля, попълнете заглавието на английски първо");
+    }
+
+    if (selectedImages.length === 0) {
+      return [];
     }
 
     const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
@@ -252,10 +252,6 @@ export function ProjectsPageClient({
       return;
     }
 
-    if (selectedImages.length === 0 && !editingId) {
-      toast.error("Трябва да изберете поне една снимка");
-      return;
-    }
 
     if (formData.titleBg.trim().length < 5) {
       toast.error("Заглавие (БГ) трябва да е поне 5 символа");
@@ -339,8 +335,8 @@ export function ProjectsPageClient({
       formData.region?.trim() ||
       formData.locationBg?.trim() ||
       formData.locationEn?.trim() ||
-      formData.mapX ||
-      formData.mapY ||
+      formData.mapX !== undefined ||
+      formData.mapY !== undefined ||
       formData.clientId;
 
     if (hasMapData) {
@@ -356,11 +352,11 @@ export function ProjectsPageClient({
         toast.error("Локация (EN) е задължителна, когато има географски данни");
         return;
       }
-      if (!formData.mapX) {
+      if (formData.mapX === undefined) {
         toast.error("Координата X е задължителна, когато има географски данни");
         return;
       }
-      if (!formData.mapY) {
+      if (formData.mapY === undefined) {
         toast.error("Координата Y е задължителна, когато има географски данни");
         return;
       }
@@ -378,7 +374,19 @@ export function ProjectsPageClient({
         uploadedImageIds = await uploadGalleryImages();
       }
 
-      const heroImageUrl = uploadedImageIds[0] || formData.heroImageUrl;
+      // Determine hero image: prioritize in order
+      // 1. First uploaded image (if new images added)
+      // 2. First existing image (if reordering existing images)
+      // 3. Keep current hero image (if neither uploaded nor reordered)
+      // If no images at all, hero image becomes undefined
+      let heroImageUrl: string | undefined;
+      if (uploadedImageIds.length > 0) {
+        heroImageUrl = uploadedImageIds[0];
+      } else if (existingImages.length > 0) {
+        heroImageUrl = existingImages[0].cloudinaryPublicId;
+      } else {
+        heroImageUrl = formData.heroImageUrl || undefined;
+      }
 
       const url = editingId ? `/api/projects/${editingId}` : "/api/projects";
       const method = editingId ? "PUT" : "POST";

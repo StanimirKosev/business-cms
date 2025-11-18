@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import Image from "next/image";
 import { Button } from "@repo/ui/components/button";
 import { Input } from "@repo/ui/components/input";
 import { Label } from "@repo/ui/components/label";
@@ -363,11 +364,12 @@ export function CertificatesPageClient({
                   {selectedFileBg && (
                     <div className="flex items-center gap-3 p-2 bg-gray-50 rounded-md">
                       {selectedFileBg.preview && (
-                        <div className="w-16 h-16 flex-shrink-0 rounded-md overflow-hidden bg-white flex items-center justify-center">
-                          <img
+                        <div className="w-16 h-16 flex-shrink-0 rounded-md overflow-hidden bg-white flex items-center justify-center relative">
+                          <Image
                             src={selectedFileBg.preview}
                             alt="Preview"
-                            className="w-full h-full object-contain"
+                            fill
+                            className="object-contain"
                           />
                         </div>
                       )}
@@ -421,11 +423,12 @@ export function CertificatesPageClient({
                   {selectedFileEn && (
                     <div className="flex items-center gap-3 p-2 bg-gray-50 rounded-md">
                       {selectedFileEn.preview && (
-                        <div className="w-16 h-16 flex-shrink-0 rounded-md overflow-hidden bg-white flex items-center justify-center">
-                          <img
+                        <div className="w-16 h-16 flex-shrink-0 rounded-md overflow-hidden bg-white flex items-center justify-center relative">
+                          <Image
                             src={selectedFileEn.preview}
                             alt="Preview"
-                            className="w-full h-full object-contain"
+                            fill
+                            className="object-contain"
                           />
                         </div>
                       )}
@@ -675,11 +678,12 @@ export function CertificatesPageClient({
                         {selectedFileBg && (
                           <div className="flex items-center gap-3 p-2 bg-gray-50 rounded-md">
                             {selectedFileBg.preview && (
-                              <div className="w-16 h-16 flex-shrink-0 rounded-md overflow-hidden bg-white flex items-center justify-center">
-                                <img
+                              <div className="w-16 h-16 flex-shrink-0 rounded-md overflow-hidden bg-white flex items-center justify-center relative">
+                                <Image
                                   src={selectedFileBg.preview}
                                   alt="Preview"
-                                  className="w-full h-full object-contain"
+                                  fill
+                                  className="object-contain"
                                 />
                               </div>
                             )}
@@ -758,11 +762,12 @@ export function CertificatesPageClient({
                         {selectedFileEn && (
                           <div className="flex items-center gap-3 p-2 bg-gray-50 rounded-md">
                             {selectedFileEn.preview && (
-                              <div className="w-16 h-16 flex-shrink-0 rounded-md overflow-hidden bg-white flex items-center justify-center">
-                                <img
+                              <div className="w-16 h-16 flex-shrink-0 rounded-md overflow-hidden bg-white flex items-center justify-center relative">
+                                <Image
                                   src={selectedFileEn.preview}
                                   alt="Preview"
-                                  className="w-full h-full object-contain"
+                                  fill
+                                  className="object-contain"
                                 />
                               </div>
                             )}

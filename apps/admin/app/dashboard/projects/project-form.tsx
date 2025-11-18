@@ -152,7 +152,7 @@ export function ProjectForm({
 
         <div>
           <Label className="text-sm font-semibold">
-            Галерия снимки <span className="text-red-500">*</span>
+            Галерия снимки
           </Label>
           <div className="mt-1 space-y-3">
             <label className="flex items-center justify-center px-4 py-3 border-2 border-dashed border-gray-300 rounded-md cursor-pointer hover:border-gray-400 transition">

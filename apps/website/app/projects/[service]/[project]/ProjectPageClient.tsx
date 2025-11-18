@@ -42,7 +42,9 @@ export function ProjectPageClient({
     workNature,
     specifications,
   } = localizeProject(project, locale);
-  const heroImageUrl = getCloudinaryUrl(project.heroImageUrl)!;
+  const heroImageUrl = project.heroImageUrl
+    ? getCloudinaryUrl(project.heroImageUrl)!
+    : undefined;
 
   return (
     <main>
@@ -183,7 +185,7 @@ export function ProjectPageClient({
                   const localized = localizeProject(relatedProject, locale);
                   const relatedImageUrl = getCloudinaryUrl(
                     relatedProject.heroImageUrl
-                  )!;
+                  ) ?? undefined;
 
                   return (
                     <div
