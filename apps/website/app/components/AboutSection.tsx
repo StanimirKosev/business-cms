@@ -98,7 +98,7 @@ const AboutSection = () => {
               }`}
             >
               <Image
-                src={getCloudinaryUrl("2204-800_bnd0sg") || ""}
+                src={getCloudinaryUrl("1769-800_pbbh64") || ""}
                 alt={`${t.home.about.title} - Techno Stroy Bulgaria`}
                 fill
                 className="object-cover"
@@ -131,7 +131,9 @@ const AboutSection = () => {
                         : "opacity-0 translate-y-[10px]"
                     }`}
                   >
-                    <div className="text-2xl md:text-3xl font-bold">{projectCount}+</div>
+                    <div className="text-2xl md:text-3xl font-bold">
+                      {projectCount}+
+                    </div>
                     <div className="text-xs md:text-sm opacity-90">
                       {t.home.about.stats.projects}
                     </div>
@@ -144,7 +146,9 @@ const AboutSection = () => {
                         : "opacity-0 translate-y-[10px]"
                     }`}
                   >
-                    <div className="text-2xl md:text-3xl font-bold">{clientCount}+</div>
+                    <div className="text-2xl md:text-3xl font-bold">
+                      {clientCount}+
+                    </div>
                     <div className="text-xs md:text-sm opacity-90">
                       {t.home.about.stats.clients}
                     </div>
