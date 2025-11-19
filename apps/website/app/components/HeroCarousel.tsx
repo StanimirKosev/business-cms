@@ -10,9 +10,9 @@ import { getCloudinaryUrl } from "@/lib/cloudinary";
 
 // Cloudinary image public IDs for hero carousel
 const HERO_IMAGE_IDS = [
+  "DJI_20250914152048_0538_D_hpbhoo",
   "гара_r9o6sd",
   "0_tnvl16",
-  "DJI_20250914152048_0538_D_hpbhoo",
 ];
 
 const SLIDE_IMAGES = HERO_IMAGE_IDS.map((id) => getCloudinaryUrl(id)!);

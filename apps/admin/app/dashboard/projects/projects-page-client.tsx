@@ -108,20 +108,30 @@ export function ProjectsPageClient({
   };
 
   const handleGalleryImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files || []);
-    if (files.length === 0) return;
+    try {
+      const files = Array.from(e.target.files || []);
+      if (files.length === 0) return;
 
-    if (!formData.titleEn?.trim()) {
-      toast.error("Моля, попълнете заглавието на английски първо");
-      return;
+      if (!formData.titleEn?.trim()) {
+        toast.error("Моля, попълнете заглавието на английски първо");
+        // Reset file input so onChange fires again on next attempt
+        if (fileInputRef.current) {
+          fileInputRef.current.value = "";
+        }
+        return;
+      }
+
+      const newImages: SelectedImage[] = files.map((file) => ({
+        file,
+        preview: URL.createObjectURL(file),
+      }));
+
+      setSelectedImages((prev) => [...prev, ...newImages]);
+      toast.success(`${files.length} снимки избрани`);
+    } catch (error) {
+      console.error("Error selecting images:", error);
+      toast.error("Грешка при избор на снимки");
     }
-
-    const newImages: SelectedImage[] = files.map((file) => ({
-      file,
-      preview: URL.createObjectURL(file),
-    }));
-
-    setSelectedImages([...selectedImages, ...newImages]);
   };
 
   const removeImage = (index: number) => {
@@ -251,7 +261,6 @@ export function ProjectsPageClient({
       toast.error("Категория е задължителна");
       return;
     }
-
 
     if (formData.titleBg.trim().length < 5) {
       toast.error("Заглавие (БГ) трябва да е поне 5 символа");
