@@ -80,7 +80,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     notFound();
   }
 
-  // Get related projects (same category, exclude current, randomized, only published)
+  // Get related projects (same category, exclude current, only published)
   const allRelatedProjects = await prisma.project.findMany({
     where: {
       categoryId: foundProject.categoryId,

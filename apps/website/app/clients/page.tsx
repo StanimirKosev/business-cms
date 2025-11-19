@@ -23,7 +23,7 @@ export default async function ClientsPage() {
       include: {
         client: true,
       },
-      orderBy: { createdAt: "desc" },
+      orderBy: [{ order: "asc" }, { createdAt: "desc" }],
     }),
   ]);
 

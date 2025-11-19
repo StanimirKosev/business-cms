@@ -70,6 +70,7 @@ model Project {
   // Status
   featured      Boolean      @default(false) // Show on homepage featured section
   published     Boolean      @default(true)  // Show/hide project from public website
+  order         Int          @default(0)     // Display order within category
 
   // Relations
   categoryId    String
@@ -86,6 +87,7 @@ model Project {
   @@index([clientId])
   @@index([region])
   @@index([featured])
+  @@index([order])
 }
 
 // Project gallery images stored on Cloudinary

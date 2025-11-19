@@ -9,19 +9,38 @@ export default async function ProjectsPage() {
         client: true,
         images: { orderBy: { order: "asc" } },
       },
-      orderBy: { createdAt: "desc" },
+      orderBy: [{ categoryId: "asc" }, { order: "asc" }],
     }),
     prisma.category.findMany({
-      orderBy: { createdAt: "desc" },
+      orderBy: { order: "asc" },
     }),
     prisma.client.findMany({
-      orderBy: { createdAt: "desc" },
+      orderBy: { order: "asc" },
     }),
   ]);
 
+  // Group projects by category
+  const projectsByCategory = projects.reduce(
+    (acc, project) => {
+      const categoryId = project.categoryId;
+      if (!acc[categoryId]) {
+        acc[categoryId] = [];
+      }
+      acc[categoryId].push(project);
+      return acc;
+    },
+    {} as Record<string, typeof projects>
+  );
+
+  // Create structure with categories and their projects
+  const categorizedProjects = categories.map((category) => ({
+    category,
+    projects: projectsByCategory[category.id] || [],
+  }));
+
   return (
     <ProjectsPageClient
-      initialProjects={projects}
+      categorizedProjects={categorizedProjects}
       initialCategories={categories}
       initialClients={clients}
     />

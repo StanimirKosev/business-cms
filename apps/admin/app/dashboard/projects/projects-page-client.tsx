@@ -46,22 +46,27 @@ interface SelectedImage {
 }
 
 interface ProjectsPageClientProps {
-  initialProjects: (Project & {
-    images?: Array<{ id: string; cloudinaryPublicId: string; order: number }>;
-    category?: Category;
-    client?: Client | null;
-  })[];
+  categorizedProjects: Array<{
+    category: Category;
+    projects: (Project & {
+      images?: Array<{ id: string; cloudinaryPublicId: string; order: number }>;
+      category?: Category;
+      client?: Client | null;
+    })[];
+  }>;
   initialCategories: Category[];
   initialClients: Client[];
 }
 
 export function ProjectsPageClient({
-  initialProjects,
+  categorizedProjects,
   initialCategories,
   initialClients,
 }: ProjectsPageClientProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [projects, setProjects] = useState(initialProjects);
+  const [projects, setProjects] = useState<typeof categorizedProjects>(
+    categorizedProjects
+  );
   const [categories] = useState(initialCategories);
   const [clients] = useState(initialClients);
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -176,6 +181,66 @@ export function ProjectsPageClient({
       ];
       return updated;
     });
+  };
+
+  const moveProject = async (
+    projectId: string,
+    direction: "up" | "down",
+    categoryId: string
+  ) => {
+    // Find the category group
+    const categoryGroupIndex = projects.findIndex(
+      (cg) => cg.category.id === categoryId
+    );
+    if (categoryGroupIndex === -1) return;
+
+    const categoryGroup = projects[categoryGroupIndex];
+    const projectIndex = categoryGroup.projects.findIndex(
+      (p) => p.id === projectId
+    );
+    if (projectIndex === -1) return;
+
+    const toIndex = direction === "up" ? projectIndex - 1 : projectIndex + 1;
+    if (toIndex < 0 || toIndex >= categoryGroup.projects.length) return;
+
+    // Swap the projects locally
+    const updated = [...projects];
+    const updatedProjects = [...categoryGroup.projects];
+    [updatedProjects[projectIndex], updatedProjects[toIndex]] = [
+      updatedProjects[toIndex],
+      updatedProjects[projectIndex],
+    ];
+
+    // Update order values
+    const updates = [
+      { id: updatedProjects[projectIndex].id, order: projectIndex },
+      { id: updatedProjects[toIndex].id, order: toIndex },
+    ];
+
+    updated[categoryGroupIndex] = {
+      ...categoryGroup,
+      projects: updatedProjects,
+    };
+
+    setProjects(updated);
+
+    // Send to API
+    try {
+      const response = await fetch("/api/projects/reorder", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ updates }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to reorder projects");
+      }
+    } catch (error) {
+      console.error("Error reordering:", error);
+      toast.error("Грешка при преместване на проект");
+      // Revert changes
+      setProjects(projects);
+    }
   };
 
   const uploadGalleryImages = async (): Promise<string[]> => {
@@ -443,11 +508,22 @@ export function ProjectsPageClient({
       const savedProject = await response.json();
       const projectId = savedProject.id;
 
-      if (editingId && projects) {
-        const originalProject = projects.find((p) => p.id === editingId);
+      if (editingId && projects.length > 0) {
+        let originalProject;
+        for (const categoryGroup of projects) {
+          const found = categoryGroup.projects.find((p) => p.id === editingId);
+          if (found) {
+            originalProject = found;
+            break;
+          }
+        }
+
         if (originalProject && originalProject.images) {
           const originalImageIds = new Set(
-            originalProject.images.map((img) => img.id)
+            originalProject.images.map(
+              (img: { id: string; cloudinaryPublicId: string; order: number }) =>
+                img.id
+            )
           );
           const currentImageIds = new Set(existingImages.map((img) => img.id));
 
@@ -463,7 +539,8 @@ export function ProjectsPageClient({
 
           const reorderedImages = existingImages.filter((existingImage) => {
             const originalImage = originalProject.images?.find(
-              (img) => img.id === existingImage.id
+              (img: { id: string; cloudinaryPublicId: string; order: number }) =>
+                img.id === existingImage.id
             );
             return originalImage && originalImage.order !== existingImage.order;
           });
@@ -517,17 +594,54 @@ export function ProjectsPageClient({
       try {
         const projectsResponse = await fetch("/api/projects");
         if (projectsResponse.ok) {
-          const updatedProjects = await projectsResponse.json();
-          setProjects(updatedProjects);
+          const allProjects = await projectsResponse.json();
+
+          // Regroup projects by category
+          const projectsByCategory = allProjects.reduce(
+            (acc: Record<string, typeof allProjects>, project: typeof allProjects[0]) => {
+              const categoryId = project.categoryId;
+              if (!acc[categoryId]) {
+                acc[categoryId] = [];
+              }
+              acc[categoryId].push(project);
+              return acc;
+            },
+            {}
+          );
+
+          const regrouped = categories.map((category) => ({
+            category,
+            projects: (projectsByCategory[category.id] || []).sort(
+              (a: typeof allProjects[0], b: typeof allProjects[0]) => a.order - b.order
+            ),
+          }));
+          setProjects(regrouped);
         }
       } catch (error) {
         console.error("Error refetching projects:", error);
+        // Fallback: update the project in the existing structure
         if (editingId) {
           setProjects(
-            projects.map((p) => (p.id === editingId ? savedProject : p))
+            projects.map((categoryGroup) => ({
+              ...categoryGroup,
+              projects: categoryGroup.projects.map((p) =>
+                p.id === editingId ? savedProject : p
+              ),
+            }))
           );
         } else {
-          setProjects([savedProject, ...projects]);
+          // Add to appropriate category
+          setProjects(
+            projects.map((categoryGroup) => {
+              if (categoryGroup.category.id === savedProject.categoryId) {
+                return {
+                  ...categoryGroup,
+                  projects: [savedProject, ...categoryGroup.projects],
+                };
+              }
+              return categoryGroup;
+            })
+          );
         }
       }
 
@@ -550,7 +664,9 @@ export function ProjectsPageClient({
     }
   };
 
-  const handleEdit = (project: (typeof projects)[0]) => {
+  const handleEdit = (
+    project: (typeof projects)[0]["projects"][0]
+  ) => {
     setFormData(project);
     setEditingId(project.id);
     if (project.images && Array.isArray(project.images)) {
@@ -595,7 +711,12 @@ export function ProjectsPageClient({
 
       if (!response.ok) throw new Error("Failed to delete");
 
-      setProjects(projects.filter((p) => p.id !== id));
+      setProjects(
+        projects.map((categoryGroup) => ({
+          ...categoryGroup,
+          projects: categoryGroup.projects.filter((p) => p.id !== id),
+        }))
+      );
       toast.success("Проект изтрит");
     } catch (error) {
       console.error("Error:", error);
@@ -650,103 +771,151 @@ export function ProjectsPageClient({
         />
       )}
 
-      <div className="space-y-2 mb-8">
-        {projects.map((project) => (
-          <div key={project.id}>
-            <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 flex justify-between items-start">
-              <div className="flex-1">
-                <h3 className="font-semibold text-gray-900">
-                  {project.titleBg}
-                </h3>
-                <p className="text-sm text-gray-600">
-                  Локация: {project.locationBg || "-"}
-                </p>
-                <p className="text-xs text-gray-500 mt-1">
-                  Код: {project.slug}
-                </p>
-                <div className="flex flex-wrap gap-2 mt-2">
-                  {project.featured && (
-                    <span className="inline-block px-2 py-1 bg-red-100 text-red-800 text-xs rounded">
-                      Показан в начална страница - &quot;Нашите проекти&quot;
-                    </span>
-                  )}
-                  {project.published === false && (
-                    <span className="inline-block px-2 py-1 bg-gray-200 text-gray-800 text-xs rounded">
-                      Скрит от публичния сайт
-                    </span>
-                  )}
-                </div>
-              </div>
-              <div className="flex gap-2">
-                {editingId === project.id ? (
-                  <Button
-                    onClick={() => {
-                      setEditingId(null);
-                      resetForm();
-                    }}
-                    size="sm"
-                    variant="outline"
-                    className="gap-1"
-                  >
-                    <X size={14} />
-                    Отмени
-                  </Button>
-                ) : (
-                  <Button
-                    onClick={() => handleEdit(project)}
-                    size="sm"
-                    variant="outline"
-                    className="gap-1"
-                  >
-                    <Edit2 size={14} />
-                    Редактирай
-                  </Button>
-                )}
-                {!isRecordProtected(project.createdAt) && (
-                  <Button
-                    onClick={() => handleDelete(project.id)}
-                    size="sm"
-                    variant="outline"
-                    className="gap-1 text-red-600 hover:text-red-700"
-                  >
-                    <Trash2 size={14} />
-                    Изтрий
-                  </Button>
-                )}
-              </div>
-            </div>
+      <div className="space-y-8 mb-8">
+        {projects.map((categoryGroup) => (
+          <div key={categoryGroup.category.id}>
+            <h3 className="text-xl font-bold text-gray-900 mb-4 pb-2 border-b border-gray-300">
+              {categoryGroup.category.titleBg}
+            </h3>
 
-            {editingId === project.id && (
-              <ProjectForm
-                mode="edit"
-                formData={formData}
-                setFormData={setFormData}
-                selectedImages={selectedImages}
-                existingImages={existingImages}
-                categories={categories}
-                clients={clients}
-                uploading={uploading}
-                fileInputRef={fileInputRef}
-                onGalleryImageSelect={handleGalleryImageSelect}
-                onMoveImage={moveImage}
-                onRemoveImage={removeImage}
-                onMoveExistingImage={moveExistingImage}
-                onRemoveExistingImage={removeExistingImage}
-                onSubmit={handleSubmit}
-                onCancel={() => {
-                  setEditingId(null);
-                  resetForm();
-                }}
-                regionNames={REGION_NAMES}
-                submitButtonText="Актуализирай"
-                submitButtonLoadingText="Зареждане..."
-                title="Редактирай проект"
-              />
+            {categoryGroup.projects.length === 0 ? (
+              <div className="text-center py-6 text-gray-500 bg-gray-50 rounded-lg">
+                Няма проекти в тази категория
+              </div>
+            ) : (
+              <div className="space-y-2">
+                {categoryGroup.projects.map((project, projectIndex) => (
+                  <div key={project.id}>
+                    <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 flex justify-between items-start">
+                      <div className="flex-1">
+                        <h3 className="font-semibold text-gray-900">
+                          {project.titleBg}
+                        </h3>
+                        <p className="text-sm text-gray-600">
+                          Локация: {project.locationBg || "-"}
+                        </p>
+                        <p className="text-xs text-gray-500 mt-1">
+                          Код: {project.slug}
+                        </p>
+                        <div className="flex flex-wrap gap-2 mt-2">
+                          {project.featured && (
+                            <span className="inline-block px-2 py-1 bg-red-100 text-red-800 text-xs rounded">
+                              Показан в начална страница - &quot;Нашите проекти&quot;
+                            </span>
+                          )}
+                          {project.published === false && (
+                            <span className="inline-block px-2 py-1 bg-gray-200 text-gray-800 text-xs rounded">
+                              Скрит от публичния сайт
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                      <div className="flex gap-2">
+                        {/* Reorder arrows */}
+                        <Button
+                          onClick={() =>
+                            moveProject(project.id, "up", categoryGroup.category.id)
+                          }
+                          size="sm"
+                          variant="outline"
+                          disabled={projectIndex === 0}
+                          title="Премести нагоре"
+                          className="gap-1"
+                        >
+                          ↑
+                        </Button>
+                        <Button
+                          onClick={() =>
+                            moveProject(
+                              project.id,
+                              "down",
+                              categoryGroup.category.id
+                            )
+                          }
+                          size="sm"
+                          variant="outline"
+                          disabled={
+                            projectIndex === categoryGroup.projects.length - 1
+                          }
+                          title="Премести надолу"
+                          className="gap-1"
+                        >
+                          ↓
+                        </Button>
+
+                        {editingId === project.id ? (
+                          <Button
+                            onClick={() => {
+                              setEditingId(null);
+                              resetForm();
+                            }}
+                            size="sm"
+                            variant="outline"
+                            className="gap-1"
+                          >
+                            <X size={14} />
+                            Отмени
+                          </Button>
+                        ) : (
+                          <Button
+                            onClick={() => handleEdit(project)}
+                            size="sm"
+                            variant="outline"
+                            className="gap-1"
+                          >
+                            <Edit2 size={14} />
+                            Редактирай
+                          </Button>
+                        )}
+                        {!isRecordProtected(project.createdAt) && (
+                          <Button
+                            onClick={() => handleDelete(project.id)}
+                            size="sm"
+                            variant="outline"
+                            className="gap-1 text-red-600 hover:text-red-700"
+                          >
+                            <Trash2 size={14} />
+                            Изтрий
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+
+                    {editingId === project.id && (
+                      <ProjectForm
+                        mode="edit"
+                        formData={formData}
+                        setFormData={setFormData}
+                        selectedImages={selectedImages}
+                        existingImages={existingImages}
+                        categories={categories}
+                        clients={clients}
+                        uploading={uploading}
+                        fileInputRef={fileInputRef}
+                        onGalleryImageSelect={handleGalleryImageSelect}
+                        onMoveImage={moveImage}
+                        onRemoveImage={removeImage}
+                        onMoveExistingImage={moveExistingImage}
+                        onRemoveExistingImage={removeExistingImage}
+                        onSubmit={handleSubmit}
+                        onCancel={() => {
+                          setEditingId(null);
+                          resetForm();
+                        }}
+                        regionNames={REGION_NAMES}
+                        submitButtonText="Актуализирай"
+                        submitButtonLoadingText="Зареждане..."
+                        title="Редактирай проект"
+                      />
+                    )}
+                  </div>
+                ))}
+              </div>
             )}
           </div>
         ))}
 
-        {projects.length === 0 && (
+        {projects.every((cg) => cg.projects.length === 0) && (
           <div className="text-center py-8 text-gray-500">
             Няма проекти. Добавете първи проект.
           </div>

@@ -13,7 +13,7 @@ export default async function HomePage() {
         category: true,
         client: true,
       },
-      orderBy: { createdAt: "asc" },
+      orderBy: [{ order: "asc" }, { createdAt: "asc" }],
     }),
     prisma.project.findMany({
       where: { client: { isNot: null }, published: true },
@@ -21,6 +21,7 @@ export default async function HomePage() {
         category: true,
         client: true,
       },
+      orderBy: [{ order: "asc" }, { createdAt: "asc" }],
     }),
     prisma.category.findMany({
       orderBy: { order: "asc" },

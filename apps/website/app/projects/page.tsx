@@ -18,7 +18,7 @@ export default async function ProjectsPage() {
   const projects = await prisma.project.findMany({
     where: { published: true },
     include: { category: true, client: true },
-    orderBy: { createdAt: "asc" },
+    orderBy: [{ order: "asc" }, { createdAt: "asc" }],
   });
 
   // Build categories with project counts from the fetched projects

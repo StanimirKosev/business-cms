@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const {
       titleBg, titleEn, slug, descriptionBg, descriptionEn, categoryId, clientId, heroImageUrl, featured, published,
-      locationBg, locationEn, workNatureBg, workNatureEn, specificationsBg, specificationsEn, region, mapX, mapY
+      locationBg, locationEn, workNatureBg, workNatureEn, specificationsBg, specificationsEn, region, mapX, mapY, order
     } = body;
 
     if (!titleBg || !titleEn || !slug || !descriptionBg || !descriptionEn || !categoryId) {
@@ -82,6 +82,7 @@ export async function POST(req: NextRequest) {
         region: region || "",
         mapX: mapX || null,
         mapY: mapY || null,
+        order: order !== undefined ? order : 0,
       },
       include: { category: true, client: true, images: true },
     });
