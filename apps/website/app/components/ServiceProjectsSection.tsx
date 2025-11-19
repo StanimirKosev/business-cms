@@ -22,7 +22,7 @@ export function ServiceProjectsSection({
   category,
   projects,
 }: ServiceProjectsSectionProps) {
-  const { t, locale } = useLanguage();
+  const { locale } = useLanguage();
 
   return (
     <section className="py-12 md:py-16">
@@ -32,7 +32,7 @@ export function ServiceProjectsSection({
         <div className="max-w-7xl mx-auto">
           <div className="mb-6 lg:mb-8 pb-4 border-b border-[#e8e8e8]">
             <p className="text-sm text-[#5a5a5a] font-medium">
-              {t.projects.selectedProjectsLabel} — {category.title}
+              {category.title}
             </p>
           </div>
 

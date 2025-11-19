@@ -287,7 +287,7 @@ const ContactPage = () => {
                     href="tel:029532790"
                     className="text-lg hover:underline active:opacity-80 transition-opacity touch-manipulation leading-relaxed"
                   >
-                    02/953 27 90
+                    +359 953 27 90
                   </a>
                 </div>
 

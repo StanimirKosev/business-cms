@@ -132,7 +132,7 @@ export async function sendContactEmail(
                 <tr>
                   <td style="color: #e0e0e0; font-size: 13px; line-height: 1.6;">
                     бул. Витоша № 188, гр. София<br/>
-                    Тел: 02/953 27 90 | Email: office@technostroy.bg
+                    Тел: +359 953 27 90 | Email: office@technostroy.bg
                   </td>
                 </tr>
               </table>
