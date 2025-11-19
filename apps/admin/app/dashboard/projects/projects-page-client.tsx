@@ -89,6 +89,7 @@ export function ProjectsPageClient({
     mapX: undefined,
     mapY: undefined,
     featured: false,
+    order: 0,
   });
   const [selectedImages, setSelectedImages] = useState<SelectedImage[]>([]);
   const [uploading, setUploading] = useState(false);
@@ -203,6 +204,9 @@ export function ProjectsPageClient({
     const toIndex = direction === "up" ? projectIndex - 1 : projectIndex + 1;
     if (toIndex < 0 || toIndex >= categoryGroup.projects.length) return;
 
+    // Keep original state for potential revert
+    const originalProjects = projects;
+
     // Swap the projects locally
     const updated = [...projects];
     const updatedProjects = [...categoryGroup.projects];
@@ -238,8 +242,8 @@ export function ProjectsPageClient({
     } catch (error) {
       console.error("Error reordering:", error);
       toast.error("Грешка при преместване на проект");
-      // Revert changes
-      setProjects(projects);
+      // Revert changes using original state
+      setProjects(originalProjects);
     }
   };
 
@@ -492,6 +496,7 @@ export function ProjectsPageClient({
         mapY: formData.mapY || null,
         featured: formData.featured,
         published: formData.published,
+        order: formData.order || 0,
       };
 
       const response = await fetch(url, {
@@ -698,6 +703,7 @@ export function ProjectsPageClient({
       mapX: undefined,
       mapY: undefined,
       featured: false,
+      order: 0,
     });
   };
 

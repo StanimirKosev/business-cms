@@ -20,18 +20,17 @@ export async function PUT(req: NextRequest) {
       );
     }
 
-    // Update all projects in a transaction
-    const results = await Promise.all(
+    // Update all projects in a transaction for data integrity
+    const results = await prisma.$transaction(
       updates.map((update) =>
         prisma.project.update({
           where: { id: update.id },
           data: { order: update.order },
-          include: { category: true, client: true, images: true },
         })
       )
     );
 
-    return NextResponse.json(results);
+    return NextResponse.json({ success: true, updated: results.length });
   } catch (error) {
     console.error("[Projects Reorder] Error:", error);
     return NextResponse.json(

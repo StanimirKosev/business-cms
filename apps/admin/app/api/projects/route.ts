@@ -16,7 +16,7 @@ export async function GET() {
         client: true,
         images: { orderBy: { order: "asc" } },
       },
-      orderBy: { createdAt: "desc" },
+      orderBy: [{ categoryId: "asc" }, { order: "asc" }],
     });
 
     return NextResponse.json(projects);
