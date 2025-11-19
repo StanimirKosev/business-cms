@@ -69,6 +69,7 @@ model Project {
 
   // Status
   featured      Boolean      @default(false) // Show on homepage featured section
+  published     Boolean      @default(true)  // Show/hide project from public website
 
   // Relations
   categoryId    String

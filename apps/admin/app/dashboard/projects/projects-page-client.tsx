@@ -273,22 +273,26 @@ export function ProjectsPageClient({
     }
 
     if (!formData.workNatureBg?.trim()) {
-      toast.error("Обект (БГ) е задължителен");
+      toast.error("Характер на дейностите (БГ) е задължителен");
       return;
     }
 
     if (!formData.workNatureEn?.trim()) {
-      toast.error("Site (EN) е задължителен");
+      toast.error("Характер на дейностите (EN) е задължителен");
       return;
     }
 
     if (formData.workNatureBg?.trim() && !formData.workNatureEn?.trim()) {
-      toast.error("Site (EN) е задължителен, когато е попълнено (БГ)");
+      toast.error(
+        "Характер на дейностите (EN) е задължителен, когато е попълнено (БГ)"
+      );
       return;
     }
 
     if (formData.workNatureEn?.trim() && !formData.workNatureBg?.trim()) {
-      toast.error("Обект (БГ) е задължителен, когато е попълнено (EN)");
+      toast.error(
+        "Характер на дейностите (БГ) е задължителен, когато е попълнено (EN)"
+      );
       return;
     }
 
@@ -344,13 +348,12 @@ export function ProjectsPageClient({
       formData.region?.trim() ||
       formData.locationBg?.trim() ||
       formData.locationEn?.trim() ||
-      formData.mapX !== undefined ||
-      formData.mapY !== undefined ||
-      formData.clientId;
+      (formData.mapX !== undefined && formData.mapX !== null) ||
+      (formData.mapY !== undefined && formData.mapY !== null);
 
     if (hasMapData) {
       if (!formData.region?.trim()) {
-        toast.error("Регион е задължителен, когато има географски данни");
+        toast.error("Област е задължителен, когато има географски данни");
         return;
       }
       if (!formData.locationBg?.trim()) {
@@ -361,12 +364,12 @@ export function ProjectsPageClient({
         toast.error("Локация (EN) е задължителна, когато има географски данни");
         return;
       }
-      if (formData.mapX === undefined) {
-        toast.error("Координата X е задължителна, когато има географски данни");
+      if (formData.mapX === undefined || formData.mapX === null) {
+        toast.error("Координат X е задължителна, когато има географски данни");
         return;
       }
-      if (formData.mapY === undefined) {
-        toast.error("Координата Y е задължителна, когато има географски данни");
+      if (formData.mapY === undefined || formData.mapY === null) {
+        toast.error("Координат Y е задължителна, когато има географски данни");
         return;
       }
       if (!formData.clientId) {
@@ -423,6 +426,7 @@ export function ProjectsPageClient({
         mapX: formData.mapX || null,
         mapY: formData.mapY || null,
         featured: formData.featured,
+        published: formData.published,
       };
 
       const response = await fetch(url, {
@@ -660,11 +664,18 @@ export function ProjectsPageClient({
                 <p className="text-xs text-gray-500 mt-1">
                   Код: {project.slug}
                 </p>
-                {project.featured && (
-                  <span className="inline-block mt-2 px-2 py-1 bg-red-100 text-red-800 text-xs rounded">
-                    Показан в начална страница - &quot;Нашите проекти&quot;
-                  </span>
-                )}
+                <div className="flex flex-wrap gap-2 mt-2">
+                  {project.featured && (
+                    <span className="inline-block px-2 py-1 bg-red-100 text-red-800 text-xs rounded">
+                      Показан в начална страница - &quot;Нашите проекти&quot;
+                    </span>
+                  )}
+                  {project.published === false && (
+                    <span className="inline-block px-2 py-1 bg-gray-200 text-gray-800 text-xs rounded">
+                      Скрит от публичния сайт
+                    </span>
+                  )}
+                </div>
               </div>
               <div className="flex gap-2">
                 {editingId === project.id ? (

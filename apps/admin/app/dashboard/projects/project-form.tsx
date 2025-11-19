@@ -466,18 +466,34 @@ export function ProjectForm({
           }
         />
 
-        <div className="flex items-center gap-2">
-          <input
-            type="checkbox"
-            checked={formData.featured || false}
-            onChange={(e) =>
-              setFormData({ ...formData, featured: e.target.checked })
-            }
-            id="featured"
-          />
-          <Label htmlFor="featured" className="text-sm font-semibold">
-            Покажи на начална страница - &quot;Нашите проекти&quot;
-          </Label>
+        <div className="space-y-3">
+          <div className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              checked={formData.featured || false}
+              onChange={(e) =>
+                setFormData({ ...formData, featured: e.target.checked })
+              }
+              id="featured"
+            />
+            <Label htmlFor="featured" className="text-sm font-semibold">
+              Покажи на начална страница - &quot;Нашите проекти&quot;
+            </Label>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              checked={formData.published !== false}
+              onChange={(e) =>
+                setFormData({ ...formData, published: e.target.checked })
+              }
+              id="published"
+            />
+            <Label htmlFor="published" className="text-sm font-semibold">
+              Публикувай на публичния сайт
+            </Label>
+          </div>
         </div>
 
         <Button type="submit" className="w-full" disabled={uploading}>

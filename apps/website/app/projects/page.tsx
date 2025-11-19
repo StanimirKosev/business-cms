@@ -16,6 +16,7 @@ export const metadata: Metadata = {
 
 export default async function ProjectsPage() {
   const projects = await prisma.project.findMany({
+    where: { published: true },
     include: { category: true, client: true },
     orderBy: { createdAt: "asc" },
   });

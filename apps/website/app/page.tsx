@@ -8,7 +8,7 @@ import { prisma } from "@repo/database/client";
 export default async function HomePage() {
   const [featuredProjects, projectsWithClients, categories] = await Promise.all([
     prisma.project.findMany({
-      where: { featured: true },
+      where: { featured: true, published: true },
       include: {
         category: true,
         client: true,
@@ -16,7 +16,7 @@ export default async function HomePage() {
       orderBy: { createdAt: "asc" },
     }),
     prisma.project.findMany({
-      where: { client: { isNot: null } },
+      where: { client: { isNot: null }, published: true },
       include: {
         category: true,
         client: true,

@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
 
     const body = await req.json();
     const {
-      titleBg, titleEn, slug, descriptionBg, descriptionEn, categoryId, clientId, heroImageUrl, featured,
+      titleBg, titleEn, slug, descriptionBg, descriptionEn, categoryId, clientId, heroImageUrl, featured, published,
       locationBg, locationEn, workNatureBg, workNatureEn, specificationsBg, specificationsEn, region, mapX, mapY
     } = body;
 
@@ -78,6 +78,7 @@ export async function POST(req: NextRequest) {
         clientId: clientId || null,
         heroImageUrl: heroImageUrl || null,
         featured: featured || false,
+        published: published !== undefined ? published : true,
         region: region || "",
         mapX: mapX || null,
         mapY: mapY || null,

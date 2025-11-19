@@ -17,6 +17,7 @@ export async function generateMetadata({
     where: {
       slug: project,
       category: { slug: service },
+      published: true,
     },
     include: {
       category: true,
@@ -66,6 +67,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     where: {
       slug: project,
       category: { slug: service },
+      published: true,
     },
     include: {
       category: true,
@@ -78,11 +80,12 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     notFound();
   }
 
-  // Get related projects (same category, exclude current, randomized)
+  // Get related projects (same category, exclude current, randomized, only published)
   const allRelatedProjects = await prisma.project.findMany({
     where: {
       categoryId: foundProject.categoryId,
       id: { not: foundProject.id },
+      published: true,
     },
     include: {
       category: true,

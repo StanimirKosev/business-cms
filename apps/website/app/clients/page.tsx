@@ -19,6 +19,7 @@ export default async function ClientsPage() {
       orderBy: { order: "asc" },
     }),
     prisma.project.findMany({
+      where: { published: true },
       include: {
         client: true,
       },
