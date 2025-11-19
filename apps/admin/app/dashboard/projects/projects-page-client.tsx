@@ -69,6 +69,7 @@ export function ProjectsPageClient({
   );
   const [categories] = useState(initialCategories);
   const [clients] = useState(initialClients);
+  const [searchQuery, setSearchQuery] = useState("");
   const [editingId, setEditingId] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState<Partial<Project>>({
@@ -730,6 +731,26 @@ export function ProjectsPageClient({
     }
   };
 
+  // Filter projects and categories based on search query
+  const filteredProjects = projects
+    .map((categoryGroup) => {
+      const filteredCategoryProjects = categoryGroup.projects.filter(
+        (project) =>
+          project.titleBg.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          project.titleEn.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          project.slug.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          project.locationBg?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          project.locationEn?.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+
+      return {
+        ...categoryGroup,
+        projects: filteredCategoryProjects,
+      };
+    })
+    .filter((categoryGroup) => categoryGroup.projects.length > 0 || searchQuery === "");
+    // Always show all categories when search is empty, but hide empty categories when searching
+
   return (
     <div className="p-8">
       <div className="flex justify-between items-center mb-8">
@@ -747,6 +768,21 @@ export function ProjectsPageClient({
           {showForm ? <X size={16} /> : <Plus size={16} />}
           {showForm ? "Отмени" : "Добави проект"}
         </Button>
+      </div>
+
+      <div className="mb-6">
+        <input
+          type="text"
+          placeholder="Търсене по заглавие, код, локация..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        {searchQuery && (
+          <p className="text-sm text-gray-600 mt-2">
+            Резултати за: <span className="font-semibold">&quot;{searchQuery}&quot;</span>
+          </p>
+        )}
       </div>
 
       {showForm && (
@@ -778,7 +814,13 @@ export function ProjectsPageClient({
       )}
 
       <div className="space-y-8 mb-8">
-        {projects.map((categoryGroup) => (
+        {filteredProjects.length === 0 && searchQuery ? (
+          <div className="text-center py-12 text-gray-500">
+            <p className="text-lg">Няма намерени проекти за &quot;{searchQuery}&quot;</p>
+            <p className="text-sm mt-2">Опитайте с други ключови думи</p>
+          </div>
+        ) : null}
+        {filteredProjects.map((categoryGroup) => (
           <div key={categoryGroup.category.id}>
             <h3 className="text-xl font-bold text-gray-900 mb-4 pb-2 border-b border-gray-300">
               {categoryGroup.category.titleBg}
@@ -921,7 +963,7 @@ export function ProjectsPageClient({
           </div>
         ))}
 
-        {projects.every((cg) => cg.projects.length === 0) && (
+        {!searchQuery && projects.every((cg) => cg.projects.length === 0) && (
           <div className="text-center py-8 text-gray-500">
             Няма проекти. Добавете първи проект.
           </div>
