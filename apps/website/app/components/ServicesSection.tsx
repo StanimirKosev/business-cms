@@ -51,9 +51,9 @@ const ServicesSection = ({ categories }: ServicesSectionProps) => {
                 {t.home.services.intro}
               </p>
 
-              {/* Services Grid - 2 columns */}
+              {/* Services Grid - 2 columns with natural flow */}
               <div
-                className={`grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5 pt-2 transition-all duration-500 ease-out delay-[500ms] ${
+                className={`columns-1 md:columns-2 gap-x-8 pt-2 transition-all duration-500 ease-out delay-[500ms] ${
                   isVisible
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-[20px]"
@@ -70,7 +70,7 @@ const ServicesSection = ({ categories }: ServicesSectionProps) => {
                   return (
                     <div
                       key={category.id}
-                      className="flex items-start gap-3 text-[var(--color-charcoal)]"
+                      className="flex items-start gap-3 text-[var(--color-charcoal)] mb-5 break-inside-avoid"
                     >
                       <CheckCircle2 className="w-6 h-6 text-[var(--color-red)] flex-shrink-0 mt-0.5" />
                       <span className="text-base leading-relaxed">
