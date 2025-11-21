@@ -1,12 +1,27 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
 import { Button } from "@repo/ui/components/button";
 import { toast } from "sonner";
-import { Plus, Trash2, Edit2, X } from "lucide-react";
+import { Plus, X } from "lucide-react";
 import type { Project, Category, Client } from "@repo/database/client";
-import { isRecordProtected } from "@/lib/constants";
+import { DraggableProjectItem } from "./draggable-project-item";
 import { ProjectForm } from "./project-form";
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  DragEndEvent,
+} from "@dnd-kit/core";
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
 
 const REGION_NAMES: Record<string, string> = {
   Sofia: "София",
@@ -64,9 +79,8 @@ export function ProjectsPageClient({
   initialClients,
 }: ProjectsPageClientProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [projects, setProjects] = useState<typeof categorizedProjects>(
-    categorizedProjects
-  );
+  const [projects, setProjects] =
+    useState<typeof categorizedProjects>(categorizedProjects);
   const [categories] = useState(initialCategories);
   const [clients] = useState(initialClients);
   const [searchQuery, setSearchQuery] = useState("");
@@ -98,6 +112,14 @@ export function ProjectsPageClient({
     Array<{ id: string; cloudinaryPublicId: string; order: number }>
   >([]);
 
+  // dnd-kit sensors
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
+
   const sanitizeFolderName = (name: string): string => {
     return name
       .toLowerCase()
@@ -121,7 +143,6 @@ export function ProjectsPageClient({
 
       if (!formData.titleEn?.trim()) {
         toast.error("Моля, попълнете заглавието на английски първо");
-        // Reset file input so onChange fires again on next attempt
         if (fileInputRef.current) {
           fileInputRef.current.value = "";
         }
@@ -157,77 +178,83 @@ export function ProjectsPageClient({
     setExistingImages((prev) => prev.filter((img) => img.id !== imageId));
   };
 
-  const moveExistingImage = (imageId: string, direction: "up" | "down") => {
+  const reorderExistingImages = (fromIndex: number, toIndex: number) => {
     setExistingImages((prev) => {
-      const index = prev.findIndex((img) => img.id === imageId);
-      if (index === -1) return prev;
-
-      const toIndex = direction === "up" ? index - 1 : index + 1;
-      if (toIndex < 0 || toIndex >= prev.length) return prev;
-
-      const updated = [...prev];
-      [updated[index], updated[toIndex]] = [updated[toIndex], updated[index]];
+      const updated = arrayMove(prev, fromIndex, toIndex);
       return updated.map((img, i) => ({ ...img, order: i }));
     });
   };
 
-  const moveImage = (fromIndex: number, direction: "up" | "down") => {
-    const toIndex = direction === "up" ? fromIndex - 1 : fromIndex + 1;
-    if (toIndex < 0 || toIndex >= selectedImages.length) return;
-
-    setSelectedImages((prev) => {
-      const updated = [...prev];
-      [updated[fromIndex], updated[toIndex]] = [
-        updated[toIndex],
-        updated[fromIndex],
-      ];
-      return updated;
-    });
+  const reorderSelectedImages = (fromIndex: number, toIndex: number) => {
+    setSelectedImages((prev) => arrayMove(prev, fromIndex, toIndex));
   };
 
-  const moveProject = async (
-    projectId: string,
-    direction: "up" | "down",
-    categoryId: string
-  ) => {
-    // Find the category group
-    const categoryGroupIndex = projects.findIndex(
-      (cg) => cg.category.id === categoryId
+  // Handle drag end for projects
+  const handleDragEnd = async (event: DragEndEvent) => {
+    const { active, over } = event;
+    if (!over || active.id === over.id) return;
+
+    // Find which category contains the dragged project
+    let activeCategoryIndex = -1;
+    let overCategoryIndex = -1;
+    let activeIndex = -1;
+    let overIndex = -1;
+
+    for (let i = 0; i < projects.length; i++) {
+      const activeIdx = projects[i].projects.findIndex(
+        (p) => p.id === active.id
+      );
+      const overIdx = projects[i].projects.findIndex((p) => p.id === over.id);
+
+      if (activeIdx !== -1) {
+        activeCategoryIndex = i;
+        activeIndex = activeIdx;
+      }
+      if (overIdx !== -1) {
+        overCategoryIndex = i;
+        overIndex = overIdx;
+      }
+    }
+
+    // Only allow reordering within the same category
+    if (activeCategoryIndex !== overCategoryIndex) {
+      toast.error("Можете да преместите само в рамките на същата категория");
+      return;
+    }
+
+    if (activeCategoryIndex === -1) return;
+
+    // Reorder projects array
+    const categoryGroup = projects[activeCategoryIndex];
+    const newProjects = arrayMove(
+      categoryGroup.projects,
+      activeIndex,
+      overIndex
     );
-    if (categoryGroupIndex === -1) return;
 
-    const categoryGroup = projects[categoryGroupIndex];
-    const projectIndex = categoryGroup.projects.findIndex(
-      (p) => p.id === projectId
+    // Update the order field in each project
+    const projectsWithUpdatedOrder = newProjects.map(
+      (project: (typeof categoryGroup.projects)[0], idx: number) => ({
+        ...project,
+        order: idx,
+      })
     );
-    if (projectIndex === -1) return;
 
-    const toIndex = direction === "up" ? projectIndex - 1 : projectIndex + 1;
-    if (toIndex < 0 || toIndex >= categoryGroup.projects.length) return;
+    // Update with new order indices (for API call)
+    const updates = projectsWithUpdatedOrder.map(
+      (project: (typeof projectsWithUpdatedOrder)[0]) => ({
+        id: project.id,
+        order: project.order,
+      })
+    );
 
-    // Keep original state for potential revert
-    const originalProjects = projects;
-
-    // Swap the projects locally
-    const updated = [...projects];
-    const updatedProjects = [...categoryGroup.projects];
-    [updatedProjects[projectIndex], updatedProjects[toIndex]] = [
-      updatedProjects[toIndex],
-      updatedProjects[projectIndex],
-    ];
-
-    // Update order values
-    const updates = [
-      { id: updatedProjects[projectIndex].id, order: projectIndex },
-      { id: updatedProjects[toIndex].id, order: toIndex },
-    ];
-
-    updated[categoryGroupIndex] = {
+    const updatedState = [...projects];
+    updatedState[activeCategoryIndex] = {
       ...categoryGroup,
-      projects: updatedProjects,
+      projects: projectsWithUpdatedOrder,
     };
 
-    setProjects(updated);
+    setProjects(updatedState);
 
     // Send to API
     try {
@@ -240,11 +267,13 @@ export function ProjectsPageClient({
       if (!response.ok) {
         throw new Error("Failed to reorder projects");
       }
+
+      toast.success("Проект преместен");
     } catch (error) {
       console.error("Error reordering:", error);
       toast.error("Грешка при преместване на проект");
-      // Revert changes using original state
-      setProjects(originalProjects);
+      // Revert to previous state
+      setProjects(projects);
     }
   };
 
@@ -456,11 +485,6 @@ export function ProjectsPageClient({
         uploadedImageIds = await uploadGalleryImages();
       }
 
-      // Determine hero image: prioritize in order
-      // 1. First uploaded image (if new images added)
-      // 2. First existing image (if reordering existing images)
-      // 3. Keep current hero image (if neither uploaded nor reordered)
-      // If no images at all, hero image becomes undefined
       let heroImageUrl: string | undefined;
       if (uploadedImageIds.length > 0) {
         heroImageUrl = uploadedImageIds[0];
@@ -527,8 +551,11 @@ export function ProjectsPageClient({
         if (originalProject && originalProject.images) {
           const originalImageIds = new Set(
             originalProject.images.map(
-              (img: { id: string; cloudinaryPublicId: string; order: number }) =>
-                img.id
+              (img: {
+                id: string;
+                cloudinaryPublicId: string;
+                order: number;
+              }) => img.id
             )
           );
           const currentImageIds = new Set(existingImages.map((img) => img.id));
@@ -545,8 +572,11 @@ export function ProjectsPageClient({
 
           const reorderedImages = existingImages.filter((existingImage) => {
             const originalImage = originalProject.images?.find(
-              (img: { id: string; cloudinaryPublicId: string; order: number }) =>
-                img.id === existingImage.id
+              (img: {
+                id: string;
+                cloudinaryPublicId: string;
+                order: number;
+              }) => img.id === existingImage.id
             );
             return originalImage && originalImage.order !== existingImage.order;
           });
@@ -602,9 +632,11 @@ export function ProjectsPageClient({
         if (projectsResponse.ok) {
           const allProjects = await projectsResponse.json();
 
-          // Regroup projects by category
           const projectsByCategory = allProjects.reduce(
-            (acc: Record<string, typeof allProjects>, project: typeof allProjects[0]) => {
+            (
+              acc: Record<string, typeof allProjects>,
+              project: (typeof allProjects)[0]
+            ) => {
               const categoryId = project.categoryId;
               if (!acc[categoryId]) {
                 acc[categoryId] = [];
@@ -618,14 +650,14 @@ export function ProjectsPageClient({
           const regrouped = categories.map((category) => ({
             category,
             projects: (projectsByCategory[category.id] || []).sort(
-              (a: typeof allProjects[0], b: typeof allProjects[0]) => a.order - b.order
+              (a: (typeof allProjects)[0], b: (typeof allProjects)[0]) =>
+                a.order - b.order
             ),
           }));
           setProjects(regrouped);
         }
       } catch (error) {
         console.error("Error refetching projects:", error);
-        // Fallback: update the project in the existing structure
         if (editingId) {
           setProjects(
             projects.map((categoryGroup) => ({
@@ -636,7 +668,6 @@ export function ProjectsPageClient({
             }))
           );
         } else {
-          // Add to appropriate category
           setProjects(
             projects.map((categoryGroup) => {
               if (categoryGroup.category.id === savedProject.categoryId) {
@@ -670,9 +701,7 @@ export function ProjectsPageClient({
     }
   };
 
-  const handleEdit = (
-    project: (typeof projects)[0]["projects"][0]
-  ) => {
+  const handleEdit = (project: (typeof projects)[0]["projects"][0]) => {
     setFormData(project);
     setEditingId(project.id);
     if (project.images && Array.isArray(project.images)) {
@@ -732,24 +761,32 @@ export function ProjectsPageClient({
   };
 
   // Filter projects and categories based on search query
-  const filteredProjects = projects
-    .map((categoryGroup) => {
-      const filteredCategoryProjects = categoryGroup.projects.filter(
-        (project) =>
-          project.titleBg.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          project.titleEn.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          project.slug.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          project.locationBg?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          project.locationEn?.toLowerCase().includes(searchQuery.toLowerCase())
-      );
+  const filteredProjects = useMemo(() => {
+    return projects
+      .map((categoryGroup) => {
+        const filteredCategoryProjects = categoryGroup.projects.filter(
+          (project) =>
+            project.titleBg.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            project.titleEn.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            project.slug.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            project.locationBg
+              ?.toLowerCase()
+              .includes(searchQuery.toLowerCase()) ||
+            project.locationEn
+              ?.toLowerCase()
+              .includes(searchQuery.toLowerCase())
+        );
 
-      return {
-        ...categoryGroup,
-        projects: filteredCategoryProjects,
-      };
-    })
-    .filter((categoryGroup) => categoryGroup.projects.length > 0 || searchQuery === "");
-    // Always show all categories when search is empty, but hide empty categories when searching
+        return {
+          ...categoryGroup,
+          projects: filteredCategoryProjects,
+        };
+      })
+      .filter(
+        (categoryGroup) =>
+          categoryGroup.projects.length > 0 || searchQuery === ""
+      );
+  }, [projects, searchQuery]);
 
   return (
     <div className="p-8">
@@ -780,7 +817,8 @@ export function ProjectsPageClient({
         />
         {searchQuery && (
           <p className="text-sm text-gray-600 mt-2">
-            Резултати за: <span className="font-semibold">&quot;{searchQuery}&quot;</span>
+            Резултати за:{" "}
+            <span className="font-semibold">&quot;{searchQuery}&quot;</span>
           </p>
         )}
       </div>
@@ -797,10 +835,10 @@ export function ProjectsPageClient({
           uploading={uploading}
           fileInputRef={fileInputRef}
           onGalleryImageSelect={handleGalleryImageSelect}
-          onMoveImage={moveImage}
           onRemoveImage={removeImage}
-          onMoveExistingImage={moveExistingImage}
           onRemoveExistingImage={removeExistingImage}
+          onReorderExistingImages={reorderExistingImages}
+          onReorderSelectedImages={reorderSelectedImages}
           onSubmit={handleSubmit}
           onCancel={() => {
             setShowForm(false);
@@ -816,10 +854,13 @@ export function ProjectsPageClient({
       <div className="space-y-8 mb-8">
         {filteredProjects.length === 0 && searchQuery ? (
           <div className="text-center py-12 text-gray-500">
-            <p className="text-lg">Няма намерени проекти за &quot;{searchQuery}&quot;</p>
+            <p className="text-lg">
+              Няма намерени проекти за &quot;{searchQuery}&quot;
+            </p>
             <p className="text-sm mt-2">Опитайте с други ключови думи</p>
           </div>
         ) : null}
+
         {filteredProjects.map((categoryGroup) => (
           <div key={categoryGroup.category.id}>
             <h3 className="text-xl font-bold text-gray-900 mb-4 pb-2 border-b border-gray-300">
@@ -831,134 +872,62 @@ export function ProjectsPageClient({
                 Няма проекти в тази категория
               </div>
             ) : (
-              <div className="space-y-2">
-                {categoryGroup.projects.map((project, projectIndex) => (
-                  <div key={project.id}>
-                    <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 flex justify-between items-start">
-                      <div className="flex-1">
-                        <h3 className="font-semibold text-gray-900">
-                          {project.titleBg}
-                        </h3>
-                        <p className="text-sm text-gray-600">
-                          Локация: {project.locationBg || "-"}
-                        </p>
-                        <p className="text-xs text-gray-500 mt-1">
-                          Код: {project.slug}
-                        </p>
-                        <div className="flex flex-wrap gap-2 mt-2">
-                          {project.featured && (
-                            <span className="inline-block px-2 py-1 bg-red-100 text-red-800 text-xs rounded">
-                              Показан в начална страница - &quot;Нашите проекти&quot;
-                            </span>
-                          )}
-                          {project.published === false && (
-                            <span className="inline-block px-2 py-1 bg-gray-200 text-gray-800 text-xs rounded">
-                              Скрит от публичния сайт
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                      <div className="flex gap-2">
-                        {/* Reorder arrows */}
-                        <Button
-                          onClick={() =>
-                            moveProject(project.id, "up", categoryGroup.category.id)
-                          }
-                          size="sm"
-                          variant="outline"
-                          disabled={projectIndex === 0}
-                          title="Премести нагоре"
-                          className="gap-1"
-                        >
-                          ↑
-                        </Button>
-                        <Button
-                          onClick={() =>
-                            moveProject(
-                              project.id,
-                              "down",
-                              categoryGroup.category.id
-                            )
-                          }
-                          size="sm"
-                          variant="outline"
-                          disabled={
-                            projectIndex === categoryGroup.projects.length - 1
-                          }
-                          title="Премести надолу"
-                          className="gap-1"
-                        >
-                          ↓
-                        </Button>
+              <DndContext
+                sensors={sensors}
+                collisionDetection={closestCenter}
+                onDragEnd={handleDragEnd}
+              >
+                <SortableContext
+                  items={categoryGroup.projects.map((p) => p.id)}
+                  strategy={verticalListSortingStrategy}
+                >
+                  <div className="space-y-2">
+                    {categoryGroup.projects.map((project) => (
+                      <div key={project.id}>
+                        <DraggableProjectItem
+                          project={project}
+                          editingId={editingId}
+                          onEdit={handleEdit}
+                          onDelete={handleDelete}
+                          onCancel={() => {
+                            setEditingId(null);
+                            resetForm();
+                          }}
+                          isSelected={editingId === project.id}
+                        />
 
-                        {editingId === project.id ? (
-                          <Button
-                            onClick={() => {
+                        {editingId === project.id && (
+                          <ProjectForm
+                            mode="edit"
+                            formData={formData}
+                            setFormData={setFormData}
+                            selectedImages={selectedImages}
+                            existingImages={existingImages}
+                            categories={categories}
+                            clients={clients}
+                            uploading={uploading}
+                            fileInputRef={fileInputRef}
+                            onGalleryImageSelect={handleGalleryImageSelect}
+                            onRemoveImage={removeImage}
+                            onRemoveExistingImage={removeExistingImage}
+                            onReorderExistingImages={reorderExistingImages}
+                            onReorderSelectedImages={reorderSelectedImages}
+                            onSubmit={handleSubmit}
+                            onCancel={() => {
                               setEditingId(null);
                               resetForm();
                             }}
-                            size="sm"
-                            variant="outline"
-                            className="gap-1"
-                          >
-                            <X size={14} />
-                            Отмени
-                          </Button>
-                        ) : (
-                          <Button
-                            onClick={() => handleEdit(project)}
-                            size="sm"
-                            variant="outline"
-                            className="gap-1"
-                          >
-                            <Edit2 size={14} />
-                            Редактирай
-                          </Button>
-                        )}
-                        {!isRecordProtected(project.createdAt) && (
-                          <Button
-                            onClick={() => handleDelete(project.id)}
-                            size="sm"
-                            variant="outline"
-                            className="gap-1 text-red-600 hover:text-red-700"
-                          >
-                            <Trash2 size={14} />
-                            Изтрий
-                          </Button>
+                            regionNames={REGION_NAMES}
+                            submitButtonText="Актуализирай"
+                            submitButtonLoadingText="Зареждане..."
+                            title="Редактирай проект"
+                          />
                         )}
                       </div>
-                    </div>
-
-                    {editingId === project.id && (
-                      <ProjectForm
-                        mode="edit"
-                        formData={formData}
-                        setFormData={setFormData}
-                        selectedImages={selectedImages}
-                        existingImages={existingImages}
-                        categories={categories}
-                        clients={clients}
-                        uploading={uploading}
-                        fileInputRef={fileInputRef}
-                        onGalleryImageSelect={handleGalleryImageSelect}
-                        onMoveImage={moveImage}
-                        onRemoveImage={removeImage}
-                        onMoveExistingImage={moveExistingImage}
-                        onRemoveExistingImage={removeExistingImage}
-                        onSubmit={handleSubmit}
-                        onCancel={() => {
-                          setEditingId(null);
-                          resetForm();
-                        }}
-                        regionNames={REGION_NAMES}
-                        submitButtonText="Актуализирай"
-                        submitButtonLoadingText="Зареждане..."
-                        title="Редактирай проект"
-                      />
-                    )}
+                    ))}
                   </div>
-                ))}
-              </div>
+                </SortableContext>
+              </DndContext>
             )}
           </div>
         ))}

@@ -32,14 +32,22 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { titleBg, titleEn, slug, descriptionBg, descriptionEn, iconName, order } = body;
+    const { titleBg, titleEn, slug, descriptionBg, descriptionEn, iconName } = body;
 
-    if (!titleBg || !titleEn || !slug || !descriptionBg || !descriptionEn || order === undefined || order === null) {
+    if (!titleBg || !titleEn || !slug || !descriptionBg || !descriptionEn) {
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 }
       );
     }
+
+    // Get the highest order value to assign next order
+    const maxOrderCategory = await prisma.category.findFirst({
+      orderBy: { order: "desc" },
+      select: { order: true },
+    });
+
+    const nextOrder = (maxOrderCategory?.order ?? -1) + 1;
 
     const category = await prisma.category.create({
       data: {
@@ -49,7 +57,7 @@ export async function POST(req: NextRequest) {
         descriptionBg,
         descriptionEn,
         iconName: iconName || null,
-        order,
+        order: nextOrder,
       },
     });
 

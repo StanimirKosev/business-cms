@@ -7,6 +7,22 @@ import { Label } from "@repo/ui/components/label";
 import { toast } from "sonner";
 import { Plus, X } from "lucide-react";
 import type { Category } from "@repo/database/client";
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  DragEndEvent,
+} from "@dnd-kit/core";
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import { DraggableItem } from "@/app/components/DraggableItem";
 
 interface CategoriesPageClientProps {
   initialCategories: Category[];
@@ -15,7 +31,9 @@ interface CategoriesPageClientProps {
 export function CategoriesPageClient({
   initialCategories,
 }: CategoriesPageClientProps) {
-  const [categories, setCategories] = useState(initialCategories);
+  const [categories, setCategories] = useState(
+    initialCategories.sort((a, b) => a.order - b.order)
+  );
   const [editingId, setEditingId] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -27,6 +45,14 @@ export function CategoriesPageClient({
     descriptionEn: "",
     iconName: "",
   });
+
+  // dnd-kit sensors
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
 
   const generateSlug = (title: string): string => {
     return title
@@ -53,6 +79,49 @@ export function CategoriesPageClient({
     });
   };
 
+  // Handle drag end for categories
+  const handleDragEnd = async (event: DragEndEvent) => {
+    const { active, over } = event;
+    if (!over || active.id === over.id) return;
+
+    const activeIndex = categories.findIndex((c) => c.id === active.id);
+    const overIndex = categories.findIndex((c) => c.id === over.id);
+
+    if (activeIndex === -1 || overIndex === -1) return;
+
+    const newCategories = arrayMove(categories, activeIndex, overIndex);
+    // Update the order field in each category
+    const categoriesWithUpdatedOrder = newCategories.map((category, idx) => ({
+      ...category,
+      order: idx,
+    }));
+    setCategories(categoriesWithUpdatedOrder);
+
+    // Update order indices (for API call)
+    const updates = categoriesWithUpdatedOrder.map((category) => ({
+      id: category.id,
+      order: category.order,
+    }));
+
+    try {
+      const response = await fetch("/api/categories/reorder", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ updates }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to reorder categories");
+      }
+
+      toast.success("Категория преместена");
+    } catch (error) {
+      console.error("Error reordering:", error);
+      toast.error("Грешка при преместване на категория");
+      setCategories(categories);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -60,9 +129,7 @@ export function CategoriesPageClient({
       !formData.titleBg ||
       !formData.titleEn ||
       !formData.descriptionBg ||
-      !formData.descriptionEn ||
-      formData.order === undefined ||
-      formData.order === null
+      !formData.descriptionEn
     ) {
       toast.error("Попълнете всички задължителни полета");
       return;
@@ -78,7 +145,6 @@ export function CategoriesPageClient({
       const dataToSend = {
         ...formData,
         iconName: formData.iconName ? transformIconName(formData.iconName) : "",
-        order: formData.order ?? (editingId ? 0 : getSuggestedOrder()),
       };
 
       const response = await fetch(url, {
@@ -127,12 +193,6 @@ export function CategoriesPageClient({
       descriptionEn: "",
       iconName: "",
     });
-  };
-
-  const getSuggestedOrder = (): number => {
-    if (categories.length === 0) return 0;
-    const maxOrder = Math.max(...categories.map((c) => c.order ?? 0));
-    return maxOrder + 1;
   };
 
   return (
@@ -235,39 +295,19 @@ export function CategoriesPageClient({
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <Label className="text-sm font-semibold">Icon Name</Label>
-                <Input
-                  value={formData.iconName || ""}
-                  onChange={(e) =>
-                    setFormData({ ...formData, iconName: e.target.value })
-                  }
-                  placeholder="arrow-left"
-                  className="mt-1"
-                />
-                <p className="mt-1 text-xs text-gray-500">
-                  Отидете на https://lucide.dev/icons/ и изберете име на икона. При преглед на икона се показва името с малки букви и дефиси (arrow-left).
-                </p>
-              </div>
-              <div>
-                <Label className="text-sm font-semibold">
-                  Ред <span className="text-red-500">*</span>
-                </Label>
-                <Input
-                  type="number"
-                  value={formData.order ?? getSuggestedOrder()}
-                  onChange={(e) => {
-                    const val = e.target.value;
-                    setFormData({
-                      ...formData,
-                      order: val === "" ? undefined : parseInt(val, 10)
-                    });
-                  }}
-                  className="mt-1"
-                  required
-                />
-              </div>
+            <div>
+              <Label className="text-sm font-semibold">Icon Name</Label>
+              <Input
+                value={formData.iconName || ""}
+                onChange={(e) =>
+                  setFormData({ ...formData, iconName: e.target.value })
+                }
+                placeholder="arrow-left"
+                className="mt-1"
+              />
+              <p className="mt-1 text-xs text-gray-500">
+                Отидете на https://lucide.dev/icons/ и изберете име на икона. При преглед на икона се показва името с малки букви и дефиси (arrow-left).
+              </p>
             </div>
 
             <Button type="submit" disabled={uploading} className="w-full">
@@ -277,44 +317,56 @@ export function CategoriesPageClient({
         </div>
       )}
 
-      <div className="space-y-2">
-        {categories.map((category) => (
-          <div key={category.id}>
-            <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 flex justify-between items-start">
-              <div className="flex-1">
-                <h3 className="font-semibold text-gray-900">
-                  {category.titleBg}
-                </h3>
-                <p className="text-sm text-gray-600">{category.titleEn}</p>
-                <p className="text-xs text-gray-500 mt-1">Ред: {category.order}</p>
-              </div>
-              <div className="flex gap-2">
-                {editingId === category.id ? (
-                  <Button
-                    onClick={() => {
-                      setEditingId(null);
-                      setShowForm(false);
-                      resetForm();
-                    }}
-                    size="sm"
-                    variant="outline"
-                    className="gap-1"
-                  >
-                    <X size={14} />
-                    Отмени
-                  </Button>
-                ) : (
-                  <Button
-                    onClick={() => handleEdit(category)}
-                    size="sm"
-                    variant="outline"
-                    className="gap-1"
-                  >
-                    Редактирай
-                  </Button>
-                )}
-              </div>
-            </div>
+      <DndContext
+        sensors={sensors}
+        collisionDetection={closestCenter}
+        onDragEnd={handleDragEnd}
+      >
+        <SortableContext
+          items={categories.map((c) => c.id)}
+          strategy={verticalListSortingStrategy}
+        >
+          <div className="space-y-2">
+            {categories.map((category) => (
+              <div key={category.id}>
+                <DraggableItem id={category.id} isSelected={editingId === category.id}>
+                  <div className="flex-1">
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <h3 className="font-semibold text-gray-900">
+                          {category.titleBg}
+                        </h3>
+                        <p className="text-sm text-gray-600">{category.titleEn}</p>
+                      </div>
+                      <div className="flex gap-2 flex-shrink-0 ml-4">
+                        {editingId === category.id ? (
+                          <Button
+                            onClick={() => {
+                              setEditingId(null);
+                              setShowForm(false);
+                              resetForm();
+                            }}
+                            size="sm"
+                            variant="outline"
+                            className="gap-1"
+                          >
+                            <X size={14} />
+                            Отмени
+                          </Button>
+                        ) : (
+                          <Button
+                            onClick={() => handleEdit(category)}
+                            size="sm"
+                            variant="outline"
+                            className="gap-1"
+                          >
+                            Редактирай
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </DraggableItem>
 
             {editingId === category.id && (
               <div className="bg-blue-50 p-6 rounded-lg shadow-sm border border-blue-200 border-t-0 rounded-t-none">
@@ -401,39 +453,19 @@ export function CategoriesPageClient({
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <Label className="text-sm font-semibold">Icon Name</Label>
-                      <Input
-                        value={formData.iconName || ""}
-                        onChange={(e) =>
-                          setFormData({ ...formData, iconName: e.target.value })
-                        }
-                        placeholder="arrow-left"
-                        className="mt-1"
-                      />
-                      <p className="mt-1 text-xs text-gray-500">
-                        Отидете на https://lucide.dev/icons/ и изберете име на икона. При преглед на икона се показва името с малки букви и дефиси (arrow-left).
-                      </p>
-                    </div>
-                    <div>
-                      <Label className="text-sm font-semibold">
-                        Ред <span className="text-red-500">*</span>
-                      </Label>
-                      <Input
-                        type="number"
-                        value={formData.order ?? 0}
-                        onChange={(e) => {
-                          const val = e.target.value;
-                          setFormData({
-                            ...formData,
-                            order: val === "" ? undefined : parseInt(val, 10)
-                          });
-                        }}
-                        className="mt-1"
-                        required
-                      />
-                    </div>
+                  <div>
+                    <Label className="text-sm font-semibold">Icon Name</Label>
+                    <Input
+                      value={formData.iconName || ""}
+                      onChange={(e) =>
+                        setFormData({ ...formData, iconName: e.target.value })
+                      }
+                      placeholder="arrow-left"
+                      className="mt-1"
+                    />
+                    <p className="mt-1 text-xs text-gray-500">
+                      Отидете на https://lucide.dev/icons/ и изберете име на икона. При преглед на икона се показва името с малки букви и дефиси (arrow-left).
+                    </p>
                   </div>
 
                   <Button type="submit" disabled={uploading} className="w-full">
@@ -442,15 +474,17 @@ export function CategoriesPageClient({
                 </form>
               </div>
             )}
-          </div>
-        ))}
+              </div>
+            ))}
 
-        {categories.length === 0 && (
-          <div className="text-center py-8 text-gray-500">
-            Няма категории. Добавете първа категория.
+            {categories.length === 0 && (
+              <div className="text-center py-8 text-gray-500">
+                Няма категории. Добавете първа категория.
+              </div>
+            )}
           </div>
-        )}
-      </div>
+        </SortableContext>
+      </DndContext>
     </div>
   );
 }

@@ -1,12 +1,26 @@
 "use client";
 
-import Image from "next/image";
 import { Button } from "@repo/ui/components/button";
 import { Input } from "@repo/ui/components/input";
 import { Label } from "@repo/ui/components/label";
-import { X, Upload, Trash2 } from "lucide-react";
+import { X, Upload } from "lucide-react";
 import type { Project, Category, Client } from "@repo/database/client";
 import { ProjectCoordinatePicker } from "./project-coordinate-picker";
+import { DraggableImageItem } from "./draggable-image-item";
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  DragEndEvent,
+} from "@dnd-kit/core";
+import {
+  SortableContext,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
 
 interface SelectedImage {
   file: File;
@@ -29,10 +43,10 @@ interface ProjectFormProps {
   uploading: boolean;
   fileInputRef: React.RefObject<HTMLInputElement | null>;
   onGalleryImageSelect: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onMoveImage: (index: number, direction: "up" | "down") => void;
   onRemoveImage: (index: number) => void;
-  onMoveExistingImage: (imageId: string, direction: "up" | "down") => void;
   onRemoveExistingImage: (imageId: string) => void;
+  onReorderExistingImages: (fromIndex: number, toIndex: number) => void;
+  onReorderSelectedImages: (fromIndex: number, toIndex: number) => void;
   onSubmit: (e: React.FormEvent) => void;
   onCancel: () => void;
   regionNames: Record<string, string>;
@@ -52,10 +66,10 @@ export function ProjectForm({
   uploading,
   fileInputRef,
   onGalleryImageSelect,
-  onMoveImage,
   onRemoveImage,
-  onMoveExistingImage,
   onRemoveExistingImage,
+  onReorderExistingImages,
+  onReorderSelectedImages,
   onSubmit,
   onCancel,
   regionNames,
@@ -66,6 +80,44 @@ export function ProjectForm({
   const bgColor = mode === "create" ? "bg-white" : "bg-blue-50";
   const borderColor = mode === "create" ? "border-gray-200" : "border-blue-200";
   const borderTop = mode === "create" ? "" : "border-t-0";
+
+  // dnd-kit sensors for image reordering
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
+
+  // Handle drag end for existing images
+  const handleDragEndExistingImages = (event: DragEndEvent) => {
+    const { active, over } = event;
+    if (!over || active.id === over.id) return;
+
+    const activeIndex = existingImages.findIndex((img) => img.id === active.id);
+    const overIndex = existingImages.findIndex((img) => img.id === over.id);
+
+    if (activeIndex === -1 || overIndex === -1) return;
+
+    onReorderExistingImages(activeIndex, overIndex);
+  };
+
+  // Handle drag end for selected images
+  const handleDragEndSelectedImages = (event: DragEndEvent) => {
+    const { active, over } = event;
+    if (!over || active.id === over.id) return;
+
+    const activeIndex = selectedImages.findIndex(
+      (_, idx) => idx.toString() === active.id
+    );
+    const overIndex = selectedImages.findIndex(
+      (_, idx) => idx.toString() === over.id
+    );
+
+    if (activeIndex === -1 || overIndex === -1) return;
+
+    onReorderSelectedImages(activeIndex, overIndex);
+  };
 
   return (
     <div
@@ -178,68 +230,30 @@ export function ProjectForm({
                 <p className="text-xs text-gray-600 font-semibold">
                   Текущи снимки ({existingImages.length})
                 </p>
-                <div className="space-y-2">
-                  {existingImages.map((image) => (
-                    <div
-                      key={image.id}
-                      className="flex items-center gap-3 p-2 bg-blue-50 rounded-md border border-blue-200"
-                    >
-                      <div className="relative w-16 h-16 flex-shrink-0">
-                        <Image
-                          src={`https://res.cloudinary.com/dn7bynzv7/image/upload/${image.cloudinaryPublicId}`}
-                          alt="Existing image"
-                          fill
-                          className="object-cover rounded-md"
+                <DndContext
+                  sensors={sensors}
+                  collisionDetection={closestCenter}
+                  onDragEnd={handleDragEndExistingImages}
+                >
+                  <SortableContext
+                    items={existingImages.map((img) => img.id)}
+                    strategy={verticalListSortingStrategy}
+                  >
+                    <div className="space-y-2">
+                      {existingImages.map((image) => (
+                        <DraggableImageItem
+                          key={image.id}
+                          id={image.id}
+                          imageUrl={`https://res.cloudinary.com/dn7bynzv7/image/upload/${image.cloudinaryPublicId}`}
+                          fileName={image.cloudinaryPublicId.split("/").pop() || "image"}
+                          order={image.order}
+                          isFirstImage={image.order === 0}
+                          onRemove={() => onRemoveExistingImage(image.id)}
                         />
-                        {image.order === 0 && (
-                          <div className="absolute top-1 left-1 bg-red-600 text-white text-xs px-2 py-1 rounded">
-                            Корица
-                          </div>
-                        )}
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-sm text-gray-700 truncate">
-                          {image.cloudinaryPublicId.split("/").pop()}
-                        </p>
-                        <p className="text-xs text-gray-500">
-                          Ред: {image.order}
-                        </p>
-                      </div>
-                      <div className="flex items-center gap-1 flex-shrink-0">
-                        {image.order > 0 && (
-                          <button
-                            type="button"
-                            onClick={() => onMoveExistingImage(image.id, "up")}
-                            className="p-1 text-gray-500 hover:text-gray-700"
-                            title="Преместване нагоре"
-                          >
-                            ↑
-                          </button>
-                        )}
-                        {image.order < existingImages.length - 1 && (
-                          <button
-                            type="button"
-                            onClick={() =>
-                              onMoveExistingImage(image.id, "down")
-                            }
-                            className="p-1 text-gray-500 hover:text-gray-700"
-                            title="Преместване надолу"
-                          >
-                            ↓
-                          </button>
-                        )}
-                        <button
-                          type="button"
-                          onClick={() => onRemoveExistingImage(image.id)}
-                          className="p-1 text-red-500 hover:text-red-700"
-                          title="Премахване"
-                        >
-                          <Trash2 size={16} />
-                        </button>
-                      </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
+                  </SortableContext>
+                </DndContext>
               </div>
             )}
 
@@ -248,66 +262,30 @@ export function ProjectForm({
                 <p className="text-xs text-gray-600 font-semibold">
                   Нови снимки ({selectedImages.length})
                 </p>
-                <div className="space-y-2">
-                  {selectedImages.map((image, index) => (
-                    <div
-                      key={index}
-                      className="flex items-center gap-3 p-2 bg-gray-50 rounded-md"
-                    >
-                      <div className="relative w-16 h-16 flex-shrink-0">
-                        <Image
-                          src={image.preview}
-                          alt={`Preview ${index + 1}`}
-                          fill
-                          className="object-cover rounded-md"
+                <DndContext
+                  sensors={sensors}
+                  collisionDetection={closestCenter}
+                  onDragEnd={handleDragEndSelectedImages}
+                >
+                  <SortableContext
+                    items={selectedImages.map((_, idx) => idx.toString())}
+                    strategy={verticalListSortingStrategy}
+                  >
+                    <div className="space-y-2">
+                      {selectedImages.map((image, index) => (
+                        <DraggableImageItem
+                          key={index}
+                          id={index.toString()}
+                          imageUrl={image.preview}
+                          fileName={image.file.name}
+                          order={index}
+                          isFirstImage={index === 0 && existingImages.length === 0}
+                          onRemove={() => onRemoveImage(index)}
                         />
-                        {index === 0 && existingImages.length === 0 && (
-                          <div className="absolute top-1 left-1 bg-red-600 text-white text-xs px-2 py-1 rounded">
-                            Корица
-                          </div>
-                        )}
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-sm text-gray-700 truncate">
-                          {image.file.name}
-                        </p>
-                        <p className="text-xs text-gray-500">
-                          {(image.file.size / 1024).toFixed(1)} KB
-                        </p>
-                      </div>
-                      <div className="flex items-center gap-1 flex-shrink-0">
-                        {index > 0 && (
-                          <button
-                            type="button"
-                            onClick={() => onMoveImage(index, "up")}
-                            className="p-1 text-gray-500 hover:text-gray-700"
-                            title="Преместване нагоре"
-                          >
-                            ↑
-                          </button>
-                        )}
-                        {index < selectedImages.length - 1 && (
-                          <button
-                            type="button"
-                            onClick={() => onMoveImage(index, "down")}
-                            className="p-1 text-gray-500 hover:text-gray-700"
-                            title="Преместване надолу"
-                          >
-                            ↓
-                          </button>
-                        )}
-                        <button
-                          type="button"
-                          onClick={() => onRemoveImage(index)}
-                          className="p-1 text-red-500 hover:text-red-700"
-                          title="Премахване"
-                        >
-                          <Trash2 size={16} />
-                        </button>
-                      </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
+                  </SortableContext>
+                </DndContext>
               </div>
             )}
           </div>

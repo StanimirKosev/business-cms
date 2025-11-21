@@ -9,6 +9,22 @@ import { toast } from "sonner";
 import { Plus, Trash2, X, ChevronDown, ChevronUp, Upload } from "lucide-react";
 import type { MachineryCategory, MachineryModel } from "@repo/database/client";
 import { isRecordProtected } from "@/lib/constants";
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  DragEndEvent,
+} from "@dnd-kit/core";
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import { DraggableItem } from "@/app/components/DraggableItem";
 
 interface MachineryPageClientProps {
   initialCategories: (MachineryCategory & { models: MachineryModel[] })[];
@@ -22,7 +38,9 @@ interface SelectedImage {
 export function MachineryPageClient({
   initialCategories,
 }: MachineryPageClientProps) {
-  const [categories, setCategories] = useState(initialCategories);
+  const [categories, setCategories] = useState(
+    initialCategories.sort((a, b) => a.order - b.order)
+  );
   const [editingCategoryId, setEditingCategoryId] = useState<string | null>(
     null
   );
@@ -37,6 +55,14 @@ export function MachineryPageClient({
     null
   );
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // dnd-kit sensors
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
 
   const [categoryFormData, setCategoryFormData] = useState<
     Partial<MachineryCategory>
@@ -62,6 +88,111 @@ export function MachineryPageClient({
       newExpanded.add(id);
     }
     setExpandedCategories(newExpanded);
+  };
+
+  // Handle drag end for categories and models
+  const handleDragEnd = async (event: DragEndEvent) => {
+    const { active, over } = event;
+    if (!over || active.id === over.id) return;
+
+    const isModel = typeof active.id === "string" && active.id.startsWith("model-");
+
+    if (isModel) {
+      // Handle model reordering
+      const activeParts = (active.id as string).split("-");
+      const categoryId = activeParts.slice(1, -1).join("-");
+      const modelId = activeParts[activeParts.length - 1];
+
+      const overParts = (over.id as string).split("-");
+      const overCategoryId = overParts.slice(1, -1).join("-");
+      const overModelId = overParts[overParts.length - 1];
+
+      // Only allow reordering within the same category
+      if (categoryId !== overCategoryId) return;
+
+      const categoryIndex = categories.findIndex((c) => c.id === categoryId);
+      if (categoryIndex === -1) return;
+
+      const category = categories[categoryIndex];
+      const activeIndex = category.models.findIndex((m) => m.id === modelId);
+      const overIndex = category.models.findIndex((m) => m.id === overModelId);
+
+      if (activeIndex === -1 || overIndex === -1) return;
+
+      // Store original state for rollback
+      const originalCategories = categories;
+
+      const newModels = arrayMove(category.models, activeIndex, overIndex);
+      // Update the order field in each model
+      const modelsWithUpdatedOrder = newModels.map((model, idx) => ({
+        ...model,
+        order: idx,
+      }));
+      const newCategories = categories.map((c) =>
+        c.id === categoryId ? { ...c, models: modelsWithUpdatedOrder } : c
+      );
+      setCategories(newCategories);
+
+      // Update order indices for models (for API call)
+      const updates = modelsWithUpdatedOrder.map((model) => ({
+        id: model.id,
+        order: model.order,
+      }));
+
+      try {
+        const response = await fetch(
+          `/api/machinery/${categoryId}/models/reorder`,
+          {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ updates }),
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to reorder models");
+        }
+
+        toast.success("Модел преместен");
+      } catch (error) {
+        console.error("Error reordering models:", error);
+        toast.error("Грешка при преместване на модел");
+        setCategories(originalCategories);
+      }
+    } else {
+      // Handle category reordering
+      const activeIndex = categories.findIndex((c) => c.id === active.id);
+      const overIndex = categories.findIndex((c) => c.id === over.id);
+
+      if (activeIndex === -1 || overIndex === -1) return;
+
+      const newCategories = arrayMove(categories, activeIndex, overIndex);
+      setCategories(newCategories);
+
+      // Update order indices
+      const updates = newCategories.map((category, idx) => ({
+        id: category.id,
+        order: idx,
+      }));
+
+      try {
+        const response = await fetch("/api/machinery/reorder", {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ updates }),
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to reorder categories");
+        }
+
+        toast.success("Категория преместена");
+      } catch (error) {
+        console.error("Error reordering:", error);
+        toast.error("Грешка при преместване на категория");
+        setCategories(categories);
+      }
+    }
   };
 
   const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -130,9 +261,7 @@ export function MachineryPageClient({
       !categoryFormData.nameBg ||
       !categoryFormData.nameEn ||
       categoryFormData.count === undefined ||
-      (!categoryFormData.imageUrl && !selectedImage) ||
-      categoryFormData.order === undefined ||
-      categoryFormData.order === null
+      (!categoryFormData.imageUrl && !selectedImage)
     ) {
       toast.error("Попълнете всички необходими полета");
       return;
@@ -156,7 +285,7 @@ export function MachineryPageClient({
         nameEn: categoryFormData.nameEn,
         count: categoryFormData.count,
         imageUrl: uploadedImageUrl,
-        order: categoryFormData.order ?? (editingCategoryId ? 0 : getSuggestedOrder()),
+        order: categoryFormData.order ?? getSuggestedOrder(),
       };
 
       const response = await fetch(url, {
@@ -451,42 +580,22 @@ export function MachineryPageClient({
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <Label className="text-sm font-semibold">
-                  Брой <span className="text-red-500">*</span>
-                </Label>
-                <Input
-                  type="number"
-                  value={categoryFormData.count ?? ""}
-                  onChange={(e) =>
-                    setCategoryFormData({
-                      ...categoryFormData,
-                      count: e.target.value === "" ? 0 : parseInt(e.target.value),
-                    })
-                  }
-                  className="mt-1"
-                  required
-                />
-              </div>
-              <div>
-                <Label className="text-sm font-semibold">
-                  Ред <span className="text-red-500">*</span>
-                </Label>
-                <Input
-                  type="number"
-                  value={categoryFormData.order ?? getSuggestedOrder()}
-                  onChange={(e) => {
-                    const val = e.target.value;
-                    setCategoryFormData({
-                      ...categoryFormData,
-                      order: val === "" ? undefined : parseInt(val, 10)
-                    });
-                  }}
-                  className="mt-1"
-                  required
-                />
-              </div>
+            <div>
+              <Label className="text-sm font-semibold">
+                Брой <span className="text-red-500">*</span>
+              </Label>
+              <Input
+                type="number"
+                value={categoryFormData.count ?? ""}
+                onChange={(e) =>
+                  setCategoryFormData({
+                    ...categoryFormData,
+                    count: e.target.value === "" ? 0 : parseInt(e.target.value),
+                  })
+                }
+                className="mt-1"
+                required
+              />
             </div>
 
             <div>
@@ -571,105 +680,112 @@ export function MachineryPageClient({
         </div>
       )}
 
-      <div className="space-y-4">
-        {categories.map((category) => (
-          <div
-            key={category.id}
-            className="bg-white rounded-lg shadow-sm border border-gray-200"
-          >
-            <div className="p-4 flex justify-between items-start">
-              <div className="flex-1">
-                <h3 className="font-semibold text-gray-900">
-                  {category.nameBg}
-                </h3>
-                <p className="text-sm text-gray-600">{category.nameEn}</p>
-                <p className="text-xs text-gray-500 mt-1">
-                  Брой: {category.count} • Модели: {category.models.length}
-                </p>
-                <p className="text-xs text-gray-500 mt-1">Ред: {category.order}</p>
-              </div>
-              <div className="flex gap-2">
-                <Button
-                  onClick={() => toggleCategory(category.id)}
-                  size="sm"
-                  variant="outline"
-                  className="gap-1"
-                >
-                  {expandedCategories.has(category.id) ? (
-                    <ChevronUp size={14} />
-                  ) : (
-                    <ChevronDown size={14} />
-                  )}
-                  {expandedCategories.has(category.id) ? "Скрий" : "Покажи"}
-                </Button>
-                {editingCategoryId === category.id ? (
-                  <Button
-                    onClick={() => {
-                      setEditingCategoryId(null);
-                      setShowCategoryForm(false);
-                      resetCategoryForm();
-                    }}
-                    size="sm"
-                    variant="outline"
-                    className="gap-1"
-                  >
-                    <X size={14} />
-                    Отмени
-                  </Button>
-                ) : (
-                  <Button
-                    onClick={() => handleEditCategory(category)}
-                    size="sm"
-                    variant="outline"
-                    className="gap-1"
-                  >
-                    Редактирай
-                  </Button>
-                )}
-                {!isRecordProtected(category.createdAt) && (
-                  <Button
-                    onClick={() => handleDeleteCategory(category.id)}
-                    size="sm"
-                    variant="outline"
-                    className="gap-1 text-red-600 hover:text-red-700"
-                  >
-                    <Trash2 size={14} />
-                    Изтрий
-                  </Button>
-                )}
-              </div>
-            </div>
-
-            {expandedCategories.has(category.id) && (
-              <div className="border-t border-gray-200 p-4 space-y-4 bg-gray-50">
-                <div className="flex justify-between items-center">
-                  <h4 className="font-semibold text-gray-800">Модели</h4>
-                  <Button
-                    onClick={() => {
-                      setEditingModelId(null);
-                      setShowModelForm(showModelForm === category.id ? null : category.id);
-                      if (showModelForm === category.id) {
-                        resetModelForm();
-                      } else {
-                        resetModelForm();
-                      }
-                    }}
-                    size="sm"
-                    className="gap-1"
-                  >
-                    {showModelForm === category.id && !editingModelId ? (
-                      <>
+      <DndContext
+        sensors={sensors}
+        collisionDetection={closestCenter}
+        onDragEnd={handleDragEnd}
+      >
+        <SortableContext
+          items={[
+            ...categories.map((c) => c.id),
+            ...categories.flatMap((c) =>
+              c.models.map((m) => `model-${c.id}-${m.id}`)
+            ),
+          ]}
+          strategy={verticalListSortingStrategy}
+        >
+          <div className="space-y-4">
+            {categories.map((category) => (
+              <DraggableItem key={category.id} id={category.id} isSelected={editingCategoryId === category.id}>
+                <div className="flex justify-between items-start gap-4">
+                  <div>
+                    <h3 className="font-semibold text-gray-900">{category.nameBg}</h3>
+                    <p className="text-sm text-gray-600">{category.nameEn}</p>
+                    <p className="text-xs text-gray-500 mt-1">
+                      Брой: {category.count} • Модели: {category.models.length}
+                    </p>
+                  </div>
+                  <div className="flex gap-2 flex-shrink-0">
+                    <Button
+                      onClick={() => toggleCategory(category.id)}
+                      size="sm"
+                      variant="outline"
+                      className="gap-1"
+                    >
+                      {expandedCategories.has(category.id) ? (
+                        <ChevronUp size={14} />
+                      ) : (
+                        <ChevronDown size={14} />
+                      )}
+                      {expandedCategories.has(category.id) ? "Скрий" : "Покажи"}
+                    </Button>
+                    {editingCategoryId === category.id ? (
+                      <Button
+                        onClick={() => {
+                          setEditingCategoryId(null);
+                          setShowCategoryForm(false);
+                          resetCategoryForm();
+                        }}
+                        size="sm"
+                        variant="outline"
+                        className="gap-1"
+                      >
                         <X size={14} />
-                        Откажи
-                      </>
+                        Отмени
+                      </Button>
                     ) : (
-                      <>
-                        <Plus size={14} />
-                        Добави модел
-                      </>
+                      <Button
+                        onClick={() => handleEditCategory(category)}
+                        size="sm"
+                        variant="outline"
+                        className="gap-1"
+                      >
+                        Редактирай
+                      </Button>
                     )}
-                  </Button>
+                    {!isRecordProtected(category.createdAt) && (
+                      <Button
+                        onClick={() => handleDeleteCategory(category.id)}
+                        size="sm"
+                        variant="outline"
+                        className="gap-1 text-red-600 hover:text-red-700"
+                      >
+                        <Trash2 size={14} />
+                        Изтрий
+                      </Button>
+                    )}
+                  </div>
                 </div>
+                {expandedCategories.has(category.id) && (
+                  <div className="mt-3 border-t border-gray-200 pt-4 space-y-4 bg-gray-50 -mx-4 -mb-4 px-4 pb-4">
+                    <div className="flex justify-between items-center pb-3 border-b border-gray-200">
+                      <h4 className="font-semibold text-gray-900 text-base">Модели</h4>
+                      <Button
+                        onClick={() => {
+                          setEditingModelId(null);
+                          setShowModelForm(showModelForm === category.id ? null : category.id);
+                          if (showModelForm === category.id) {
+                            resetModelForm();
+                          } else {
+                            resetModelForm();
+                          }
+                        }}
+                        size="sm"
+                        className="gap-1"
+                      >
+                        {showModelForm === category.id && !editingModelId ? (
+                          <>
+                            <X size={14} />
+                            Откажи
+                          </>
+                        ) : (
+                          <>
+                            <Plus size={14} />
+                            Добави модел
+                          </>
+                        )}
+                      </Button>
+                    </div>
 
                 {showModelForm === category.id && !editingModelId && (
                   <div className="bg-white p-4 rounded border border-gray-300 mt-2">
@@ -776,17 +892,21 @@ export function MachineryPageClient({
                   </div>
                 )}
 
-                <div className="space-y-2">
+                <div className="space-y-3 mt-3">
                   {category.models.length === 0 ? (
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-gray-500 py-4 text-center">
                       Няма модели. Добавете първи модел.
                     </p>
                   ) : (
-                    category.models.map((model) => (
-                      <React.Fragment key={model.id}>
-                        <div
-                          className="bg-white p-3 rounded border border-gray-200 flex justify-between items-start"
-                        >
+                    category.models
+                      .sort((a, b) => a.order - b.order)
+                      .map((model) => (
+                      <DraggableItem
+                        key={model.id}
+                        id={`model-${category.id}-${model.id}`}
+                        isSelected={editingModelId === model.id}
+                      >
+                        <div className="flex justify-between items-start gap-2">
                           <div className="flex-1">
                             <h5 className="font-semibold text-sm">
                               {model.nameBg}
@@ -796,7 +916,10 @@ export function MachineryPageClient({
                             </p>
                             <p className="text-xs text-gray-500 mt-1">
                               {model.count}{" "}
-                              {model.unit === "PIECES" ? "бр." : "м²"}
+                              {model.unit === "PIECES" ? "бр." : "м²"} • Ред:{" "}
+                              <span className="text-gray-400">
+                                {model.order + 1}
+                              </span>
                             </p>
                           </div>
                           <div className="flex gap-1">
@@ -946,7 +1069,7 @@ export function MachineryPageClient({
                           </form>
                         </div>
                       )}
-                      </React.Fragment>
+                      </DraggableItem>
                     ))
                   )}
                 </div>
@@ -1007,42 +1130,22 @@ export function MachineryPageClient({
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <Label className="text-sm font-semibold">
-                        Брой <span className="text-red-500">*</span>
-                      </Label>
-                      <Input
-                        type="number"
-                        value={categoryFormData.count ?? ""}
-                        onChange={(e) =>
-                          setCategoryFormData({
-                            ...categoryFormData,
-                            count: e.target.value === "" ? 0 : parseInt(e.target.value),
-                          })
-                        }
-                        className="mt-1"
-                        required
-                      />
-                    </div>
-                    <div>
-                      <Label className="text-sm font-semibold">
-                        Ред <span className="text-red-500">*</span>
-                      </Label>
-                      <Input
-                        type="number"
-                        value={categoryFormData.order ?? 0}
-                        onChange={(e) => {
-                          const val = e.target.value;
-                          setCategoryFormData({
-                            ...categoryFormData,
-                            order: val === "" ? undefined : parseInt(val, 10)
-                          });
-                        }}
-                        className="mt-1"
-                        required
-                      />
-                    </div>
+                  <div>
+                    <Label className="text-sm font-semibold">
+                      Брой <span className="text-red-500">*</span>
+                    </Label>
+                    <Input
+                      type="number"
+                      value={categoryFormData.count ?? ""}
+                      onChange={(e) =>
+                        setCategoryFormData({
+                          ...categoryFormData,
+                          count: e.target.value === "" ? 0 : parseInt(e.target.value),
+                        })
+                      }
+                      className="mt-1"
+                      required
+                    />
                   </div>
 
                   <div>
@@ -1126,15 +1229,17 @@ export function MachineryPageClient({
                 </form>
               </div>
             )}
-          </div>
-        ))}
+              </DraggableItem>
+            ))}
 
-        {categories.length === 0 && (
-          <div className="text-center py-8 text-gray-500">
-            Няма категории. Добавете първа категория.
+            {categories.length === 0 && (
+              <div className="text-center py-8 text-gray-500">
+                Няма категории. Добавете първа категория.
+              </div>
+            )}
           </div>
-        )}
-      </div>
+        </SortableContext>
+      </DndContext>
     </div>
   );
 }

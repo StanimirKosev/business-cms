@@ -8,7 +8,7 @@ export default async function MachineryPage() {
         orderBy: { order: "asc" },
       },
     },
-    orderBy: { createdAt: "desc" },
+    orderBy: { order: "asc" },
   });
 
   return <MachineryPageClient initialCategories={categories} />;
