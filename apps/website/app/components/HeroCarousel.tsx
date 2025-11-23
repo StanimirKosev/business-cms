@@ -12,7 +12,7 @@ import { getCloudinaryUrl } from "@/lib/cloudinary";
 const HERO_IMAGE_IDS = [
   "DJI_20250914152048_0538_D_hpbhoo",
   "гара_r9o6sd",
-  "0_tnvl16",
+  "projects/construction-of-the-kolyo-ficheto-museum-building/qlogdsq0l3czbp7yo8ae",
 ];
 
 const SLIDE_IMAGES = HERO_IMAGE_IDS.map((id) => getCloudinaryUrl(id)!);
