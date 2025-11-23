@@ -147,9 +147,10 @@ model MachineryCategory {
   nameBg    String           // "Верижни багери"
   nameEn    String           // "Tracked Excavators"
   count     Int              // Total count (sum of all models, or manual override)
-  imageUrl  String           // Cloudinary URL for category card
+  imageUrl  String?          // Cloudinary URL for category card (deprecated - use images relation)
   order     Int              @default(0)
   models    MachineryModel[]
+  images    MachineryImage[]
   createdAt DateTime         @default(now())
   updatedAt DateTime         @updatedAt
 
@@ -178,6 +179,19 @@ model MachineryModel {
 enum MachineryUnit {
   PIECES          // бр. / pcs.
   SQUARE_METERS   // м²
+}
+
+// Machinery category gallery images stored on Cloudinary
+model MachineryImage {
+  id                   String            @id @default(cuid())
+  categoryId           String
+  category             MachineryCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  cloudinaryPublicId   String            // e.g., "machinery/excavators-1"
+  order                Int               @default(0) // Display order in gallery
+  createdAt            DateTime          @default(now())
+
+  @@index([categoryId])
+  @@index([order])
 }
 
 // Policy documents

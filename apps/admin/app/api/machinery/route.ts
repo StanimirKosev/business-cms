@@ -13,6 +13,7 @@ export async function GET() {
     const categories = await prisma.machineryCategory.findMany({
       include: {
         models: { orderBy: { order: "asc" } },
+        images: { orderBy: { order: "asc" } },
       },
       orderBy: { order: "asc" },
     });
@@ -35,9 +36,9 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { nameBg, nameEn, count, imageUrl, order } = body;
+    const { nameBg, nameEn, count, order } = body;
 
-    if (!nameBg || !nameEn || !count || !imageUrl || order === undefined || order === null) {
+    if (!nameBg || !nameEn || count === undefined || order === undefined || order === null) {
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 }
@@ -49,10 +50,9 @@ export async function POST(req: NextRequest) {
         nameBg,
         nameEn,
         count,
-        imageUrl,
         order,
       },
-      include: { models: true },
+      include: { models: true, images: true },
     });
 
     return NextResponse.json(category, { status: 201 });

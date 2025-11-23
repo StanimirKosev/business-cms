@@ -28,4 +28,5 @@ export type {
   Project,
   ProjectImage,
   Prisma,
+  MachineryImage,
 } from "@prisma/client";

@@ -7,6 +7,9 @@ export default async function MachineryPage() {
       models: {
         orderBy: { order: "asc" },
       },
+      images: {
+        orderBy: { order: "asc" },
+      },
     },
     orderBy: { order: "asc" },
   });

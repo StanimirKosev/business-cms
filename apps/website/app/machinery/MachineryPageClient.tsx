@@ -2,11 +2,10 @@
 
 import { useScrollAnimation } from "@/app/hooks/useScrollAnimation";
 import { useLanguage } from "@/app/context/LanguageContext";
-import Image from "next/image";
-import type { MachineryCategory, MachineryModel } from "@repo/database/client";
+import type { MachineryCategory, MachineryModel, MachineryImage } from "@repo/database/client";
 import { CategoryNavigationBar } from "../components/CategoryNavigationBar";
-import { getCloudinaryUrl } from "@/lib/cloudinary";
 import { useRef } from "react";
+import { MachineryImageCarousel } from "./MachineryImageCarousel";
 
 // Helper function to format machinery count with proper unit
 function formatMachineryCount(
@@ -33,7 +32,7 @@ function formatMachineryCount(
 }
 
 type MachineryPageClientProps = {
-  categories: (MachineryCategory & { models: MachineryModel[] })[];
+  categories: (MachineryCategory & { models: MachineryModel[]; images: MachineryImage[] })[];
 };
 
 export default function MachineryPageClient({
@@ -135,20 +134,12 @@ export default function MachineryPageClient({
                     isEven ? "" : "md:grid-flow-dense"
                   }`}
                 >
-                  {/* Image */}
-                  <div
-                    className={`relative h-[350px] md:h-[420px] overflow-hidden rounded-lg shadow-xl ${
-                      isEven ? "" : "md:col-start-2"
-                    }`}
-                  >
-                    <Image
-                      src={getCloudinaryUrl(category.imageUrl) || ""}
-                      alt={categoryName}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-                  </div>
+                  {/* Image Carousel */}
+                  <MachineryImageCarousel
+                    images={category.images}
+                    categoryName={categoryName}
+                    isEven={isEven}
+                  />
 
                   {/* Content */}
                   <div
