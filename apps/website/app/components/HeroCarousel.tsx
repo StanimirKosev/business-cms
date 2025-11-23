@@ -8,14 +8,35 @@ import ChevronButton from "./ChevronButton";
 import { useLanguage } from "@/app/context/LanguageContext";
 import { getCloudinaryUrl } from "@/lib/cloudinary";
 
-// Cloudinary image public IDs for hero carousel
-const HERO_IMAGE_IDS = [
-  "DJI_20250914152048_0538_D_hpbhoo",
-  "гара_r9o6sd",
-  "projects/construction-of-the-kolyo-ficheto-museum-building/qlogdsq0l3czbp7yo8ae",
+// Cloudinary image public IDs for hero carousel with responsive crop positioning
+// objectPosition uses percentage values: "horizontalPosition verticalPosition"
+// Examples:
+// - "50% 50%" = perfect center
+// - "55% 50%" = slightly right (5% more to the right)
+// - "45% 50%" = slightly left (5% more to the left)
+// - "50% 40%" = slightly towards top
+// - "50% 60%" = slightly towards bottom
+// - "60% 50%" = more to the right (10% from center)
+// Range: 0% (left/top) to 100% (right/bottom)
+const HERO_SLIDES_CONFIG = [
+  {
+    imageId: "DJI_20250914152048_0538_D_hpbhoo",
+    objectPosition: "50% 50%", // Perfect center
+  },
+  {
+    imageId: "гара_r9o6sd",
+    objectPosition: "65% 50%", // More to the right
+  },
+  {
+    imageId:
+      "projects/construction-of-the-kolyo-ficheto-museum-building/qlogdsq0l3czbp7yo8ae",
+    objectPosition: "35% 50%", // More to the left
+  },
 ];
 
-const SLIDE_IMAGES = HERO_IMAGE_IDS.map((id) => getCloudinaryUrl(id)!);
+const SLIDE_IMAGES = HERO_SLIDES_CONFIG.map(
+  (config) => getCloudinaryUrl(config.imageId)!
+);
 
 const AUTOPLAY_DELAY = 10000;
 
@@ -120,6 +141,9 @@ const HeroCarousel = () => {
                   alt={slide.title}
                   fill
                   className="object-cover animate-ken-burns"
+                  style={{
+                    objectPosition: HERO_SLIDES_CONFIG[index].objectPosition,
+                  }}
                   priority={index === 0}
                   sizes="100vw"
                   quality={90}
