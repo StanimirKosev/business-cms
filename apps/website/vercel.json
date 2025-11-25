@@ -1,0 +1,14 @@
+{
+  "redirects": [
+    {
+      "source": "/bg/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*.htm",
+      "destination": "/",
+      "permanent": true
+    }
+  ]
+}
