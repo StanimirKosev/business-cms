@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
         hostname: "res.cloudinary.com",
       },
     ],
+    unoptimized: true, // Disable Vercel optimization - Cloudinary handles it
   },
 };
 
