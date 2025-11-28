@@ -1,13 +1,1513 @@
 {
   "redirects": [
     {
-      "source": "/bg/:path*",
-      "destination": "/",
+      "source": "/bg/6-Проекти.htm",
+      "destination": "/projects",
       "permanent": true
     },
     {
-      "source": "/:path*.htm",
-      "destination": "/",
+      "source": "/en/6-projects.htm",
+      "destination": "/projects",
+      "permanent": true
+    },
+    {
+      "source": "/bg/5-Клиенти.htm",
+      "destination": "/clients",
+      "permanent": true
+    },
+    {
+      "source": "/en/5-clients.htm",
+      "destination": "/clients",
+      "permanent": true
+    },
+    {
+      "source": "/bg/9-Механизация.htm",
+      "destination": "/machinery",
+      "permanent": true
+    },
+    {
+      "source": "/en/9-mechanization.htm",
+      "destination": "/machinery",
+      "permanent": true
+    },
+    {
+      "source": "/bg/4-Качество.htm",
+      "destination": "/quality",
+      "permanent": true
+    },
+    {
+      "source": "/en/4-quality.htm",
+      "destination": "/quality",
+      "permanent": true
+    },
+    {
+      "source": "/bg/8-Контакти.htm",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/en/8-contact_us.htm",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-1-Жилищна_сграда_в_гр._Раднево.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/residential-building-with-shops-radnevo",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-1-residential_building_in_radnevo.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/residential-building-with-shops-radnevo",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-2-Ветропарк_\"Могилище\".htm",
+      "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/mogilishte-wind-farm-719927",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-2-mogilishte_wind_farm.htm",
+      "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/mogilishte-wind-farm-719927",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-3-Преустройство_на_Административна_сграда_Лакатица.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/reconstruction-lakatitsa-administrative-building",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-3-reconstruction_of_lakatitsa_administrative_building.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/reconstruction-lakatitsa-administrative-building",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-5-Обезопасяване_външен_достъп_до_ТЕЦ_Марица_изток_2_ЕАД.htm",
+      "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/perimeter-security-fencing-of-tpp-maritsa-iztok-2-ead-671799",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-5-securing_the_access_to_thermal_power_plant_maritsa_iztok_2.htm",
+      "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/perimeter-security-fencing-of-tpp-maritsa-iztok-2-ead-671799",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-6-Ремонт_и_боядисване_на_портални_кранове..htm",
+      "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/gantry-cranes-repair-painting-tpp-mi2",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-6-repair_and_painting_of_gantry_cranes.htm",
+      "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/gantry-cranes-repair-painting-tpp-mi2",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-9-Саниране_на_сграден_фонд.htm",
+      "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/energy-retrofit-of-building-stock-652657",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-9-sanitation_of_buildings.htm",
+      "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/energy-retrofit-of-building-stock-652657",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-13-Изграждане_на_акумулаторна_зарядна_станция.htm",
+      "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/battery-charging-station-troyanovo-north",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-13-construction_of_a_battery_charging_station.htm",
+      "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/battery-charging-station-troyanovo-north",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-16-Ремонт_на_ЦДГ_«Щастливо_детство»,_с._Старо_Оряхово.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/renovation-happy-childhood-kindergarten-staro-oryahovo",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-16-refurbishment_of_happy_childhood_kindergarten_staro_oryahovo_vi.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/renovation-happy-childhood-kindergarten-staro-oryahovo",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-17-СМР_на_Гара_Ковачево.htm",
+      "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/construction-kovachevo-station",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-17-railway_station_kovachevo_repair_works.htm",
+      "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/construction-kovachevo-station",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-19-Боядисване_на_фасада_на_котелен_цех.htm",
+      "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/facade-painting-of-boiler-hall-518607",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-19-painting_of_the_facade_of_a_boiler_plant.htm",
+      "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/facade-painting-of-boiler-hall-518607",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-20-Строително_монтажни_работи_в_хале_Булдозери..htm",
+      "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/construction-works-in-bulldozers-hall-379212",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-20-construction_and_installation_works_in_a_bulldozers_hall.htm",
+      "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/construction-works-in-bulldozers-hall-379212",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-22-Благоустрояване_района_на_кв._Младост_и_блок_Щастие_гр._Габрово.htm",
+      "destination": "/projects/landscaping-greenery/gabrovo-mladost-schastie-redevelopment",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-22-development_of_residential_district_mladost_and_residential_buil.htm",
+      "destination": "/projects/landscaping-greenery/gabrovo-mladost-schastie-redevelopment",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-24-Спортна_зала_Орловец,_гр._Габрово.htm",
+      "destination": "/projects/landscaping-greenery/landscaping-orlovets-sports-hall-gabrovo",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-24-orlovets_sports_hall_gabrovo.htm",
+      "destination": "/projects/landscaping-greenery/landscaping-orlovets-sports-hall-gabrovo",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-27-Рехабилитация_на_ЦГЧ,_мост_Игото,_ул._Авраам_Гачев_-гр._Габрово.htm",
+      "destination": "/projects/landscaping-greenery/rehabilitation-central-park-igoto-bridge-avraam-gachev-gabrovo",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-27-rehabilitation_of_a_central_city_part_igoto_bridge_avraam_gach.htm",
+      "destination": "/projects/landscaping-greenery/rehabilitation-central-park-igoto-bridge-avraam-gachev-gabrovo",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-28-Ремонт_на_сграда.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/building-roof-facade-renovation-nek",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-28-building_reconstruction.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/building-roof-facade-renovation-nek",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-29-Ремонт_на_сградата_на_жп_гара_\"Пет_могили\".htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/renovation-pet-mogili-railway-station",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-29-repair_of_the_building_on_the_railway_station_pet_mogili.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/renovation-pet-mogili-railway-station",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-30-Изграждане_на_4_бр._електро_къщи_и_диспечерски_пункт.htm",
+      "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/electrical-houses-control-room-mini-maritsa-iztok",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-30-construction_of_electrical_houses_and_control_center.htm",
+      "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/electrical-houses-control-room-mini-maritsa-iztok",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-33-Ремонт_на_сграда.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/building-renovation-general",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-33-repair_of_residence_building.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/building-renovation-general",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-34-Изграждане_на_естакада.htm",
+      "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/trestle-construction-mini-maritsa-iztok",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-34-trestle_construction.htm",
+      "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/trestle-construction-mini-maritsa-iztok",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-35-Ремонт_на_сградата_на_Община_Сливен.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/renovation-municipality-building-sliven",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-35-вuilding_repair.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/renovation-municipality-building-sliven",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-37-Изграждане_на_път_за_магистрални_ВГТЛ.htm",
+      "destination": "/projects/transport-infrastructure/road-construction-hv-lines-maritsa-iztok",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-37-road_construction_for_belt_conveyor.htm",
+      "destination": "/projects/transport-infrastructure/road-construction-hv-lines-maritsa-iztok",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-39-Пречиствателна_станция_питейни_води_гр._Габрово.htm",
+      "destination": "/projects/water-supply-sewerage/gabrovo-drinking-water-treatment-reconstruction",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-39-drinking_water_treatment_plant_in_the_town_of_gabrovo.htm",
+      "destination": "/projects/water-supply-sewerage/gabrovo-drinking-water-treatment-reconstruction",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-40-Възстановяване_на_покрив.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/roof-restoration-vocational-tourism-ruse",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-40-roof_restoration.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/roof-restoration-vocational-tourism-ruse",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-41-Изграждане_на_бетонови_фундаменти_и_обръщателна_станция.htm",
+      "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/construction-of-concrete-foundations-and-turnaround-station-315381",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-41-construction_of_concrete_foundations_and_reversing_station.htm",
+      "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/construction-of-concrete-foundations-and-turnaround-station-315381",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-42-Преустройство_на_жп_пост.htm",
+      "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/railway-post-reconstruction-mini-maritsa-iztok",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-42-railway_reconstruction.htm",
+      "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/railway-post-reconstruction-mini-maritsa-iztok",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-43-Изграждане_на_център_за_настаняване_от_семеен_тип_кв._Борово.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/family-type-center-borovo-gabrovo",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-43-construction_of_center_for_family-type_accommodation_-_borovo.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/family-type-center-borovo-gabrovo",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-44-Изграждане_на_център_за_настаняване_от_семеен_тип_кв.Трендафила.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/family-type-center-trendafila-gabrovo",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-44-construction_of_center_for_family-type_accommodation_trendafilа.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/family-type-center-trendafila-gabrovo",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-45-Ремонт_на_читалище_с._Тополчане.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/renovation-community-center-topolchane",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-45-repair_of_village_community_center_topolchane.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/renovation-community-center-topolchane",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-46-Църковен_храм_\"Св.Св._Кирил_и_Методий,_с._Староселци.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/church-st-cyril-methodius-staroseltsi",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-46-temple_church_st_st_cyril_and_methodius_staroseltsi.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/church-st-cyril-methodius-staroseltsi",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-48-Разширение_на_гробищен_парк,_с_Възложител_Мини_Марица_Изток.htm",
+      "destination": "/projects/landscaping-greenery/cemetery-park-extension-639138",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-48-widening_of_a_cemetery.htm",
+      "destination": "/projects/landscaping-greenery/cemetery-park-extension-639138",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-49-Автоматична_газорегулираща_станция_„Самоков”_–_Реконструкция.htm",
+      "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/samokov-automatic-gas-regulating-station-reconstruction-972913",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-49-automatic_gas-regulating_station_samokov_-_reconstruction.htm",
+      "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/samokov-automatic-gas-regulating-station-reconstruction-972913",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-50-Изграждане_на_воден_басейн.htm",
+      "destination": "/projects/water-supply-sewerage/construction-of-water-reservoir-115482",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-50-construction_of_dam_lake.htm",
+      "destination": "/projects/water-supply-sewerage/construction-of-water-reservoir-115482",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-51-Възстановяване_конструкцията_на_транспортни_връзки_ТЕЦ_МИ2.htm",
+      "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/restoration-of-transport-connections-structure-at-tpp-maritsa-iztok-2-692800",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-51-tpp_mi2_transportation_connections_construction_recovery.htm",
+      "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/restoration-of-transport-connections-structure-at-tpp-maritsa-iztok-2-692800",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-52-Привлекателна,_достъпна_и_зелена_среда,_гр._Габрово.htm",
+      "destination": "/projects/landscaping-greenery/gabrovo-green-urban-environment",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-52-attractive_accessible_and_green_surroundings_of_gabrovo.htm",
+      "destination": "/projects/landscaping-greenery/gabrovo-green-urban-environment",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-53-Изграждане_на_спортна_зала_към_СОУЕЕ_гр._Русе.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/ruse-souee-sports-hall",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-53-construction_of_sport_building_the_town_of_ruse.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/ruse-souee-sports-hall",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-54-Ремонт_покрив_и_подмяна_хидроизолация_складови_помещения_ТЕЦ_МИ2.htm",
+      "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/roof-waterproofing-warehouses-tpp-mi2",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-54-roof_repair_and_storehouse_hydro_insulation_replacement_tpp_mi2.htm",
+      "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/roof-waterproofing-warehouses-tpp-mi2",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-55-Реконструкция_на_водопроводна_мрежа_в_Община_Златица.htm",
+      "destination": "/projects/water-supply-sewerage/reconstruction-water-supply-zlatitsa",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-55-reconstruction_of_water_supply_systems_municipality_of_zlatitsa.htm",
+      "destination": "/projects/water-supply-sewerage/reconstruction-water-supply-zlatitsa",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-56-Рехабилитация_на_гаров_комплекс_ЖП_гара_Бургас_пътническа.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/burgas-station-rehab",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-56-rehabilitation_of_the_railway_station_burgas.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/burgas-station-rehab",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-57-Вътрешна_газопреносна_мрежа_и_ГРП_в_ТЕЦ_„Марица_Изток_2\"_ЕАД.htm",
+      "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/maritsa-iztok-2-gas-network-grp",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-57-internal_gas_transmission_network_and_hydraulic_fracturing_in_tp.htm",
+      "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/maritsa-iztok-2-gas-network-grp",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-58-Обекти_в_Мини_Марица_Изток.htm",
+      "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/facilities-renovation-mini-maritsa-iztok",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-58-projects_in_mini_maritsa_iztok_ead.htm",
+      "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/facilities-renovation-mini-maritsa-iztok",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-59-Рехабилитация_настилки_пристанище_Варна_-_запад.htm",
+      "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/rehabilitation-of-pavements-at-varna-west-port-703531",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-59-rehabilitation_of_pavement_at_port_varna_-_west.htm",
+      "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/rehabilitation-of-pavements-at-varna-west-port-703531",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-60-Дневен_център_за_хора_с_увреждания.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/day-center-people-disabilities-reconstruction",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-60-daily_center_for_people_with_disabilities.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/day-center-people-disabilities-reconstruction",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-61-Ремонт_и_преустройство_НЧ_\"Гео_Милев\".htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/renovation-geo-milev-community-center",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-61-repair_and_reconstruction_geo_milev_community_center.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/renovation-geo-milev-community-center",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-62-Ремонт_на_стоманобетонни_настилки_Пристанище_Варна_-_изток.htm",
+      "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/repair-of-reinforced-concrete-pavements-at-varna-east-port-878506",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-62-repair_of_concrete_flooring_port_of_varna_-_east.htm",
+      "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/repair-of-reinforced-concrete-pavements-at-varna-east-port-878506",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-63-Ремонт_на_хидроизолация_в_„ТЕЦ_Марица_изток_2”_ЕАД.htm",
+      "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/waterproofing-repair-at-tpp-maritsa-iztok-2-ead-939060",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-63-repair_of_hydro_insulation_in_tpp_maritsa_east_2_ead.htm",
+      "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/waterproofing-repair-at-tpp-maritsa-iztok-2-ead-939060",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-64-Реконструкция_и_изграждане_на_улично_осветление_в_общ._Роман.htm",
+      "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/reconstruction-and-construction-of-street-lighting-502624",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-64-renovation_and_construction_of_street_lighting_in_roman_municip.htm",
+      "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/reconstruction-and-construction-of-street-lighting-502624",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-65-Ремонт_и_преустройство_на_НЧ_\"Съгласие_-1895\".htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/renovation-soglasie-1895-community-center",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-65-repair_and_reconstruction_syglasie_-_1895_community_center.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/renovation-soglasie-1895-community-center",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-66-„Рехабилитация_и_реконструкция_на_общински_път_в_Община_Средец”.htm",
+      "destination": "/projects/transport-infrastructure/sredets-municipal-road-reconstruction",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-66-rehabilitation_of_the_municipal_road_in_sredets_municipality.htm",
+      "destination": "/projects/transport-infrastructure/sredets-municipal-road-reconstruction",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-67-Почистване_на_преливно_езеро_в_„ТЕЦ_МИ_2“_ЕАД..htm",
+      "destination": "/projects/water-supply-sewerage/cleaning-of-overflow-lake-at-tpp-mi-2-ead-041486",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-67-cleaning_of_a_tidal_lake_in_tpp_maritsa_east_2.htm",
+      "destination": "/projects/water-supply-sewerage/cleaning-of-overflow-lake-at-tpp-mi-2-ead-041486",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-68-Изграждане_на_противопожарна_кула_в_землището_на_с._Карлиево.htm",
+      "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/fire-tower-karlievo",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-68-building_a_fire_tower_in_the_village_of_karlievo.htm",
+      "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/fire-tower-karlievo",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-69-Направа_на_маршрутен_път_в_„Мини_Марица_Изток“_ЕАД.htm",
+      "destination": "/projects/transport-infrastructure/service-road-mini-maritsa-iztok",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-69-construction_of_a_road_in_mini_maritsa_iztok_ead.htm",
+      "destination": "/projects/transport-infrastructure/service-road-mini-maritsa-iztok",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-70-Реконструкция_на_пътища_в_община_Никопол.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-municipal-roads-nikopol",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-70-reconstruction_of_roads_in_the_municipality_o.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-municipal-roads-nikopol",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-71-\"Изпълнение_на_инженеринг_по_НПЕЕМЖС_-_гр._Златица\".htm",
+      "destination": "/projects/energy-efficiency/engineering-npeemzhs-block-33-sofiysko-shose-zlatitsa",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-71-еngineering_to_npeemrb_-_municipality_of_zlatitsa.htm",
+      "destination": "/projects/energy-efficiency/engineering-npeemzhs-block-33-sofiysko-shose-zlatitsa",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-72-Изпълнение_на_инженеринг_по_НПЕЕМЖС_-_гр._Никопол.htm",
+      "destination": "/projects/energy-efficiency/engineering-npeemzhs-smolyanovi-2-nikopol",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-72-еngineering_to_npeemrb_-_municipality_of_nikopol.htm",
+      "destination": "/projects/energy-efficiency/engineering-npeemzhs-smolyanovi-2-nikopol",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-73-„Антисеизм._укрепване_на_сгр._в_п/ст_Червена_могила_400/110_KV”.htm",
+      "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/seismic-reinforcement-chervena-mogila-substation",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-73-seismic_reinforcement_of_build_in_chervena_mogila_substation.htm",
+      "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/seismic-reinforcement-chervena-mogila-substation",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-74-Изпълнение_на_Инженеринг_-_гр._Бургас,_ж.к._„Лазур“_бл._2.htm",
+      "destination": "/projects/energy-efficiency/engineering-energy-efficiency-lazur-block-2-burgas",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-74-complete_engineering_-_city_of_burgas_lazur_quarter_block_2.htm",
+      "destination": "/projects/energy-efficiency/engineering-energy-efficiency-lazur-block-2-burgas",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-75-Изграждане_на_пешеходен_мост_над_река_Янтра.htm",
+      "destination": "/projects/transport-infrastructure/yantra-river-pedestrian-bridge",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-75-construction_of_a_pedestrian_bridge_over_the_yantra_river.htm",
+      "destination": "/projects/transport-infrastructure/yantra-river-pedestrian-bridge",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-76-\"Изпълнение_на_инженеринг_по_НПЕЕМЖС_-_гр._Габрово\".htm",
+      "destination": "/projects/energy-efficiency/engineering-npeemzhs-mogilyov-83-85-87-gabrovo",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-76-еngineering_to_npeemrb_-_municipality_of_gabrovo.htm",
+      "destination": "/projects/energy-efficiency/engineering-npeemzhs-mogilyov-83-85-87-gabrovo",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-77-Площадка_за_биологично_третиране.htm",
+      "destination": "/projects/engineering-reinforcement-activities-and-waste-treatment-installations/biological-treatment-platform-859489",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-77-biological_treatment_site.htm",
+      "destination": "/projects/engineering-reinforcement-activities-and-waste-treatment-installations/biological-treatment-platform-859489",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-78-Монтаж_на_отоплителни_инсталации_в_гр._Русе.htm",
+      "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/installation-of-heating-systems-491479",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-78-installation_of_new_water_heating_systems_located_in_rousse.htm",
+      "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/installation-of-heating-systems-491479",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-79-Изпълнение_на_Инженеринг_-_гр._Белово,_бул._Освобождение_№87.htm",
+      "destination": "/projects/energy-efficiency/engineering-energy-efficiency-osvobozhdenie-87-belovo",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-79-complete_engineering_-_city_of_belovo_bul_osvobojdenie_87.htm",
+      "destination": "/projects/energy-efficiency/engineering-energy-efficiency-osvobozhdenie-87-belovo",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-80-Изпълнение_на_Инженеринг_-_гр._Шумен,_ул._Цар_Освободител_№_12.htm",
+      "destination": "/projects/energy-efficiency/engineering-energy-efficiency-tsar-osvoboditel-12-shumen",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-80-complete_engineering_-_city_of_shumen_bul_osvoboditel_12.htm",
+      "destination": "/projects/energy-efficiency/engineering-energy-efficiency-tsar-osvoboditel-12-shumen",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-81-Благоустрояване_на_жилищна_територия_в_гр._Габрово.htm",
+      "destination": "/projects/landscaping-greenery/gabrovo-residential-area-redevelopment",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-81-development_of_the_residential_area_in_gabrovo.htm",
+      "destination": "/projects/landscaping-greenery/gabrovo-residential-area-redevelopment",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-82-Изпълнение_на_Инженеринг_-_ул._Орловска_№_87,_жил.блок_„Дунав_1.htm",
+      "destination": "/projects/energy-efficiency/engineering-energy-efficiency-orlovska-87-dunav-1-gabrovo",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-82-complete_engineering_-_87_orlovska_str_dunav_1.htm",
+      "destination": "/projects/energy-efficiency/engineering-energy-efficiency-orlovska-87-dunav-1-gabrovo",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-83-Изпълнение_на_Инженеринг_-_гр.Хасково,_ЖК_.,Орфей“№25“.htm",
+      "destination": "/projects/energy-efficiency/engineering-energy-efficiency-orfey-25-haskovo",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-83-complete_engineering_-_haskovo_orpheus_25.htm",
+      "destination": "/projects/energy-efficiency/engineering-energy-efficiency-orfey-25-haskovo",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-84-Изпълнение_на_Инженеринг_-_ул._Смърч_№_21-31,_гр._Габрово.htm",
+      "destination": "/projects/energy-efficiency/engineering-energy-efficiency-smarch-21-31-gabrovo",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-84-complete_engineering_-_town_of_gabrovo_21-31_smarch_str.htm",
+      "destination": "/projects/energy-efficiency/engineering-energy-efficiency-smarch-21-31-gabrovo",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-85-Изпълнение_на_Инженеринг-_гр.Смолян,_кв.Устово,_бл.Прогрес_3.htm",
+      "destination": "/projects/energy-efficiency/engineering-energy-efficiency-progress-3-ustovo-smolyan",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-85-complete_engineering-_smolyan_ustovo_bl_progress_3.htm",
+      "destination": "/projects/energy-efficiency/engineering-energy-efficiency-progress-3-ustovo-smolyan",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-86-Отоплителна_инсталация_на_ПМГ_\"Акад._Ив._Гюзелев\".htm",
+      "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/heating-system-replacement-at-acad-ivan-gyuzelev-high-school-of-mathematics-369969",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-86-heating_installation_of_acad_iv_gyuzelev_high_scool.htm",
+      "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/heating-system-replacement-at-acad-ivan-gyuzelev-high-school-of-mathematics-369969",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-87-Изграждане_на_противопожарна_кула_в_землището_на_с._Костел.htm",
+      "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/fire-tower-kostel-elena",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-87-building_a_fire_tower_in_the_village_of_kostel.htm",
+      "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/fire-tower-kostel-elena",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-88-Открита_детска_и_спортна_площадка.htm",
+      "destination": "/projects/landscaping-greenery/outdoor-children-sports-playground",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-88-outdoor_playground_for_children_and_sport.htm",
+      "destination": "/projects/landscaping-greenery/outdoor-children-sports-playground",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-89-Изпълнение_на_Инженеринг_-_гр._Раднево,_ул.“Заводска”_№6.htm",
+      "destination": "/projects/energy-efficiency/engineering-energy-efficiency-zavodska-6-radnevo",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-89-complete_engineering_-_city_of_radnevo_str_zavodksa_6.htm",
+      "destination": "/projects/energy-efficiency/engineering-energy-efficiency-zavodska-6-radnevo",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-90-Изпълнение_на_Инженеринг_-_гр._Бургас,_ул._Дебелт_№_11.htm",
+      "destination": "/projects/energy-efficiency/engineering-energy-efficiency-debelt-11-burgas",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-90-complete_engineering_-_city_of_burgas_debelt_str_11.htm",
+      "destination": "/projects/energy-efficiency/engineering-energy-efficiency-debelt-11-burgas",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-91-Изпълнение_на_Инженеринг_-_гр._Русе,_ул._Рига_№12.htm",
+      "destination": "/projects/energy-efficiency/engineering-energy-efficiency-riga-12-ruse",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-91-complete_engineering_-_city_of_ruse_str_riga_12.htm",
+      "destination": "/projects/energy-efficiency/engineering-energy-efficiency-riga-12-ruse",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-92-Изпълнение_на_Инженеринг_-_гр._Габрово,_ул._Свищовска_70,72,74.htm",
+      "destination": "/projects/energy-efficiency/engineering-energy-efficiency-svishtovska-70-72-74-gabrovo",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-92-complete_engineering_-_town_of_gabrovo_707274_svishtovska_str.htm",
+      "destination": "/projects/energy-efficiency/engineering-energy-efficiency-svishtovska-70-72-74-gabrovo",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-93-Изпълнение_на_инженеринг_–_гр._Стара_Загора,_ул._Славейков,№1.htm",
+      "destination": "/projects/energy-efficiency/engineering-energy-efficiency-slaveykov-1-stara-zagora",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-93-complete_engineering_-_city_of_stara_zagora_slavejkov_str_1.htm",
+      "destination": "/projects/energy-efficiency/engineering-energy-efficiency-slaveykov-1-stara-zagora",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-94-Изпълнение_на_Инженеринг_-_гр.Сандански,_ул.\"Солидарност\"_№3.htm",
+      "destination": "/projects/energy-efficiency/engineering-energy-efficiency-solidarnost-3-sandanski",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-94-complete_engineering_-_city_of_sandanski_str_solidarnost_3.htm",
+      "destination": "/projects/energy-efficiency/engineering-energy-efficiency-solidarnost-3-sandanski",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-95-Реконструкция_на_Общински_Път_Обнова_–_Каменец.htm",
+      "destination": "/projects/transport-infrastructure/levski-obnova-kamenets-road-reconstruction",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-95-reconstruction_of_mun_road_obnova_-_kamenets.htm",
+      "destination": "/projects/transport-infrastructure/levski-obnova-kamenets-road-reconstruction",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-96-Ремонт_на_Административна_(стара)_сграда_на_община_Велинград.htm",
+      "destination": "/projects/energy-efficiency/renovation-old-administrative-building-velingrad",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-96-repair_of_administrative_building_old_of_velingrad_municipalit.htm",
+      "destination": "/projects/energy-efficiency/renovation-old-administrative-building-velingrad",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-97-Ремонт_на_Административна_(нова)_сграда_на_община_Велинград.htm",
+      "destination": "/projects/energy-efficiency/renovation-administrative-building-velingrad",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-97-repair_of_administrative_building_new_of_velingrad_municipalit.htm",
+      "destination": "/projects/energy-efficiency/renovation-administrative-building-velingrad",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-98-Многофункционална_спортна_зала_в_гр._Сандански.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/sandanski-multifunctional-sports-hall",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-98-multifunctional_sports_hall_in_the_town_of_sandanski.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/sandanski-multifunctional-sports-hall",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-99-Изпълнение_на_инженеринг_–_гр._Пловдив.htm",
+      "destination": "/projects/energy-efficiency/engineering-energy-efficiency-plovdiv",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-99-complete_engineering_-_plovdiv.htm",
+      "destination": "/projects/energy-efficiency/engineering-energy-efficiency-plovdiv",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-100-Реконструкция_на_общински_пътища_в_община_Борово.htm",
+      "destination": "/projects/transport-infrastructure/borovo-municipal-roads-reconstruction",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-100-reconstruction_of_roads_in_borovo_municipalit.htm",
+      "destination": "/projects/transport-infrastructure/borovo-municipal-roads-reconstruction",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-101-“Ремонт_на_Вила_2_за_представителни_нужди_в_обект_„Шабла“.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/reconstruction-of-villa-777446",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-101-repair_of_villa_2_for_representative_needs_in_object_shabla.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/reconstruction-of-villa-777446",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-102-Ремонт_на_ЦДГ_\"Пролет\",_село_Драгиново.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/renovation-prolet-kindergarten-draginovo",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-102-repair_of_kindergarten_prolet_village_of_draginovo.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/renovation-prolet-kindergarten-draginovo",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-103-Реконструкция_на_водопроводна_мрежа_в_с._Обретеник.htm",
+      "destination": "/projects/water-supply-sewerage/reconstruction-water-supply-obrotenik",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-103-reconstruction_of_a_water_supply_network_in_the_vil_of_obreteni.htm",
+      "destination": "/projects/water-supply-sewerage/reconstruction-water-supply-obrotenik",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-104-Изпълнение_на_Инженеринг_-_гр._София,_бл._231,_ж.к._Гоце_Делчев.htm",
+      "destination": "/projects/energy-efficiency/engineering-energy-efficiency-block-231-gotse-delchev-sofia",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-104-complete_engineering_-_city_of_sofia_bl_231_goce_delchev.htm",
+      "destination": "/projects/energy-efficiency/engineering-energy-efficiency-block-231-gotse-delchev-sofia",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-105-Реконструкция_на_улици_и_тротоари,_Община_Белогрaдчик.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-streets-sidewalks-belogradchik",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-105-reconstruction_of_streets_and_sidewalks_mun_belogradchik.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-streets-sidewalks-belogradchik",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-106-Реконструкция_на_общински_пътища_в_общ._Дряновo.htm",
+      "destination": "/projects/transport-infrastructure/dryanovo-municipal-roads-reconstruction",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-106-rehabilitation_of_roads_in_drqnovo_municip.htm",
+      "destination": "/projects/transport-infrastructure/dryanovo-municipal-roads-reconstruction",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-107-Реконструкция_на_общински_пътища_общ._Велинград.htm",
+      "destination": "/projects/transport-infrastructure/velingrad-municipal-roads-reconstruction",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-107-reconstruction_of_roads_in_velingrad_municip.htm",
+      "destination": "/projects/transport-infrastructure/velingrad-municipal-roads-reconstruction",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-108-Изпълнение_на_Инженеринг_-_гр._Плевен,_бул._Русе_№10.htm",
+      "destination": "/projects/energy-efficiency/engineering-energy-efficiency-ruse-blvd-10-pleven",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-108-complete_engineering_-_city_of_pleven_str_ruse_10.htm",
+      "destination": "/projects/energy-efficiency/engineering-energy-efficiency-ruse-blvd-10-pleven",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-109-Изпълнение_на_Инженеринг-гр._София,_ж.к._„Овча_купел_2“.htm",
+      "destination": "/projects/energy-efficiency/engineering-energy-efficiency-ovcha-kupel-2-sofia",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-109-complete_engineering_-_city_of_sofia_ovcha_kupel.htm",
+      "destination": "/projects/energy-efficiency/engineering-energy-efficiency-ovcha-kupel-2-sofia",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-110-Многофункционална_спортна_зала_в_гр.Бяла.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/byala-multifunctional-sports-hall",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-110-multifunctional_sports_hall_in_the_town_of_bqla.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/byala-multifunctional-sports-hall",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-111-Реконструкция_на_общински_пътища_в_общ._Радневo.htm",
+      "destination": "/projects/transport-infrastructure/radnevo-municipal-roads-reconstruction",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-111-reconstruction_of_roads_in_radnevo_municip.htm",
+      "destination": "/projects/transport-infrastructure/radnevo-municipal-roads-reconstruction",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-112-Реконтрукция_на_улици_в_община_Златица.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-streets-zlatitsa",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-112-reconstruction_of_streets_mun_zlatica.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-streets-zlatitsa",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-113-Реконструкция_на_улици_в_Община_Баните.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-streets-banite",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-113-reconstruction_of_streets_in_the_municipality_banite.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-streets-banite",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-114-Обновяване_на_площад_\"Възраждане,_гр.Белоградчик\".htm",
+      "destination": "/projects/landscaping-greenery/renovation-vazrazhdane-square-belogradchik",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-114-renovation_of_vazrazhdane_square_belogradchik.htm",
+      "destination": "/projects/landscaping-greenery/renovation-vazrazhdane-square-belogradchik",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-115-Реконструкция_на_улици_в_община_Две_Могили.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-streets-dve-mogili",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-115-reconstruction_of_streets_in_dve_mogili_municipality.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-streets-dve-mogili",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-116-\"Рекултивация_на_съществуващо_депо_за_отпадъци_на_община_Трявна”.htm",
+      "destination": "/projects/engineering-reinforcement-activities-and-waste-treatment-installations/tryavna-waste-dump-recultivation",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-116-reclamation_of_an_existing_landfill_in_the_municipality_of_trya.htm",
+      "destination": "/projects/engineering-reinforcement-activities-and-waste-treatment-installations/tryavna-waste-dump-recultivation",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-117-„Подстанция_„Димитър_Димитров“_-_основен_ремонт.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/dimitar-dimitrov-substation-major-renovation",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-117-dimitar_dimitrov_substation_-_overhaul.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/dimitar-dimitrov-substation-major-renovation",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-118-Реконструкция_на_етернитов_водопровод.htm",
+      "destination": "/projects/water-supply-sewerage/asbestos-cement-pipeline-reconstruction",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-118-reconstruction_of_asbestos_cement_pipeline.htm",
+      "destination": "/projects/water-supply-sewerage/asbestos-cement-pipeline-reconstruction",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-119-Реконструкция_и_рехабилитация_на_водоснабдителна_система.htm",
+      "destination": "/projects/water-supply-sewerage/reconstruction-water-supply-system",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-119-reconstruction_and_rehabilitation_of_water_supply_system.htm",
+      "destination": "/projects/water-supply-sewerage/reconstruction-water-supply-system",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-122-Изграждане_на_подпорна_стена_в_подстанция_\"Балкан\".htm",
+      "destination": "/projects/engineering-reinforcement-activities-and-waste-treatment-installations/construction-of-retaining-wall-at-balkan-substation-724834",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-122-construction_of_a_retaining_wall.htm",
+      "destination": "/projects/engineering-reinforcement-activities-and-waste-treatment-installations/construction-of-retaining-wall-at-balkan-substation-724834",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-123-„Реконструкция_на_улици_в_град_Борово\".htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-streets-borovo",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-123-reconstruction_of_streets_in_the_town_of_borov.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-streets-borovo",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-124-Благоустрояване_на_терен_\"Божковска_поляна\"_и_мостово_съоръжение.htm",
+      "destination": "/projects/landscaping-greenery/landscaping-bozhkovska-polyana",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-124-improvement_of_the_terrain_bozhkovska_polyana_and_a_bridge_fac.htm",
+      "destination": "/projects/landscaping-greenery/landscaping-bozhkovska-polyana",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-125-Изграждане_на_обществен_паркинг_със_114_паркоместа.htm",
+      "destination": "/projects/transport-infrastructure/construction-public-parking-114-spaces",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-125-construction_of_a_public_car_park_with_114_parking_spaces.htm",
+      "destination": "/projects/transport-infrastructure/construction-public-parking-114-spaces",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-126-Открит_Амфитеатър,_към_читалище_„_Георги_Парцалев“.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/partsalev-open-air-amphitheatre",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-126-open_amphitheater_at_the_community_center_georgi_partsalev.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/partsalev-open-air-amphitheatre",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-127-Пещера_„Магурата“.htm",
+      "destination": "/projects/landscaping-greenery/magurata-cave-854963",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-127-magura_cave.htm",
+      "destination": "/projects/landscaping-greenery/magurata-cave-854963",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-128-Реконструкция_на_улица_„Яворов“.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-yavorov-street",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-128-reconstruction_of_yavorov_street.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-yavorov-street",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-130-Реконструкция_на_общински_път_в_община_Левски.htm",
+      "destination": "/projects/transport-infrastructure/levski-municipal-road-reconstruction",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-130-reconstruction_of_a_municipal_road_in_levski.htm",
+      "destination": "/projects/transport-infrastructure/levski-municipal-road-reconstruction",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-131-“Реконструкция_на_уличен_водопровод_и_улична_мрежа\".htm",
+      "destination": "/projects/water-supply-sewerage/reconstruction-street-water-supply-network",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-131-reconstruction_of_street_water_supply_and_street_network.htm",
+      "destination": "/projects/water-supply-sewerage/reconstruction-street-water-supply-network",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-132-Облагородяване_на_поречието_на_река_Беленска,_Област_Русе.htm",
+      "destination": "/projects/engineering-reinforcement-activities-and-waste-treatment-installations/riverbed-improvement-of-belenska-river-ruse-region-266739",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-132-improvement_of_the_belenska_river_ruse_region.htm",
+      "destination": "/projects/engineering-reinforcement-activities-and-waste-treatment-installations/riverbed-improvement-of-belenska-river-ruse-region-266739",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-133-Изграждане_на_покрит_общински_пазар_в_гр._Раднево.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/radnevo-covered-municipal-market",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-133-construction_of_a_covered_municipal_market_in_the_town_radnevo.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/radnevo-covered-municipal-market",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-135-Реконструкция_на_улични_водопровод_и_канализация.htm",
+      "destination": "/projects/water-supply-sewerage/reconstruction-street-water-sewerage",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-135-reconstruction_of_street_water_pipes_and_sewerage.htm",
+      "destination": "/projects/water-supply-sewerage/reconstruction-street-water-sewerage",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-136-Реконструкция_на_общински_път,общ.Трявна-Етап_I.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-municipal-road-tryavna-stage-i",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-136-reconstruction_of_a_municipal_road_in_tryavna.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-municipal-road-tryavna-stage-i",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-139-Изпълнение_на_инженеринг_на_улици_в_Община_Кнежа.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-streets-knezha",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-139-execution_of_engineering_on_a_street_in_the_municipality-kneza.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-streets-knezha",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-140-Изграждане_на_нова_геотермална_инсталация_в_гр._Ямбол.htm",
+      "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/construction-of-new-geothermal-installation-113117",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-140-construction_of_a_new_geothermal_installation_in_the_town-yambol.htm",
+      "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/construction-of-new-geothermal-installation-113117",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-141-Реконструкция_на_улици_в_град_Костенец.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-streets-kostenets",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-141-reconstruction_of_streets_in_the_city_of_kostenets.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-streets-kostenets",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-142-Изграждане_на_нова_геотермална_инсталация_в_гр._Велинград.htm",
+      "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/construction-of-new-geothermal-installation-618350",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-142-construction_of_a_new_geothermal_installation.htm",
+      "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/construction-of-new-geothermal-installation-618350",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-144-Реконструкция_на_участъци_от_общински_път_SZR_1156_Етап_I.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-municipal-road-section",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-144-reconstruction_of_sections_of_municipal_road_szr_1156_stage_i.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-municipal-road-section",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-146-Реконструкция_на_3_броя_улици.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-streets",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-146-reconstruction_of_3_streets.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-streets",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-147-Реконструкция_на_общински_път_GAB_3118.htm",
+      "destination": "/projects/transport-infrastructure/gab-3118-municipal-road-reconstruction",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-147-reconstruction_of_municipal_road_gab_3118.htm",
+      "destination": "/projects/transport-infrastructure/gab-3118-municipal-road-reconstruction",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-149-Реконструкция_на_участъци_от_общински_път_SZR_1156_–_Етап_II.htm",
+      "destination": "/projects/transport-infrastructure/municipal-road-sections-reconstruction",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-149-reconstruction_of_sections_of_municipal_road_szr_1156_stage_ii.htm",
+      "destination": "/projects/transport-infrastructure/municipal-road-sections-reconstruction",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-150-Реконструкция_на_общински_път_PVN3090_/Лазарово/.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-municipal-road-pvn3090-lazarovo",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-150-reconstruction_of_municipal_road_pvn3090_lazarovo.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-municipal-road-pvn3090-lazarovo",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-151-Реконструкция_на_общински_път_PVN3093_в_община_Кнежа.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-municipal-road-pvn3093-knezha",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-151-reconstruction_of_municipal_road_pvn3093_in_knezha_municipality.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-municipal-road-pvn3093-knezha",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-152-Реконструкция_на_общински_път,общ.Трявна-Етап_II.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-municipal-road-tryavna-stage-ii",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-152-reconstruction_of_a_municipal_road_in_tryavna.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-municipal-road-tryavna-stage-ii",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-153-Рехабилитация_на_ул._Малчика,_гр._Белене.htm",
+      "destination": "/projects/transport-infrastructure/rehabilitation-malchika-street-belene",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-153-rehabilitation_of_malchika_street_belene.htm",
+      "destination": "/projects/transport-infrastructure/rehabilitation-malchika-street-belene",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-154-Реконструкция_на_общински_път_в_Община_Твърдица.htm",
+      "destination": "/projects/transport-infrastructure/tvurditsa-municipal-road-reconstruction",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-154-reconstruction_of_a_municipal_road_in_tvarditsa_municipality.htm",
+      "destination": "/projects/transport-infrastructure/tvurditsa-municipal-road-reconstruction",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-157-Внедряване_на_мерки_за_EE_в_сградата_на_ОУ„Отец_Паисий“.htm",
+      "destination": "/projects/energy-efficiency/ee-measures-father-paisiy-school",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-157-implementation_of_energy_efficiency_measures_in_the_building.htm",
+      "destination": "/projects/energy-efficiency/ee-measures-father-paisiy-school",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-158-Реконструкция_на_участък_от_общински_път_GAB2275.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-municipal-road-section-2852m",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-158-reconstruction_of_section_of_municipal_road.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-municipal-road-section-2852m",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-160-Реконструкция_на_улици.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-streets-2880",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-160-street_reconstruction_in_the_town_of_tryavna.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-streets-2880",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-161-Реконструкция_на_общински_пътища.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-municipal-roads",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-161-reconstruction_of_municipal_roads.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-municipal-roads",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-162-Реконструкция_на_участък_от_общински_път_gab2270.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-municipal-road-section-gab2270",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-162-reconstruction_of_section_of_municipal_road.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-municipal-road-section-gab2270",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-163-Изграждане_на_клетка_2_на_депо_за_битови_отпадъци.htm",
+      "destination": "/projects/engineering-reinforcement-activities-and-waste-treatment-installations/construction-of-cell-2-of-municipal-waste-landfill-739209",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-163-construction_of_cell_2_at_the_municipal_waste_landfill.htm",
+      "destination": "/projects/engineering-reinforcement-activities-and-waste-treatment-installations/construction-of-cell-2-of-municipal-waste-landfill-739209",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-164-Реконструкция_на_улици_в_град_Белоградчик.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-streets-belogradchik",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-164-reconstruction_of_streets_in_the_town_of_belogradchik.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-streets-belogradchik",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-165-Реконструкция_на_улици_в_град_Никопол.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-streets-nikopol",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-165-reconstruction_of_streets_in_the_city_of_nikopol.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-streets-nikopol",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-166-Реконструкция_на_участъци_от_общински_път.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-municipal-road-section-gab2275",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-166-reconstruction_of_sections_of_a_municipal_road.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-municipal-road-section-gab2275",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-167-Изграждане_на_общинския_пазар_в_град_Кнежа.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/kneja-municipal-market",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-167-construction_of_the_municipal_market_in_the_town_of_knezha.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/kneja-municipal-market",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-168-Строителство_на_ново_болнично_вертолетно_летище.htm",
+      "destination": "/projects/transport-infrastructure/gabrovo-hospital-helipad",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-168-construction_of_a_new_hospital_helicopter_airport.htm",
+      "destination": "/projects/transport-infrastructure/gabrovo-hospital-helipad",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-169-Реконструкция_на_улични_водопроводи.htm",
+      "destination": "/projects/water-supply-sewerage/reconstruction-street-water-mains",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-169-reconstruction_of_street_water_pipes.htm",
+      "destination": "/projects/water-supply-sewerage/reconstruction-street-water-mains",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-170-Инженеринг_на_улични_водопроводи.htm",
+      "destination": "/projects/water-supply-sewerage/engineering-street-water-mains",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-170-engineering_of_street_water_pipes.htm",
+      "destination": "/projects/water-supply-sewerage/engineering-street-water-mains",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-171-Реконструкция_на_участък_от_общински_път.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-municipal-road-section-vid1004",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-171-reconstruction_of_a_section_of_a_municipal_road.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-municipal-road-section-vid1004",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-172-Внедряване_на_ЕСП_и_ВЕИ_в_ОУ_\"Максим_Горки\".htm",
+      "destination": "/projects/energy-efficiency/ee-res-maxim-gorky-school",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-172-implementation_of_energy_consumption_measures.htm",
+      "destination": "/projects/energy-efficiency/ee-res-maxim-gorky-school",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-175-Многофамилна_жилищна_сграда.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/multi-family-residential-building",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-175-.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/multi-family-residential-building",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-21-Ремонт_на_сграден_фонд.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/renovation-diplomatic-properties",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-21-repair_of_buildings.htm",
+      "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/renovation-diplomatic-properties",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-32-Изграждане_на_метално_хале.htm",
+      "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/steel-hall-construction-private",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-32-building_a_metal_warehouse_with_offices.htm",
+      "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/steel-hall-construction-private",
+      "permanent": true
+    },
+    {
+      "source": "/bg/6-173-Реконструкция_на_участък_от_Общински_път_vid_1004.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-municipal-road-section-vid1004",
+      "permanent": true
+    },
+    {
+      "source": "/en/6-173-reconstruction_of_a_section_of_municipal_road_vid_1004.htm",
+      "destination": "/projects/transport-infrastructure/reconstruction-municipal-road-section-vid1004",
       "permanent": true
     }
   ]
