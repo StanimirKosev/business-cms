@@ -1509,6 +1509,11 @@
       "source": "/en/6-173-reconstruction_of_a_section_of_municipal_road_vid_1004.htm",
       "destination": "/projects/transport-infrastructure/reconstruction-municipal-road-section-vid1004",
       "permanent": true
+    },
+    {
+      "source": "/:path*.htm",
+      "destination": "/projects",
+      "permanent": false
     }
   ]
 }
