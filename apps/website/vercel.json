@@ -1,7 +1,7 @@
 {
   "redirects": [
     {
-      "source": "/bg/6-Проекти.htm",
+      "source": "/bg/6-%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B8.htm",
       "destination": "/projects",
       "permanent": true
     },
@@ -11,7 +11,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/5-Клиенти.htm",
+      "source": "/bg/5-%D0%9A%D0%BB%D0%B8%D0%B5%D0%BD%D1%82%D0%B8.htm",
       "destination": "/clients",
       "permanent": true
     },
@@ -21,7 +21,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/9-Механизация.htm",
+      "source": "/bg/9-%D0%9C%D0%B5%D1%85%D0%B0%D0%BD%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F.htm",
       "destination": "/machinery",
       "permanent": true
     },
@@ -31,7 +31,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/4-Качество.htm",
+      "source": "/bg/4-%D0%9A%D0%B0%D1%87%D0%B5%D1%81%D1%82%D0%B2%D0%BE.htm",
       "destination": "/quality",
       "permanent": true
     },
@@ -41,7 +41,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/8-Контакти.htm",
+      "source": "/bg/8-%D0%9A%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8.htm",
       "destination": "/contact",
       "permanent": true
     },
@@ -51,7 +51,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-1-Жилищна_сграда_в_гр._Раднево.htm",
+      "source": "/bg/6-1-%D0%96%D0%B8%D0%BB%D0%B8%D1%89%D0%BD%D0%B0_%D1%81%D0%B3%D1%80%D0%B0%D0%B4%D0%B0_%D0%B2_%D0%B3%D1%80._%D0%A0%D0%B0%D0%B4%D0%BD%D0%B5%D0%B2%D0%BE.htm",
       "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/residential-building-with-shops-radnevo",
       "permanent": true
     },
@@ -61,7 +61,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-2-Ветропарк_\"Могилище\".htm",
+      "source": "/bg/6-2-%D0%92%D0%B5%D1%82%D1%80%D0%BE%D0%BF%D0%B0%D1%80%D0%BA_%22%D0%9C%D0%BE%D0%B3%D0%B8%D0%BB%D0%B8%D1%89%D0%B5%22.htm",
       "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/mogilishte-wind-farm-719927",
       "permanent": true
     },
@@ -71,7 +71,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-3-Преустройство_на_Административна_сграда_Лакатица.htm",
+      "source": "/bg/6-3-%D0%9F%D1%80%D0%B5%D1%83%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%BE_%D0%BD%D0%B0_%D0%90%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%B8%D0%B2%D0%BD%D0%B0_%D1%81%D0%B3%D1%80%D0%B0%D0%B4%D0%B0_%D0%9B%D0%B0%D0%BA%D0%B0%D1%82%D0%B8%D1%86%D0%B0.htm",
       "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/reconstruction-lakatitsa-administrative-building",
       "permanent": true
     },
@@ -81,7 +81,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-5-Обезопасяване_външен_достъп_до_ТЕЦ_Марица_изток_2_ЕАД.htm",
+      "source": "/bg/6-5-%D0%9E%D0%B1%D0%B5%D0%B7%D0%BE%D0%BF%D0%B0%D1%81%D1%8F%D0%B2%D0%B0%D0%BD%D0%B5_%D0%B2%D1%8A%D0%BD%D1%88%D0%B5%D0%BD_%D0%B4%D0%BE%D1%81%D1%82%D1%8A%D0%BF_%D0%B4%D0%BE_%D0%A2%D0%95%D0%A6_%D0%9C%D0%B0%D1%80%D0%B8%D1%86%D0%B0_%D0%B8%D0%B7%D1%82%D0%BE%D0%BA_2_%D0%95%D0%90%D0%94.htm",
       "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/perimeter-security-fencing-of-tpp-maritsa-iztok-2-ead-671799",
       "permanent": true
     },
@@ -91,7 +91,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-6-Ремонт_и_боядисване_на_портални_кранове..htm",
+      "source": "/bg/6-6-%D0%A0%D0%B5%D0%BC%D0%BE%D0%BD%D1%82_%D0%B8_%D0%B1%D0%BE%D1%8F%D0%B4%D0%B8%D1%81%D0%B2%D0%B0%D0%BD%D0%B5_%D0%BD%D0%B0_%D0%BF%D0%BE%D1%80%D1%82%D0%B0%D0%BB%D0%BD%D0%B8_%D0%BA%D1%80%D0%B0%D0%BD%D0%BE%D0%B2%D0%B5..htm",
       "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/gantry-cranes-repair-painting-tpp-mi2",
       "permanent": true
     },
@@ -101,7 +101,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-9-Саниране_на_сграден_фонд.htm",
+      "source": "/bg/6-9-%D0%A1%D0%B0%D0%BD%D0%B8%D1%80%D0%B0%D0%BD%D0%B5_%D0%BD%D0%B0_%D1%81%D0%B3%D1%80%D0%B0%D0%B4%D0%B5%D0%BD_%D1%84%D0%BE%D0%BD%D0%B4.htm",
       "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/energy-retrofit-of-building-stock-652657",
       "permanent": true
     },
@@ -111,7 +111,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-13-Изграждане_на_акумулаторна_зарядна_станция.htm",
+      "source": "/bg/6-13-%D0%98%D0%B7%D0%B3%D1%80%D0%B0%D0%B6%D0%B4%D0%B0%D0%BD%D0%B5_%D0%BD%D0%B0_%D0%B0%D0%BA%D1%83%D0%BC%D1%83%D0%BB%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D0%B0_%D0%B7%D0%B0%D1%80%D1%8F%D0%B4%D0%BD%D0%B0_%D1%81%D1%82%D0%B0%D0%BD%D1%86%D0%B8%D1%8F.htm",
       "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/battery-charging-station-troyanovo-north",
       "permanent": true
     },
@@ -121,7 +121,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-16-Ремонт_на_ЦДГ_«Щастливо_детство»,_с._Старо_Оряхово.htm",
+      "source": "/bg/6-16-%D0%A0%D0%B5%D0%BC%D0%BE%D0%BD%D1%82_%D0%BD%D0%B0_%D0%A6%D0%94%D0%93_%C2%AB%D0%A9%D0%B0%D1%81%D1%82%D0%BB%D0%B8%D0%B2%D0%BE_%D0%B4%D0%B5%D1%82%D1%81%D1%82%D0%B2%D0%BE%C2%BB,_%D1%81._%D0%A1%D1%82%D0%B0%D1%80%D0%BE_%D0%9E%D1%80%D1%8F%D1%85%D0%BE%D0%B2%D0%BE.htm",
       "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/renovation-happy-childhood-kindergarten-staro-oryahovo",
       "permanent": true
     },
@@ -131,7 +131,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-17-СМР_на_Гара_Ковачево.htm",
+      "source": "/bg/6-17-%D0%A1%D0%9C%D0%A0_%D0%BD%D0%B0_%D0%93%D0%B0%D1%80%D0%B0_%D0%9A%D0%BE%D0%B2%D0%B0%D1%87%D0%B5%D0%B2%D0%BE.htm",
       "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/construction-kovachevo-station",
       "permanent": true
     },
@@ -141,7 +141,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-19-Боядисване_на_фасада_на_котелен_цех.htm",
+      "source": "/bg/6-19-%D0%91%D0%BE%D1%8F%D0%B4%D0%B8%D1%81%D0%B2%D0%B0%D0%BD%D0%B5_%D0%BD%D0%B0_%D1%84%D0%B0%D1%81%D0%B0%D0%B4%D0%B0_%D0%BD%D0%B0_%D0%BA%D0%BE%D1%82%D0%B5%D0%BB%D0%B5%D0%BD_%D1%86%D0%B5%D1%85.htm",
       "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/facade-painting-of-boiler-hall-518607",
       "permanent": true
     },
@@ -151,7 +151,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-20-Строително_монтажни_работи_в_хале_Булдозери..htm",
+      "source": "/bg/6-20-%D0%A1%D1%82%D1%80%D0%BE%D0%B8%D1%82%D0%B5%D0%BB%D0%BD%D0%BE_%D0%BC%D0%BE%D0%BD%D1%82%D0%B0%D0%B6%D0%BD%D0%B8_%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B8_%D0%B2_%D1%85%D0%B0%D0%BB%D0%B5_%D0%91%D1%83%D0%BB%D0%B4%D0%BE%D0%B7%D0%B5%D1%80%D0%B8..htm",
       "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/construction-works-in-bulldozers-hall-379212",
       "permanent": true
     },
@@ -161,7 +161,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-22-Благоустрояване_района_на_кв._Младост_и_блок_Щастие_гр._Габрово.htm",
+      "source": "/bg/6-22-%D0%91%D0%BB%D0%B0%D0%B3%D0%BE%D1%83%D1%81%D1%82%D1%80%D0%BE%D1%8F%D0%B2%D0%B0%D0%BD%D0%B5_%D1%80%D0%B0%D0%B9%D0%BE%D0%BD%D0%B0_%D0%BD%D0%B0_%D0%BA%D0%B2._%D0%9C%D0%BB%D0%B0%D0%B4%D0%BE%D1%81%D1%82_%D0%B8_%D0%B1%D0%BB%D0%BE%D0%BA_%D0%A9%D0%B0%D1%81%D1%82%D0%B8%D0%B5_%D0%B3%D1%80._%D0%93%D0%B0%D0%B1%D1%80%D0%BE%D0%B2%D0%BE.htm",
       "destination": "/projects/landscaping-greenery/gabrovo-mladost-schastie-redevelopment",
       "permanent": true
     },
@@ -171,7 +171,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-24-Спортна_зала_Орловец,_гр._Габрово.htm",
+      "source": "/bg/6-24-%D0%A1%D0%BF%D0%BE%D1%80%D1%82%D0%BD%D0%B0_%D0%B7%D0%B0%D0%BB%D0%B0_%D0%9E%D1%80%D0%BB%D0%BE%D0%B2%D0%B5%D1%86,_%D0%B3%D1%80._%D0%93%D0%B0%D0%B1%D1%80%D0%BE%D0%B2%D0%BE.htm",
       "destination": "/projects/landscaping-greenery/landscaping-orlovets-sports-hall-gabrovo",
       "permanent": true
     },
@@ -181,7 +181,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-27-Рехабилитация_на_ЦГЧ,_мост_Игото,_ул._Авраам_Гачев_-гр._Габрово.htm",
+      "source": "/bg/6-27-%D0%A0%D0%B5%D1%85%D0%B0%D0%B1%D0%B8%D0%BB%D0%B8%D1%82%D0%B0%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D0%A6%D0%93%D0%A7,_%D0%BC%D0%BE%D1%81%D1%82_%D0%98%D0%B3%D0%BE%D1%82%D0%BE,_%D1%83%D0%BB._%D0%90%D0%B2%D1%80%D0%B0%D0%B0%D0%BC_%D0%93%D0%B0%D1%87%D0%B5%D0%B2_-%D0%B3%D1%80._%D0%93%D0%B0%D0%B1%D1%80%D0%BE%D0%B2%D0%BE.htm",
       "destination": "/projects/landscaping-greenery/rehabilitation-central-park-igoto-bridge-avraam-gachev-gabrovo",
       "permanent": true
     },
@@ -191,7 +191,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-28-Ремонт_на_сграда.htm",
+      "source": "/bg/6-28-%D0%A0%D0%B5%D0%BC%D0%BE%D0%BD%D1%82_%D0%BD%D0%B0_%D1%81%D0%B3%D1%80%D0%B0%D0%B4%D0%B0.htm",
       "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/building-roof-facade-renovation-nek",
       "permanent": true
     },
@@ -201,7 +201,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-29-Ремонт_на_сградата_на_жп_гара_\"Пет_могили\".htm",
+      "source": "/bg/6-29-%D0%A0%D0%B5%D0%BC%D0%BE%D0%BD%D1%82_%D0%BD%D0%B0_%D1%81%D0%B3%D1%80%D0%B0%D0%B4%D0%B0%D1%82%D0%B0_%D0%BD%D0%B0_%D0%B6%D0%BF_%D0%B3%D0%B0%D1%80%D0%B0_%22%D0%9F%D0%B5%D1%82_%D0%BC%D0%BE%D0%B3%D0%B8%D0%BB%D0%B8%22.htm",
       "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/renovation-pet-mogili-railway-station",
       "permanent": true
     },
@@ -211,7 +211,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-30-Изграждане_на_4_бр._електро_къщи_и_диспечерски_пункт.htm",
+      "source": "/bg/6-30-%D0%98%D0%B7%D0%B3%D1%80%D0%B0%D0%B6%D0%B4%D0%B0%D0%BD%D0%B5_%D0%BD%D0%B0_4_%D0%B1%D1%80._%D0%B5%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%BE_%D0%BA%D1%8A%D1%89%D0%B8_%D0%B8_%D0%B4%D0%B8%D1%81%D0%BF%D0%B5%D1%87%D0%B5%D1%80%D1%81%D0%BA%D0%B8_%D0%BF%D1%83%D0%BD%D0%BA%D1%82.htm",
       "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/electrical-houses-control-room-mini-maritsa-iztok",
       "permanent": true
     },
@@ -221,7 +221,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-33-Ремонт_на_сграда.htm",
+      "source": "/bg/6-33-%D0%A0%D0%B5%D0%BC%D0%BE%D0%BD%D1%82_%D0%BD%D0%B0_%D1%81%D0%B3%D1%80%D0%B0%D0%B4%D0%B0.htm",
       "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/building-renovation-general",
       "permanent": true
     },
@@ -231,7 +231,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-34-Изграждане_на_естакада.htm",
+      "source": "/bg/6-34-%D0%98%D0%B7%D0%B3%D1%80%D0%B0%D0%B6%D0%B4%D0%B0%D0%BD%D0%B5_%D0%BD%D0%B0_%D0%B5%D1%81%D1%82%D0%B0%D0%BA%D0%B0%D0%B4%D0%B0.htm",
       "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/trestle-construction-mini-maritsa-iztok",
       "permanent": true
     },
@@ -241,7 +241,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-35-Ремонт_на_сградата_на_Община_Сливен.htm",
+      "source": "/bg/6-35-%D0%A0%D0%B5%D0%BC%D0%BE%D0%BD%D1%82_%D0%BD%D0%B0_%D1%81%D0%B3%D1%80%D0%B0%D0%B4%D0%B0%D1%82%D0%B0_%D0%BD%D0%B0_%D0%9E%D0%B1%D1%89%D0%B8%D0%BD%D0%B0_%D0%A1%D0%BB%D0%B8%D0%B2%D0%B5%D0%BD.htm",
       "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/renovation-municipality-building-sliven",
       "permanent": true
     },
@@ -251,7 +251,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-37-Изграждане_на_път_за_магистрални_ВГТЛ.htm",
+      "source": "/bg/6-37-%D0%98%D0%B7%D0%B3%D1%80%D0%B0%D0%B6%D0%B4%D0%B0%D0%BD%D0%B5_%D0%BD%D0%B0_%D0%BF%D1%8A%D1%82_%D0%B7%D0%B0_%D0%BC%D0%B0%D0%B3%D0%B8%D1%81%D1%82%D1%80%D0%B0%D0%BB%D0%BD%D0%B8_%D0%92%D0%93%D0%A2%D0%9B.htm",
       "destination": "/projects/transport-infrastructure/road-construction-hv-lines-maritsa-iztok",
       "permanent": true
     },
@@ -261,7 +261,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-39-Пречиствателна_станция_питейни_води_гр._Габрово.htm",
+      "source": "/bg/6-39-%D0%9F%D1%80%D0%B5%D1%87%D0%B8%D1%81%D1%82%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D0%BD%D0%B0_%D1%81%D1%82%D0%B0%D0%BD%D1%86%D0%B8%D1%8F_%D0%BF%D0%B8%D1%82%D0%B5%D0%B9%D0%BD%D0%B8_%D0%B2%D0%BE%D0%B4%D0%B8_%D0%B3%D1%80._%D0%93%D0%B0%D0%B1%D1%80%D0%BE%D0%B2%D0%BE.htm",
       "destination": "/projects/water-supply-sewerage/gabrovo-drinking-water-treatment-reconstruction",
       "permanent": true
     },
@@ -271,7 +271,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-40-Възстановяване_на_покрив.htm",
+      "source": "/bg/6-40-%D0%92%D1%8A%D0%B7%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D1%8F%D0%B2%D0%B0%D0%BD%D0%B5_%D0%BD%D0%B0_%D0%BF%D0%BE%D0%BA%D1%80%D0%B8%D0%B2.htm",
       "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/roof-restoration-vocational-tourism-ruse",
       "permanent": true
     },
@@ -281,7 +281,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-41-Изграждане_на_бетонови_фундаменти_и_обръщателна_станция.htm",
+      "source": "/bg/6-41-%D0%98%D0%B7%D0%B3%D1%80%D0%B0%D0%B6%D0%B4%D0%B0%D0%BD%D0%B5_%D0%BD%D0%B0_%D0%B1%D0%B5%D1%82%D0%BE%D0%BD%D0%BE%D0%B2%D0%B8_%D1%84%D1%83%D0%BD%D0%B4%D0%B0%D0%BC%D0%B5%D0%BD%D1%82%D0%B8_%D0%B8_%D0%BE%D0%B1%D1%80%D1%8A%D1%89%D0%B0%D1%82%D0%B5%D0%BB%D0%BD%D0%B0_%D1%81%D1%82%D0%B0%D0%BD%D1%86%D0%B8%D1%8F.htm",
       "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/construction-of-concrete-foundations-and-turnaround-station-315381",
       "permanent": true
     },
@@ -291,7 +291,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-42-Преустройство_на_жп_пост.htm",
+      "source": "/bg/6-42-%D0%9F%D1%80%D0%B5%D1%83%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%BE_%D0%BD%D0%B0_%D0%B6%D0%BF_%D0%BF%D0%BE%D1%81%D1%82.htm",
       "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/railway-post-reconstruction-mini-maritsa-iztok",
       "permanent": true
     },
@@ -301,7 +301,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-43-Изграждане_на_център_за_настаняване_от_семеен_тип_кв._Борово.htm",
+      "source": "/bg/6-43-%D0%98%D0%B7%D0%B3%D1%80%D0%B0%D0%B6%D0%B4%D0%B0%D0%BD%D0%B5_%D0%BD%D0%B0_%D1%86%D0%B5%D0%BD%D1%82%D1%8A%D1%80_%D0%B7%D0%B0_%D0%BD%D0%B0%D1%81%D1%82%D0%B0%D0%BD%D1%8F%D0%B2%D0%B0%D0%BD%D0%B5_%D0%BE%D1%82_%D1%81%D0%B5%D0%BC%D0%B5%D0%B5%D0%BD_%D1%82%D0%B8%D0%BF_%D0%BA%D0%B2._%D0%91%D0%BE%D1%80%D0%BE%D0%B2%D0%BE.htm",
       "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/family-type-center-borovo-gabrovo",
       "permanent": true
     },
@@ -311,7 +311,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-44-Изграждане_на_център_за_настаняване_от_семеен_тип_кв.Трендафила.htm",
+      "source": "/bg/6-44-%D0%98%D0%B7%D0%B3%D1%80%D0%B0%D0%B6%D0%B4%D0%B0%D0%BD%D0%B5_%D0%BD%D0%B0_%D1%86%D0%B5%D0%BD%D1%82%D1%8A%D1%80_%D0%B7%D0%B0_%D0%BD%D0%B0%D1%81%D1%82%D0%B0%D0%BD%D1%8F%D0%B2%D0%B0%D0%BD%D0%B5_%D0%BE%D1%82_%D1%81%D0%B5%D0%BC%D0%B5%D0%B5%D0%BD_%D1%82%D0%B8%D0%BF_%D0%BA%D0%B2.%D0%A2%D1%80%D0%B5%D0%BD%D0%B4%D0%B0%D1%84%D0%B8%D0%BB%D0%B0.htm",
       "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/family-type-center-trendafila-gabrovo",
       "permanent": true
     },
@@ -321,7 +321,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-45-Ремонт_на_читалище_с._Тополчане.htm",
+      "source": "/bg/6-45-%D0%A0%D0%B5%D0%BC%D0%BE%D0%BD%D1%82_%D0%BD%D0%B0_%D1%87%D0%B8%D1%82%D0%B0%D0%BB%D0%B8%D1%89%D0%B5_%D1%81._%D0%A2%D0%BE%D0%BF%D0%BE%D0%BB%D1%87%D0%B0%D0%BD%D0%B5.htm",
       "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/renovation-community-center-topolchane",
       "permanent": true
     },
@@ -331,7 +331,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-46-Църковен_храм_\"Св.Св._Кирил_и_Методий,_с._Староселци.htm",
+      "source": "/bg/6-46-%D0%A6%D1%8A%D1%80%D0%BA%D0%BE%D0%B2%D0%B5%D0%BD_%D1%85%D1%80%D0%B0%D0%BC_%22%D0%A1%D0%B2.%D0%A1%D0%B2._%D0%9A%D0%B8%D1%80%D0%B8%D0%BB_%D0%B8_%D0%9C%D0%B5%D1%82%D0%BE%D0%B4%D0%B8%D0%B9,_%D1%81._%D0%A1%D1%82%D0%B0%D1%80%D0%BE%D1%81%D0%B5%D0%BB%D1%86%D0%B8.htm",
       "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/church-st-cyril-methodius-staroseltsi",
       "permanent": true
     },
@@ -341,7 +341,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-48-Разширение_на_гробищен_парк,_с_Възложител_Мини_Марица_Изток.htm",
+      "source": "/bg/6-48-%D0%A0%D0%B0%D0%B7%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B5_%D0%BD%D0%B0_%D0%B3%D1%80%D0%BE%D0%B1%D0%B8%D1%89%D0%B5%D0%BD_%D0%BF%D0%B0%D1%80%D0%BA,_%D1%81_%D0%92%D1%8A%D0%B7%D0%BB%D0%BE%D0%B6%D0%B8%D1%82%D0%B5%D0%BB_%D0%9C%D0%B8%D0%BD%D0%B8_%D0%9C%D0%B0%D1%80%D0%B8%D1%86%D0%B0_%D0%98%D0%B7%D1%82%D0%BE%D0%BA.htm",
       "destination": "/projects/landscaping-greenery/cemetery-park-extension-639138",
       "permanent": true
     },
@@ -351,7 +351,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-49-Автоматична_газорегулираща_станция_„Самоков”_–_Реконструкция.htm",
+      "source": "/bg/6-49-%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D1%87%D0%BD%D0%B0_%D0%B3%D0%B0%D0%B7%D0%BE%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%B0%D1%89%D0%B0_%D1%81%D1%82%D0%B0%D0%BD%D1%86%D0%B8%D1%8F_%E2%80%9E%D0%A1%D0%B0%D0%BC%D0%BE%D0%BA%D0%BE%D0%B2%E2%80%9D_%E2%80%93_%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F.htm",
       "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/samokov-automatic-gas-regulating-station-reconstruction-972913",
       "permanent": true
     },
@@ -361,7 +361,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-50-Изграждане_на_воден_басейн.htm",
+      "source": "/bg/6-50-%D0%98%D0%B7%D0%B3%D1%80%D0%B0%D0%B6%D0%B4%D0%B0%D0%BD%D0%B5_%D0%BD%D0%B0_%D0%B2%D0%BE%D0%B4%D0%B5%D0%BD_%D0%B1%D0%B0%D1%81%D0%B5%D0%B9%D0%BD.htm",
       "destination": "/projects/water-supply-sewerage/construction-of-water-reservoir-115482",
       "permanent": true
     },
@@ -371,7 +371,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-51-Възстановяване_конструкцията_на_транспортни_връзки_ТЕЦ_МИ2.htm",
+      "source": "/bg/6-51-%D0%92%D1%8A%D0%B7%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D1%8F%D0%B2%D0%B0%D0%BD%D0%B5_%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%D1%82%D0%B0_%D0%BD%D0%B0_%D1%82%D1%80%D0%B0%D0%BD%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%BD%D0%B8_%D0%B2%D1%80%D1%8A%D0%B7%D0%BA%D0%B8_%D0%A2%D0%95%D0%A6_%D0%9C%D0%982.htm",
       "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/restoration-of-transport-connections-structure-at-tpp-maritsa-iztok-2-692800",
       "permanent": true
     },
@@ -381,7 +381,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-52-Привлекателна,_достъпна_и_зелена_среда,_гр._Габрово.htm",
+      "source": "/bg/6-52-%D0%9F%D1%80%D0%B8%D0%B2%D0%BB%D0%B5%D0%BA%D0%B0%D1%82%D0%B5%D0%BB%D0%BD%D0%B0,_%D0%B4%D0%BE%D1%81%D1%82%D1%8A%D0%BF%D0%BD%D0%B0_%D0%B8_%D0%B7%D0%B5%D0%BB%D0%B5%D0%BD%D0%B0_%D1%81%D1%80%D0%B5%D0%B4%D0%B0,_%D0%B3%D1%80._%D0%93%D0%B0%D0%B1%D1%80%D0%BE%D0%B2%D0%BE.htm",
       "destination": "/projects/landscaping-greenery/gabrovo-green-urban-environment",
       "permanent": true
     },
@@ -391,7 +391,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-53-Изграждане_на_спортна_зала_към_СОУЕЕ_гр._Русе.htm",
+      "source": "/bg/6-53-%D0%98%D0%B7%D0%B3%D1%80%D0%B0%D0%B6%D0%B4%D0%B0%D0%BD%D0%B5_%D0%BD%D0%B0_%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%BD%D0%B0_%D0%B7%D0%B0%D0%BB%D0%B0_%D0%BA%D1%8A%D0%BC_%D0%A1%D0%9E%D0%A3%D0%95%D0%95_%D0%B3%D1%80._%D0%A0%D1%83%D1%81%D0%B5.htm",
       "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/ruse-souee-sports-hall",
       "permanent": true
     },
@@ -401,7 +401,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-54-Ремонт_покрив_и_подмяна_хидроизолация_складови_помещения_ТЕЦ_МИ2.htm",
+      "source": "/bg/6-54-%D0%A0%D0%B5%D0%BC%D0%BE%D0%BD%D1%82_%D0%BF%D0%BE%D0%BA%D1%80%D0%B8%D0%B2_%D0%B8_%D0%BF%D0%BE%D0%B4%D0%BC%D1%8F%D0%BD%D0%B0_%D1%85%D0%B8%D0%B4%D1%80%D0%BE%D0%B8%D0%B7%D0%BE%D0%BB%D0%B0%D1%86%D0%B8%D1%8F_%D1%81%D0%BA%D0%BB%D0%B0%D0%B4%D0%BE%D0%B2%D0%B8_%D0%BF%D0%BE%D0%BC%D0%B5%D1%89%D0%B5%D0%BD%D0%B8%D1%8F_%D0%A2%D0%95%D0%A6_%D0%9C%D0%982.htm",
       "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/roof-waterproofing-warehouses-tpp-mi2",
       "permanent": true
     },
@@ -411,7 +411,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-55-Реконструкция_на_водопроводна_мрежа_в_Община_Златица.htm",
+      "source": "/bg/6-55-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D0%B2%D0%BE%D0%B4%D0%BE%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4%D0%BD%D0%B0_%D0%BC%D1%80%D0%B5%D0%B6%D0%B0_%D0%B2_%D0%9E%D0%B1%D1%89%D0%B8%D0%BD%D0%B0_%D0%97%D0%BB%D0%B0%D1%82%D0%B8%D1%86%D0%B0.htm",
       "destination": "/projects/water-supply-sewerage/reconstruction-water-supply-zlatitsa",
       "permanent": true
     },
@@ -421,7 +421,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-56-Рехабилитация_на_гаров_комплекс_ЖП_гара_Бургас_пътническа.htm",
+      "source": "/bg/6-56-%D0%A0%D0%B5%D1%85%D0%B0%D0%B1%D0%B8%D0%BB%D0%B8%D1%82%D0%B0%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D0%B3%D0%B0%D1%80%D0%BE%D0%B2_%D0%BA%D0%BE%D0%BC%D0%BF%D0%BB%D0%B5%D0%BA%D1%81_%D0%96%D0%9F_%D0%B3%D0%B0%D1%80%D0%B0_%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81_%D0%BF%D1%8A%D1%82%D0%BD%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B0.htm",
       "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/burgas-station-rehab",
       "permanent": true
     },
@@ -431,7 +431,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-57-Вътрешна_газопреносна_мрежа_и_ГРП_в_ТЕЦ_„Марица_Изток_2\"_ЕАД.htm",
+      "source": "/bg/6-57-%D0%92%D1%8A%D1%82%D1%80%D0%B5%D1%88%D0%BD%D0%B0_%D0%B3%D0%B0%D0%B7%D0%BE%D0%BF%D1%80%D0%B5%D0%BD%D0%BE%D1%81%D0%BD%D0%B0_%D0%BC%D1%80%D0%B5%D0%B6%D0%B0_%D0%B8_%D0%93%D0%A0%D0%9F_%D0%B2_%D0%A2%D0%95%D0%A6_%E2%80%9E%D0%9C%D0%B0%D1%80%D0%B8%D1%86%D0%B0_%D0%98%D0%B7%D1%82%D0%BE%D0%BA_2%22_%D0%95%D0%90%D0%94.htm",
       "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/maritsa-iztok-2-gas-network-grp",
       "permanent": true
     },
@@ -441,7 +441,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-58-Обекти_в_Мини_Марица_Изток.htm",
+      "source": "/bg/6-58-%D0%9E%D0%B1%D0%B5%D0%BA%D1%82%D0%B8_%D0%B2_%D0%9C%D0%B8%D0%BD%D0%B8_%D0%9C%D0%B0%D1%80%D0%B8%D1%86%D0%B0_%D0%98%D0%B7%D1%82%D0%BE%D0%BA.htm",
       "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/facilities-renovation-mini-maritsa-iztok",
       "permanent": true
     },
@@ -451,7 +451,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-59-Рехабилитация_настилки_пристанище_Варна_-_запад.htm",
+      "source": "/bg/6-59-%D0%A0%D0%B5%D1%85%D0%B0%D0%B1%D0%B8%D0%BB%D0%B8%D1%82%D0%B0%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0%D1%81%D1%82%D0%B8%D0%BB%D0%BA%D0%B8_%D0%BF%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BD%D0%B8%D1%89%D0%B5_%D0%92%D0%B0%D1%80%D0%BD%D0%B0_-_%D0%B7%D0%B0%D0%BF%D0%B0%D0%B4.htm",
       "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/rehabilitation-of-pavements-at-varna-west-port-703531",
       "permanent": true
     },
@@ -461,7 +461,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-60-Дневен_център_за_хора_с_увреждания.htm",
+      "source": "/bg/6-60-%D0%94%D0%BD%D0%B5%D0%B2%D0%B5%D0%BD_%D1%86%D0%B5%D0%BD%D1%82%D1%8A%D1%80_%D0%B7%D0%B0_%D1%85%D0%BE%D1%80%D0%B0_%D1%81_%D1%83%D0%B2%D1%80%D0%B5%D0%B6%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F.htm",
       "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/day-center-people-disabilities-reconstruction",
       "permanent": true
     },
@@ -471,7 +471,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-61-Ремонт_и_преустройство_НЧ_\"Гео_Милев\".htm",
+      "source": "/bg/6-61-%D0%A0%D0%B5%D0%BC%D0%BE%D0%BD%D1%82_%D0%B8_%D0%BF%D1%80%D0%B5%D1%83%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%BE_%D0%9D%D0%A7_%22%D0%93%D0%B5%D0%BE_%D0%9C%D0%B8%D0%BB%D0%B5%D0%B2%22.htm",
       "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/renovation-geo-milev-community-center",
       "permanent": true
     },
@@ -481,7 +481,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-62-Ремонт_на_стоманобетонни_настилки_Пристанище_Варна_-_изток.htm",
+      "source": "/bg/6-62-%D0%A0%D0%B5%D0%BC%D0%BE%D0%BD%D1%82_%D0%BD%D0%B0_%D1%81%D1%82%D0%BE%D0%BC%D0%B0%D0%BD%D0%BE%D0%B1%D0%B5%D1%82%D0%BE%D0%BD%D0%BD%D0%B8_%D0%BD%D0%B0%D1%81%D1%82%D0%B8%D0%BB%D0%BA%D0%B8_%D0%9F%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BD%D0%B8%D1%89%D0%B5_%D0%92%D0%B0%D1%80%D0%BD%D0%B0_-_%D0%B8%D0%B7%D1%82%D0%BE%D0%BA.htm",
       "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/repair-of-reinforced-concrete-pavements-at-varna-east-port-878506",
       "permanent": true
     },
@@ -491,7 +491,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-63-Ремонт_на_хидроизолация_в_„ТЕЦ_Марица_изток_2”_ЕАД.htm",
+      "source": "/bg/6-63-%D0%A0%D0%B5%D0%BC%D0%BE%D0%BD%D1%82_%D0%BD%D0%B0_%D1%85%D0%B8%D0%B4%D1%80%D0%BE%D0%B8%D0%B7%D0%BE%D0%BB%D0%B0%D1%86%D0%B8%D1%8F_%D0%B2_%E2%80%9E%D0%A2%D0%95%D0%A6_%D0%9C%D0%B0%D1%80%D0%B8%D1%86%D0%B0_%D0%B8%D0%B7%D1%82%D0%BE%D0%BA_2%E2%80%9D_%D0%95%D0%90%D0%94.htm",
       "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/waterproofing-repair-at-tpp-maritsa-iztok-2-ead-939060",
       "permanent": true
     },
@@ -501,7 +501,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-64-Реконструкция_и_изграждане_на_улично_осветление_в_общ._Роман.htm",
+      "source": "/bg/6-64-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%B8_%D0%B8%D0%B7%D0%B3%D1%80%D0%B0%D0%B6%D0%B4%D0%B0%D0%BD%D0%B5_%D0%BD%D0%B0_%D1%83%D0%BB%D0%B8%D1%87%D0%BD%D0%BE_%D0%BE%D1%81%D0%B2%D0%B5%D1%82%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5_%D0%B2_%D0%BE%D0%B1%D1%89._%D0%A0%D0%BE%D0%BC%D0%B0%D0%BD.htm",
       "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/reconstruction-and-construction-of-street-lighting-502624",
       "permanent": true
     },
@@ -511,7 +511,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-65-Ремонт_и_преустройство_на_НЧ_\"Съгласие_-1895\".htm",
+      "source": "/bg/6-65-%D0%A0%D0%B5%D0%BC%D0%BE%D0%BD%D1%82_%D0%B8_%D0%BF%D1%80%D0%B5%D1%83%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%BE_%D0%BD%D0%B0_%D0%9D%D0%A7_%22%D0%A1%D1%8A%D0%B3%D0%BB%D0%B0%D1%81%D0%B8%D0%B5_-1895%22.htm",
       "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/renovation-soglasie-1895-community-center",
       "permanent": true
     },
@@ -521,7 +521,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-66-„Рехабилитация_и_реконструкция_на_общински_път_в_Община_Средец”.htm",
+      "source": "/bg/6-66-%E2%80%9E%D0%A0%D0%B5%D1%85%D0%B0%D0%B1%D0%B8%D0%BB%D0%B8%D1%82%D0%B0%D1%86%D0%B8%D1%8F_%D0%B8_%D1%80%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D0%BE%D0%B1%D1%89%D0%B8%D0%BD%D1%81%D0%BA%D0%B8_%D0%BF%D1%8A%D1%82_%D0%B2_%D0%9E%D0%B1%D1%89%D0%B8%D0%BD%D0%B0_%D0%A1%D1%80%D0%B5%D0%B4%D0%B5%D1%86%E2%80%9D.htm",
       "destination": "/projects/transport-infrastructure/sredets-municipal-road-reconstruction",
       "permanent": true
     },
@@ -531,7 +531,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-67-Почистване_на_преливно_езеро_в_„ТЕЦ_МИ_2“_ЕАД..htm",
+      "source": "/bg/6-67-%D0%9F%D0%BE%D1%87%D0%B8%D1%81%D1%82%D0%B2%D0%B0%D0%BD%D0%B5_%D0%BD%D0%B0_%D0%BF%D1%80%D0%B5%D0%BB%D0%B8%D0%B2%D0%BD%D0%BE_%D0%B5%D0%B7%D0%B5%D1%80%D0%BE_%D0%B2_%E2%80%9E%D0%A2%D0%95%D0%A6_%D0%9C%D0%98_2%E2%80%9C_%D0%95%D0%90%D0%94..htm",
       "destination": "/projects/water-supply-sewerage/cleaning-of-overflow-lake-at-tpp-mi-2-ead-041486",
       "permanent": true
     },
@@ -541,7 +541,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-68-Изграждане_на_противопожарна_кула_в_землището_на_с._Карлиево.htm",
+      "source": "/bg/6-68-%D0%98%D0%B7%D0%B3%D1%80%D0%B0%D0%B6%D0%B4%D0%B0%D0%BD%D0%B5_%D0%BD%D0%B0_%D0%BF%D1%80%D0%BE%D1%82%D0%B8%D0%B2%D0%BE%D0%BF%D0%BE%D0%B6%D0%B0%D1%80%D0%BD%D0%B0_%D0%BA%D1%83%D0%BB%D0%B0_%D0%B2_%D0%B7%D0%B5%D0%BC%D0%BB%D0%B8%D1%89%D0%B5%D1%82%D0%BE_%D0%BD%D0%B0_%D1%81._%D0%9A%D0%B0%D1%80%D0%BB%D0%B8%D0%B5%D0%B2%D0%BE.htm",
       "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/fire-tower-karlievo",
       "permanent": true
     },
@@ -551,7 +551,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-69-Направа_на_маршрутен_път_в_„Мини_Марица_Изток“_ЕАД.htm",
+      "source": "/bg/6-69-%D0%9D%D0%B0%D0%BF%D1%80%D0%B0%D0%B2%D0%B0_%D0%BD%D0%B0_%D0%BC%D0%B0%D1%80%D1%88%D1%80%D1%83%D1%82%D0%B5%D0%BD_%D0%BF%D1%8A%D1%82_%D0%B2_%E2%80%9E%D0%9C%D0%B8%D0%BD%D0%B8_%D0%9C%D0%B0%D1%80%D0%B8%D1%86%D0%B0_%D0%98%D0%B7%D1%82%D0%BE%D0%BA%E2%80%9C_%D0%95%D0%90%D0%94.htm",
       "destination": "/projects/transport-infrastructure/service-road-mini-maritsa-iztok",
       "permanent": true
     },
@@ -561,7 +561,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-70-Реконструкция_на_пътища_в_община_Никопол.htm",
+      "source": "/bg/6-70-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D0%BF%D1%8A%D1%82%D0%B8%D1%89%D0%B0_%D0%B2_%D0%BE%D0%B1%D1%89%D0%B8%D0%BD%D0%B0_%D0%9D%D0%B8%D0%BA%D0%BE%D0%BF%D0%BE%D0%BB.htm",
       "destination": "/projects/transport-infrastructure/reconstruction-municipal-roads-nikopol",
       "permanent": true
     },
@@ -571,7 +571,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-71-\"Изпълнение_на_инженеринг_по_НПЕЕМЖС_-_гр._Златица\".htm",
+      "source": "/bg/6-71-%22%D0%98%D0%B7%D0%BF%D1%8A%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5_%D0%BD%D0%B0_%D0%B8%D0%BD%D0%B6%D0%B5%D0%BD%D0%B5%D1%80%D0%B8%D0%BD%D0%B3_%D0%BF%D0%BE_%D0%9D%D0%9F%D0%95%D0%95%D0%9C%D0%96%D0%A1_-_%D0%B3%D1%80._%D0%97%D0%BB%D0%B0%D1%82%D0%B8%D1%86%D0%B0%22.htm",
       "destination": "/projects/energy-efficiency/engineering-npeemzhs-block-33-sofiysko-shose-zlatitsa",
       "permanent": true
     },
@@ -581,7 +581,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-72-Изпълнение_на_инженеринг_по_НПЕЕМЖС_-_гр._Никопол.htm",
+      "source": "/bg/6-72-%D0%98%D0%B7%D0%BF%D1%8A%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5_%D0%BD%D0%B0_%D0%B8%D0%BD%D0%B6%D0%B5%D0%BD%D0%B5%D1%80%D0%B8%D0%BD%D0%B3_%D0%BF%D0%BE_%D0%9D%D0%9F%D0%95%D0%95%D0%9C%D0%96%D0%A1_-_%D0%B3%D1%80._%D0%9D%D0%B8%D0%BA%D0%BE%D0%BF%D0%BE%D0%BB.htm",
       "destination": "/projects/energy-efficiency/engineering-npeemzhs-smolyanovi-2-nikopol",
       "permanent": true
     },
@@ -591,7 +591,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-73-„Антисеизм._укрепване_на_сгр._в_п/ст_Червена_могила_400/110_KV”.htm",
+      "source": "/bg/6-73-%E2%80%9E%D0%90%D0%BD%D1%82%D0%B8%D1%81%D0%B5%D0%B8%D0%B7%D0%BC._%D1%83%D0%BA%D1%80%D0%B5%D0%BF%D0%B2%D0%B0%D0%BD%D0%B5_%D0%BD%D0%B0_%D1%81%D0%B3%D1%80._%D0%B2_%D0%BF/%D1%81%D1%82_%D0%A7%D0%B5%D1%80%D0%B2%D0%B5%D0%BD%D0%B0_%D0%BC%D0%BE%D0%B3%D0%B8%D0%BB%D0%B0_400/110_KV%E2%80%9D.htm",
       "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/seismic-reinforcement-chervena-mogila-substation",
       "permanent": true
     },
@@ -601,7 +601,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-74-Изпълнение_на_Инженеринг_-_гр._Бургас,_ж.к._„Лазур“_бл._2.htm",
+      "source": "/bg/6-74-%D0%98%D0%B7%D0%BF%D1%8A%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5_%D0%BD%D0%B0_%D0%98%D0%BD%D0%B6%D0%B5%D0%BD%D0%B5%D1%80%D0%B8%D0%BD%D0%B3_-_%D0%B3%D1%80._%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81,_%D0%B6.%D0%BA._%E2%80%9E%D0%9B%D0%B0%D0%B7%D1%83%D1%80%E2%80%9C_%D0%B1%D0%BB._2.htm",
       "destination": "/projects/energy-efficiency/engineering-energy-efficiency-lazur-block-2-burgas",
       "permanent": true
     },
@@ -611,7 +611,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-75-Изграждане_на_пешеходен_мост_над_река_Янтра.htm",
+      "source": "/bg/6-75-%D0%98%D0%B7%D0%B3%D1%80%D0%B0%D0%B6%D0%B4%D0%B0%D0%BD%D0%B5_%D0%BD%D0%B0_%D0%BF%D0%B5%D1%88%D0%B5%D1%85%D0%BE%D0%B4%D0%B5%D0%BD_%D0%BC%D0%BE%D1%81%D1%82_%D0%BD%D0%B0%D0%B4_%D1%80%D0%B5%D0%BA%D0%B0_%D0%AF%D0%BD%D1%82%D1%80%D0%B0.htm",
       "destination": "/projects/transport-infrastructure/yantra-river-pedestrian-bridge",
       "permanent": true
     },
@@ -621,7 +621,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-76-\"Изпълнение_на_инженеринг_по_НПЕЕМЖС_-_гр._Габрово\".htm",
+      "source": "/bg/6-76-%22%D0%98%D0%B7%D0%BF%D1%8A%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5_%D0%BD%D0%B0_%D0%B8%D0%BD%D0%B6%D0%B5%D0%BD%D0%B5%D1%80%D0%B8%D0%BD%D0%B3_%D0%BF%D0%BE_%D0%9D%D0%9F%D0%95%D0%95%D0%9C%D0%96%D0%A1_-_%D0%B3%D1%80._%D0%93%D0%B0%D0%B1%D1%80%D0%BE%D0%B2%D0%BE%22.htm",
       "destination": "/projects/energy-efficiency/engineering-npeemzhs-mogilyov-83-85-87-gabrovo",
       "permanent": true
     },
@@ -631,7 +631,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-77-Площадка_за_биологично_третиране.htm",
+      "source": "/bg/6-77-%D0%9F%D0%BB%D0%BE%D1%89%D0%B0%D0%B4%D0%BA%D0%B0_%D0%B7%D0%B0_%D0%B1%D0%B8%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%87%D0%BD%D0%BE_%D1%82%D1%80%D0%B5%D1%82%D0%B8%D1%80%D0%B0%D0%BD%D0%B5.htm",
       "destination": "/projects/engineering-reinforcement-activities-and-waste-treatment-installations/biological-treatment-platform-859489",
       "permanent": true
     },
@@ -641,7 +641,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-78-Монтаж_на_отоплителни_инсталации_в_гр._Русе.htm",
+      "source": "/bg/6-78-%D0%9C%D0%BE%D0%BD%D1%82%D0%B0%D0%B6_%D0%BD%D0%B0_%D0%BE%D1%82%D0%BE%D0%BF%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%BD%D0%B8_%D0%B8%D0%BD%D1%81%D1%82%D0%B0%D0%BB%D0%B0%D1%86%D0%B8%D0%B8_%D0%B2_%D0%B3%D1%80._%D0%A0%D1%83%D1%81%D0%B5.htm",
       "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/installation-of-heating-systems-491479",
       "permanent": true
     },
@@ -651,7 +651,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-79-Изпълнение_на_Инженеринг_-_гр._Белово,_бул._Освобождение_№87.htm",
+      "source": "/bg/6-79-%D0%98%D0%B7%D0%BF%D1%8A%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5_%D0%BD%D0%B0_%D0%98%D0%BD%D0%B6%D0%B5%D0%BD%D0%B5%D1%80%D0%B8%D0%BD%D0%B3_-_%D0%B3%D1%80._%D0%91%D0%B5%D0%BB%D0%BE%D0%B2%D0%BE,_%D0%B1%D1%83%D0%BB._%D0%9E%D1%81%D0%B2%D0%BE%D0%B1%D0%BE%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5_%E2%84%9687.htm",
       "destination": "/projects/energy-efficiency/engineering-energy-efficiency-osvobozhdenie-87-belovo",
       "permanent": true
     },
@@ -661,7 +661,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-80-Изпълнение_на_Инженеринг_-_гр._Шумен,_ул._Цар_Освободител_№_12.htm",
+      "source": "/bg/6-80-%D0%98%D0%B7%D0%BF%D1%8A%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5_%D0%BD%D0%B0_%D0%98%D0%BD%D0%B6%D0%B5%D0%BD%D0%B5%D1%80%D0%B8%D0%BD%D0%B3_-_%D0%B3%D1%80._%D0%A8%D1%83%D0%BC%D0%B5%D0%BD,_%D1%83%D0%BB._%D0%A6%D0%B0%D1%80_%D0%9E%D1%81%D0%B2%D0%BE%D0%B1%D0%BE%D0%B4%D0%B8%D1%82%D0%B5%D0%BB_%E2%84%96_12.htm",
       "destination": "/projects/energy-efficiency/engineering-energy-efficiency-tsar-osvoboditel-12-shumen",
       "permanent": true
     },
@@ -671,7 +671,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-81-Благоустрояване_на_жилищна_територия_в_гр._Габрово.htm",
+      "source": "/bg/6-81-%D0%91%D0%BB%D0%B0%D0%B3%D0%BE%D1%83%D1%81%D1%82%D1%80%D0%BE%D1%8F%D0%B2%D0%B0%D0%BD%D0%B5_%D0%BD%D0%B0_%D0%B6%D0%B8%D0%BB%D0%B8%D1%89%D0%BD%D0%B0_%D1%82%D0%B5%D1%80%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%B2_%D0%B3%D1%80._%D0%93%D0%B0%D0%B1%D1%80%D0%BE%D0%B2%D0%BE.htm",
       "destination": "/projects/landscaping-greenery/gabrovo-residential-area-redevelopment",
       "permanent": true
     },
@@ -681,7 +681,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-82-Изпълнение_на_Инженеринг_-_ул._Орловска_№_87,_жил.блок_„Дунав_1.htm",
+      "source": "/bg/6-82-%D0%98%D0%B7%D0%BF%D1%8A%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5_%D0%BD%D0%B0_%D0%98%D0%BD%D0%B6%D0%B5%D0%BD%D0%B5%D1%80%D0%B8%D0%BD%D0%B3_-_%D1%83%D0%BB._%D0%9E%D1%80%D0%BB%D0%BE%D0%B2%D1%81%D0%BA%D0%B0_%E2%84%96_87,_%D0%B6%D0%B8%D0%BB.%D0%B1%D0%BB%D0%BE%D0%BA_%E2%80%9E%D0%94%D1%83%D0%BD%D0%B0%D0%B2_1.htm",
       "destination": "/projects/energy-efficiency/engineering-energy-efficiency-orlovska-87-dunav-1-gabrovo",
       "permanent": true
     },
@@ -691,7 +691,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-83-Изпълнение_на_Инженеринг_-_гр.Хасково,_ЖК_.,Орфей“№25“.htm",
+      "source": "/bg/6-83-%D0%98%D0%B7%D0%BF%D1%8A%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5_%D0%BD%D0%B0_%D0%98%D0%BD%D0%B6%D0%B5%D0%BD%D0%B5%D1%80%D0%B8%D0%BD%D0%B3_-_%D0%B3%D1%80.%D0%A5%D0%B0%D1%81%D0%BA%D0%BE%D0%B2%D0%BE,_%D0%96%D0%9A_.,%D0%9E%D1%80%D1%84%D0%B5%D0%B9%E2%80%9C%E2%84%9625%E2%80%9C.htm",
       "destination": "/projects/energy-efficiency/engineering-energy-efficiency-orfey-25-haskovo",
       "permanent": true
     },
@@ -701,7 +701,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-84-Изпълнение_на_Инженеринг_-_ул._Смърч_№_21-31,_гр._Габрово.htm",
+      "source": "/bg/6-84-%D0%98%D0%B7%D0%BF%D1%8A%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5_%D0%BD%D0%B0_%D0%98%D0%BD%D0%B6%D0%B5%D0%BD%D0%B5%D1%80%D0%B8%D0%BD%D0%B3_-_%D1%83%D0%BB._%D0%A1%D0%BC%D1%8A%D1%80%D1%87_%E2%84%96_21-31,_%D0%B3%D1%80._%D0%93%D0%B0%D0%B1%D1%80%D0%BE%D0%B2%D0%BE.htm",
       "destination": "/projects/energy-efficiency/engineering-energy-efficiency-smarch-21-31-gabrovo",
       "permanent": true
     },
@@ -711,7 +711,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-85-Изпълнение_на_Инженеринг-_гр.Смолян,_кв.Устово,_бл.Прогрес_3.htm",
+      "source": "/bg/6-85-%D0%98%D0%B7%D0%BF%D1%8A%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5_%D0%BD%D0%B0_%D0%98%D0%BD%D0%B6%D0%B5%D0%BD%D0%B5%D1%80%D0%B8%D0%BD%D0%B3-_%D0%B3%D1%80.%D0%A1%D0%BC%D0%BE%D0%BB%D1%8F%D0%BD,_%D0%BA%D0%B2.%D0%A3%D1%81%D1%82%D0%BE%D0%B2%D0%BE,_%D0%B1%D0%BB.%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B5%D1%81_3.htm",
       "destination": "/projects/energy-efficiency/engineering-energy-efficiency-progress-3-ustovo-smolyan",
       "permanent": true
     },
@@ -721,7 +721,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-86-Отоплителна_инсталация_на_ПМГ_\"Акад._Ив._Гюзелев\".htm",
+      "source": "/bg/6-86-%D0%9E%D1%82%D0%BE%D0%BF%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%BD%D0%B0_%D0%B8%D0%BD%D1%81%D1%82%D0%B0%D0%BB%D0%B0%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D0%9F%D0%9C%D0%93_%22%D0%90%D0%BA%D0%B0%D0%B4._%D0%98%D0%B2._%D0%93%D1%8E%D0%B7%D0%B5%D0%BB%D0%B5%D0%B2%22.htm",
       "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/heating-system-replacement-at-acad-ivan-gyuzelev-high-school-of-mathematics-369969",
       "permanent": true
     },
@@ -731,7 +731,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-87-Изграждане_на_противопожарна_кула_в_землището_на_с._Костел.htm",
+      "source": "/bg/6-87-%D0%98%D0%B7%D0%B3%D1%80%D0%B0%D0%B6%D0%B4%D0%B0%D0%BD%D0%B5_%D0%BD%D0%B0_%D0%BF%D1%80%D0%BE%D1%82%D0%B8%D0%B2%D0%BE%D0%BF%D0%BE%D0%B6%D0%B0%D1%80%D0%BD%D0%B0_%D0%BA%D1%83%D0%BB%D0%B0_%D0%B2_%D0%B7%D0%B5%D0%BC%D0%BB%D0%B8%D1%89%D0%B5%D1%82%D0%BE_%D0%BD%D0%B0_%D1%81._%D0%9A%D0%BE%D1%81%D1%82%D0%B5%D0%BB.htm",
       "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/fire-tower-kostel-elena",
       "permanent": true
     },
@@ -741,7 +741,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-88-Открита_детска_и_спортна_площадка.htm",
+      "source": "/bg/6-88-%D0%9E%D1%82%D0%BA%D1%80%D0%B8%D1%82%D0%B0_%D0%B4%D0%B5%D1%82%D1%81%D0%BA%D0%B0_%D0%B8_%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%BD%D0%B0_%D0%BF%D0%BB%D0%BE%D1%89%D0%B0%D0%B4%D0%BA%D0%B0.htm",
       "destination": "/projects/landscaping-greenery/outdoor-children-sports-playground",
       "permanent": true
     },
@@ -751,7 +751,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-89-Изпълнение_на_Инженеринг_-_гр._Раднево,_ул.“Заводска”_№6.htm",
+      "source": "/bg/6-89-%D0%98%D0%B7%D0%BF%D1%8A%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5_%D0%BD%D0%B0_%D0%98%D0%BD%D0%B6%D0%B5%D0%BD%D0%B5%D1%80%D0%B8%D0%BD%D0%B3_-_%D0%B3%D1%80._%D0%A0%D0%B0%D0%B4%D0%BD%D0%B5%D0%B2%D0%BE,_%D1%83%D0%BB.%E2%80%9C%D0%97%D0%B0%D0%B2%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%E2%80%9D_%E2%84%966.htm",
       "destination": "/projects/energy-efficiency/engineering-energy-efficiency-zavodska-6-radnevo",
       "permanent": true
     },
@@ -761,7 +761,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-90-Изпълнение_на_Инженеринг_-_гр._Бургас,_ул._Дебелт_№_11.htm",
+      "source": "/bg/6-90-%D0%98%D0%B7%D0%BF%D1%8A%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5_%D0%BD%D0%B0_%D0%98%D0%BD%D0%B6%D0%B5%D0%BD%D0%B5%D1%80%D0%B8%D0%BD%D0%B3_-_%D0%B3%D1%80._%D0%91%D1%83%D1%80%D0%B3%D0%B0%D1%81,_%D1%83%D0%BB._%D0%94%D0%B5%D0%B1%D0%B5%D0%BB%D1%82_%E2%84%96_11.htm",
       "destination": "/projects/energy-efficiency/engineering-energy-efficiency-debelt-11-burgas",
       "permanent": true
     },
@@ -771,7 +771,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-91-Изпълнение_на_Инженеринг_-_гр._Русе,_ул._Рига_№12.htm",
+      "source": "/bg/6-91-%D0%98%D0%B7%D0%BF%D1%8A%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5_%D0%BD%D0%B0_%D0%98%D0%BD%D0%B6%D0%B5%D0%BD%D0%B5%D1%80%D0%B8%D0%BD%D0%B3_-_%D0%B3%D1%80._%D0%A0%D1%83%D1%81%D0%B5,_%D1%83%D0%BB._%D0%A0%D0%B8%D0%B3%D0%B0_%E2%84%9612.htm",
       "destination": "/projects/energy-efficiency/engineering-energy-efficiency-riga-12-ruse",
       "permanent": true
     },
@@ -781,7 +781,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-92-Изпълнение_на_Инженеринг_-_гр._Габрово,_ул._Свищовска_70,72,74.htm",
+      "source": "/bg/6-92-%D0%98%D0%B7%D0%BF%D1%8A%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5_%D0%BD%D0%B0_%D0%98%D0%BD%D0%B6%D0%B5%D0%BD%D0%B5%D1%80%D0%B8%D0%BD%D0%B3_-_%D0%B3%D1%80._%D0%93%D0%B0%D0%B1%D1%80%D0%BE%D0%B2%D0%BE,_%D1%83%D0%BB._%D0%A1%D0%B2%D0%B8%D1%89%D0%BE%D0%B2%D1%81%D0%BA%D0%B0_70,72,74.htm",
       "destination": "/projects/energy-efficiency/engineering-energy-efficiency-svishtovska-70-72-74-gabrovo",
       "permanent": true
     },
@@ -791,7 +791,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-93-Изпълнение_на_инженеринг_–_гр._Стара_Загора,_ул._Славейков,№1.htm",
+      "source": "/bg/6-93-%D0%98%D0%B7%D0%BF%D1%8A%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5_%D0%BD%D0%B0_%D0%B8%D0%BD%D0%B6%D0%B5%D0%BD%D0%B5%D1%80%D0%B8%D0%BD%D0%B3_%E2%80%93_%D0%B3%D1%80._%D0%A1%D1%82%D0%B0%D1%80%D0%B0_%D0%97%D0%B0%D0%B3%D0%BE%D1%80%D0%B0,_%D1%83%D0%BB._%D0%A1%D0%BB%D0%B0%D0%B2%D0%B5%D0%B9%D0%BA%D0%BE%D0%B2,%E2%84%961.htm",
       "destination": "/projects/energy-efficiency/engineering-energy-efficiency-slaveykov-1-stara-zagora",
       "permanent": true
     },
@@ -801,7 +801,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-94-Изпълнение_на_Инженеринг_-_гр.Сандански,_ул.\"Солидарност\"_№3.htm",
+      "source": "/bg/6-94-%D0%98%D0%B7%D0%BF%D1%8A%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5_%D0%BD%D0%B0_%D0%98%D0%BD%D0%B6%D0%B5%D0%BD%D0%B5%D1%80%D0%B8%D0%BD%D0%B3_-_%D0%B3%D1%80.%D0%A1%D0%B0%D0%BD%D0%B4%D0%B0%D0%BD%D1%81%D0%BA%D0%B8,_%D1%83%D0%BB.%22%D0%A1%D0%BE%D0%BB%D0%B8%D0%B4%D0%B0%D1%80%D0%BD%D0%BE%D1%81%D1%82%22_%E2%84%963.htm",
       "destination": "/projects/energy-efficiency/engineering-energy-efficiency-solidarnost-3-sandanski",
       "permanent": true
     },
@@ -811,7 +811,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-95-Реконструкция_на_Общински_Път_Обнова_–_Каменец.htm",
+      "source": "/bg/6-95-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D0%9E%D0%B1%D1%89%D0%B8%D0%BD%D1%81%D0%BA%D0%B8_%D0%9F%D1%8A%D1%82_%D0%9E%D0%B1%D0%BD%D0%BE%D0%B2%D0%B0_%E2%80%93_%D0%9A%D0%B0%D0%BC%D0%B5%D0%BD%D0%B5%D1%86.htm",
       "destination": "/projects/transport-infrastructure/levski-obnova-kamenets-road-reconstruction",
       "permanent": true
     },
@@ -821,7 +821,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-96-Ремонт_на_Административна_(стара)_сграда_на_община_Велинград.htm",
+      "source": "/bg/6-96-%D0%A0%D0%B5%D0%BC%D0%BE%D0%BD%D1%82_%D0%BD%D0%B0_%D0%90%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%B8%D0%B2%D0%BD%D0%B0_(%D1%81%D1%82%D0%B0%D1%80%D0%B0)_%D1%81%D0%B3%D1%80%D0%B0%D0%B4%D0%B0_%D0%BD%D0%B0_%D0%BE%D0%B1%D1%89%D0%B8%D0%BD%D0%B0_%D0%92%D0%B5%D0%BB%D0%B8%D0%BD%D0%B3%D1%80%D0%B0%D0%B4.htm",
       "destination": "/projects/energy-efficiency/renovation-old-administrative-building-velingrad",
       "permanent": true
     },
@@ -831,7 +831,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-97-Ремонт_на_Административна_(нова)_сграда_на_община_Велинград.htm",
+      "source": "/bg/6-97-%D0%A0%D0%B5%D0%BC%D0%BE%D0%BD%D1%82_%D0%BD%D0%B0_%D0%90%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%B8%D0%B2%D0%BD%D0%B0_(%D0%BD%D0%BE%D0%B2%D0%B0)_%D1%81%D0%B3%D1%80%D0%B0%D0%B4%D0%B0_%D0%BD%D0%B0_%D0%BE%D0%B1%D1%89%D0%B8%D0%BD%D0%B0_%D0%92%D0%B5%D0%BB%D0%B8%D0%BD%D0%B3%D1%80%D0%B0%D0%B4.htm",
       "destination": "/projects/energy-efficiency/renovation-administrative-building-velingrad",
       "permanent": true
     },
@@ -841,7 +841,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-98-Многофункционална_спортна_зала_в_гр._Сандански.htm",
+      "source": "/bg/6-98-%D0%9C%D0%BD%D0%BE%D0%B3%D0%BE%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D0%BD%D0%B0_%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%BD%D0%B0_%D0%B7%D0%B0%D0%BB%D0%B0_%D0%B2_%D0%B3%D1%80._%D0%A1%D0%B0%D0%BD%D0%B4%D0%B0%D0%BD%D1%81%D0%BA%D0%B8.htm",
       "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/sandanski-multifunctional-sports-hall",
       "permanent": true
     },
@@ -851,7 +851,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-99-Изпълнение_на_инженеринг_–_гр._Пловдив.htm",
+      "source": "/bg/6-99-%D0%98%D0%B7%D0%BF%D1%8A%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5_%D0%BD%D0%B0_%D0%B8%D0%BD%D0%B6%D0%B5%D0%BD%D0%B5%D1%80%D0%B8%D0%BD%D0%B3_%E2%80%93_%D0%B3%D1%80._%D0%9F%D0%BB%D0%BE%D0%B2%D0%B4%D0%B8%D0%B2.htm",
       "destination": "/projects/energy-efficiency/engineering-energy-efficiency-plovdiv",
       "permanent": true
     },
@@ -861,7 +861,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-100-Реконструкция_на_общински_пътища_в_община_Борово.htm",
+      "source": "/bg/6-100-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D0%BE%D0%B1%D1%89%D0%B8%D0%BD%D1%81%D0%BA%D0%B8_%D0%BF%D1%8A%D1%82%D0%B8%D1%89%D0%B0_%D0%B2_%D0%BE%D0%B1%D1%89%D0%B8%D0%BD%D0%B0_%D0%91%D0%BE%D1%80%D0%BE%D0%B2%D0%BE.htm",
       "destination": "/projects/transport-infrastructure/borovo-municipal-roads-reconstruction",
       "permanent": true
     },
@@ -871,7 +871,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-101-“Ремонт_на_Вила_2_за_представителни_нужди_в_обект_„Шабла“.htm",
+      "source": "/bg/6-101-%E2%80%9C%D0%A0%D0%B5%D0%BC%D0%BE%D0%BD%D1%82_%D0%BD%D0%B0_%D0%92%D0%B8%D0%BB%D0%B0_2_%D0%B7%D0%B0_%D0%BF%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D1%82%D0%B5%D0%BB%D0%BD%D0%B8_%D0%BD%D1%83%D0%B6%D0%B4%D0%B8_%D0%B2_%D0%BE%D0%B1%D0%B5%D0%BA%D1%82_%E2%80%9E%D0%A8%D0%B0%D0%B1%D0%BB%D0%B0%E2%80%9C.htm",
       "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/reconstruction-of-villa-777446",
       "permanent": true
     },
@@ -881,7 +881,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-102-Ремонт_на_ЦДГ_\"Пролет\",_село_Драгиново.htm",
+      "source": "/bg/6-102-%D0%A0%D0%B5%D0%BC%D0%BE%D0%BD%D1%82_%D0%BD%D0%B0_%D0%A6%D0%94%D0%93_%22%D0%9F%D1%80%D0%BE%D0%BB%D0%B5%D1%82%22,_%D1%81%D0%B5%D0%BB%D0%BE_%D0%94%D1%80%D0%B0%D0%B3%D0%B8%D0%BD%D0%BE%D0%B2%D0%BE.htm",
       "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/renovation-prolet-kindergarten-draginovo",
       "permanent": true
     },
@@ -891,7 +891,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-103-Реконструкция_на_водопроводна_мрежа_в_с._Обретеник.htm",
+      "source": "/bg/6-103-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D0%B2%D0%BE%D0%B4%D0%BE%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4%D0%BD%D0%B0_%D0%BC%D1%80%D0%B5%D0%B6%D0%B0_%D0%B2_%D1%81._%D0%9E%D0%B1%D1%80%D0%B5%D1%82%D0%B5%D0%BD%D0%B8%D0%BA.htm",
       "destination": "/projects/water-supply-sewerage/reconstruction-water-supply-obrotenik",
       "permanent": true
     },
@@ -901,7 +901,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-104-Изпълнение_на_Инженеринг_-_гр._София,_бл._231,_ж.к._Гоце_Делчев.htm",
+      "source": "/bg/6-104-%D0%98%D0%B7%D0%BF%D1%8A%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5_%D0%BD%D0%B0_%D0%98%D0%BD%D0%B6%D0%B5%D0%BD%D0%B5%D1%80%D0%B8%D0%BD%D0%B3_-_%D0%B3%D1%80._%D0%A1%D0%BE%D1%84%D0%B8%D1%8F,_%D0%B1%D0%BB._231,_%D0%B6.%D0%BA._%D0%93%D0%BE%D1%86%D0%B5_%D0%94%D0%B5%D0%BB%D1%87%D0%B5%D0%B2.htm",
       "destination": "/projects/energy-efficiency/engineering-energy-efficiency-block-231-gotse-delchev-sofia",
       "permanent": true
     },
@@ -911,7 +911,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-105-Реконструкция_на_улици_и_тротоари,_Община_Белогрaдчик.htm",
+      "source": "/bg/6-105-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D1%83%D0%BB%D0%B8%D1%86%D0%B8_%D0%B8_%D1%82%D1%80%D0%BE%D1%82%D0%BE%D0%B0%D1%80%D0%B8,_%D0%9E%D0%B1%D1%89%D0%B8%D0%BD%D0%B0_%D0%91%D0%B5%D0%BB%D0%BE%D0%B3%D1%80a%D0%B4%D1%87%D0%B8%D0%BA.htm",
       "destination": "/projects/transport-infrastructure/reconstruction-streets-sidewalks-belogradchik",
       "permanent": true
     },
@@ -921,7 +921,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-106-Реконструкция_на_общински_пътища_в_общ._Дряновo.htm",
+      "source": "/bg/6-106-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D0%BE%D0%B1%D1%89%D0%B8%D0%BD%D1%81%D0%BA%D0%B8_%D0%BF%D1%8A%D1%82%D0%B8%D1%89%D0%B0_%D0%B2_%D0%BE%D0%B1%D1%89._%D0%94%D1%80%D1%8F%D0%BD%D0%BE%D0%B2o.htm",
       "destination": "/projects/transport-infrastructure/dryanovo-municipal-roads-reconstruction",
       "permanent": true
     },
@@ -931,7 +931,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-107-Реконструкция_на_общински_пътища_общ._Велинград.htm",
+      "source": "/bg/6-107-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D0%BE%D0%B1%D1%89%D0%B8%D0%BD%D1%81%D0%BA%D0%B8_%D0%BF%D1%8A%D1%82%D0%B8%D1%89%D0%B0_%D0%BE%D0%B1%D1%89._%D0%92%D0%B5%D0%BB%D0%B8%D0%BD%D0%B3%D1%80%D0%B0%D0%B4.htm",
       "destination": "/projects/transport-infrastructure/velingrad-municipal-roads-reconstruction",
       "permanent": true
     },
@@ -941,7 +941,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-108-Изпълнение_на_Инженеринг_-_гр._Плевен,_бул._Русе_№10.htm",
+      "source": "/bg/6-108-%D0%98%D0%B7%D0%BF%D1%8A%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5_%D0%BD%D0%B0_%D0%98%D0%BD%D0%B6%D0%B5%D0%BD%D0%B5%D1%80%D0%B8%D0%BD%D0%B3_-_%D0%B3%D1%80._%D0%9F%D0%BB%D0%B5%D0%B2%D0%B5%D0%BD,_%D0%B1%D1%83%D0%BB._%D0%A0%D1%83%D1%81%D0%B5_%E2%84%9610.htm",
       "destination": "/projects/energy-efficiency/engineering-energy-efficiency-ruse-blvd-10-pleven",
       "permanent": true
     },
@@ -951,7 +951,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-109-Изпълнение_на_Инженеринг-гр._София,_ж.к._„Овча_купел_2“.htm",
+      "source": "/bg/6-109-%D0%98%D0%B7%D0%BF%D1%8A%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5_%D0%BD%D0%B0_%D0%98%D0%BD%D0%B6%D0%B5%D0%BD%D0%B5%D1%80%D0%B8%D0%BD%D0%B3-%D0%B3%D1%80._%D0%A1%D0%BE%D1%84%D0%B8%D1%8F,_%D0%B6.%D0%BA._%E2%80%9E%D0%9E%D0%B2%D1%87%D0%B0_%D0%BA%D1%83%D0%BF%D0%B5%D0%BB_2%E2%80%9C.htm",
       "destination": "/projects/energy-efficiency/engineering-energy-efficiency-ovcha-kupel-2-sofia",
       "permanent": true
     },
@@ -961,7 +961,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-110-Многофункционална_спортна_зала_в_гр.Бяла.htm",
+      "source": "/bg/6-110-%D0%9C%D0%BD%D0%BE%D0%B3%D0%BE%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D0%BD%D0%B0_%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%BD%D0%B0_%D0%B7%D0%B0%D0%BB%D0%B0_%D0%B2_%D0%B3%D1%80.%D0%91%D1%8F%D0%BB%D0%B0.htm",
       "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/byala-multifunctional-sports-hall",
       "permanent": true
     },
@@ -971,7 +971,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-111-Реконструкция_на_общински_пътища_в_общ._Радневo.htm",
+      "source": "/bg/6-111-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D0%BE%D0%B1%D1%89%D0%B8%D0%BD%D1%81%D0%BA%D0%B8_%D0%BF%D1%8A%D1%82%D0%B8%D1%89%D0%B0_%D0%B2_%D0%BE%D0%B1%D1%89._%D0%A0%D0%B0%D0%B4%D0%BD%D0%B5%D0%B2o.htm",
       "destination": "/projects/transport-infrastructure/radnevo-municipal-roads-reconstruction",
       "permanent": true
     },
@@ -981,7 +981,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-112-Реконтрукция_на_улици_в_община_Златица.htm",
+      "source": "/bg/6-112-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D1%83%D0%BB%D0%B8%D1%86%D0%B8_%D0%B2_%D0%BE%D0%B1%D1%89%D0%B8%D0%BD%D0%B0_%D0%97%D0%BB%D0%B0%D1%82%D0%B8%D1%86%D0%B0.htm",
       "destination": "/projects/transport-infrastructure/reconstruction-streets-zlatitsa",
       "permanent": true
     },
@@ -991,7 +991,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-113-Реконструкция_на_улици_в_Община_Баните.htm",
+      "source": "/bg/6-113-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D1%83%D0%BB%D0%B8%D1%86%D0%B8_%D0%B2_%D0%9E%D0%B1%D1%89%D0%B8%D0%BD%D0%B0_%D0%91%D0%B0%D0%BD%D0%B8%D1%82%D0%B5.htm",
       "destination": "/projects/transport-infrastructure/reconstruction-streets-banite",
       "permanent": true
     },
@@ -1001,7 +1001,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-114-Обновяване_на_площад_\"Възраждане,_гр.Белоградчик\".htm",
+      "source": "/bg/6-114-%D0%9E%D0%B1%D0%BD%D0%BE%D0%B2%D1%8F%D0%B2%D0%B0%D0%BD%D0%B5_%D0%BD%D0%B0_%D0%BF%D0%BB%D0%BE%D1%89%D0%B0%D0%B4_%22%D0%92%D1%8A%D0%B7%D1%80%D0%B0%D0%B6%D0%B4%D0%B0%D0%BD%D0%B5,_%D0%B3%D1%80.%D0%91%D0%B5%D0%BB%D0%BE%D0%B3%D1%80%D0%B0%D0%B4%D1%87%D0%B8%D0%BA%22.htm",
       "destination": "/projects/landscaping-greenery/renovation-vazrazhdane-square-belogradchik",
       "permanent": true
     },
@@ -1011,7 +1011,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-115-Реконструкция_на_улици_в_община_Две_Могили.htm",
+      "source": "/bg/6-115-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D1%83%D0%BB%D0%B8%D1%86%D0%B8_%D0%B2_%D0%BE%D0%B1%D1%89%D0%B8%D0%BD%D0%B0_%D0%94%D0%B2%D0%B5_%D0%9C%D0%BE%D0%B3%D0%B8%D0%BB%D0%B8.htm",
       "destination": "/projects/transport-infrastructure/reconstruction-streets-dve-mogili",
       "permanent": true
     },
@@ -1021,7 +1021,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-116-\"Рекултивация_на_съществуващо_депо_за_отпадъци_на_община_Трявна”.htm",
+      "source": "/bg/6-116-%22%D0%A0%D0%B5%D0%BA%D1%83%D0%BB%D1%82%D0%B8%D0%B2%D0%B0%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D1%81%D1%8A%D1%89%D0%B5%D1%81%D1%82%D0%B2%D1%83%D0%B2%D0%B0%D1%89%D0%BE_%D0%B4%D0%B5%D0%BF%D0%BE_%D0%B7%D0%B0_%D0%BE%D1%82%D0%BF%D0%B0%D0%B4%D1%8A%D1%86%D0%B8_%D0%BD%D0%B0_%D0%BE%D0%B1%D1%89%D0%B8%D0%BD%D0%B0_%D0%A2%D1%80%D1%8F%D0%B2%D0%BD%D0%B0%E2%80%9D.htm",
       "destination": "/projects/engineering-reinforcement-activities-and-waste-treatment-installations/tryavna-waste-dump-recultivation",
       "permanent": true
     },
@@ -1031,7 +1031,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-117-„Подстанция_„Димитър_Димитров“_-_основен_ремонт.htm",
+      "source": "/bg/6-117-%E2%80%9E%D0%9F%D0%BE%D0%B4%D1%81%D1%82%D0%B0%D0%BD%D1%86%D0%B8%D1%8F_%E2%80%9E%D0%94%D0%B8%D0%BC%D0%B8%D1%82%D1%8A%D1%80_%D0%94%D0%B8%D0%BC%D0%B8%D1%82%D1%80%D0%BE%D0%B2%E2%80%9C_-_%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%B5%D0%BD_%D1%80%D0%B5%D0%BC%D0%BE%D0%BD%D1%82.htm",
       "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/dimitar-dimitrov-substation-major-renovation",
       "permanent": true
     },
@@ -1041,7 +1041,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-118-Реконструкция_на_етернитов_водопровод.htm",
+      "source": "/bg/6-118-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D0%B5%D1%82%D0%B5%D1%80%D0%BD%D0%B8%D1%82%D0%BE%D0%B2_%D0%B2%D0%BE%D0%B4%D0%BE%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4.htm",
       "destination": "/projects/water-supply-sewerage/asbestos-cement-pipeline-reconstruction",
       "permanent": true
     },
@@ -1051,7 +1051,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-119-Реконструкция_и_рехабилитация_на_водоснабдителна_система.htm",
+      "source": "/bg/6-119-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%B8_%D1%80%D0%B5%D1%85%D0%B0%D0%B1%D0%B8%D0%BB%D0%B8%D1%82%D0%B0%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D0%B2%D0%BE%D0%B4%D0%BE%D1%81%D0%BD%D0%B0%D0%B1%D0%B4%D0%B8%D1%82%D0%B5%D0%BB%D0%BD%D0%B0_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0.htm",
       "destination": "/projects/water-supply-sewerage/reconstruction-water-supply-system",
       "permanent": true
     },
@@ -1061,7 +1061,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-122-Изграждане_на_подпорна_стена_в_подстанция_\"Балкан\".htm",
+      "source": "/bg/6-122-%D0%98%D0%B7%D0%B3%D1%80%D0%B0%D0%B6%D0%B4%D0%B0%D0%BD%D0%B5_%D0%BD%D0%B0_%D0%BF%D0%BE%D0%B4%D0%BF%D0%BE%D1%80%D0%BD%D0%B0_%D1%81%D1%82%D0%B5%D0%BD%D0%B0_%D0%B2_%D0%BF%D0%BE%D0%B4%D1%81%D1%82%D0%B0%D0%BD%D1%86%D0%B8%D1%8F_%22%D0%91%D0%B0%D0%BB%D0%BA%D0%B0%D0%BD%22.htm",
       "destination": "/projects/engineering-reinforcement-activities-and-waste-treatment-installations/construction-of-retaining-wall-at-balkan-substation-724834",
       "permanent": true
     },
@@ -1071,7 +1071,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-123-„Реконструкция_на_улици_в_град_Борово\".htm",
+      "source": "/bg/6-123-%E2%80%9E%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D1%83%D0%BB%D0%B8%D1%86%D0%B8_%D0%B2_%D0%B3%D1%80%D0%B0%D0%B4_%D0%91%D0%BE%D1%80%D0%BE%D0%B2%D0%BE%22.htm",
       "destination": "/projects/transport-infrastructure/reconstruction-streets-borovo",
       "permanent": true
     },
@@ -1081,7 +1081,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-124-Благоустрояване_на_терен_\"Божковска_поляна\"_и_мостово_съоръжение.htm",
+      "source": "/bg/6-124-%D0%91%D0%BB%D0%B0%D0%B3%D0%BE%D1%83%D1%81%D1%82%D1%80%D0%BE%D1%8F%D0%B2%D0%B0%D0%BD%D0%B5_%D0%BD%D0%B0_%D1%82%D0%B5%D1%80%D0%B5%D0%BD_%22%D0%91%D0%BE%D0%B6%D0%BA%D0%BE%D0%B2%D1%81%D0%BA%D0%B0_%D0%BF%D0%BE%D0%BB%D1%8F%D0%BD%D0%B0%22_%D0%B8_%D0%BC%D0%BE%D1%81%D1%82%D0%BE%D0%B2%D0%BE_%D1%81%D1%8A%D0%BE%D1%80%D1%8A%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5.htm",
       "destination": "/projects/landscaping-greenery/landscaping-bozhkovska-polyana",
       "permanent": true
     },
@@ -1091,7 +1091,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-125-Изграждане_на_обществен_паркинг_със_114_паркоместа.htm",
+      "source": "/bg/6-125-%D0%98%D0%B7%D0%B3%D1%80%D0%B0%D0%B6%D0%B4%D0%B0%D0%BD%D0%B5_%D0%BD%D0%B0_%D0%BE%D0%B1%D1%89%D0%B5%D1%81%D1%82%D0%B2%D0%B5%D0%BD_%D0%BF%D0%B0%D1%80%D0%BA%D0%B8%D0%BD%D0%B3_%D1%81%D1%8A%D1%81_114_%D0%BF%D0%B0%D1%80%D0%BA%D0%BE%D0%BC%D0%B5%D1%81%D1%82%D0%B0.htm",
       "destination": "/projects/transport-infrastructure/construction-public-parking-114-spaces",
       "permanent": true
     },
@@ -1101,7 +1101,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-126-Открит_Амфитеатър,_към_читалище_„_Георги_Парцалев“.htm",
+      "source": "/bg/6-126-%D0%9E%D1%82%D0%BA%D1%80%D0%B8%D1%82_%D0%90%D0%BC%D1%84%D0%B8%D1%82%D0%B5%D0%B0%D1%82%D1%8A%D1%80,_%D0%BA%D1%8A%D0%BC_%D1%87%D0%B8%D1%82%D0%B0%D0%BB%D0%B8%D1%89%D0%B5_%E2%80%9E_%D0%93%D0%B5%D0%BE%D1%80%D0%B3%D0%B8_%D0%9F%D0%B0%D1%80%D1%86%D0%B0%D0%BB%D0%B5%D0%B2%E2%80%9C.htm",
       "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/partsalev-open-air-amphitheatre",
       "permanent": true
     },
@@ -1111,7 +1111,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-127-Пещера_„Магурата“.htm",
+      "source": "/bg/6-127-%D0%9F%D0%B5%D1%89%D0%B5%D1%80%D0%B0_%E2%80%9E%D0%9C%D0%B0%D0%B3%D1%83%D1%80%D0%B0%D1%82%D0%B0%E2%80%9C.htm",
       "destination": "/projects/landscaping-greenery/magurata-cave-854963",
       "permanent": true
     },
@@ -1121,7 +1121,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-128-Реконструкция_на_улица_„Яворов“.htm",
+      "source": "/bg/6-128-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D1%83%D0%BB%D0%B8%D1%86%D0%B0_%E2%80%9E%D0%AF%D0%B2%D0%BE%D1%80%D0%BE%D0%B2%E2%80%9C.htm",
       "destination": "/projects/transport-infrastructure/reconstruction-yavorov-street",
       "permanent": true
     },
@@ -1131,7 +1131,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-130-Реконструкция_на_общински_път_в_община_Левски.htm",
+      "source": "/bg/6-130-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D0%BE%D0%B1%D1%89%D0%B8%D0%BD%D1%81%D0%BA%D0%B8_%D0%BF%D1%8A%D1%82_%D0%B2_%D0%BE%D0%B1%D1%89%D0%B8%D0%BD%D0%B0_%D0%9B%D0%B5%D0%B2%D1%81%D0%BA%D0%B8.htm",
       "destination": "/projects/transport-infrastructure/levski-municipal-road-reconstruction",
       "permanent": true
     },
@@ -1141,7 +1141,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-131-“Реконструкция_на_уличен_водопровод_и_улична_мрежа\".htm",
+      "source": "/bg/6-131-%E2%80%9C%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D1%83%D0%BB%D0%B8%D1%87%D0%B5%D0%BD_%D0%B2%D0%BE%D0%B4%D0%BE%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4_%D0%B8_%D1%83%D0%BB%D0%B8%D1%87%D0%BD%D0%B0_%D0%BC%D1%80%D0%B5%D0%B6%D0%B0%22.htm",
       "destination": "/projects/water-supply-sewerage/reconstruction-street-water-supply-network",
       "permanent": true
     },
@@ -1151,7 +1151,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-132-Облагородяване_на_поречието_на_река_Беленска,_Област_Русе.htm",
+      "source": "/bg/6-132-%D0%9E%D0%B1%D0%BB%D0%B0%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%D1%8F%D0%B2%D0%B0%D0%BD%D0%B5_%D0%BD%D0%B0_%D0%BF%D0%BE%D1%80%D0%B5%D1%87%D0%B8%D0%B5%D1%82%D0%BE_%D0%BD%D0%B0_%D1%80%D0%B5%D0%BA%D0%B0_%D0%91%D0%B5%D0%BB%D0%B5%D0%BD%D1%81%D0%BA%D0%B0,_%D0%9E%D0%B1%D0%BB%D0%B0%D1%81%D1%82_%D0%A0%D1%83%D1%81%D0%B5.htm",
       "destination": "/projects/engineering-reinforcement-activities-and-waste-treatment-installations/riverbed-improvement-of-belenska-river-ruse-region-266739",
       "permanent": true
     },
@@ -1161,7 +1161,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-133-Изграждане_на_покрит_общински_пазар_в_гр._Раднево.htm",
+      "source": "/bg/6-133-%D0%98%D0%B7%D0%B3%D1%80%D0%B0%D0%B6%D0%B4%D0%B0%D0%BD%D0%B5_%D0%BD%D0%B0_%D0%BF%D0%BE%D0%BA%D1%80%D0%B8%D1%82_%D0%BE%D0%B1%D1%89%D0%B8%D0%BD%D1%81%D0%BA%D0%B8_%D0%BF%D0%B0%D0%B7%D0%B0%D1%80_%D0%B2_%D0%B3%D1%80._%D0%A0%D0%B0%D0%B4%D0%BD%D0%B5%D0%B2%D0%BE.htm",
       "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/radnevo-covered-municipal-market",
       "permanent": true
     },
@@ -1171,7 +1171,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-135-Реконструкция_на_улични_водопровод_и_канализация.htm",
+      "source": "/bg/6-135-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D1%83%D0%BB%D0%B8%D1%87%D0%BD%D0%B8_%D0%B2%D0%BE%D0%B4%D0%BE%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4_%D0%B8_%D0%BA%D0%B0%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F.htm",
       "destination": "/projects/water-supply-sewerage/reconstruction-street-water-sewerage",
       "permanent": true
     },
@@ -1181,7 +1181,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-136-Реконструкция_на_общински_път,общ.Трявна-Етап_I.htm",
+      "source": "/bg/6-136-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D0%BE%D0%B1%D1%89%D0%B8%D0%BD%D1%81%D0%BA%D0%B8_%D0%BF%D1%8A%D1%82,%D0%BE%D0%B1%D1%89.%D0%A2%D1%80%D1%8F%D0%B2%D0%BD%D0%B0-%D0%95%D1%82%D0%B0%D0%BF_I.htm",
       "destination": "/projects/transport-infrastructure/reconstruction-municipal-road-tryavna-stage-i",
       "permanent": true
     },
@@ -1191,7 +1191,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-139-Изпълнение_на_инженеринг_на_улици_в_Община_Кнежа.htm",
+      "source": "/bg/6-139-%D0%98%D0%B7%D0%BF%D1%8A%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5_%D0%BD%D0%B0_%D0%B8%D0%BD%D0%B6%D0%B5%D0%BD%D0%B5%D1%80%D0%B8%D0%BD%D0%B3_%D0%BD%D0%B0_%D1%83%D0%BB%D0%B8%D1%86%D0%B8_%D0%B2_%D0%9E%D0%B1%D1%89%D0%B8%D0%BD%D0%B0_%D0%9A%D0%BD%D0%B5%D0%B6%D0%B0.htm",
       "destination": "/projects/transport-infrastructure/reconstruction-streets-knezha",
       "permanent": true
     },
@@ -1201,7 +1201,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-140-Изграждане_на_нова_геотермална_инсталация_в_гр._Ямбол.htm",
+      "source": "/bg/6-140-%D0%98%D0%B7%D0%B3%D1%80%D0%B0%D0%B6%D0%B4%D0%B0%D0%BD%D0%B5_%D0%BD%D0%B0_%D0%BD%D0%BE%D0%B2%D0%B0_%D0%B3%D0%B5%D0%BE%D1%82%D0%B5%D1%80%D0%BC%D0%B0%D0%BB%D0%BD%D0%B0_%D0%B8%D0%BD%D1%81%D1%82%D0%B0%D0%BB%D0%B0%D1%86%D0%B8%D1%8F_%D0%B2_%D0%B3%D1%80._%D0%AF%D0%BC%D0%B1%D0%BE%D0%BB.htm",
       "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/construction-of-new-geothermal-installation-113117",
       "permanent": true
     },
@@ -1211,7 +1211,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-141-Реконструкция_на_улици_в_град_Костенец.htm",
+      "source": "/bg/6-141-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D1%83%D0%BB%D0%B8%D1%86%D0%B8_%D0%B2_%D0%B3%D1%80%D0%B0%D0%B4_%D0%9A%D0%BE%D1%81%D1%82%D0%B5%D0%BD%D0%B5%D1%86.htm",
       "destination": "/projects/transport-infrastructure/reconstruction-streets-kostenets",
       "permanent": true
     },
@@ -1221,7 +1221,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-142-Изграждане_на_нова_геотермална_инсталация_в_гр._Велинград.htm",
+      "source": "/bg/6-142-%D0%98%D0%B7%D0%B3%D1%80%D0%B0%D0%B6%D0%B4%D0%B0%D0%BD%D0%B5_%D0%BD%D0%B0_%D0%BD%D0%BE%D0%B2%D0%B0_%D0%B3%D0%B5%D0%BE%D1%82%D0%B5%D1%80%D0%BC%D0%B0%D0%BB%D0%BD%D0%B0_%D0%B8%D0%BD%D1%81%D1%82%D0%B0%D0%BB%D0%B0%D1%86%D0%B8%D1%8F_%D0%B2_%D0%B3%D1%80._%D0%92%D0%B5%D0%BB%D0%B8%D0%BD%D0%B3%D1%80%D0%B0%D0%B4.htm",
       "destination": "/projects/gas-transmission-systems-electrical-and-hvac-installations/construction-of-new-geothermal-installation-618350",
       "permanent": true
     },
@@ -1231,7 +1231,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-144-Реконструкция_на_участъци_от_общински_път_SZR_1156_Етап_I.htm",
+      "source": "/bg/6-144-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D1%83%D1%87%D0%B0%D1%81%D1%82%D1%8A%D1%86%D0%B8_%D0%BE%D1%82_%D0%BE%D0%B1%D1%89%D0%B8%D0%BD%D1%81%D0%BA%D0%B8_%D0%BF%D1%8A%D1%82_SZR_1156_%D0%95%D1%82%D0%B0%D0%BF_I.htm",
       "destination": "/projects/transport-infrastructure/reconstruction-municipal-road-section",
       "permanent": true
     },
@@ -1241,7 +1241,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-146-Реконструкция_на_3_броя_улици.htm",
+      "source": "/bg/6-146-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_3_%D0%B1%D1%80%D0%BE%D1%8F_%D1%83%D0%BB%D0%B8%D1%86%D0%B8.htm",
       "destination": "/projects/transport-infrastructure/reconstruction-streets",
       "permanent": true
     },
@@ -1251,7 +1251,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-147-Реконструкция_на_общински_път_GAB_3118.htm",
+      "source": "/bg/6-147-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D0%BE%D0%B1%D1%89%D0%B8%D0%BD%D1%81%D0%BA%D0%B8_%D0%BF%D1%8A%D1%82_GAB_3118.htm",
       "destination": "/projects/transport-infrastructure/gab-3118-municipal-road-reconstruction",
       "permanent": true
     },
@@ -1261,7 +1261,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-149-Реконструкция_на_участъци_от_общински_път_SZR_1156_–_Етап_II.htm",
+      "source": "/bg/6-149-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D1%83%D1%87%D0%B0%D1%81%D1%82%D1%8A%D1%86%D0%B8_%D0%BE%D1%82_%D0%BE%D0%B1%D1%89%D0%B8%D0%BD%D1%81%D0%BA%D0%B8_%D0%BF%D1%8A%D1%82_SZR_1156_%E2%80%93_%D0%95%D1%82%D0%B0%D0%BF_II.htm",
       "destination": "/projects/transport-infrastructure/municipal-road-sections-reconstruction",
       "permanent": true
     },
@@ -1271,7 +1271,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-150-Реконструкция_на_общински_път_PVN3090_/Лазарово/.htm",
+      "source": "/bg/6-150-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D0%BE%D0%B1%D1%89%D0%B8%D0%BD%D1%81%D0%BA%D0%B8_%D0%BF%D1%8A%D1%82_PVN3090_/%D0%9B%D0%B0%D0%B7%D0%B0%D1%80%D0%BE%D0%B2%D0%BE/.htm",
       "destination": "/projects/transport-infrastructure/reconstruction-municipal-road-pvn3090-lazarovo",
       "permanent": true
     },
@@ -1281,7 +1281,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-151-Реконструкция_на_общински_път_PVN3093_в_община_Кнежа.htm",
+      "source": "/bg/6-151-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D0%BE%D0%B1%D1%89%D0%B8%D0%BD%D1%81%D0%BA%D0%B8_%D0%BF%D1%8A%D1%82_PVN3093_%D0%B2_%D0%BE%D0%B1%D1%89%D0%B8%D0%BD%D0%B0_%D0%9A%D0%BD%D0%B5%D0%B6%D0%B0.htm",
       "destination": "/projects/transport-infrastructure/reconstruction-municipal-road-pvn3093-knezha",
       "permanent": true
     },
@@ -1291,7 +1291,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-152-Реконструкция_на_общински_път,общ.Трявна-Етап_II.htm",
+      "source": "/bg/6-152-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D0%BE%D0%B1%D1%89%D0%B8%D0%BD%D1%81%D0%BA%D0%B8_%D0%BF%D1%8A%D1%82,%D0%BE%D0%B1%D1%89.%D0%A2%D1%80%D1%8F%D0%B2%D0%BD%D0%B0-%D0%95%D1%82%D0%B0%D0%BF_II.htm",
       "destination": "/projects/transport-infrastructure/reconstruction-municipal-road-tryavna-stage-ii",
       "permanent": true
     },
@@ -1301,7 +1301,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-153-Рехабилитация_на_ул._Малчика,_гр._Белене.htm",
+      "source": "/bg/6-153-%D0%A0%D0%B5%D1%85%D0%B0%D0%B1%D0%B8%D0%BB%D0%B8%D1%82%D0%B0%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D1%83%D0%BB._%D0%9C%D0%B0%D0%BB%D1%87%D0%B8%D0%BA%D0%B0,_%D0%B3%D1%80._%D0%91%D0%B5%D0%BB%D0%B5%D0%BD%D0%B5.htm",
       "destination": "/projects/transport-infrastructure/rehabilitation-malchika-street-belene",
       "permanent": true
     },
@@ -1311,7 +1311,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-154-Реконструкция_на_общински_път_в_Община_Твърдица.htm",
+      "source": "/bg/6-154-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D0%BE%D0%B1%D1%89%D0%B8%D0%BD%D1%81%D0%BA%D0%B8_%D0%BF%D1%8A%D1%82_%D0%B2_%D0%9E%D0%B1%D1%89%D0%B8%D0%BD%D0%B0_%D0%A2%D0%B2%D1%8A%D1%80%D0%B4%D0%B8%D1%86%D0%B0.htm",
       "destination": "/projects/transport-infrastructure/tvurditsa-municipal-road-reconstruction",
       "permanent": true
     },
@@ -1321,7 +1321,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-157-Внедряване_на_мерки_за_EE_в_сградата_на_ОУ„Отец_Паисий“.htm",
+      "source": "/bg/6-157-%D0%92%D0%BD%D0%B5%D0%B4%D1%80%D1%8F%D0%B2%D0%B0%D0%BD%D0%B5_%D0%BD%D0%B0_%D0%BC%D0%B5%D1%80%D0%BA%D0%B8_%D0%B7%D0%B0_EE_%D0%B2_%D1%81%D0%B3%D1%80%D0%B0%D0%B4%D0%B0%D1%82%D0%B0_%D0%BD%D0%B0_%D0%9E%D0%A3%E2%80%9E%D0%9E%D1%82%D0%B5%D1%86_%D0%9F%D0%B0%D0%B8%D1%81%D0%B8%D0%B9%E2%80%9C.htm",
       "destination": "/projects/energy-efficiency/ee-measures-father-paisiy-school",
       "permanent": true
     },
@@ -1331,7 +1331,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-158-Реконструкция_на_участък_от_общински_път_GAB2275.htm",
+      "source": "/bg/6-158-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D1%83%D1%87%D0%B0%D1%81%D1%82%D1%8A%D0%BA_%D0%BE%D1%82_%D0%BE%D0%B1%D1%89%D0%B8%D0%BD%D1%81%D0%BA%D0%B8_%D0%BF%D1%8A%D1%82_GAB2275.htm",
       "destination": "/projects/transport-infrastructure/reconstruction-municipal-road-section-2852m",
       "permanent": true
     },
@@ -1341,7 +1341,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-160-Реконструкция_на_улици.htm",
+      "source": "/bg/6-160-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D1%83%D0%BB%D0%B8%D1%86%D0%B8.htm",
       "destination": "/projects/transport-infrastructure/reconstruction-streets-2880",
       "permanent": true
     },
@@ -1351,7 +1351,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-161-Реконструкция_на_общински_пътища.htm",
+      "source": "/bg/6-161-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D0%BE%D0%B1%D1%89%D0%B8%D0%BD%D1%81%D0%BA%D0%B8_%D0%BF%D1%8A%D1%82%D0%B8%D1%89%D0%B0.htm",
       "destination": "/projects/transport-infrastructure/reconstruction-municipal-roads",
       "permanent": true
     },
@@ -1361,7 +1361,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-162-Реконструкция_на_участък_от_общински_път_gab2270.htm",
+      "source": "/bg/6-162-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D1%83%D1%87%D0%B0%D1%81%D1%82%D1%8A%D0%BA_%D0%BE%D1%82_%D0%BE%D0%B1%D1%89%D0%B8%D0%BD%D1%81%D0%BA%D0%B8_%D0%BF%D1%8A%D1%82_gab2270.htm",
       "destination": "/projects/transport-infrastructure/reconstruction-municipal-road-section-gab2270",
       "permanent": true
     },
@@ -1371,7 +1371,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-163-Изграждане_на_клетка_2_на_депо_за_битови_отпадъци.htm",
+      "source": "/bg/6-163-%D0%98%D0%B7%D0%B3%D1%80%D0%B0%D0%B6%D0%B4%D0%B0%D0%BD%D0%B5_%D0%BD%D0%B0_%D0%BA%D0%BB%D0%B5%D1%82%D0%BA%D0%B0_2_%D0%BD%D0%B0_%D0%B4%D0%B5%D0%BF%D0%BE_%D0%B7%D0%B0_%D0%B1%D0%B8%D1%82%D0%BE%D0%B2%D0%B8_%D0%BE%D1%82%D0%BF%D0%B0%D0%B4%D1%8A%D1%86%D0%B8.htm",
       "destination": "/projects/engineering-reinforcement-activities-and-waste-treatment-installations/construction-of-cell-2-of-municipal-waste-landfill-739209",
       "permanent": true
     },
@@ -1381,7 +1381,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-164-Реконструкция_на_улици_в_град_Белоградчик.htm",
+      "source": "/bg/6-164-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D1%83%D0%BB%D0%B8%D1%86%D0%B8_%D0%B2_%D0%B3%D1%80%D0%B0%D0%B4_%D0%91%D0%B5%D0%BB%D0%BE%D0%B3%D1%80%D0%B0%D0%B4%D1%87%D0%B8%D0%BA.htm",
       "destination": "/projects/transport-infrastructure/reconstruction-streets-belogradchik",
       "permanent": true
     },
@@ -1391,7 +1391,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-165-Реконструкция_на_улици_в_град_Никопол.htm",
+      "source": "/bg/6-165-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D1%83%D0%BB%D0%B8%D1%86%D0%B8_%D0%B2_%D0%B3%D1%80%D0%B0%D0%B4_%D0%9D%D0%B8%D0%BA%D0%BE%D0%BF%D0%BE%D0%BB.htm",
       "destination": "/projects/transport-infrastructure/reconstruction-streets-nikopol",
       "permanent": true
     },
@@ -1401,7 +1401,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-166-Реконструкция_на_участъци_от_общински_път.htm",
+      "source": "/bg/6-166-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D1%83%D1%87%D0%B0%D1%81%D1%82%D1%8A%D1%86%D0%B8_%D0%BE%D1%82_%D0%BE%D0%B1%D1%89%D0%B8%D0%BD%D1%81%D0%BA%D0%B8_%D0%BF%D1%8A%D1%82.htm",
       "destination": "/projects/transport-infrastructure/reconstruction-municipal-road-section-gab2275",
       "permanent": true
     },
@@ -1411,7 +1411,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-167-Изграждане_на_общинския_пазар_в_град_Кнежа.htm",
+      "source": "/bg/6-167-%D0%98%D0%B7%D0%B3%D1%80%D0%B0%D0%B6%D0%B4%D0%B0%D0%BD%D0%B5_%D0%BD%D0%B0_%D0%BE%D0%B1%D1%89%D0%B8%D0%BD%D1%81%D0%BA%D0%B8%D1%8F_%D0%BF%D0%B0%D0%B7%D0%B0%D1%80_%D0%B2_%D0%B3%D1%80%D0%B0%D0%B4_%D0%9A%D0%BD%D0%B5%D0%B6%D0%B0.htm",
       "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/kneja-municipal-market",
       "permanent": true
     },
@@ -1421,7 +1421,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-168-Строителство_на_ново_болнично_вертолетно_летище.htm",
+      "source": "/bg/6-168-%D0%A1%D1%82%D1%80%D0%BE%D0%B8%D1%82%D0%B5%D0%BB%D1%81%D1%82%D0%B2%D0%BE_%D0%BD%D0%B0_%D0%BD%D0%BE%D0%B2%D0%BE_%D0%B1%D0%BE%D0%BB%D0%BD%D0%B8%D1%87%D0%BD%D0%BE_%D0%B2%D0%B5%D1%80%D1%82%D0%BE%D0%BB%D0%B5%D1%82%D0%BD%D0%BE_%D0%BB%D0%B5%D1%82%D0%B8%D1%89%D0%B5.htm",
       "destination": "/projects/transport-infrastructure/gabrovo-hospital-helipad",
       "permanent": true
     },
@@ -1431,7 +1431,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-169-Реконструкция_на_улични_водопроводи.htm",
+      "source": "/bg/6-169-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D1%83%D0%BB%D0%B8%D1%87%D0%BD%D0%B8_%D0%B2%D0%BE%D0%B4%D0%BE%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4%D0%B8.htm",
       "destination": "/projects/water-supply-sewerage/reconstruction-street-water-mains",
       "permanent": true
     },
@@ -1441,7 +1441,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-170-Инженеринг_на_улични_водопроводи.htm",
+      "source": "/bg/6-170-%D0%98%D0%BD%D0%B6%D0%B5%D0%BD%D0%B5%D1%80%D0%B8%D0%BD%D0%B3_%D0%BD%D0%B0_%D1%83%D0%BB%D0%B8%D1%87%D0%BD%D0%B8_%D0%B2%D0%BE%D0%B4%D0%BE%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4%D0%B8.htm",
       "destination": "/projects/water-supply-sewerage/engineering-street-water-mains",
       "permanent": true
     },
@@ -1451,7 +1451,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-171-Реконструкция_на_участък_от_общински_път.htm",
+      "source": "/bg/6-171-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D1%83%D1%87%D0%B0%D1%81%D1%82%D1%8A%D0%BA_%D0%BE%D1%82_%D0%BE%D0%B1%D1%89%D0%B8%D0%BD%D1%81%D0%BA%D0%B8_%D0%BF%D1%8A%D1%82.htm",
       "destination": "/projects/transport-infrastructure/reconstruction-municipal-road-section-vid1004",
       "permanent": true
     },
@@ -1461,7 +1461,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-172-Внедряване_на_ЕСП_и_ВЕИ_в_ОУ_\"Максим_Горки\".htm",
+      "source": "/bg/6-172-%D0%92%D0%BD%D0%B5%D0%B4%D1%80%D1%8F%D0%B2%D0%B0%D0%BD%D0%B5_%D0%BD%D0%B0_%D0%95%D0%A1%D0%9F_%D0%B8_%D0%92%D0%95%D0%98_%D0%B2_%D0%9E%D0%A3_%22%D0%9C%D0%B0%D0%BA%D1%81%D0%B8%D0%BC_%D0%93%D0%BE%D1%80%D0%BA%D0%B8%22.htm",
       "destination": "/projects/energy-efficiency/ee-res-maxim-gorky-school",
       "permanent": true
     },
@@ -1471,7 +1471,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-175-Многофамилна_жилищна_сграда.htm",
+      "source": "/bg/6-175-%D0%9C%D0%BD%D0%BE%D0%B3%D0%BE%D1%84%D0%B0%D0%BC%D0%B8%D0%BB%D0%BD%D0%B0_%D0%B6%D0%B8%D0%BB%D0%B8%D1%89%D0%BD%D0%B0_%D1%81%D0%B3%D1%80%D0%B0%D0%B4%D0%B0.htm",
       "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/multi-family-residential-building",
       "permanent": true
     },
@@ -1481,7 +1481,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-21-Ремонт_на_сграден_фонд.htm",
+      "source": "/bg/6-21-%D0%A0%D0%B5%D0%BC%D0%BE%D0%BD%D1%82_%D0%BD%D0%B0_%D1%81%D0%B3%D1%80%D0%B0%D0%B4%D0%B5%D0%BD_%D1%84%D0%BE%D0%BD%D0%B4.htm",
       "destination": "/projects/buildings-and-facilities-for-public-and-residential-use/renovation-diplomatic-properties",
       "permanent": true
     },
@@ -1491,7 +1491,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-32-Изграждане_на_метално_хале.htm",
+      "source": "/bg/6-32-%D0%98%D0%B7%D0%B3%D1%80%D0%B0%D0%B6%D0%B4%D0%B0%D0%BD%D0%B5_%D0%BD%D0%B0_%D0%BC%D0%B5%D1%82%D0%B0%D0%BB%D0%BD%D0%BE_%D1%85%D0%B0%D0%BB%D0%B5.htm",
       "destination": "/projects/steel-and-reinforced-concrete-structures-and-facilities/steel-hall-construction-private",
       "permanent": true
     },
@@ -1501,7 +1501,7 @@
       "permanent": true
     },
     {
-      "source": "/bg/6-173-Реконструкция_на_участък_от_Общински_път_vid_1004.htm",
+      "source": "/bg/6-173-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BD%D0%B0_%D1%83%D1%87%D0%B0%D1%81%D1%82%D1%8A%D0%BA_%D0%BE%D1%82_%D0%9E%D0%B1%D1%89%D0%B8%D0%BD%D1%81%D0%BA%D0%B8_%D0%BF%D1%8A%D1%82_vid_1004.htm",
       "destination": "/projects/transport-infrastructure/reconstruction-municipal-road-section-vid1004",
       "permanent": true
     },
