@@ -4,11 +4,6 @@ import { prisma } from "@repo/database/client";
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://technostroy.bg";
 
-  // Fetch all published projects for dynamic URLs
-  const projects = await prisma.project.findMany({
-    select: { slug: true, updatedAt: true },
-  });
-
   // Static pages
   const staticPages: MetadataRoute.Sitemap = [
     {
@@ -49,9 +44,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  // Dynamic project pages
-  const projectPages: MetadataRoute.Sitemap = projects.map((project) => ({
-    url: `${baseUrl}/projects/${project.slug}`,
+  // Dynamic project pages - now need to fetch with category info
+  const projectsWithCategory = await prisma.project.findMany({
+    select: {
+      slug: true,
+      updatedAt: true,
+      category: { select: { slug: true } }
+    },
+    where: { published: true }
+  });
+
+  const projectPages: MetadataRoute.Sitemap = projectsWithCategory.map((project) => ({
+    url: `${baseUrl}/projects/${project.category.slug}/${project.slug}`,
     lastModified: project.updatedAt,
     changeFrequency: "monthly" as const,
     priority: 0.6,

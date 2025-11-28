@@ -40,9 +40,20 @@ export async function generateMetadata({
   // Build Cloudinary URL for hero image
   const heroImageUrl = `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/${foundProject.heroImageUrl}`;
 
+  // Keywords for SEO
+  const keywords = [
+    foundProject.titleBg,
+    foundProject.category.titleBg,
+    foundProject.locationBg,
+    "строителство",
+    "проект",
+    "България",
+  ].filter((k): k is string => k !== null);
+
   return {
     title,
     description,
+    keywords: keywords.length > 0 ? keywords : undefined,
     openGraph: {
       title: `${title} | Техно Строй България`,
       description,
