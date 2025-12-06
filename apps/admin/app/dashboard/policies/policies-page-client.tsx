@@ -51,7 +51,7 @@ export function PoliciesPageClient({
     }
 
     const reader = new FileReader();
-    reader.onload = (event) => {
+    reader.onload = () => {
       setSelectedFiles((prev) => {
         const filtered = prev.filter((f) => f.language !== language);
         return [
