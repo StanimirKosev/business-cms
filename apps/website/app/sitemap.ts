@@ -1,6 +1,9 @@
 import { MetadataRoute } from "next";
 import { prisma } from "@repo/database/client";
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 3600; // Revalidate every hour
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://technostroy.bg";
 
@@ -44,22 +47,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  // Dynamic project pages - now need to fetch with category info
-  const projectsWithCategory = await prisma.project.findMany({
-    select: {
-      slug: true,
-      updatedAt: true,
-      category: { select: { slug: true } }
-    },
-    where: { published: true }
-  });
+  try {
+    // Dynamic project pages - now need to fetch with category info
+    const projectsWithCategory = await prisma.project.findMany({
+      select: {
+        slug: true,
+        updatedAt: true,
+        category: { select: { slug: true } }
+      },
+      where: { published: true }
+    });
 
-  const projectPages: MetadataRoute.Sitemap = projectsWithCategory.map((project) => ({
-    url: `${baseUrl}/projects/${project.category.slug}/${project.slug}`,
-    lastModified: project.updatedAt,
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
-  }));
+    const projectPages: MetadataRoute.Sitemap = projectsWithCategory.map((project) => ({
+      url: `${baseUrl}/projects/${project.category.slug}/${project.slug}`,
+      lastModified: project.updatedAt,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    }));
 
-  return [...staticPages, ...projectPages];
+    return [...staticPages, ...projectPages];
+  } catch (error) {
+    console.error("[SITEMAP] Database connection failed during build, returning static pages only:", error);
+    // Return static pages only if database is unavailable during build
+    return staticPages;
+  }
 }
