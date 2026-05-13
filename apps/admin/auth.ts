@@ -6,6 +6,7 @@ import { prisma } from "@repo/database/client";
 import { compare } from "bcryptjs";
 
 export const authConfig = {
+  secret: process.env.NEXTAUTH_SECRET,
   providers: [
     CredentialsProvider({
       name: "Credentials",

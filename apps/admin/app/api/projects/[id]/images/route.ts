@@ -126,8 +126,8 @@ export async function PATCH(
 
     // Update order for all images
     const updatePromises = images.map((image: { id: string; order: number }) =>
-      prisma.projectImage.update({
-        where: { id: image.id },
+      prisma.projectImage.updateMany({
+        where: { id: image.id, projectId: id },
         data: { order: image.order },
       })
     );

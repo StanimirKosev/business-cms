@@ -10,5 +10,5 @@ export function getCloudinaryUrl(
   publicId: string | null | undefined
 ): string | null {
   if (!publicId || publicId.trim() === "") return null;
-  return `${CLOUDINARY_BASE_URL}/${publicId}`;
+  return `${CLOUDINARY_BASE_URL}/q_auto,f_auto/${publicId}`;
 }

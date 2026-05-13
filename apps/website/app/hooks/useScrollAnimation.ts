@@ -11,9 +11,9 @@ import { useEffect, useRef, useState } from "react";
  * const { ref, isVisible } = useScrollAnimation(0.5);
  * return <section ref={ref} className={isVisible ? "animate-in" : ""}> ... </section>
  */
-export function useScrollAnimation(threshold: number = 0.5) {
+export function useScrollAnimation<T extends HTMLElement = HTMLElement>(threshold: number = 0.5) {
   const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<T>(null);
 
   useEffect(() => {
     const currentElement = ref.current;
@@ -25,7 +25,10 @@ export function useScrollAnimation(threshold: number = 0.5) {
     );
 
     observer.observe(currentElement);
-    return () => observer.unobserve(currentElement);
+    return () => {
+      observer.unobserve(currentElement);
+      observer.disconnect();
+    };
   }, [threshold]);
 
   return { ref, isVisible };

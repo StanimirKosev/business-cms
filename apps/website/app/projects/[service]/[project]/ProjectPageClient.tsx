@@ -197,7 +197,7 @@ export function ProjectPageClient({
                         title={localized.title}
                         description={localized.description}
                         image={relatedImageUrl}
-                        slug={`/projects/${project.category.slug}/${relatedProject.slug}`}
+                        slug={`/projects/${relatedProject.category.slug}/${relatedProject.slug}`}
                         location={localized.location}
                         variant="compact"
                       />

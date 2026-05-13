@@ -21,15 +21,16 @@ const Header = () => {
   const shouldTrackScroll = isHomePage || isProjectPage;
 
   useEffect(() => {
-    if (!shouldTrackScroll) return;
+    const rafId = requestAnimationFrame(() => setIsScrolled(false));
+    if (!shouldTrackScroll) return () => cancelAnimationFrame(rafId);
 
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [shouldTrackScroll]);
+    return () => {
+      cancelAnimationFrame(rafId);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [shouldTrackScroll, pathname]);
 
   // Use compact version for all routes except homepage/project pages at top
   const isCompact = (!isHomePage && !isProjectPage) || isScrolled;
@@ -50,6 +51,12 @@ const Header = () => {
         {/* Logo with responsive sizing */}
         <Link
           href="/"
+          onClick={(e) => {
+            if (pathname === "/") {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+          }}
           className={`relative block transition-all duration-[400ms] ease-in-out origin-left ${
             isCompact
               ? "w-[160px] h-[41px] md:w-[180px] md:h-[46px]"

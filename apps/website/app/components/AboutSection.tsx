@@ -9,8 +9,8 @@ import { getCloudinaryUrl } from "@/lib/cloudinary";
 const AboutSection = () => {
   const { ref: sectionRef, isVisible } = useScrollAnimation(0.5);
   const { t } = useLanguage();
-  const [projectCount, setProjectCount] = useState(0);
-  const [clientCount, setClientCount] = useState(0);
+  const [projectCount, setProjectCount] = useState(300);
+  const [clientCount, setClientCount] = useState(50);
 
   useEffect(() => {
     if (!isVisible) return;

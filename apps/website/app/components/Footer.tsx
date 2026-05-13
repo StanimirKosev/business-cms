@@ -37,7 +37,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-[var(--color-white)]/20 pt-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-sm opacity-90">
-          <p>{t.footer.copyright}</p>
+          <p>{t.footer.copyright.replace("{year}", new Date().getFullYear().toString())}</p>
           <div className="flex gap-4">
             <Link
               href="/privacy"

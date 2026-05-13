@@ -7,10 +7,22 @@ const CONTACT_EMAIL_FROM = process.env.CONTACT_EMAIL_FROM!;
 
 const resend = new Resend(RESEND_API_KEY);
 
+function esc(str: string) {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
 export async function sendContactEmail(
   data: Omit<ContactFormValues, "website">
 ) {
   const { name, email, phone, message } = data;
+  const safeName = esc(name);
+  const safeEmail = esc(email);
+  const safePhone = esc(phone);
+  const safeMessage = esc(message);
 
   try {
     const emailHtml = `
@@ -55,7 +67,7 @@ export async function sendContactEmail(
                       </tr>
                       <tr>
                         <td style="color: #212121; font-size: 17px; font-weight: 600; line-height: 1.5;">
-                          ${name}
+                          ${safeName}
                         </td>
                       </tr>
                     </table>
@@ -73,7 +85,7 @@ export async function sendContactEmail(
                       </tr>
                       <tr>
                         <td style="color: #212121; font-size: 17px; font-weight: 600; line-height: 1.5;">
-                          ${email}
+                          ${safeEmail}
                         </td>
                       </tr>
                     </table>
@@ -91,7 +103,7 @@ export async function sendContactEmail(
                       </tr>
                       <tr>
                         <td style="color: #212121; font-size: 17px; font-weight: 600; line-height: 1.5;">
-                          ${phone}
+                          ${safePhone}
                         </td>
                       </tr>
                     </table>
@@ -109,7 +121,7 @@ export async function sendContactEmail(
                       </tr>
                       <tr>
                         <td style="padding: 20px; background-color: #f0f0f0; border-radius: 4px;">
-                          <p style="color: #212121; font-size: 15px; line-height: 1.7; margin: 0; white-space: pre-wrap;">${message}</p>
+                          <p style="color: #212121; font-size: 15px; line-height: 1.7; margin: 0; white-space: pre-wrap;">${safeMessage}</p>
                         </td>
                       </tr>
                     </table>
@@ -150,7 +162,7 @@ export async function sendContactEmail(
     const result = await resend.emails.send({
       from: CONTACT_EMAIL_FROM,
       to: CONTACT_EMAIL_TO,
-      subject: `Ново запитване от ${name}`,
+      subject: `Ново запитване от ${safeName}`,
       html: emailHtml,
       replyTo: email,
     });

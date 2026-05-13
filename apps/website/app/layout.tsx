@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
-import "./globals.css";
+import "@/app/globals.css";
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import { Toaster } from "sonner";
@@ -20,8 +20,26 @@ const manrope = Manrope({
   display: "swap", // Show fallback font while loading
 });
 
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Техно Строй България ООД",
+  url: "https://technostroy.bg",
+  email: "office@technostroy.bg",
+  telephone: "+35995327090",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "бул. Витоша № 188",
+    addressLocality: "София",
+    addressCountry: "BG",
+  },
+  description:
+    "Строителна фирма с над 15 години опит — строителство, реконструкция, рехабилитация и модернизация на сгради и инфраструктура в България.",
+};
+
 // SEO Metadata
 export const metadata: Metadata = {
+  metadataBase: new URL("https://technostroy.bg"),
   title: {
     default:
       "Строителна фирма Техно Строй България ООД - строителство, реконструкция, рехабилитация и модернизация",
@@ -48,6 +66,7 @@ export const metadata: Metadata = {
     alternateLocale: "en_US",
     url: "https://technostroy.bg",
     siteName: "Техно Строй България",
+    images: [{ url: "/root.jpg", width: 1120, height: 630, alt: "Техно Строй България" }],
     title:
       "Строителна фирма Техно Строй България ООД - строителство, реконструкция, рехабилитация и модернизация",
     description:
@@ -64,6 +83,10 @@ export default function RootLayout({
     <LanguageProvider>
       <HtmlWrapper>
         <body className={`${manrope.variable} antialiased`}>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+          />
           <ScrollToTop />
           <Header />
           {children}

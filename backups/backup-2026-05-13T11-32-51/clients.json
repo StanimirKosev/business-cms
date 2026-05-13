@@ -1,0 +1,512 @@
+[
+  {
+    "id": "cmhaotxpg0000gzds1qrmaqv5",
+    "nameBg": "ДП Национална компания железопътна инфраструктура",
+    "nameEn": "National Railway Infrastructure Company",
+    "logoUrl": "dp_nkji_q2xz2r",
+    "website": "https://www.rail-infra.bg/",
+    "order": 0,
+    "createdAt": "2025-10-28T14:54:39.076Z",
+    "updatedAt": "2025-10-28T15:29:48.427Z"
+  },
+  {
+    "id": "cmhaotxxa0003gzdsrsj6hkx8",
+    "nameBg": "Министерство на икономиката, енергетиката и туризма",
+    "nameEn": "Ministry of Economy, Energy and Tourism",
+    "logoUrl": "bg_gztgj7",
+    "website": "https://www.mi.government.bg/",
+    "order": 3,
+    "createdAt": "2025-10-28T14:54:39.358Z",
+    "updatedAt": "2025-10-28T16:46:42.046Z"
+  },
+  {
+    "id": "cmhaotzcp000qgzdspy88sxno",
+    "nameBg": "Община Белово",
+    "nameEn": "Belovo Municipality",
+    "logoUrl": "belovo_hdwcew",
+    "website": "https://belovo.bg/",
+    "order": 26,
+    "createdAt": "2025-10-28T14:54:41.209Z",
+    "updatedAt": "2025-11-01T08:01:04.029Z"
+  },
+  {
+    "id": "cmhaotxv40002gzdsebgqby6y",
+    "nameBg": "Министерски съвет",
+    "nameEn": "Council of Ministers",
+    "logoUrl": "bg_gztgj7",
+    "website": "https://www.gov.bg/",
+    "order": 2,
+    "createdAt": "2025-10-28T14:54:39.281Z",
+    "updatedAt": "2025-10-28T16:35:16.819Z"
+  },
+  {
+    "id": "cmhaotxzj0004gzdsxyavwuyq",
+    "nameBg": "Министерство на образованието",
+    "nameEn": "Ministry of Education",
+    "logoUrl": "bg_gztgj7",
+    "website": "https://web.mon.bg/mon/",
+    "order": 4,
+    "createdAt": "2025-10-28T14:54:39.440Z",
+    "updatedAt": "2025-10-28T16:48:02.240Z"
+  },
+  {
+    "id": "cmhaoty1r0005gzdsvl3gsrzo",
+    "nameBg": "Министерство на отбраната",
+    "nameEn": "Ministry of Defense",
+    "logoUrl": "bg_gztgj7",
+    "website": "https://www.mod.bg/",
+    "order": 5,
+    "createdAt": "2025-10-28T14:54:39.519Z",
+    "updatedAt": "2025-10-28T16:48:02.240Z"
+  },
+  {
+    "id": "cmhaoty3z0006gzds5g6ep0u5",
+    "nameBg": "Министерство на вътрешните работи",
+    "nameEn": "Ministry of Interior",
+    "logoUrl": "bg_gztgj7",
+    "website": "https://www.mvr.bg/",
+    "order": 6,
+    "createdAt": "2025-10-28T14:54:39.599Z",
+    "updatedAt": "2025-10-28T16:48:02.240Z"
+  },
+  {
+    "id": "cmhaoty8v0008gzdstgrxy8iz",
+    "nameBg": "Пристанище Варна ЕАД",
+    "nameEn": "Port of Varna EAD",
+    "logoUrl": "74df00facc04faac7c3266d42f623a3e_kotva_logo01_ptjhoe",
+    "website": "https://www.port-varna.bg/",
+    "order": 8,
+    "createdAt": "2025-10-28T14:54:39.775Z",
+    "updatedAt": "2025-10-28T16:57:47.271Z"
+  },
+  {
+    "id": "cmhaoty660007gzdssila94vn",
+    "nameBg": "Мини Марица Изток ЕАД",
+    "nameEn": "Mini Maritsa East EAD",
+    "logoUrl": "mini_marica_wg1col",
+    "website": "https://www.marica-iztok.com/",
+    "order": 7,
+    "createdAt": "2025-10-28T14:54:39.679Z",
+    "updatedAt": "2025-10-28T16:49:21.507Z"
+  },
+  {
+    "id": "cmhaotyb90009gzdso8lmj4yd",
+    "nameBg": "Агенция за дипломатически имоти в страната",
+    "nameEn": "Agency for Diplomatic Properties in the Country",
+    "logoUrl": "logo_fcj7rc",
+    "website": "https://www.adis.bg/",
+    "order": 9,
+    "createdAt": "2025-10-28T14:54:39.861Z",
+    "updatedAt": "2025-10-28T17:08:19.362Z"
+  },
+  {
+    "id": "cmhaotydi000agzds6wzksm0a",
+    "nameBg": "ТЕЦ Марица изток 2 ЕАД",
+    "nameEn": "TPP Maritsa East 2 EAD",
+    "logoUrl": "marica_iztor-removebg-preview_vznl3r",
+    "website": "https://www.tpp2.com/",
+    "order": 10,
+    "createdAt": "2025-10-28T14:54:39.942Z",
+    "updatedAt": "2025-10-28T17:19:32.018Z"
+  },
+  {
+    "id": "cmhaotyjz000dgzdswtm4y5bk",
+    "nameBg": "Община София",
+    "nameEn": "Sofia Municipality",
+    "logoUrl": "sofia-removebg-preview_leta41",
+    "website": "https://www.sofia.bg/",
+    "order": 13,
+    "createdAt": "2025-10-28T14:54:40.175Z",
+    "updatedAt": "2025-10-28T17:45:24.768Z"
+  },
+  {
+    "id": "cmhaotyfp000bgzdsuq9rd0xm",
+    "nameBg": "Булгартрансгаз ЕАД",
+    "nameEn": "Bulgartransgaz EAD",
+    "logoUrl": "bulstradgaz_u6sxfx",
+    "website": "https://bulgartransgaz.bg/",
+    "order": 11,
+    "createdAt": "2025-10-28T14:54:40.021Z",
+    "updatedAt": "2025-10-28T17:40:58.678Z"
+  },
+  {
+    "id": "cmhaotyqh000ggzdsvsalwdqx",
+    "nameBg": "Община Бяла",
+    "nameEn": "Byala Municipality",
+    "logoUrl": "byala_hmlcya",
+    "website": "https://byala.bg/",
+    "order": 16,
+    "createdAt": "2025-10-28T14:54:40.409Z",
+    "updatedAt": "2025-10-28T19:15:29.504Z"
+  },
+  {
+    "id": "cmhaotysr000hgzdsztu01ijf",
+    "nameBg": "Община Раднево",
+    "nameEn": "Radnevo Municipality",
+    "logoUrl": "radnevo_ipxvr7",
+    "website": "https://radnevo.bg/",
+    "order": 17,
+    "createdAt": "2025-10-28T14:54:40.491Z",
+    "updatedAt": "2025-10-28T19:18:11.096Z"
+  },
+  {
+    "id": "cmhaotyxd000jgzdsogpioc26",
+    "nameBg": "Община Никопол",
+    "nameEn": "Nikopol Municipality",
+    "logoUrl": "nikopolgerb_dcgbsq",
+    "website": "https://www.nikopol-bg.com/",
+    "order": 19,
+    "createdAt": "2025-10-28T14:54:40.658Z",
+    "updatedAt": "2025-10-28T19:22:45.751Z"
+  },
+  {
+    "id": "cmhaotyv5000igzdsx51jz4uc",
+    "nameBg": "Община Средец",
+    "nameEn": "Sredets Municipality",
+    "logoUrl": "Logo_sredec_white_text_fwvqyt",
+    "website": "https://sredets.bg/",
+    "order": 18,
+    "createdAt": "2025-10-28T14:54:40.578Z",
+    "updatedAt": "2025-10-28T19:20:44.131Z"
+  },
+  {
+    "id": "cmhaotyzk000kgzdsdlgvq8em",
+    "nameBg": "Община Бургас",
+    "nameEn": "Burgas Municipality",
+    "logoUrl": "Burgas-coat-of-arms.svg_zneqgb",
+    "website": "https://www.burgas.bg/bg/",
+    "order": 20,
+    "createdAt": "2025-10-28T14:54:40.737Z",
+    "updatedAt": "2025-10-28T19:23:56.051Z"
+  },
+  {
+    "id": "cmhaou0sk001dgzdshhbtc1e2",
+    "nameBg": "Частен инвеститор",
+    "nameEn": "Private Investor",
+    "logoUrl": "",
+    "website": "",
+    "order": 49,
+    "createdAt": "2025-10-28T14:54:43.076Z",
+    "updatedAt": "2025-11-07T09:36:21.869Z"
+  },
+  {
+    "id": "cmhaotz3w000mgzdsm1kx7gzc",
+    "nameBg": "Община Стара Загора",
+    "nameEn": "Stara Zagora Municipality",
+    "logoUrl": "Stara-Zagora-coat-of-arms.svg_vceddp",
+    "website": "https://www.starazagora.bg/bg/",
+    "order": 22,
+    "createdAt": "2025-10-28T14:54:40.893Z",
+    "updatedAt": "2025-10-28T19:28:01.277Z"
+  },
+  {
+    "id": "cmhaotz8b000ogzds9r382x65",
+    "nameBg": "Община Шумен",
+    "nameEn": "Shumen Municipality",
+    "logoUrl": "Emblem_of_Shumen.svg_btaehp",
+    "website": "https://www.shumen.bg/",
+    "order": 24,
+    "createdAt": "2025-10-28T14:54:41.049Z",
+    "updatedAt": "2025-10-28T19:35:25.243Z"
+  },
+  {
+    "id": "cmhaotzag000pgzdsvy2ghk2z",
+    "nameBg": "Община Плевен",
+    "nameEn": "Pleven Municipality",
+    "logoUrl": "Pleven-coat-of-arms.svg_apcoul",
+    "website": "https://www.pleven.bg/bg/",
+    "order": 25,
+    "createdAt": "2025-10-28T14:54:41.129Z",
+    "updatedAt": "2025-10-28T19:37:48.458Z"
+  },
+  {
+    "id": "cmhaotz1q000lgzdso5bdz32h",
+    "nameBg": "Община Хасково",
+    "nameEn": "Haskovo Municipality",
+    "logoUrl": "Coat_of_arm_haskovo-removebg-preview_s3upml",
+    "website": "https://www.haskovo.bg/bg/",
+    "order": 21,
+    "createdAt": "2025-10-28T14:54:40.814Z",
+    "updatedAt": "2025-11-01T08:09:58.052Z"
+  },
+  {
+    "id": "cmhaotzgw000sgzds4bz8vzpy",
+    "nameBg": "Община Сандански",
+    "nameEn": "Sandanski Municipality",
+    "logoUrl": "120px-Sandanski_Coat_of_arms-removebg-preview_hidwfa",
+    "website": "https://sandanski.bg/",
+    "order": 28,
+    "createdAt": "2025-10-28T14:54:41.360Z",
+    "updatedAt": "2025-10-28T19:44:36.202Z"
+  },
+  {
+    "id": "cmhaotzl5000ugzdso30i42up",
+    "nameBg": "Община Борово",
+    "nameEn": "Borovo Municipality",
+    "logoUrl": "borovo-removebg-preview_hqnobe",
+    "website": "https://www.borovo.org/",
+    "order": 30,
+    "createdAt": "2025-10-28T14:54:41.514Z",
+    "updatedAt": "2025-10-28T19:54:17.889Z"
+  },
+  {
+    "id": "cmhaotznd000vgzds706yb5s6",
+    "nameBg": "Община Дряново",
+    "nameEn": "Dryanovo Municipality",
+    "logoUrl": "drqnovo-removebg-preview_rq2od4",
+    "website": "https://www.dryanovo.bg/",
+    "order": 31,
+    "createdAt": "2025-10-28T14:54:41.594Z",
+    "updatedAt": "2025-10-28T19:58:20.238Z"
+  },
+  {
+    "id": "cmhaotzs3000xgzds0duoq12z",
+    "nameBg": "Община Баните",
+    "nameEn": "Banite Municipality",
+    "logoUrl": "banite-removebg-preview_r6dd3x",
+    "website": "https://banite.egov.bg/wps/portal/banite/contacts",
+    "order": 33,
+    "createdAt": "2025-10-28T14:54:41.764Z",
+    "updatedAt": "2025-10-28T20:04:02.247Z"
+  },
+  {
+    "id": "cmhaotzur000ygzdskk18jl7u",
+    "nameBg": "Община Русе",
+    "nameEn": "Ruse Municipality",
+    "logoUrl": "Rousse-coat-of-arms.svg_oyjbp6",
+    "website": "https://obshtinaruse.bg/",
+    "order": 34,
+    "createdAt": "2025-10-28T14:54:41.860Z",
+    "updatedAt": "2025-10-28T20:05:30.701Z"
+  },
+  {
+    "id": "cmhaotzx1000zgzds7pm56zz4",
+    "nameBg": "Община Габрово",
+    "nameEn": "Gabrovo Municipality",
+    "logoUrl": "120px-Gerb_Gabrovo.svg_oak6yk",
+    "website": "https://www.gabrovo.bg/bg",
+    "order": 35,
+    "createdAt": "2025-10-28T14:54:41.941Z",
+    "updatedAt": "2025-10-28T20:07:47.703Z"
+  },
+  {
+    "id": "cmhaou01j0011gzdswop46hyz",
+    "nameBg": "Община Долни чифлик",
+    "nameEn": "Dolni Chiflik Municipality",
+    "logoUrl": "dolni_chiflik_apohbi",
+    "website": "https://dolni-chiflik.acstre.com/",
+    "order": 37,
+    "createdAt": "2025-10-28T14:54:42.103Z",
+    "updatedAt": "2025-10-28T20:13:37.947Z"
+  },
+  {
+    "id": "cmhaou03m0012gzdsqedebla0",
+    "nameBg": "Община Смолян",
+    "nameEn": "Smolyan Municipality",
+    "logoUrl": "87px-Smolyan_Coat_of_Arms_jw5dps",
+    "website": "https://www.smolyan.bg/bg/home",
+    "order": 38,
+    "createdAt": "2025-10-28T14:54:42.178Z",
+    "updatedAt": "2025-10-28T20:15:42.354Z"
+  },
+  {
+    "id": "cmhaou07v0014gzds6ll03glf",
+    "nameBg": "Община Роман",
+    "nameEn": "Roman Municipality",
+    "logoUrl": "Roman_-_Logo_172x200_lsi56q",
+    "website": "https://roman.egov.bg/wps/portal/municipality-roman/home",
+    "order": 40,
+    "createdAt": "2025-10-28T14:54:42.331Z",
+    "updatedAt": "2025-10-29T05:30:54.348Z"
+  },
+  {
+    "id": "cmhaou0a10015gzds5iq5mt4d",
+    "nameBg": "Община Сливен",
+    "nameEn": "Sliven Municipality",
+    "logoUrl": "BUL_Сливен_COA_slimiu",
+    "website": "https://mun.sliven.bg/",
+    "order": 41,
+    "createdAt": "2025-10-28T14:54:42.409Z",
+    "updatedAt": "2025-10-29T05:32:04.426Z"
+  },
+  {
+    "id": "cmhaou0ei0017gzdscz045job",
+    "nameBg": "Община Кнежа",
+    "nameEn": "Knezha Municipality",
+    "logoUrl": "kneja_kmvaee",
+    "website": "https://kneja.acstre.com/",
+    "order": 43,
+    "createdAt": "2025-10-28T14:54:42.570Z",
+    "updatedAt": "2025-10-29T05:51:49.047Z"
+  },
+  {
+    "id": "cmhaou0gt0018gzdslite2fzk",
+    "nameBg": "Община Ямбол",
+    "nameEn": "Yambol Municipality",
+    "logoUrl": "qmbol-removebg-preview_zmwy5x",
+    "website": "https://yambol.bg/",
+    "order": 44,
+    "createdAt": "2025-10-28T14:54:42.653Z",
+    "updatedAt": "2025-11-01T08:08:08.283Z"
+  },
+  {
+    "id": "cmhaou0nm001bgzdsf1lwdipv",
+    "nameBg": "Община Твърдица",
+    "nameEn": "Tvarditsa Municipality",
+    "logoUrl": "logo-tvardica_szla0m",
+    "website": "https://tvarditsa.bg/",
+    "order": 47,
+    "createdAt": "2025-10-28T14:54:42.898Z",
+    "updatedAt": "2025-10-29T06:02:24.933Z"
+  },
+  {
+    "id": "cmhaou0l7001agzdscosqqmj5",
+    "nameBg": "Община Белене",
+    "nameEn": "Belene Municipality",
+    "logoUrl": "belene-logo-2-150x150_wum83c",
+    "website": "https://belene.bg/",
+    "order": 46,
+    "createdAt": "2025-10-28T14:54:42.811Z",
+    "updatedAt": "2025-10-29T06:01:24.808Z"
+  },
+  {
+    "id": "cmhaou0qb001cgzds8kq8mufc",
+    "nameBg": "МБАЛ \"Д-р Тота Венкова\" АД",
+    "nameEn": "MBAL \"Dr. Tota Venkova\" AD",
+    "logoUrl": "tota_venkova_q4rjgh",
+    "website": "https://www.mbalgabrovo.com/",
+    "order": 48,
+    "createdAt": "2025-10-28T14:54:42.996Z",
+    "updatedAt": "2025-10-29T06:03:27.922Z"
+  },
+  {
+    "id": "cmhaotyhs000cgzdsglr5wzel",
+    "nameBg": "Електроенергиен системен оператор ЕАД",
+    "nameEn": "Electricity System Operator EAD",
+    "logoUrl": "eso_logo_bg_n5j8k7",
+    "website": "https://www.eso.bg/",
+    "order": 12,
+    "createdAt": "2025-10-28T14:54:40.097Z",
+    "updatedAt": "2025-10-28T17:42:04.705Z"
+  },
+  {
+    "id": "cmhaotym6000egzdsa9uzd2qa",
+    "nameBg": "Община Златица",
+    "nameEn": "Zlatitsa Municipality",
+    "logoUrl": "gerb-Zlatitsa-mob-removebg-preview_xot80z",
+    "website": "https://zlatitsa.egov.bg/wps/portal/municipality-zlatitsa/home/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziAwLcHT3cLQwMAkICzQwCA8zNA9yCDY3cHQ31wwkpiAJKG-AAjgZA_VFgJXATPFxCHIEmBBkGBHuZGZj4G0IV4DGjIDfCINNRUREAFqcd0w!!/dz/d5/L2dBISEvZ0FBIS9nQSEh/",
+    "order": 14,
+    "createdAt": "2025-10-28T14:54:40.254Z",
+    "updatedAt": "2025-10-28T17:48:28.196Z"
+  },
+  {
+    "id": "cmhaotyob000fgzdsbdtle6j3",
+    "nameBg": "Община Левски",
+    "nameEn": "Levski Municipality",
+    "logoUrl": "Levski-Gerb_qhnmec",
+    "website": "https://oblevski.egov.bg/wps/portal/municipality-levski/home/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziAwLcHT3cLQwMAkICzQwCA8zNA9yCDY3cHQ31wwkpiAJKG-AAjgZA_VFgJXATPFxCHIEmBBkGBHuZGZj4G0IV4DGjIDfCINNRUREAFqcd0w!!/dz/d5/L2dBISEvZ0FBIS9nQSEh/",
+    "order": 15,
+    "createdAt": "2025-10-28T14:54:40.332Z",
+    "updatedAt": "2025-10-28T19:14:03.996Z"
+  },
+  {
+    "id": "cmhaotz64000ngzdsxpjjfbjn",
+    "nameBg": "Община Трявна",
+    "nameEn": "Tryavna Municipality",
+    "logoUrl": "Tryavna-Coat-of-Arms-removebg-preview_iholdt",
+    "website": "https://tryavna.bg/",
+    "order": 23,
+    "createdAt": "2025-10-28T14:54:40.973Z",
+    "updatedAt": "2025-10-28T19:32:28.041Z"
+  },
+  {
+    "id": "cmhaotzet000rgzds45ype99z",
+    "nameBg": "Община Велинград",
+    "nameEn": "Velingrad Municipality",
+    "logoUrl": "Velingrad-coat-of-arms.svg_fgc2cf",
+    "website": "https://m.velingrad.bg/",
+    "order": 27,
+    "createdAt": "2025-10-28T14:54:41.286Z",
+    "updatedAt": "2025-10-28T19:42:37.743Z"
+  },
+  {
+    "id": "cmhaotzj1000tgzdspo8ci5x4",
+    "nameBg": "Община Белоградчик",
+    "nameEn": "Belogradchik Municipality",
+    "logoUrl": "Belogradchik-coat-of-arms-removebg-preview_sulqe3",
+    "website": "https://belogradchik.egov.bg/wps/portal/municipality-belogradchik/contacts",
+    "order": 29,
+    "createdAt": "2025-10-28T14:54:41.437Z",
+    "updatedAt": "2025-10-28T19:47:00.772Z"
+  },
+  {
+    "id": "cmhaotzpl000wgzdst0drqy9q",
+    "nameBg": "Община Две Могили",
+    "nameEn": "Dve Mogili Municipality",
+    "logoUrl": "LogoDveMogili_q9orgo",
+    "website": "https://dvemogili.egov.bg/wps/portal/municipality-dve-mogili/home/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziAwLcHT3cLQwMAkICzQwCA8zNA9yCDY3cHQ31wwkpiAJKG-AAjgZA_VFgJXATPFxCHIEmBBkGBHuZGZj4G0IV4DGjIDfCINNRUREAFqcd0w!!/dz/d5/L2dBISEvZ0FBIS9nQSEh/",
+    "order": 32,
+    "createdAt": "2025-10-28T14:54:41.674Z",
+    "updatedAt": "2025-10-28T20:00:14.474Z"
+  },
+  {
+    "id": "cmhaotzz90010gzdsapsave4u",
+    "nameBg": "Община Пловдив",
+    "nameEn": "Plovdiv Municipality",
+    "logoUrl": "Plovdiv-coat-of-arms.svg_ciaxnk",
+    "website": "https://www.plovdiv.bg/",
+    "order": 36,
+    "createdAt": "2025-10-28T14:54:42.021Z",
+    "updatedAt": "2025-10-28T20:09:35.285Z"
+  },
+  {
+    "id": "cmhaou05s0013gzdsug9oua9l",
+    "nameBg": "Община Елена",
+    "nameEn": "Elena Municipality",
+    "logoUrl": "logo-elena-removebg-preview_qhcyor",
+    "website": "https://elena.bg/wps/portal/municipality-elena/home/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziAwLcHT3cLQwMAkICzQwCA8zNA9yCDY3cHQ31wwkpiAJKG-AAjgZA_VFgJXATPFxCHIEmBBkGBHuZGZj4G0IV4DGjIDfCINNRUREAFqcd0w!!/dz/d5/L2dBISEvZ0FBIS9nQSEh/",
+    "order": 39,
+    "createdAt": "2025-10-28T14:54:42.257Z",
+    "updatedAt": "2025-10-28T20:20:14.335Z"
+  },
+  {
+    "id": "cmhaou0cb0016gzds3i7doml0",
+    "nameBg": "Община Струмяни",
+    "nameEn": "Strumyani Municipality",
+    "logoUrl": "strumqni_duovnz",
+    "website": "https://www.strumyani.org/",
+    "order": 42,
+    "createdAt": "2025-10-28T14:54:42.491Z",
+    "updatedAt": "2025-10-29T05:49:57.557Z"
+  },
+  {
+    "id": "cmhaou0iz0019gzds3splrc69",
+    "nameBg": "Община Костенец",
+    "nameEn": "Kostenets Municipality",
+    "logoUrl": "kostenets-logo-retina_apvmor",
+    "website": "https://kostenetz.com/",
+    "order": 45,
+    "createdAt": "2025-10-28T14:54:42.732Z",
+    "updatedAt": "2025-10-29T05:54:43.334Z"
+  },
+  {
+    "id": "cmhaotxt10001gzds18kmnbyk",
+    "nameBg": "Национална електрическа компания ЕАД",
+    "nameEn": "National Electric Company EAD",
+    "logoUrl": "568295352_805388618954025_6138496855695139959_n_tylmjo",
+    "website": "https://www.nek.bg/index.php/bg/",
+    "order": 1,
+    "createdAt": "2025-10-28T14:54:39.205Z",
+    "updatedAt": "2025-10-31T09:32:16.270Z"
+  },
+  {
+    "id": "cmiftbvrv0000jr04geg8n2xb",
+    "nameBg": "Община Бяла Слатина ",
+    "nameEn": "Byala Slatina Municipality",
+    "logoUrl": "logos/1764150351275-BSlatina_GERB",
+    "website": null,
+    "order": 50,
+    "createdAt": "2025-11-26T09:39:07.978Z",
+    "updatedAt": "2025-11-26T09:45:54.312Z"
+  }
+]

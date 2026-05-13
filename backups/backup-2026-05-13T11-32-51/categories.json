@@ -1,0 +1,98 @@
+[
+  {
+    "id": "cmh1smotn0000gzugap3x4neh",
+    "titleBg": "Транспортна инфраструктура",
+    "titleEn": "Transport Infrastructure",
+    "slug": "transport-infrastructure",
+    "descriptionBg": "изграждане, ремонт и реконструкция на пътища, улици и пътни съоръжения",
+    "descriptionEn": "construction, repair, and reconstruction of roads, streets, and road facilities",
+    "iconName": "Route",
+    "order": 3,
+    "createdAt": "2025-10-22T09:31:03.851Z",
+    "updatedAt": "2025-11-21T13:54:03.564Z"
+  },
+  {
+    "id": "cmh1smp380001gzug45l8pqvu",
+    "titleBg": "ВИК проекти",
+    "titleEn": "Water Supply & Sewerage",
+    "slug": "water-supply-sewerage",
+    "descriptionBg": "изграждане и реконструкция на водопроводни и канализационни мрежи и съоръжения",
+    "descriptionEn": "construction and reconstruction of water supply and sewerage networks and facilities",
+    "iconName": "Droplets",
+    "order": 4,
+    "createdAt": "2025-10-22T09:31:04.196Z",
+    "updatedAt": "2025-11-21T13:54:03.564Z"
+  },
+  {
+    "id": "cmh1smpec0003gzuggjyhbpzv",
+    "titleBg": "Енергийна ефективност",
+    "titleEn": "Energy Efficiency",
+    "slug": "energy-efficiency",
+    "descriptionBg": " въвеждане на мерки за енергийна ефективност в жилищни и обществени сгради",
+    "descriptionEn": " introduction of energy efficiency measures in residential and public buildings",
+    "iconName": "Zap",
+    "order": 1,
+    "createdAt": "2025-10-22T09:31:04.597Z",
+    "updatedAt": "2025-11-21T13:54:03.564Z"
+  },
+  {
+    "id": "cmh1smpjr0004gzug5yl46qs9",
+    "titleBg": "Благоустройство и озеленяване",
+    "titleEn": "Landscaping & Greenery",
+    "slug": "landscaping-greenery",
+    "descriptionBg": "изграждане и обновяване на паркове, градини, детски площадки и градски зони",
+    "descriptionEn": " construction and renovation of parks, gardens, playgrounds and urban areas",
+    "iconName": "Trees",
+    "order": 2,
+    "createdAt": "2025-10-22T09:31:04.792Z",
+    "updatedAt": "2025-11-21T13:54:03.564Z"
+  },
+  {
+    "id": "cmh1smpum0006gzugv27gzlft",
+    "titleBg": "Газопреносни системи, електро и ОВК инсталации",
+    "titleEn": "Gas transmission systems, electrical and HVAC installations",
+    "slug": "gas-transmission-systems-electrical-and-hvac-installations",
+    "descriptionBg": "изграждане и ремонт на газопреносни съоръжения и проводи, отоплителни, вентилационни, климатични и електро инсталации",
+    "descriptionEn": "construction and repair of gas transmission facilities and pipelines, heating, ventilation, air conditioning, and electrical installations",
+    "iconName": "Wind",
+    "order": 5,
+    "createdAt": "2025-10-22T09:31:05.182Z",
+    "updatedAt": "2025-11-21T13:54:03.564Z"
+  },
+  {
+    "id": "cmhn6eesp003ngz9wdblwl7et",
+    "titleBg": "Инженерно-укрепителни дейности и инсталации за третиране на отпадъци",
+    "titleEn": "Engineering reinforcement activities and waste treatment installations",
+    "slug": "engineering-reinforcement-activities-and-waste-treatment-installations",
+    "descriptionBg": "изграждане на подпорни стени, стабилизация и рекултивация на терени, изграждане на депа за отпадъци",
+    "descriptionEn": "construction of retaining walls, stabilization and recultivation of land, construction of waste disposal sites",
+    "iconName": "ShieldCheck",
+    "order": 6,
+    "createdAt": "2025-11-06T08:39:41.889Z",
+    "updatedAt": "2025-11-21T13:54:03.564Z"
+  },
+  {
+    "id": "cmhn6eesn003lgz9wpr3dlrp8",
+    "titleBg": "Стоманени и стоманобетонни конструкции и съоръжения",
+    "titleEn": "Steel and reinforced concrete structures and facilities",
+    "slug": "steel-and-reinforced-concrete-structures-and-facilities",
+    "descriptionBg": "изграждане и ремонт на конструкции за промишлени, търговски и инфраструктурни обекти",
+    "descriptionEn": "construction and repair of structures for industrial, commercial, and infrastructure facilities",
+    "iconName": "Hammer",
+    "order": 7,
+    "createdAt": "2025-11-06T08:39:41.889Z",
+    "updatedAt": "2025-11-21T13:54:03.564Z"
+  },
+  {
+    "id": "cmh1smpp70005gzugg460r6iz",
+    "titleBg": "Сгради и съоръжения за обществено и жилищно ползване",
+    "titleEn": " Buildings and facilities for public and residential use",
+    "slug": "buildings-and-facilities-for-public-and-residential-use",
+    "descriptionBg": "изграждане, ремонт и реконструкция на жилищни, образователни, културни, спортни, социални и търговски сгради. Реставрация и консервация на паметници на културата",
+    "descriptionEn": "construction, repair, and renovation of residential, educational, cultural, sports, social, and commercial buildings. Restoration and conservation of cultural monuments",
+    "iconName": "Building",
+    "order": 0,
+    "createdAt": "2025-10-22T09:31:04.988Z",
+    "updatedAt": "2025-11-21T13:54:03.564Z"
+  }
+]

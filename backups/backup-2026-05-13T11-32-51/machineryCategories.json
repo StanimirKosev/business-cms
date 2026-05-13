@@ -1,0 +1,102 @@
+[
+  {
+    "id": "cmh7cqno90008gzkwee9k0s8u",
+    "nameBg": "Колесни багери",
+    "nameEn": "Wheeled Excavators",
+    "count": 8,
+    "imageUrl": "machinery/1763387153658-колесен багер",
+    "order": 1,
+    "createdAt": "2025-11-08T20:04:34.648Z",
+    "updatedAt": "2025-11-24T13:04:47.798Z"
+  },
+  {
+    "id": "cmh7cqn9f0000gzkwfr2j9j5e",
+    "nameBg": "Верижни багери",
+    "nameEn": "Tracked Excavators",
+    "count": 11,
+    "imageUrl": "machinery/1763387135410-верижен багер",
+    "order": 0,
+    "createdAt": "2025-11-08T20:04:34.523Z",
+    "updatedAt": "2025-11-24T13:05:08.632Z"
+  },
+  {
+    "id": "cmh7cqnyk000cgzkw657f8fmd",
+    "nameBg": "Телескопични товарачи",
+    "nameEn": "Telescopic Loaders",
+    "count": 2,
+    "imageUrl": "4_телескопичен_товарач_ike1ev",
+    "order": 3,
+    "createdAt": "2025-11-08T20:04:34.812Z",
+    "updatedAt": "2025-11-24T13:07:42.680Z"
+  },
+  {
+    "id": "cmh7cqol4000pgzkwfczl08ok",
+    "nameBg": "Вибрационни валяци",
+    "nameEn": "Rollers (Vibratory / Road)",
+    "count": 6,
+    "imageUrl": "6_вибрационен_валяк_f9wcpz",
+    "order": 5,
+    "createdAt": "2025-11-08T20:04:34.979Z",
+    "updatedAt": "2025-11-24T13:11:43.405Z"
+  },
+  {
+    "id": "cmh7cqor3000wgzkwiznx9ogd",
+    "nameBg": "Пътна фреза",
+    "nameEn": "Road Mill",
+    "count": 1,
+    "imageUrl": "7_пътна_фреза_gtuqrk",
+    "order": 6,
+    "createdAt": "2025-11-08T20:04:35.066Z",
+    "updatedAt": "2025-11-24T13:12:39.341Z"
+  },
+  {
+    "id": "cmh7cqowe000ygzkwic1v1guy",
+    "nameBg": "Асфалтополагачи",
+    "nameEn": "Asphalt Pavers",
+    "count": 2,
+    "imageUrl": "8_асфалтополагач_k3kg55",
+    "order": 7,
+    "createdAt": "2025-11-08T20:04:35.148Z",
+    "updatedAt": "2025-11-24T13:13:15.986Z"
+  },
+  {
+    "id": "cmh7cqntc000agzkwyyrq3rk7",
+    "nameBg": "Булдозери",
+    "nameEn": "Bulldozers",
+    "count": 1,
+    "imageUrl": "9_булдозер_ok4rfh",
+    "order": 8,
+    "createdAt": "2025-11-08T20:04:35.230Z",
+    "updatedAt": "2025-11-24T13:13:26.972Z"
+  },
+  {
+    "id": "cmh7cqpn3001igzkwlbqqe0e3",
+    "nameBg": "Друго оборудване",
+    "nameEn": "Other Equipment",
+    "count": 5,
+    "imageUrl": "11_друго_g0yycn",
+    "order": 10,
+    "createdAt": "2025-11-08T20:04:35.396Z",
+    "updatedAt": "2025-11-24T13:14:38.242Z"
+  },
+  {
+    "id": "cmh7cqofz000mgzkwxjk9cpnc",
+    "nameBg": "Челни товарачи",
+    "nameEn": "Front Loaders",
+    "count": 5,
+    "imageUrl": "5_челен_товарач_qlfirh",
+    "order": 4,
+    "createdAt": "2025-11-08T20:04:34.897Z",
+    "updatedAt": "2026-03-24T09:07:48.083Z"
+  },
+  {
+    "id": "cmh7cqpcz001bgzkwa5iuitw3",
+    "nameBg": "Товарни автомобили",
+    "nameEn": "Cargo Trucks",
+    "count": 16,
+    "imageUrl": "10_товарен_авт2_jmu4is",
+    "order": 9,
+    "createdAt": "2025-11-08T20:04:35.312Z",
+    "updatedAt": "2026-03-25T14:35:21.823Z"
+  }
+]

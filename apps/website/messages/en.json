@@ -29,7 +29,7 @@
       "phone": "+359 953 27 90",
       "email": "office@technostroy.bg"
     },
-    "copyright": "© 2025 Techno Stroy Bulgaria Ltd. All rights reserved.",
+    "copyright": "© {year} Techno Stroy Bulgaria Ltd. All rights reserved.",
     "links": {
       "privacy": "Privacy",
       "cookies": "Cookies"

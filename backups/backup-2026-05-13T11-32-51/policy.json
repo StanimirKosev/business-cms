@@ -1,0 +1,74 @@
+[
+  {
+    "id": "cmgw9gxiw0000gzy81cgqnjfc",
+    "titleBg": "Декларация на ръководството",
+    "titleEn": "Management Declaration",
+    "subtitleBg": "Политика по качеството, околната среда, здраве и безопасност при работа",
+    "subtitleEn": "Quality, Environment, Health and Safety Policy",
+    "cloudinaryPublicIdBg": "302abd31dca4500c102cf4f29_or_zmrxb4",
+    "cloudinaryPublicIdEn": "302abd31dca4500c102cf4f29_or_zmrxb4",
+    "order": 0,
+    "createdAt": "2025-10-26T07:21:24.095Z",
+    "updatedAt": "2025-10-26T07:21:24.095Z"
+  },
+  {
+    "id": "cmgw9io840001gzy8y6d5n9ve",
+    "titleBg": "Политика по социална отговорност",
+    "titleEn": "Social Responsibility Policy",
+    "subtitleBg": "Корпоративна социална отговорност",
+    "subtitleEn": "Corporate Social Responsibility",
+    "cloudinaryPublicIdBg": "d93bb39cfd3d4392dba059a92_or_l9uwji",
+    "cloudinaryPublicIdEn": "d93bb39cfd3d4392dba059a92_or_l9uwji",
+    "order": 1,
+    "createdAt": "2025-10-26T07:21:24.177Z",
+    "updatedAt": "2025-10-26T07:21:24.177Z"
+  },
+  {
+    "id": "cmgw9k20f0002gzy8n6nh8o54",
+    "titleBg": "Политика за детски труд",
+    "titleEn": "Child Labor Policy",
+    "subtitleBg": "Защита и възстановяване на деца",
+    "subtitleEn": "Protection and Remediation of Children",
+    "cloudinaryPublicIdBg": "106137f11950e97b22e7e1ad8_or_ksvihk",
+    "cloudinaryPublicIdEn": "106137f11950e97b22e7e1ad8_or_ksvihk",
+    "order": 2,
+    "createdAt": "2025-10-26T07:21:24.223Z",
+    "updatedAt": "2025-10-26T07:21:24.223Z"
+  },
+  {
+    "id": "cmgw9llgf0003gzy8n2rjom5c",
+    "titleBg": "Политика за равни възможности",
+    "titleEn": "Equal Opportunities Policy",
+    "subtitleBg": "Липса на дискриминация",
+    "subtitleEn": "Non-Discrimination",
+    "cloudinaryPublicIdBg": "0e81ab001c98b16d714bd9170_or_az1esl",
+    "cloudinaryPublicIdEn": "0e81ab001c98b16d714bd9170_or_az1esl",
+    "order": 3,
+    "createdAt": "2025-10-26T07:21:24.263Z",
+    "updatedAt": "2025-10-26T07:21:24.263Z"
+  },
+  {
+    "id": "cmgw9mu1e0004gzy8mvgq4g1m",
+    "titleBg": "Политика за управление на енергията",
+    "titleEn": "Energy Management Policy",
+    "subtitleBg": "Енергийна ефективност и устойчивост",
+    "subtitleEn": "Energy Efficiency and Sustainability",
+    "cloudinaryPublicIdBg": "04616addbbc32751a39d19140_or_qwgbcw",
+    "cloudinaryPublicIdEn": "04616addbbc32751a39d19140_or_qwgbcw",
+    "order": 4,
+    "createdAt": "2025-10-26T07:21:24.311Z",
+    "updatedAt": "2025-10-26T07:21:24.311Z"
+  },
+  {
+    "id": "cmgw9nyv20005gzy8rsahos0w",
+    "titleBg": "Етичен кодекс",
+    "titleEn": "Code of Ethics",
+    "subtitleBg": "Корпоративна етика и ценности",
+    "subtitleEn": "Corporate Ethics and Values",
+    "cloudinaryPublicIdBg": "f5107f7bcaa3a02791a1194c6_or_xsru0s",
+    "cloudinaryPublicIdEn": "f5107f7bcaa3a02791a1194c6_or_xsru0s",
+    "order": 5,
+    "createdAt": "2025-10-26T07:21:24.358Z",
+    "updatedAt": "2025-10-26T07:21:24.358Z"
+  }
+]

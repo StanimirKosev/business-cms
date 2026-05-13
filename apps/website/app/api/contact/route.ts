@@ -50,12 +50,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    console.log("[CONTACT FORM] Submission received:", {
-      name,
-      email,
-      phone,
-      message,
-    });
+    console.log("[CONTACT FORM] Submission received from:", email);
 
     const emailResult = await sendContactEmail({
       name,
